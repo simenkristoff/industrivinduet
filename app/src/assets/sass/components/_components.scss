@@ -1,0 +1,30 @@
+
+/** Admin styles **/
+
+@import './admin/admin';
+
+/* Sidebar */
+@import './../../../components/admin/Sidebar/styles.scss';
+
+/* Toolbar */
+@import './../../../components/admin/Toolbar/styles.scss';
+
+/** Styles **/
+
+/* Header */
+@import './../../../components/Header/styles.scss';
+
+/* Footer */
+@import './../../../components/Footer/styles.scss';
+
+/* SignIn */
+@import './../../../components/SignIn/styles.scss';
+
+/* SignUp */
+@import './../../../components/SignUp/styles.scss';
+
+/* VerticalNav */
+@import './../../../components/VerticalNav/styles.scss';
+
+/* Modal */
+@import './../../../components/Modal/styles.scss';

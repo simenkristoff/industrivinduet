@@ -1,0 +1,26 @@
+
+#root, .App, #page, .main {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+// App
+#App {
+    overflow-x: hidden;
+}
+
+// Page
+#page {
+    position: relative;
+    top: 0;
+    left: 0;
+    float: left;
+
+    &.sidebar-open {
+        transition: all .4s ease-in-out;
+        width: calc(100% - 260px);
+        left: 260px;
+    }
+}
