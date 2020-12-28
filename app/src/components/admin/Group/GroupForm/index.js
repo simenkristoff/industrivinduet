@@ -1,94 +1,59 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {addGroupStart, updateGroupStart, setGroup} from './../../../../redux/Group/group.actions';
+import React from 'react';
+import {useSelector} from 'react-redux';
+import {Field, Form} from 'react-final-form';
+import {required} from './../../../../validation';
 
-// Components 
-import Modal from 'react-bootstrap/Modal';
+// Components
 import Button from 'react-bootstrap/Button';
 
 const mapState = ({groupsData}) => ({
     group: groupsData.group
 });
 
-const GroupForm = ({show, handleClose, editMode}) => {
-    const dispatch = useDispatch();
+const GroupForm = ({handleSubmit, editMode}) => {
     const {group} = useSelector(mapState);
-    const [name, setName] = useState('');
-
-    const resetForm = () => {
-        setName('');
-    }
-
-    useEffect(() => {
-        if(editMode) {
-            setName(group.name);
-        }
-
-    }, [editMode]);
-
-    const cleanUp = () => {
-        dispatch(
-            setGroup({})
-        );
-        resetForm();
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-
-        if(editMode) {
-            const {_id} = group;
-            dispatch(
-                updateGroupStart({
-                    _id,
-                    name
-                })
-            );
-        } else {
-            dispatch(
-                addGroupStart({
-                    name
-                })
-            );
-        }
-        handleClose();
-    };
-
-    const configModal = {
-        show,
-        onHide: handleClose,
-        onExit: cleanUp
-    };
 
     return (
-
-        <Modal {...configModal}>
-            <Modal.Header closeButton>
-                <Modal.Title>{editMode ? 'Rediger gruppe' : 'Ny gruppe'}</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="name">Gruppenavn</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            name="name"
-                            placeholder="Gruppenavn"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="form-group text-center pt-2">
-                        <Button className="mr-2" variant="secondary" onClick={handleClose}>Avbryt</Button>
-                        <Button variant="primary" type="submit">{editMode ? 'Lagre' : 'Legg til'}</Button>
-                    </div>
-                    
-                </form>
-            </Modal.Body>
-        </Modal>
+        <Form onSubmit={handleSubmit}
+            initialValues={group}
+            render={({handleSubmit, pristine, form, submitting, values}) => {
+                return (
+                    <form onSubmit={(event) => {
+                        const promise = handleSubmit(event);
+                        promise && promise.then(() => {
+                            form.reset();
+                        });
+                        return promise;
+                    }}>
+                        <Field name="name" validate={required}>
+                            {({input, meta}) => {
+                                const hasError = meta.error && meta.touched;
+                                return (
+                                    <div className="form-group">
+                                        <label className="col-form-label" htmlFor="name">Gruppenavn</label>
+                                        <input
+                                         className={`form-control ${hasError ? 'is-invalid' : ''}`}
+                                         placeholder="Gruppenavn" 
+                                         type="text"
+                                         {...input}
+                                        />
+                                        {hasError && (
+                                            <small className="form-error text-danger">{meta.error}</small>
+                                        )}
+                                    </div>
+                                );
+                            }}  
+                        </Field>
+                        
+                        <div className="form-group text-center pt-2">
+                            <Button variant="primary" type="submit" disabled={submitting || pristine}>
+                                {editMode ? 'Lagre' : 'Legg til'}
+                            </Button>
+                        </div>
+                    </form>
+                );
+            }}
+        />
     );
 };
 

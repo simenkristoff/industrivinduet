@@ -1,27 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {Field, Form} from 'react-final-form';
 import {fetchGroupsStart} from './../../../../redux/Group/group.actions';
-import {addRoleStart, updateRoleStart, setRole} from './../../../../redux/Role/role.actions';
+import {required} from './../../../../validation';
 
-// Components 
-import Modal from 'react-bootstrap/Modal';
+// Components
 import Button from 'react-bootstrap/Button';
 
-const mapState = state => ({
-    groups: state.groupsData.groups,
-    role: state.rolesData.role
+const mapState = (state) => ({
+    role: state.rolesData.role,
+    groups: state.groupsData.groups
 });
 
-const RoleForm = ({show, handleClose, editMode}) => {
+const RoleForm = ({handleSubmit, editMode}) => {
     const dispatch = useDispatch();
-    const {groups, role} = useSelector(mapState);
-    const [name, setName] = useState('');
-    const [group, setGroup] = useState('');
-
-    const resetForm = () => {
-        setName('');
-        setGroup('');
-    }
+    const {role, groups} = useSelector(mapState);
 
     useEffect(() => {
         dispatch(
@@ -29,97 +22,73 @@ const RoleForm = ({show, handleClose, editMode}) => {
         );
     }, []);
 
-    useEffect(() => {
-        if(editMode) {
-            setName(role.name);
-            setGroup(role.group._id);
-        }
-    }, [editMode]);
-
-    const cleanUp = () => {
-        dispatch(
-            setRole({})
-        );
-        resetForm();
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-
-        if(editMode) {
-            const {_id} = role;
-            dispatch(
-                updateRoleStart({
-                    _id,
-                    name,
-                    group
-                })
-            );
-        } else {
-            dispatch(
-                addRoleStart({
-                    name,
-                    group
-                })
-            );
-        }
-        handleClose();
-    };
-
-    const configModal = {
-        show,
-        onHide: handleClose,
-        onExit: cleanUp
-    };
-
     return (
-
-        <Modal {...configModal}>
-            <Modal.Header closeButton>
-                <Modal.Title>{editMode ? 'Rediger stilling' : 'Ny stilling'}</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="name">Stillingsnavn</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            name="name"
-                            placeholder="Gruppenavn"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="group">Gruppe</label>
-                        <select className="form-control"
-                         value={group}
-                         onChange={e => setGroup(e.target.value)}
-                         >
-                            {groups.map((groupData) => {
+        <Form onSubmit={handleSubmit}
+            initialValues={role}
+            render={({handleSubmit, pristine, form, submitting, values}) => {
+                return (
+                    <form onSubmit={(event) => {
+                        const promise = handleSubmit(event);
+                        promise && promise.then(() => {
+                            form.reset();
+                        });
+                        return promise;
+                    }}>
+                        <Field name="name" validate={required}>
+                            {({input, meta}) => {
+                                const hasError = meta.error && meta.touched;
                                 return (
-                                    <option 
-                                     key={groupData._id}
-                                     value={groupData._id}
-                                    >
-                                    {groupData.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </div>
+                                    <div className="form-group">
+                                        <label className="col-form-label" htmlFor="name">Stillingsnavn</label>
+                                        <input
+                                         className={`form-control ${hasError ? 'is-invalid' : ''}`}
+                                         placeholder="Stillingsnavn" 
+                                         type="text"
+                                         {...input} 
+                                        />
+                                        {hasError && (
+                                            <small className="form-error text-danger">{meta.error}</small>
+                                        )}
+                                    </div>
+                                );
+                            }}  
+                        </Field>
 
-                    <div className="form-group text-center pt-2">
-                        <Button className="mr-2" variant="secondary" onClick={handleClose}>Avbryt</Button>
-                        <Button variant="primary" type="submit">{editMode ? 'Lagre' : 'Legg til'}</Button>
-                    </div>
-                    
-                </form>
-            </Modal.Body>
-        </Modal>
+                        <Field name="group._id" validate={required}>
+                            {({input, meta}) => {
+                                const hasError = meta.error && meta.touched;
+                                return (
+                                    <div className="form-group">
+                                        <label className="col-form-label" htmlFor="group._id">Gruppe</label>
+                                        <select
+                                         className={`form-control ${hasError ? 'is-invalid' : ''}`}
+                                         {...input} 
+                                        >
+                                            <option value="">Velg gruppe</option>
+                                            {groups.map((group) => {
+                                                const {_id, name} = group;
+                                                return (
+                                                    <option key={_id} value={_id}>{name}</option>
+                                                );
+                                            })}
+                                        </select>
+                                        {hasError && (
+                                            <small className="form-error text-danger">{meta.error}</small>
+                                        )}
+                                    </div>
+                                );
+                            }}
+                        </Field>
+                        
+                        <div className="form-group text-center pt-2">
+                            <Button variant="primary" type="submit" disabled={submitting || pristine}>
+                                {editMode ? 'Lagre' : 'Legg til'}
+                            </Button>
+                        </div>
+                    </form>
+                );
+            }}
+        />
     );
 };
 

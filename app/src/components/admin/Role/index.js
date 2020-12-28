@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchRolesStart, deleteRoleStart, fetchRoleStart, setRole} from './../../../redux/Role/role.actions';
+import {addRoleStart, updateRoleStart, deleteRoleStart, fetchRolesStart, fetchRoleStart, setRole} from './../../../redux/Role/role.actions';
 import {FaEdit, FaTimes, FaPlus} from 'react-icons/fa'
 
-// Components
+// Components 
+import Modal from 'react-bootstrap/Modal';
 import RoleForm from './RoleForm';
 
 const DeleteSwal = withReactContent(Swal.mixin({
@@ -19,7 +20,7 @@ const DeleteSwal = withReactContent(Swal.mixin({
 }));
 
 const mapState = ({rolesData}) => ({
-    roles: rolesData.roles,
+    roles: rolesData.roles
 });
 
 const Role = () => {
@@ -33,25 +34,37 @@ const Role = () => {
             fetchRolesStart()
         );
     }, []);
- 
-    const handleClose = () => {
-        setEditMode(false);
-        setShow(false);
+
+    const handleSubmit = (form) => {
+        return new Promise((resolve, reject) => {
+            if(!form) {
+                reject();
+            } else {
+                if(editMode) {
+                    dispatch(
+                        updateRoleStart(form)
+                    );
+                } else {
+                    dispatch(
+                        addRoleStart(form)
+                    );
+                }
+                handleClose();
+                resolve();
+            }
+        })
     }
 
-    const handleCreate = () => {
-        setEditMode(false);
-        setShow(true)
-    }
-
-    const handleEdit = (role) => {
-        setEditMode(true);
-
-        dispatch(
-            setRole(role)
-        );
-        
-        setShow(true)
+    const handleEdit = (event) => {
+        if(event) {
+            setEditMode(true);
+            dispatch(
+                setRole(event)
+            );
+        } else {
+            setEditMode(false);
+        }
+        setShow(true);
     };
 
     const handleDelete = (id) => {
@@ -64,17 +77,24 @@ const Role = () => {
         });
     }
 
-    const configForm = {
+    const handleClose = () => {
+        dispatch(
+            setRole({})
+        );
+        setEditMode(false);
+        setShow(false);
+    }
+
+    const configModal = {
         show,
-        handleClose,
-        editMode
-    };
+        onHide: handleClose
+    }
 
     return (
         <div className="card db-manager">
             <div className="db-manager-header">
                 <h2 className="db-manager-title">Stillinger</h2>
-                <button type="button" className="btn btn-primary" onClick={handleCreate}>
+                <button type="button" className="btn btn-primary" onClick={() => handleEdit()}>
                     <FaPlus /> 
                     Stilling
                 </button>
@@ -89,7 +109,7 @@ const Role = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {roles.map((role, index) => {
+                        {roles.map((role) => {
                             const {_id, name, group} = role;
                             if(!_id || !name) return null;
 
@@ -102,12 +122,19 @@ const Role = () => {
                                         <FaTimes className="db-remove" onClick={() => handleDelete(_id)} />
                                     </td>
                                 </tr>
-                            );
+                            )
                         })}
                     </tbody>
                 </table>
             </div>
-            <RoleForm {...configForm} />
+            <Modal {...configModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{editMode? 'Rediger stilling' : 'Ny stilling'}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <RoleForm handleSubmit={handleSubmit} editMode={editMode} />
+                </Modal.Body>
+            </Modal>
         </div>
     );
 };

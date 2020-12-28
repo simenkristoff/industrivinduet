@@ -1,144 +1,115 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {Field, Form} from 'react-final-form';
 import {fetchRolesStart} from './../../../../redux/Role/role.actions';
-import {addMemberStart, updateMemberStart, setMember} from './../../../../redux/Member/member.actions';
+import {composeValidators, required, email} from './../../../../validation';
 
-// Components 
-import Modal from 'react-bootstrap/Modal';
+// Components
 import Button from 'react-bootstrap/Button';
 
 const mapState = (state) => ({
-    roles: state.rolesData.roles,
-    member: state.membersData.member
+    member: state.membersData.member,
+    roles: state.rolesData.roles
 });
 
-const MemberForm = ({show, handleClose, editMode}) => {
+const RoleForm = ({handleSubmit, editMode}) => {
     const dispatch = useDispatch();
-    const {roles, member} = useSelector(mapState);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [role, setRole] = useState('');
-
-    const resetForm = () => {
-        setName('');
-        setEmail('');
-        setRole('');
-    }
+    const {member, roles} = useSelector(mapState);
 
     useEffect(() => {
         dispatch(
             fetchRolesStart()
-        )
+        );
     }, []);
 
-    useEffect(() => {
-        if(editMode) {
-            setName(member.name);
-            setEmail(member.email);
-            setRole(member.role._id);
-        }
-    }, [editMode]);
-
-    const cleanUp = () => {
-        dispatch(
-            setMember({})
-        );
-        resetForm();
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-
-        if(editMode) {
-            const {_id} = member;
-            dispatch(
-                updateMemberStart({
-                    _id,
-                    name,
-                    email,
-                    role
-                })
-            );
-        } else {
-            dispatch(
-                addMemberStart({
-                    name,
-                    email,
-                    role
-                })
-            );
-        }
-        handleClose();
-    };
-
-    const configModal = {
-        show,
-        onHide: handleClose,
-        onExit: cleanUp
-    };
-
     return (
-
-        <Modal {...configModal}>
-            <Modal.Header closeButton>
-                <Modal.Title>{editMode ? 'Rediger medlem' : 'Nytt medlem'}</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="name">Navn</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            name="name"
-                            placeholder="Navn navnesen"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="name">E-mail</label>
-                        <input
-                            className="form-control"
-                            type="email"
-                            name="email"
-                            placeholder="E-mail"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="role">Stilling</label>
-                        <select className="form-control"
-                         value={role}
-                         onChange={e => setRole(e.target.value)}
-                         >
-                            <option value="">Velg stilling</option>
-                            {roles.map((roleData) => {
+        <Form onSubmit={handleSubmit}
+            initialValues={member}
+            render={({handleSubmit, pristine, form, submitting, values}) => {
+                return (
+                    <form onSubmit={(event) => {
+                        const promise = handleSubmit(event);
+                        promise && promise.then(() => {
+                            form.reset();
+                        });
+                        return promise;
+                    }}>
+                        <Field name="name" validate={required}>
+                            {({input, meta}) => {
+                                const hasError = meta.error && meta.touched;
                                 return (
-                                    <option 
-                                     key={roleData._id}
-                                     value={roleData._id}
-                                    >
-                                    {roleData.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </div>
+                                    <div className="form-group">
+                                        <label className="col-form-label" htmlFor="name">Navn</label>
+                                        <input
+                                         className={`form-control ${hasError ? 'is-invalid' : ''}`}
+                                         placeholder="Navn" 
+                                         type="text"
+                                         {...input} 
+                                        />
+                                        {hasError && (
+                                            <small className="form-error text-danger">{meta.error}</small>
+                                        )}
+                                    </div>
+                                );
+                            }}  
+                        </Field>
 
-                    <div className="form-group text-center pt-2">
-                        <Button className="mr-2" variant="secondary" onClick={handleClose}>Avbryt</Button>
-                        <Button variant="primary" type="submit">{editMode ? 'Lagre' : 'Legg til'}</Button>
-                    </div>
-                    
-                </form>
-            </Modal.Body>
-        </Modal>
+                        <Field name="email" validate={composeValidators(required, email)}>
+                            {({input, meta}) => {
+                                const hasError = meta.error && meta.touched;
+                                return (
+                                    <div className="form-group">
+                                        <label className="col-form-label" htmlFor="email">E-mail</label>
+                                        <input
+                                         className={`form-control ${hasError ? 'is-invalid' : ''}`}
+                                         placeholder="E-mail" 
+                                         type="text"
+                                         {...input} 
+                                        />
+                                        {hasError && (
+                                            <small className="form-error text-danger">{meta.error}</small>
+                                        )}
+                                    </div>
+                                );
+                            }}  
+                        </Field>
+
+                        <Field name="role._id" validate={required}>
+                            {({input, meta}) => {
+                                const hasError = meta.error && meta.touched;
+                                return (
+                                    <div className="form-group">
+                                        <label className="col-form-label" htmlFor="role._id">Stilling</label>
+                                        <select
+                                         className={`form-control ${hasError ? 'is-invalid' : ''}`}
+                                         {...input} 
+                                        >
+                                            <option value="">Velg stilling</option>
+                                            {roles.map((role) => {
+                                                const {_id, name} = role;
+                                                return (
+                                                    <option key={_id} value={_id}>{name}</option>
+                                                );
+                                            })}
+                                        </select>
+                                        {hasError && (
+                                            <small className="form-error text-danger">{meta.error}</small>
+                                        )}
+                                    </div>
+                                );
+                            }}
+                        </Field>
+                        
+                        <div className="form-group text-center pt-2">
+                            <Button variant="primary" type="submit" disabled={submitting || pristine}>
+                                {editMode ? 'Lagre' : 'Legg til'}
+                            </Button>
+                        </div>
+                    </form>
+                );
+            }}
+        />
     );
 };
 
-export default MemberForm;
+export default RoleForm;

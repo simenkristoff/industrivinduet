@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchGroupsStart, deleteGroupStart, fetchGroupStart, setGroup} from './../../../redux/Group/group.actions';
+import {addGroupStart, updateGroupStart, deleteGroupStart, fetchGroupsStart, fetchGroupStart, setGroup} from './../../../redux/Group/group.actions';
 import {FaEdit, FaTimes, FaPlus} from 'react-icons/fa'
 
-// Components
+// Components 
+import Modal from 'react-bootstrap/Modal';
 import GroupForm from './GroupForm';
 
 const DeleteSwal = withReactContent(Swal.mixin({
@@ -19,7 +20,7 @@ const DeleteSwal = withReactContent(Swal.mixin({
 }));
 
 const mapState = ({groupsData}) => ({
-    groups: groupsData.groups,
+    groups: groupsData.groups
 });
 
 const Group = () => {
@@ -34,24 +35,36 @@ const Group = () => {
         );
     }, []);
 
-    const handleClose = () => {
-        setEditMode(false);
-        setShow(false);
+    const handleSubmit = (form) => {
+        return new Promise((resolve, reject) => {
+            if(!form) {
+                reject();
+            } else {
+                if(editMode) {
+                    dispatch(
+                        updateGroupStart(form)
+                    );
+                } else {
+                    dispatch(
+                        addGroupStart(form)
+                    );
+                }
+                handleClose();
+                resolve();
+            }
+        })
     }
 
-    const handleCreate = () => {
-        setEditMode(false);
-        setShow(true)
-    }
-
-    const handleEdit = (group) => {
-        setEditMode(true);
-
-        dispatch(
-            setGroup(group)
-        );
-        
-        setShow(true)
+    const handleEdit = (event) => {
+        if(event) {
+            setEditMode(true);
+            dispatch(
+                setGroup(event)
+            );
+        } else {
+            setEditMode(false);
+        }
+        setShow(true);
     };
 
     const handleDelete = (id) => {
@@ -64,17 +77,24 @@ const Group = () => {
         });
     }
 
-    const configForm = {
+    const handleClose = () => {
+        dispatch(
+            setGroup({})
+        );
+        setEditMode(false);
+        setShow(false);
+    }
+
+    const configModal = {
         show,
-        handleClose,
-        editMode
-    };
+        onHide: handleClose
+    }
 
     return (
         <div className="card db-manager">
             <div className="db-manager-header">
                 <h2 className="db-manager-title">Grupper</h2>
-                <button type="button" className="btn btn-primary" onClick={handleCreate}>
+                <button type="button" className="btn btn-primary" onClick={() => handleEdit()}>
                     <FaPlus /> 
                     Gruppe
                 </button>
@@ -88,7 +108,7 @@ const Group = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {groups.map((group, index) => {
+                        {groups.map((group) => {
                             const {_id, name} = group;
                             if(!_id || !name) return null;
 
@@ -100,12 +120,19 @@ const Group = () => {
                                         <FaTimes className="db-remove" onClick={() => handleDelete(_id)} />
                                     </td>
                                 </tr>
-                            );
+                            )
                         })}
                     </tbody>
                 </table>
             </div>
-            <GroupForm {...configForm} />
+            <Modal {...configModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{editMode? 'Rediger gruppe' : 'Ny gruppe'}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <GroupForm handleSubmit={handleSubmit} editMode={editMode} />
+                </Modal.Body>
+            </Modal>
         </div>
     );
 };
