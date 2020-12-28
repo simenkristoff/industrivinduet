@@ -10,20 +10,20 @@ module.exports = function(app) {
     });
 
     // Create a new Group
-    app.post('/api/group', controller.create)
+    app.post('/api/groups', controller.create)
 
     // Fetch all Groups
-    app.get('/api/group', controller.findAll);
+    app.get('/api/groups', controller.findAll);
 
     // Fetch Group by id
-    app.get('/api/group/:id', controller.findOne);
+    app.get('/api/groups/:id', controller.findOne);
 
     // Update Group
-    app.put('/api/group/:id', controller.update);
+    app.put('/api/groups/:id', controller.update);
 
     // Delete Group
-    app.delete('/api/group/:id', controller.delete);
+    app.delete('/api/groups/:id', controller.delete);
 
     // Delete all Groups
-    app.delete('/api/group', controller.delete);
+    app.delete('/api/groups', controller.delete);
 }

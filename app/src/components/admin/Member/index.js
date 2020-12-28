@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchMembersStart, deleteMemberStart, fetchMemberStart, setMember} from './../../../redux/Member/member.actions';
+import {addMemberStart, updateMemberStart, deleteMemberStart, fetchMembersStart, fetchMemberStart, setMember} from './../../../redux/Member/member.actions';
 import {FaEdit, FaTimes, FaPlus} from 'react-icons/fa'
 
-// Components
+// Components 
+import Modal from 'react-bootstrap/Modal';
 import MemberForm from './MemberForm';
 
 const DeleteSwal = withReactContent(Swal.mixin({
@@ -19,7 +20,7 @@ const DeleteSwal = withReactContent(Swal.mixin({
 }));
 
 const mapState = ({membersData}) => ({
-    members: membersData.members,
+    members: membersData.members
 });
 
 const Member = () => {
@@ -33,25 +34,37 @@ const Member = () => {
             fetchMembersStart()
         );
     }, []);
- 
-    const handleClose = () => {
-        setEditMode(false);
-        setShow(false);
+
+    const handleSubmit = (form) => {
+        return new Promise((resolve, reject) => {
+            if(!form) {
+                reject();
+            } else {
+                if(editMode) {
+                    dispatch(
+                        updateMemberStart(form)
+                    );
+                } else {
+                    dispatch(
+                        addMemberStart(form)
+                    );
+                }
+                handleClose();
+                resolve();
+            }
+        })
     }
 
-    const handleCreate = () => {
-        setEditMode(false);
-        setShow(true)
-    }
-
-    const handleEdit = (member) => {
-        setEditMode(true);
-
-        dispatch(
-            setMember(member)
-        );
-        
-        setShow(true)
+    const handleEdit = (event) => {
+        if(event) {
+            setEditMode(true);
+            dispatch(
+                setMember(event)
+            );
+        } else {
+            setEditMode(false);
+        }
+        setShow(true);
     };
 
     const handleDelete = (id) => {
@@ -64,17 +77,24 @@ const Member = () => {
         });
     }
 
-    const configForm = {
+    const handleClose = () => {
+        dispatch(
+            setMember({})
+        );
+        setEditMode(false);
+        setShow(false);
+    }
+
+    const configModal = {
         show,
-        handleClose,
-        editMode
-    };
+        onHide: handleClose
+    }
 
     return (
         <div className="card db-manager">
             <div className="db-manager-header">
                 <h2 className="db-manager-title">Medlemmer</h2>
-                <button type="button" className="btn btn-primary" onClick={handleCreate}>
+                <button type="button" className="btn btn-primary" onClick={() => handleEdit()}>
                     <FaPlus /> 
                     Medlem
                 </button>
@@ -90,7 +110,7 @@ const Member = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {members.map((member, index) => {
+                        {members.map((member) => {
                             const {_id, name, role} = member;
                             if(!_id || !name) return null;
 
@@ -104,12 +124,19 @@ const Member = () => {
                                         <FaTimes className="db-remove" onClick={() => handleDelete(_id)} />
                                     </td>
                                 </tr>
-                            );
+                            )
                         })}
                     </tbody>
                 </table>
             </div>
-            <MemberForm {...configForm} />
+            <Modal {...configModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{editMode? 'Rediger medlem' : 'Nytt medlem'}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <MemberForm handleSubmit={handleSubmit} editMode={editMode} />
+                </Modal.Body>
+            </Modal>
         </div>
     );
 };

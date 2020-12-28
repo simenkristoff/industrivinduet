@@ -10,21 +10,21 @@ module.exports = function(app) {
     });
 
     // Create a new Member
-    app.post('/api/member', controller.create)
+    app.post('/api/members', controller.create)
 
     // Fetch all Members
-    app.get('/api/member', controller.findAll);
+    app.get('/api/members', controller.findAll);
 
     // Fetch Member by id
-    app.get('/api/member/:id', controller.findOne);
+    app.get('/api/members/:id', controller.findOne);
 
     // Update Member
-    app.put('/api/member/:id', controller.update);
+    app.put('/api/members/:id', controller.update);
 
     // Delete Member
-    app.delete('/api/member/:id', controller.delete);
+    app.delete('/api/members/:id', controller.delete);
 
     // Delete all Members
-    app.delete('/api/member', controller.delete);
+    app.delete('/api/members', controller.delete);
 
 }

@@ -10,21 +10,21 @@ module.exports = function(app) {
     });
 
     // Create a new Role
-    app.post('/api/role', controller.create)
+    app.post('/api/roles', controller.create)
 
     // Fetch all Roles
-    app.get('/api/role', controller.findAll);
+    app.get('/api/roles', controller.findAll);
 
     // Fetch Role by id
-    app.get('/api/role/:id', controller.findOne);
+    app.get('/api/roles/:id', controller.findOne);
 
     // Update Role
-    app.put('/api/role/:id', controller.update);
+    app.put('/api/roles/:id', controller.update);
 
     // Delete Role
-    app.delete('/api/role/:id', controller.delete);
+    app.delete('/api/roles/:id', controller.delete);
 
     // Delete all Roles
-    app.delete('/api/role', controller.delete);
+    app.delete('/api/roles', controller.delete);
 
 }
