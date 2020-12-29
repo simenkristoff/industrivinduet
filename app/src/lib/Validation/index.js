@@ -6,10 +6,10 @@ export const email = value => {
   return re.test(value) ? undefined : 'Fyll inn gyldig e-mail!';
 }
 
-export const mustBeNumber = value => (isNaN(value) ? 'Må være et nummer' : undefined);
+export const mustBeNumber = value => (isNaN(value) ? 'Må være et nummer.' : undefined);
 
 export const minValue = min => value =>
-  isNaN(value) || value >= min ? undefined : `Må være større enn ${min}`;
+  isNaN(value) || value >= min ? undefined : `Må være større enn ${min}.`;
 
 /** 
 *   usage: 

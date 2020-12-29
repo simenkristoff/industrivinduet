@@ -14,3 +14,13 @@ height: 100%;
 -moz-box-sizing: border-box;
 box-sizing: border-box;
 }
+
+/** react-date-picker **/
+
+.react-date-picker__wrapper {
+    border: none!important;
+
+    &:focus, input:focus, button:focus {
+        outline: none;
+    }
+}

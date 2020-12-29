@@ -77,6 +77,7 @@ require('./routes/user.routes')(app);
 require('./routes/group.routes')(app);
 require('./routes/role.routes')(app);
 require('./routes/member.routes')(app);
+require('./routes/event.routes')(app);
 
 // Set port and listen for requests
 const PORT = process.env.PORT || 8080;

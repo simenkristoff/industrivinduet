@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Field, Form} from 'react-final-form';
 import {fetchGroupsStart} from './../../../../redux/Group/group.actions';
-import {required} from './../../../../validation';
+import {required} from './../../../../lib/Validation';
 
 // Components
 import Button from 'react-bootstrap/Button';

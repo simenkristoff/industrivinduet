@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {Field, Form} from 'react-final-form';
-import {required} from './../../../../validation';
+import {required} from './../../../../lib/Validation';
 
 // Components
 import Button from 'react-bootstrap/Button';
