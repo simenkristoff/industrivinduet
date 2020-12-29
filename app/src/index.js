@@ -7,6 +7,13 @@ import {store, persistor} from './redux/createStore';
 
 import reportWebVitals from './reportWebVitals';
 
+
+// AntDesign
+import 'antd/dist/antd.css';
+
+// temporarily
+//import "react-datetime/css/react-datetime.css";
+
 // Bootstrap
 //import 'bootstrap/dist/css/bootstrap.min.css';
 

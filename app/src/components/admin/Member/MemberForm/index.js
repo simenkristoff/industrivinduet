@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Field, Form} from 'react-final-form';
 import {fetchRolesStart} from './../../../../redux/Role/role.actions';
-import {composeValidators, required, email} from './../../../../validation';
+import {composeValidators, required, email} from './../../../../lib/Validation';
 
 // Components
 import Button from 'react-bootstrap/Button';
@@ -12,7 +12,7 @@ const mapState = (state) => ({
     roles: state.rolesData.roles
 });
 
-const RoleForm = ({handleSubmit, editMode}) => {
+const MemberForm = ({handleSubmit, editMode}) => {
     const dispatch = useDispatch();
     const {member, roles} = useSelector(mapState);
 
@@ -112,4 +112,4 @@ const RoleForm = ({handleSubmit, editMode}) => {
     );
 };
 
-export default RoleForm;
+export default MemberForm;

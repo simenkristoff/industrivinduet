@@ -6,12 +6,14 @@ import userReducer from './User/user.reducer';
 import groupReducer from './Group/group.reducer';
 import roleReducer from './Role/role.reducer';
 import memberReducer from './Member/member.reducer';
+import eventReducer from './Event/event.reducer';
 
 export const rootReducer = combineReducers({
     user: userReducer,
     groupsData: groupReducer,
     rolesData: roleReducer,
-    membersData: memberReducer
+    membersData: memberReducer,
+    eventsData: eventReducer,
 });
 
 const configStorage = {
