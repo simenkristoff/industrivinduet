@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // Setup database
 const db = require('./models');
+const Options = db.options;
 const Permission = db.permission;
 
 const dbConfig = require('./config/db.config');
@@ -36,6 +37,21 @@ db.mongoose
     });
 
 function initial() {
+
+    // Initialize Options
+    Options.estimatedDocumentCount((err, count) => {
+        if(!err && count === 0) {
+            new Options().save(err => {
+                if(err) {
+                    console.log('Error initializing options', err);
+                }
+
+                console.log('Initialized options');
+            });
+        }
+    });
+
+    // Initialize Permissions
     Permission.estimatedDocumentCount((err, count) => {
         if(!err && count === 0){
             new Permission({
@@ -72,6 +88,7 @@ function initial() {
 }
 
 // Routes
+require('./routes/options.routes')(app);
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/group.routes')(app);
