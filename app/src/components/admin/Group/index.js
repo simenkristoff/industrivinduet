@@ -3,7 +3,8 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {useDispatch, useSelector} from 'react-redux';
 import {addGroupStart, updateGroupStart, deleteGroupStart, fetchGroupsStart, fetchGroupStart, setGroup} from './../../../redux/Group/group.actions';
-import {FaEdit, FaTimes, FaPlus} from 'react-icons/fa'
+import {FaEdit, FaTimes, FaPlus} from 'react-icons/fa';
+import {Table, Space} from 'antd';
 
 // Components 
 import Modal from 'react-bootstrap/Modal';
@@ -90,6 +91,36 @@ const Group = () => {
         onHide: handleClose
     }
 
+    const configTable = {
+        tableLayout: 'auto',
+        showSorterTooltip: false,
+        pagination: {
+            pageSize: 15,
+            position: ['bottomCenter']
+        }
+    }
+
+    const tableColumns = [
+        {
+            title: 'Navn',
+            dataIndex: 'name',
+            key: 'name',
+            align: 'center',
+            sorter: (a, b) => a.name.localeCompare(b.name, 'nb'),
+        },
+        {
+            title: 'Handlinger',
+            key: 'action',
+            align: 'center',
+            render: (text, record) => (
+                <Space size="small">
+                    <FaEdit className="db-edit" onClick={() => handleEdit(record)} />
+                    <FaTimes className="db-remove" onClick={() => handleDelete(record._id)} />
+                </Space>
+            ),
+        },
+    ];
+
     return (
         <div className="card db-manager">
             <div className="db-manager-header">
@@ -100,30 +131,13 @@ const Group = () => {
                 </button>
             </div>
             <div className="db-manager-content">
-                <table id="groups" className="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Navn</th>
-                            <th>Handlinger</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {groups.map((group) => {
-                            const {_id, name} = group;
-                            if(!_id || !name) return null;
-
-                            return (
-                                <tr key={_id}>
-                                    <td>{name}</td>
-                                    <td>
-                                        <FaEdit className="db-edit" onClick={() => handleEdit(group)} />
-                                        <FaTimes className="db-remove" onClick={() => handleDelete(_id)} />
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                <Table
+                 columns={tableColumns} 
+                 dataSource={groups}
+                 rowKey={(record) => { return record._id}}
+                 {...configTable} 
+                />
+                 
             </div>
             <Modal {...configModal}>
                 <Modal.Header closeButton>

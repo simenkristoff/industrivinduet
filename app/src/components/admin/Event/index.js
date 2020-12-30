@@ -3,8 +3,9 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {useDispatch, useSelector} from 'react-redux';
 import {addEventStart, updateEventStart, deleteEventStart, fetchEventsStart, fetchEventStart, setEvent} from './../../../redux/Event/event.actions';
-import {FaEdit, FaTimes, FaPlus} from 'react-icons/fa'
-import moment from 'moment'
+import {FaEdit, FaTimes, FaPlus} from 'react-icons/fa';
+import {Table, Space} from 'antd';
+import moment from 'moment';
 
 // Components
 import Modal from 'react-bootstrap/Modal';
@@ -92,6 +93,103 @@ const Event = () => {
         onHide: handleClose
     }
 
+    const renderExpandedColumn = (record) => (
+        <div className="table-col-expanded">
+            
+            <div className="col-img">
+                <img src={record.image} alt={record.title} />
+            </div>
+
+            <dl>
+                <dt>Starter: </dt>
+                <dd>{moment(record.starttime).format('HH:mm')}</dd>
+
+                {record.endtime && [
+                    <dt>Slutter: </dt>,
+                    <dd>{moment(record.endtime).format('HH:mm')}</dd>
+                ]}
+            </dl>
+
+            <dl>
+                <dt>Sted: </dt>
+                <dd>{record.place}</dd>
+
+                {record.dining && [
+                    <dt>Bespisning: </dt>,
+                    <dd>{record.dining}</dd>
+                ]}
+            </dl>
+
+            <dl>
+                <dt>Lagt til: </dt>
+                <dd>{moment(record.createdAt).format('lll')}</dd>
+
+                <dt>Sist endret: </dt>
+                <dd>{moment(record.updatedAt).format('lll')}</dd>
+            </dl>
+        </div>
+    );
+
+    const configTable = {
+        tableLayout: 'auto',
+        showSorterTooltip: false,
+        pagination: {
+            pageSize: 15,
+            position: ['bottomCenter']
+        },
+        expandable: {
+            expandedRowRender: record => renderExpandedColumn(record),
+            rowExpandable: record => record._id !== 'Not expandable'
+        }
+    }
+
+    const tableColumns = [
+        {
+            title: 'Tittel',
+            dataIndex: 'title',
+            key: 'title',
+            align: 'center',
+            sorter: (a, b) => a.title.localeCompare(b.title, 'nb'),
+        },
+        {
+            title: 'Type',
+            className: 'd-none d-lg-table-cell',
+            dataIndex: 'type',
+            key: 'type',
+            align: 'center',
+            sorter: (a, b) => a.type.localeCompare(b.type, 'nb'),
+        },
+        {
+            title: 'Dato',
+            dataIndex: 'date',
+            key: 'date',
+            align: 'center',
+            defaultSortOrder: 'ascend',
+            sorter: (a, b) => a.date.localeCompare(b.date),
+            render: (record) => (moment(record).format('ll'))
+        },
+        {
+            title: 'Ansvarlig',
+            className: 'd-none d-lg-table-cell',
+            dataIndex: 'member',
+            key: 'member',
+            align: 'center',
+            sorter: (a, b) => a.member.name.localeCompare(b.member.name, 'nb'),
+            render: (record) => (record.name)
+        },
+        {
+            title: 'Handlinger',
+            key: 'action',
+            align: 'center',
+            render: (text, record) => (
+                <Space size="small">
+                    <FaEdit className="db-edit" onClick={() => handleEdit(record)} />
+                    <FaTimes className="db-remove" onClick={() => handleDelete(record._id)} />
+                </Space>
+            ),
+        },
+    ];
+
     return (
         <div className="card db-manager">
             <div className="db-manager-header">
@@ -102,40 +200,12 @@ const Event = () => {
                 </button>
             </div>
             <div className="db-manager-content">
-                <table id="events" className="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Navn</th>
-                            <th>Dato</th>
-                            <th>Sted</th>
-                            <th>Ansvarlig</th>
-                            <th>Handlinger</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {events.map((event) => {
-                            const {_id, title, type, date,
-                                    starttime, endtime, place,
-                                    dining, description, image,
-                                    member, createdAt, updatedAt
-                                } = event;
-                            if(!_id || !title) return null;
-
-                            return (
-                                <tr key={_id}>
-                                    <td>{title}</td>
-                                    <td>{moment(date).format('ll')}</td>
-                                    <td>{place}</td>
-                                    <td>{member.name}</td>
-                                    <td>
-                                        <FaEdit className="db-edit" onClick={() => handleEdit(event)} />
-                                        <FaTimes className="db-remove" onClick={() => handleDelete(_id)} />
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                <Table
+                 columns={tableColumns} 
+                 dataSource={events}
+                 rowKey={(record) => { return record._id}}
+                 {...configTable} 
+                />
             </div>
             <Modal {...configModal}>
                 <Modal.Header closeButton>

@@ -1,6 +1,5 @@
 import moment from 'moment';
 import 'moment/locale/nb';
-import locale from 'antd/es/date-picker/locale/nb_NO';
 
 // Components
 import {DatePicker, TimePicker} from 'antd';
@@ -21,7 +20,6 @@ export const DatePickerAdapter = ({input, label, meta, ...rest}) => {
             <DatePicker
              name={input.name} 
              className={`form-control ${hasError ? 'is-invalid' : ''}`}
-             locale={locale}
              format={'ll'}
              onChange={(event) => input.onChange(event)}
              onBlur={(event) => input.onBlur(event)}
@@ -48,7 +46,6 @@ export const TimePickerAdapter = ({input, label, meta, ...rest}) => {
             <TimePicker
              name={input.name} 
              className={`form-control ${hasError ? 'is-invalid' : ''}`}
-             locale={locale}
              format={'HH:mm'}
              onChange={(event) => input.onChange(event)}
              onBlur={(event) => input.onBlur(event)}

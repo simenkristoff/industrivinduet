@@ -4,6 +4,8 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './redux/createStore';
+import { ConfigProvider } from 'antd';
+import locale from 'antd/lib/locale/nb_NO';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -25,7 +27,9 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <PersistGate persistor={persistor}>
-          <App />
+          <ConfigProvider locale={locale}>
+            <App />
+          </ConfigProvider>
         </PersistGate>
       </BrowserRouter>
     </Provider>

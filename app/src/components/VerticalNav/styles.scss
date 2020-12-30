@@ -36,7 +36,7 @@
     transition-delay: .3s;
   }
 
-  #close-sidebar {
+  #close-sidebar, #show-sidebar {
     color: theme-color("primary");
     &:hover {
       color: darken(theme-color("primary"), 5);

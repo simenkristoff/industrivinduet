@@ -4,6 +4,9 @@ import {Link, useLocation} from 'react-router-dom';
 import {checkUserIsAdmin} from './../../../utils';
 import {FaArrowLeft} from 'react-icons/fa';
 
+// Components
+import Breadcrumbs from './../../admin/Breadcrumbs';
+
 const mapState = ({user}) => ({
     currentUser: user.currentUser
 });
@@ -31,23 +34,22 @@ const Toolbar = ({user}) => {
 
     return (
         <div className="admin-toolbar">
-            <div className="container-fluid">
-                <ul>
-                    {isAdminNamespace && (
-                        <li className="return-to-page">
-                            <Link to="/">
-                                <FaArrowLeft />
-                                <span>Tilbake til nettsiden</span>
-                            </Link>
-                        </li>
-                    )}
-                    <li>   
-                        <Link to="/admin">
-                            <span>Admin</span>
+            <Breadcrumbs />
+            <ul>
+                {isAdminNamespace && (
+                    <li className="return-to-site">
+                        <Link to="/">
+                            <FaArrowLeft />
+                            <span>Tilbake til nettsiden</span>
                         </Link>
                     </li>
-                </ul>
-            </div>
+                )}
+                <li>   
+                    <Link to="/admin">
+                        <span>Admin</span>
+                    </Link>
+                </li>
+            </ul>
         </div>
     );
 

@@ -1,10 +1,10 @@
 
 .admin-toolbar {
+    padding: 0 15px;
     position: relative;
-    display: block;
-    width: 100%;
-    height: 2rem;
-    margin: 0 auto;
+    display: flex;
+    flex-flow: row;
+    align-items: stretch;
     background-color: theme-color("dark");
 
     ul, li {
@@ -14,38 +14,40 @@
     }
 
     ul {
-        float: right;
+        display: inline-flex;
+        flex-grow: 1;
+        align-self: center;
+        justify-content: flex-end;
+        float: left;
 
         li {
             //vertical-align: middle;
             display: inline-block;
             padding: .25rem .5rem;
-            transition: all .4s ease-in-out;
 
             a {
                 color: $color-text-light;
 
                 &:hover {
                     color: darken($color-text-light, 15);
-                    transition: all .4s ease-in-out;
                 }
             }
 
-        }
-    }
+            &.return-to-site {
+                padding-right: 0;
+                a {
+                    font-size: .875rem;
+                    color: theme-color(light-muted);
+                    svg {
+                        padding-bottom: 1px;
+                    }
 
-    li.return-to-page {
-        position: relative;
-        top: 50%;
-
-        > * {
-            font-size: 14px;
-            line-height: 1;
-            color: $color-text-light-muted;
-        }
-
-        a > svg {
-            padding-bottom: 1px;
+                    &:hover {
+                        color: theme-color('primary')
+                    }
+                    
+                }
+            }
         }
     }
 }

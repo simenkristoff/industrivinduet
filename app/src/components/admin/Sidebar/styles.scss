@@ -1,0 +1,19 @@
+
+
+#admin-navigation {
+    
+    
+}
+
+@include respond-below(sm) {
+    #admin-navigation.sidebar-wrapper {
+        width: 100%;
+        left: calc(-100% - 40px);
+    }
+
+    .sidebar.toggled {
+        #admin-navigation.sidebar-wrapper {
+            left: 0;
+        }
+    }
+}

@@ -7,7 +7,7 @@ const AdminLayout = props => {
     return (
         <div id="page" className="bg-light">
             <Sidebar />
-            <div className="main">
+            <div className="admin-content">
                 <div className="container">
                     {props.children}
                 </div>
