@@ -21,13 +21,13 @@ const VerticalNav = props => {
     };
 
     useEffect(() => {
-        const pageDiv = document.getElementById('page');
+        const appDiv = document.getElementById('App');
         if(openSidebar) {
-            pageDiv.classList.add('sidebar-open');
+            appDiv.classList.add('sidebar-open');
         }
 
         return function cleanup() {
-            pageDiv.classList.remove('sidebar-open')
+            appDiv.classList.remove('sidebar-open')
         }
     }, [handleChange]);
 

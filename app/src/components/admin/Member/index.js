@@ -3,7 +3,8 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {useDispatch, useSelector} from 'react-redux';
 import {addMemberStart, updateMemberStart, deleteMemberStart, fetchMembersStart, fetchMemberStart, setMember} from './../../../redux/Member/member.actions';
-import {FaEdit, FaTimes, FaPlus} from 'react-icons/fa'
+import {FaEdit, FaTimes, FaPlus} from 'react-icons/fa';
+import {Table, Space} from 'antd';
 
 // Components 
 import Modal from 'react-bootstrap/Modal';
@@ -90,6 +91,53 @@ const Member = () => {
         onHide: handleClose
     }
 
+    const configTable = {
+        tableLayout: 'auto',
+        showSorterTooltip: false,
+        pagination: {
+            pageSize: 15,
+            position: ['bottomCenter']
+        }
+    }
+
+    const tableColumns = [
+        {
+            title: 'Navn',
+            dataIndex: 'name',
+            key: 'name',
+            align: 'center',
+            sorter: (a, b) => a.name.localeCompare(b.name, 'nb'),
+        },
+        {
+            title: 'Stilling',
+            dataIndex: 'role',
+            key: 'role',
+            align: 'center',
+            sorter: (a, b) => a.role.name.localeCompare(b.role.name, 'nb'),
+            render: (record) => (record.name)
+            
+        },
+        {
+            title: 'Gruppe',
+            dataIndex: 'role',
+            key: 'group',
+            align: 'center',
+            sorter: (a, b) => a.role.group.name.localeCompare(b.role.group.name, 'nb'),
+            render: (record) => (record.group.name)
+        },
+        {
+            title: 'Handlinger',
+            key: 'action',
+            align: 'center',
+            render: (text, record) => (
+                <Space size="small">
+                    <FaEdit className="db-edit" onClick={() => handleEdit(record)} />
+                    <FaTimes className="db-remove" onClick={() => handleDelete(record._id)} />
+                </Space>
+            ),
+        },
+    ];
+
     return (
         <div className="card db-manager">
             <div className="db-manager-header">
@@ -100,34 +148,12 @@ const Member = () => {
                 </button>
             </div>
             <div className="db-manager-content">
-                <table id="members" className="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Navn</th>
-                            <th>Stilling</th>
-                            <th>Gruppe</th>
-                            <th>Handlinger</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {members.map((member) => {
-                            const {_id, name, role} = member;
-                            if(!_id || !name) return null;
-
-                            return (
-                                <tr key={_id}>
-                                    <td>{name}</td>
-                                    <td>{role.name}</td>
-                                    <td>{role.group.name}</td>
-                                    <td>
-                                        <FaEdit className="db-edit" onClick={() => handleEdit(member)} />
-                                        <FaTimes className="db-remove" onClick={() => handleDelete(_id)} />
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                <Table
+                 columns={tableColumns} 
+                 dataSource={members}
+                 rowKey={(record) => { return record._id}}
+                 {...configTable} 
+                />
             </div>
             <Modal {...configModal}>
                 <Modal.Header closeButton>

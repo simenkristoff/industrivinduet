@@ -23,7 +23,7 @@ import './assets/sass/app.scss';
 const App = props => {
 
   return (
-    <div className="App">
+    <div id="App">
       <Toolbar />
       <Switch>
         <Route exact path="/" render={() => (

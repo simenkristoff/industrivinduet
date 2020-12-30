@@ -6,9 +6,6 @@ import {composeValidators, required, email, mustBeNumber, date, time} from './..
 import {DatePickerAdapter, TimePickerAdapter, CKEditorAdapter} from './../../../form/Adapters';
 import moment from 'moment';
 
-// Styles
-import "react-datetime/css/react-datetime.css";
-
 // Components
 import {Collapse, Switch} from 'antd';
 import Button from 'react-bootstrap/Button';
