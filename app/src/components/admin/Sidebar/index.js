@@ -36,6 +36,9 @@ const AdminSidebar = props => {
                     <span className="badge badge-pill badge-success"></span>
                 </VerticalNav.NavLink>
             </VerticalNav.NavDropdown>
+            <VerticalNav.NavLink to="/admin/innstillinger" icon={FaIcons.FaCogs}>
+                Innstillinger
+            </VerticalNav.NavLink>
         </VerticalNav>
     )
 

@@ -88,3 +88,55 @@ export const TimePickerAdapter = ({input, label, meta, ...rest}) => {
          </div>
      )
  }
+
+ /** 
+ * InputAdapter
+ */
+ export const InputAdapter = ({input, label, meta, ...props}) => {
+     const hasError = meta.error && meta.touched;
+     return (
+         <div className={props.className ? props.className : 'form-group'}>
+            <label className="col-form-label" htmlFor={input.name}>{label}</label>
+            <input
+             className={`form-control ${hasError ? 'is-invalid' : ''}`}
+             placeholder
+             onChange={(event) => input.onChange(event)}
+             onBlur={(event) => input.onBlur(event)}
+             onFocus={(event) => input.onFocus(event)}
+             {...input}
+            />
+            {props.icon}
+            {hasError && (
+                <small className="form-error text-danger">{meta.error}</small>
+            )}
+         </div>
+     )
+ }
+
+ /**
+ * InputIconAdapter 
+ */
+
+ export const InputIconAdapter = ({input, label, meta, ...props}) => {
+     const hasError = meta.error && meta.touched;
+     return (
+         <div className={props.className ? props.className : 'form-group'}>
+            <div className="input-group">
+                <input
+                className={`form-control ${hasError ? 'is-invalid' : ''}`}
+                placeholder
+                onChange={(event) => input.onChange(event)}
+                onBlur={(event) => input.onBlur(event)}
+                onFocus={(event) => input.onFocus(event)}
+                {...input}
+                />
+                <div className="input-group-append">
+                    <div class="input-group-text">{props.icon}</div>
+                </div>
+            </div>
+            {hasError && (
+                <small className="form-error text-danger">{meta.error}</small>
+            )}
+         </div>
+     )
+ }

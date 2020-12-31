@@ -7,6 +7,7 @@ import groupReducer from './Group/group.reducer';
 import roleReducer from './Role/role.reducer';
 import memberReducer from './Member/member.reducer';
 import eventReducer from './Event/event.reducer';
+import optionReducer from './Option/option.reducer';
 
 export const rootReducer = combineReducers({
     user: userReducer,
@@ -14,12 +15,13 @@ export const rootReducer = combineReducers({
     rolesData: roleReducer,
     membersData: memberReducer,
     eventsData: eventReducer,
+    optionsData: optionReducer
 });
 
 const configStorage = {
     key: 'root',
     storage,
-    whitelist: [] // what to store
+    whitelist: ['optionsData']
 };
 
 export default persistReducer(configStorage, rootReducer);

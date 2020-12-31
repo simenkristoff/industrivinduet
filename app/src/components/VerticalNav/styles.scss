@@ -112,7 +112,9 @@
       }
 
       ul {
-        li {
+        li.sidebar-nav-item {
+          height: auto;
+          //display: inline-block;
           a {
             display: inline-block;
             width: 100%;
@@ -174,9 +176,14 @@
       }
 
       .sidebar-submenu {
+        height: 100%;
         visibility: visible;
         opacity: 1;
         transform: scaleY(1);
+        ul {
+          display: block;
+          height: 100%;
+        }
       }
     }
   }
