@@ -13,13 +13,14 @@ const {Panel} = Collapse;
 
 const mapState = (state) => ({
     event: state.eventsData.event,
-    members: state.membersData.members
+    members: state.membersData.members,
+    options: state.optionsData.options
 });
 
 
 const EventForm = ({handleSubmit, editMode}) => {
     const dispatch = useDispatch();
-    const {event, members} = useSelector(mapState);
+    const {event, members, options} = useSelector(mapState);
     const [enableEndTime, setEnableEndTime] = useState(!event.endtime ? true : false);
     const [enableDining, setEnableDining] = useState(!event.dining ? true : false);
 
@@ -88,9 +89,10 @@ const EventForm = ({handleSubmit, editMode}) => {
                                                          {...input} 
                                                         >
                                                             <option value="">Velg type</option>
-                                                            <option value="bedriftspresentasjon">Bedriftspresentasjon</option>
-                                                            <option value="case">Case</option>
-                                                            <option value="foredrag">Foredrag</option>
+                                                            {options.eventTypes.map((type, index) => (
+                                                                <option key={type} value={type}>{type}</option>
+                                                            ))}
+                                                            
                                                         </select>
                                                         {hasError && (
                                                             <small className="form-error text-danger">{meta.error}</small>

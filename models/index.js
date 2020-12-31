@@ -5,6 +5,7 @@ const db = {};
 
 db.mongoose = mongoose;
 
+db.options = require('./options.model');
 db.user = require('./user.model');
 db.permission = require('./permission.model');
 db.group = require('./group.model');

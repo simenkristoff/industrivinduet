@@ -7,6 +7,7 @@ import Job from './../../components/admin/Job';
 import Member from './../../components/admin/Member';
 import Role from './../../components/admin/Role';
 import Group from './../../components/admin/Group';
+import Options from './../../components/admin/Options';
 
 const Admin = () => {
     return (
@@ -31,6 +32,10 @@ const Admin = () => {
 
             <Route path="/admin/grupper">
                 <Group />
+            </Route>
+
+            <Route path="/admin/innstillinger">
+                <Options />
             </Route>
         </Switch>
     );   
