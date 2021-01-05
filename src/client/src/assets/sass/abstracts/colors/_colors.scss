@@ -1,0 +1,43 @@
+// Primary
+$color-bg-primary: #0277bd;
+$color-bg-primary-light: #58a5f0;
+$color-bg-primary-dark: #004c8c;
+
+// Secondary
+$color-bg-secondary: #263238;
+$color-bg-secondary-light: #4f5b62;
+$color-bg-secondary-dark: #000a12;
+
+// Text
+$color-text: #222222;
+$color-text-light: #ffffff;
+$color-text-muted: lighten($color-text, 30);
+$color-text-light-muted: darken($color-text-light, 30);
+
+// States
+$color-state-bg-success: #4caf50;
+$color-state-text-success: #ffffff;
+
+$color-state-bg-warning: #fdd835;
+$color-state-text-warning: #ffffff;
+
+$color-state-bg-error: #e53935;
+$color-state-text-error: #ffffff;
+
+// Dark
+$color-bg-dark: #263238;
+
+// Light
+$color-bg-light: #f8f9fa;
+
+$theme-colors: (
+  'primary': $color-bg-primary,
+  'secondary': $color-bg-secondary,
+  'success': $color-state-bg-success,
+  'warning': $color-state-bg-warning,
+  'danger': $color-state-bg-error,
+  'dark': $color-bg-dark,
+  'light': $color-bg-light,
+  'muted': $color-text-muted,
+  'light-muted': $color-text-light-muted,
+);
