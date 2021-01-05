@@ -1,0 +1,28 @@
+.table-col-expanded {
+  display: flex;
+  flex-flow: row;
+  flex: 1 1 100%;
+  align-items: stretch;
+  justify-content: space-evenly;
+
+  .col-img {
+    align-self: center;
+    width: auto;
+    max-width: 100px;
+    > img {
+      height: auto;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  dl {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+    dt {
+      color: darken(theme-color('primary'), 15);
+    }
+  }
+}

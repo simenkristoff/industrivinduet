@@ -1,0 +1,52 @@
+.admin-toolbar {
+  padding: 0 15px;
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  align-items: stretch;
+  background-color: theme-color('dark');
+
+  ul,
+  li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul {
+    display: inline-flex;
+    flex-grow: 1;
+    align-self: center;
+    justify-content: flex-end;
+    float: left;
+
+    li {
+      //vertical-align: middle;
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+
+      a {
+        color: $color-text-light;
+
+        &:hover {
+          color: darken($color-text-light, 15);
+        }
+      }
+
+      &.return-to-site {
+        padding-right: 0;
+        a {
+          font-size: 0.875rem;
+          color: theme-color(light-muted);
+          svg {
+            padding-bottom: 1px;
+          }
+
+          &:hover {
+            color: theme-color('primary');
+          }
+        }
+      }
+    }
+  }
+}

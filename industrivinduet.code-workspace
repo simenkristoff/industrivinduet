@@ -1,0 +1,17 @@
+{
+    "folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"eslint.codeAction.showDocumentation": {
+
+			"enable": true
+		},
+		"eslint.workingDirectories": [
+			"src/client",
+			"src/server"
+		],
+	}
+}
