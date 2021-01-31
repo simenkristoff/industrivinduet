@@ -1,6 +1,11 @@
+import { UserPermissions } from '@/state/ducks/user/types';
 import { BaseState, Entity } from '@/state/interface';
 import { FormInstance } from 'antd/lib/form';
 import { ExpandableConfig, ColumnsType } from 'antd/lib/table/interface';
+
+interface AuthInterface {
+  hasPermission: boolean;
+}
 
 export interface CrudInterface<T extends Entity> {
   state: BaseState<T>;
@@ -20,6 +25,7 @@ export interface CrudInterface<T extends Entity> {
   remove: (arg0: T) => void;
   set: (arg0: T | {}) => void;
   dependencies?: any;
+  requireAdmin?: boolean;
 }
 
 /**
@@ -61,7 +67,7 @@ export interface DataListInterface<T extends Entity> extends CrudInterface<T> {}
  * Interface for the DataHeader
  * @interface
  */
-export interface DataHeaderInterface {
+export interface DataHeaderInterface extends AuthInterface {
   name: {
     singular: String;
     plural: String;

@@ -1,12 +1,21 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { ColumnsType } from 'antd/lib/table';
-import { Entity } from '@/state/interface';
-import { CrudInterface } from '@/types';
+import { Entity, IApplicationState } from '@/state/interface';
+import { CrudInterface, DataListInterface } from '@/types';
 import { Button, Form, Space } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { DataHeader, DataList, DataModal } from '@/components/DataManager';
+import { UserPermissions } from '@/state/ducks/user/types';
+import { useSelector } from 'react-redux';
 
-const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element => {
+export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element => {
+  const history = useHistory();
+  const permission: UserPermissions | null = useSelector(
+    ({ auth }: IApplicationState) => auth.permissions,
+  );
+  let hasPermission = false;
+
   const [form] = Form.useForm<T>();
   const editMode = useRef<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
@@ -23,7 +32,18 @@ const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element =
     remove,
     set,
     dependencies,
+    requireAdmin,
   } = props;
+
+  const requireAdminPermission = requireAdmin !== undefined ? requireAdmin : true;
+
+  if (
+    (permission && permission == UserPermissions['ADMIN'] && requireAdminPermission) ||
+    !requireAdminPermission
+  ) {
+    hasPermission = true;
+  }
+
   useEffect(() => {
     if (dependencies) {
       Object.keys(dependencies).map((fn) => {
@@ -48,6 +68,7 @@ const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element =
             type='ghost'
             shape='circle'
             icon={<EditOutlined />}
+            disabled={!hasPermission}
             onClick={() => handleEdit(record)}
           />
           <Button
@@ -55,6 +76,7 @@ const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element =
             type='ghost'
             shape='circle'
             icon={<DeleteOutlined />}
+            disabled={!hasPermission}
             onClick={() => remove(record)}
           />
         </Space>
@@ -86,6 +108,7 @@ const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element =
   };
 
   const headerProps = {
+    hasPermission,
     name,
   };
 
@@ -93,7 +116,7 @@ const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element =
     toggle: useCallback(() => handleEdit(), []),
   };
 
-  const listProps: CrudInterface<T> = {
+  const listProps: DataListInterface<T> = {
     ...props,
     expandable,
     columns: cols,
@@ -124,5 +147,3 @@ const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element =
     </div>
   );
 };
-
-export default CrudContainer;

@@ -14,9 +14,9 @@ import { RoleForm } from '@/components/forms';
 import { fetchGroups } from '@/state/ducks/group/actions';
 import { GroupEntity } from '@/state/ducks/group/types';
 
-import CrudContainer from './CrudContainer';
+import { CrudContainer } from './CrudContainer';
 
-const RoleContainer: React.FC = () => {
+export const RoleContainer: React.FC = () => {
   const dispatch = useDispatch();
   const roleState: RoleState = useSelector(({ role }: IApplicationState) => ({
     byId: role.byId,
@@ -67,5 +67,3 @@ const RoleContainer: React.FC = () => {
 
   return <CrudContainer {...stateToProps} {...dispatchToProps} />;
 };
-
-export default RoleContainer;

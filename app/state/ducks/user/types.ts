@@ -11,23 +11,16 @@ export interface UserState {
   readonly errors: Array<String>;
 }
 
+export enum UserPermissions {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+}
+
 export interface UserEntity extends Entity {
   email: string;
   password: string;
-  permissions: string[];
+  permissions: UserPermissions;
   member: MemberEntity;
 }
 
-export const UserActionTypes = {
-  FETCH: generateAsyncAction('@@user.FETCH'),
-  UPDATE: generateAsyncAction('@@user.UPDATE'),
-  DELETE: generateAsyncAction('@@user.DELETE'),
-};
-
-export interface UserActions {
-  fetchUsers: () => IMetaAction;
-  updateUser: (user: UserEntity) => IPayloadMetaAction<UserEntity>;
-  deleteUser: (user: UserEntity) => IPayloadMetaAction<UserEntity>;
-}
-
-export interface UserPropsAll extends UserState, UserActions {}
+export interface UserPropsAll extends UserState {}

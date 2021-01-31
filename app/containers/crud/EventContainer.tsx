@@ -17,9 +17,9 @@ import EventExpandable from '@/components/EventExpandable';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
 import { fetchMembers } from '@/state/ducks/member/actions';
 
-import CrudContainer from './CrudContainer';
+import { CrudContainer } from './CrudContainer';
 
-const EventContainer: React.FC = () => {
+export const EventContainer: React.FC = () => {
   const dispatch = useDispatch();
   const eventState: EventState = useSelector(({ event }: IApplicationState) => ({
     byId: event.byId,
@@ -87,6 +87,7 @@ const EventContainer: React.FC = () => {
   };
 
   const stateToProps = {
+    requireAdmin: false,
     state: eventState,
     columns,
     expandable,
@@ -102,5 +103,3 @@ const EventContainer: React.FC = () => {
 
   return <CrudContainer {...stateToProps} {...dispatchToProps} />;
 };
-
-export default EventContainer;

@@ -1,7 +1,5 @@
 import { action } from 'typesafe-actions';
 
-import { UserEntity } from '../user/types';
-
 import { AuthActionTypes, LoginCredentials, RegisterCredentials } from './types';
 
 /**

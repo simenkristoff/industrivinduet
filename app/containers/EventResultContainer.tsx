@@ -5,7 +5,6 @@ import { IApplicationState } from '@/state/interface';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
 import { fetchEvents } from '@/state/ducks/event/actions';
 import { EventEntity } from '@/state/ducks/event/types';
-import { EventItem } from '@/components/EventItem';
 import { EventCard } from '@/components/EventCard';
 import { FilterTypeInterface, SearchFilterType } from '@/utils/filters';
 import { grades } from '@/constants';

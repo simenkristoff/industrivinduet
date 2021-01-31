@@ -13,9 +13,9 @@ import { Image } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { PartnerForm } from '@/components/forms';
 
-import CrudContainer from './CrudContainer';
+import { CrudContainer } from './CrudContainer';
 
-const PartnerContainer: React.FC = () => {
+export const PartnerContainer: React.FC = () => {
   const dispatch = useDispatch();
   const partnerState: PartnerState = useSelector(({ partner }: IApplicationState) => ({
     byId: partner.byId,
@@ -58,5 +58,3 @@ const PartnerContainer: React.FC = () => {
 
   return <CrudContainer {...stateToProps} {...dispatchToProps} />;
 };
-
-export default PartnerContainer;
