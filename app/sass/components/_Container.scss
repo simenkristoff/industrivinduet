@@ -1,0 +1,30 @@
+.container, .container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #fff;
+
+    &.is-ghost {
+        background-color: transparent;
+    }
+}
+
+.container {
+    @include respond-above(xs) {
+        max-width: 540px;
+    }
+
+    @include respond-above(sm) {
+        max-width: 720px;
+    }
+
+    @include respond-above(md) {
+        max-width: 960px;
+    }
+
+    @include respond-above(lg) {
+        max-width: 1140px;
+    }
+}

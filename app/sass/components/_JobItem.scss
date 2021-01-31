@@ -1,0 +1,58 @@
+
+.job-item {
+    position: relative;
+    display: flex;
+    transition: .3s ease-in-out;
+    border: 1px solid style-color(border-light);
+
+    &:hover {
+        transition: .3s ease-in-out;
+        border-color: theme-color(primary-hover);
+    }
+
+     .job-image {
+        min-width: 116px;
+        min-height: 116px;
+        overflow: hidden;
+        padding: .5rem;
+
+        > img {
+            align-self: center;
+            -o-object-fit: contain;
+            object-fit: contain;
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    .description-wrapper {
+        display: flex;
+        align-self: stretch;
+        align-items: center;
+        padding: .5rem;
+        border-left: 1px solid style-color(border-light);
+    }
+
+    .job-description {
+
+        .ant-descriptions-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        span.type {
+            text-transform: uppercase;
+            font-size: .9rem;
+            font-weight: 300;
+            @include respond-below(md) {
+                display: none;
+            }
+        }
+        
+        .ant-descriptions-item-label {
+            align-items: center;
+            color: theme-color(primary);
+        }
+        
+    }
+}

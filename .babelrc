@@ -1,0 +1,17 @@
+{
+    "presets": [
+      ["@babel/preset-env", {
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }],
+      ["@babel/preset-react",
+      { "runtime": "automatic" }],
+      "@babel/preset-typescript"
+    ],
+    "plugins": [
+      ["@babel/plugin-transform-typescript", { "allowNamespaces": true }],
+      "@babel/proposal-class-properties",
+      "react-hot-loader/babel",
+      "@babel/proposal-object-rest-spread"
+    ]
+  }

@@ -1,0 +1,42 @@
+
+$edges: 'left', 'right', 'top', 'bottom';
+$sizes: ('light': 1px, 'medium': 2px, 'strong': 3px);
+$colors: ('default': style-color(border-light), 'primary': $color-bg-primary, 'secondary': $color-bg-secondary);
+
+.color-primary {
+    color: $color-bg-primary;
+}
+
+@mixin border-edge-utils {
+    
+    @each $width, $size in $sizes {
+        @each $edge in $edges {
+            .border-#{$width}-#{$edge} {
+                border-#{$edge}: $size solid map-get($colors, 'default');
+            }
+        }
+    }
+}
+
+@mixin border-all-edges-utils {
+    
+    @each $width, $size in $sizes {
+        .border-#{$width} {
+            border: $size solid map-get($colors, 'default');
+        } 
+    }
+}
+
+
+
+@mixin border-color-utils {
+    @each $name, $color in $colors {
+        .border-#{$name} {
+            border-color: $color;
+        }
+    }
+}
+
+@include border-edge-utils();
+@include border-all-edges-utils();
+@include border-color-utils();

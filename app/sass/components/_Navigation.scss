@@ -1,0 +1,165 @@
+
+.nav-menu {
+    position: relative;
+    display: flex;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .navigation-toggler {
+        outline: none;
+        cursor: pointer;
+        border: 1px solid;
+        border-color: theme-color(primary);
+        border-radius: 2px;
+        color: theme-color(primary);
+        transition: color .3s, border-color .3s;
+
+        &:hover, &:active, &:focus {
+            border-color: theme-color(primary-hover);
+            color: theme-color(primary-hover);
+        }
+    }
+
+    a.nav-brand {
+        display: inline-block;
+        padding: .5rem 0;
+        white-space: nowrap;
+    }
+
+    .nav-bar-wrapper:not(.show) {
+        display: none;
+    }
+
+    .nav-bar-wrapper {
+        flex-basis: 100%;
+        flex-grow: 1;
+        align-items: center;
+    }
+    
+    .nav-bar, .nav-list {
+        display: flex;
+        flex: 1 1 100%;
+        flex-direction: column;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-list {
+        
+        > .nav-item {
+            position: relative;
+            font-size: 1rem;
+            display: inline-flex;
+            align-self: stretch;
+            align-items: center;
+            border-right: 3px solid transparent;
+            margin-right: 1px;
+            transition: border-color .3s;
+
+            .nav-link {
+                padding: .5rem .25rem;
+                color: theme-color(primary-text);
+                font-weight: 400;
+                display: inline-block;
+
+                & > .anticon {
+                    margin-right: .125rem;
+                }
+            }
+
+            &:hover, &.active, &:hover > .nav-link, &.active > .nav-link {
+                background-color: lighten(theme-color(primary-hover), 30%);
+                border-color: theme-color(primary);
+                color: theme-color(primary);
+            }
+        }
+    }
+}
+
+
+
+@include respond-above(lg){
+    .nav-menu-expand {
+        padding: 0 1rem;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+
+        .navigation-toggler {
+            display: none;
+        }
+
+        .nav-bar-wrapper {
+            display: flex!important;
+            flex-basis: auto;
+            align-items: stretch;
+        }
+
+        .nav-bar, .nav-list{
+            flex-direction: row;
+            align-items: stretch;
+        }
+
+        .nav-list {
+            flex-basis: auto;
+
+            &.left {
+                flex-grow: 0;
+                margin-right: auto;
+                justify-content: flex-start;
+            }
+
+            &.center {
+                margin: 0 auto;
+                justify-content: center;
+            }
+
+            &.right {
+                flex-grow: 0;
+                margin-left: auto;
+                justify-content: flex-end;
+            }
+        }
+
+        .nav-list {
+    
+            > .nav-item {
+                padding: 0 .5rem;
+                background-color: transparent;
+                align-self: stretch;
+                margin-bottom: -2px;
+                margin-top: 4px;
+                border: none;
+                border-bottom: 2px solid transparent;
+
+                &:hover, &.active, &:hover > .nav-link, &.active > .nav-link {
+                    background-color: transparent;
+                }
+            }
+
+        }
+        
+    }
+}
+
+.fade-enter {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity .3s, transform .3s cubic-bezier(0, 1, 0.5, 1);
+}
+.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0%);
+}
+.fade-exit {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: opacity .3s, transform .3s ease-in-out;
+}
+.fade-exit-active {
+    opacity: 0;
+    transform: translateY(-100%);
+}

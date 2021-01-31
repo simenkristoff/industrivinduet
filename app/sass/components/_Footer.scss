@@ -1,0 +1,78 @@
+.site-footer {
+    border-top: 2px solid style-color(border-light);
+    background: theme-color(primary);
+    background: linear-gradient(180deg, rgba(theme-color(primary),1) 0%, rgba(theme-color(primary-dark),1) 100%);
+
+    * {
+      color: theme-color('text-light');
+    }
+  
+    section {
+      margin-bottom: .5rem;
+  
+      .section-title {
+        font-size: 1.15rem;
+        color: theme-color('text-light');
+      }
+
+      .section-content {
+        width: 100%;
+        * {
+          color: rgba(theme-color('text-light'), .875);
+        }
+
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+        }
+        
+      }
+
+      &.partner-section {
+        .section-content {
+          .partners-wrapper {
+            padding: 0 .75rem;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+
+            .partner {
+              flex: 0 1 50%;
+
+              > img {
+                width: 100%;
+                object-fit: contain;
+              }
+            }
+          }
+        }
+      }
+  
+      &.contact-section {
+        .section-content ul {
+          > li {
+            span {
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  
+    .copyrights {
+      text-align: center;
+      border-top: 1px solid rgba(200, 200, 200, .2);
+      display: flex;
+      flex: 1 1 100%;
+      justify-content: center;
+      padding-top: 1rem;
+    }
+  }
+
+  @include respond-above(sm) {
+    .partner-section .section-title{
+      text-align: center;
+    }
+  }
+  

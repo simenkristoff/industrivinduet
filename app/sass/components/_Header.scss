@@ -1,0 +1,9 @@
+.site-header {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    flex: 0 1 auto;
+    z-index: 1000;
+    background-color: theme-color(light);
+    border-bottom: 2px solid style-color(border-light);
+}

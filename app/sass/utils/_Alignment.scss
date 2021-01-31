@@ -1,0 +1,31 @@
+
+$alignments: left, center, right;
+
+@mixin text-alignments {
+    @each $alignment in $alignments {
+        .text-#{$alignment} {
+            text-align: $alignment;
+        }
+    }
+}
+
+@include text-alignments();
+
+@mixin div-alignments {
+    @each $alignment in $alignments {
+        .#{$alignment} {
+            @if $alignment == 'left' {
+                margin-right: auto;
+            }
+            @if $alignment == 'center' {
+                margin: 0 auto;
+            }
+            @if $alignment == 'right' {
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+@include div-alignments();
+

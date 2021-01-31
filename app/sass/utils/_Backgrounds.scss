@@ -1,0 +1,13 @@
+.is-ghost {
+    background-color: transparent;
+}
+
+@mixin background-color-utils {
+    @each $name, $color in $theme-colors {
+        .bg-#{$name} {
+            background-color: $color!important;
+        }
+    }
+}
+
+@include background-color-utils;

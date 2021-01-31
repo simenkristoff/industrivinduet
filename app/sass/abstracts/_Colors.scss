@@ -1,0 +1,69 @@
+// Primary
+$color-bg-primary: #0277bd;
+$color-bg-primary-light: #58a5f0;
+$color-bg-primary-dark: #004c8c;
+
+// Secondary
+$color-bg-secondary: #263238;
+$color-bg-secondary-light: #4f5b62;
+$color-bg-secondary-dark: #000a12;
+
+// Text
+$color-text: #222222;
+$color-text-light: #ffffff;
+$color-text-muted: lighten($color-text, 30);
+$color-text-light-muted: darken($color-text-light, 15);
+
+// States
+$color-state-bg-success: #4caf50;
+$color-state-text-success: #ffffff;
+
+$color-state-bg-warning: #fdd835;
+$color-state-text-warning: #ffffff;
+
+$color-state-bg-error: #e53935;
+$color-state-text-error: #ffffff;
+
+// Dark
+$color-bg-dark: #263238;
+
+// Light
+$color-bg-light: #ffffff;
+
+$theme-colors: (
+  'primary': #1890ff,
+  'primary-light': #69c0ff,
+  'primary-dark': #096dd9,
+  'primary-hover': #40a9ff,
+  'primary-text': #222222,
+  'secondary': $color-bg-secondary,
+  'success': $color-state-bg-success,
+  'warning': $color-state-bg-warning,
+  'danger': $color-state-bg-error,
+  'dark': $color-bg-dark,
+  'light': #ffffff,
+  'muted': $color-text-muted,
+  'text-primary': #222222,
+  'text-light': #ffffff,
+);
+
+@function theme-color($color) {
+  @return map-get($theme-colors, $color);
+}
+
+$theme-structure: (
+  'border-radius': 4px,
+);
+
+@function theme-structure($key) {
+  @return map-get($theme-structure, $key);
+}
+
+$style-colors: (
+  'border-light': #e3e3e3,
+  'light-muted': darken(theme-color(text-light), 15%)
+);
+
+@function style-color($color) {
+  @return map-get($style-colors, $color);
+}

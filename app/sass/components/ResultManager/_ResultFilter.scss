@@ -1,0 +1,55 @@
+
+.result-filter {
+    background-color: transparent;
+    margin: 0;
+
+    .ant-layout-sider-zero-width-trigger {
+        background-color: rgba(theme-color(primary), .75);
+        top: .5rem;
+        color: theme-color(light);
+        @include shadow-box-light();
+    }
+
+    .ant-form-item-label > label {
+        color: theme-color(primary);
+        font-weight: 600;
+    }
+
+    .filter-info {
+        margin-bottom: .5rem;
+        width: 100%;
+
+        > .filter-results {
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+
+            div {
+                text-align: center;
+                margin: 3rem .7rem 1rem 0;
+
+                > h4 {
+                    font-size: 2rem;
+                    line-height: 0;
+                }
+
+                > span {
+                    font-size: .9rem;
+                    color: theme-color(muted);
+                }
+            }
+        }
+    }
+
+    > .filters {
+        .ant-form-item-label {
+            font-weight: 700;
+        }
+    }
+}
+
+@include respond-above(sm) {
+    .result-filter {
+        padding: .5rem;
+    }
+}
