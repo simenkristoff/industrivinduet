@@ -42,8 +42,8 @@ class AuthController implements ControllerInterface {
   };
 
   private initializeRoutes() {
-    this.router.post(`${this.path}/login`, this.login);
-    this.router.post(`${this.path}/register`, this.register);
+    this.router.post(`${this.path}/login`, asyncHandler(this.login));
+    this.router.post(`${this.path}/register`, asyncHandler(this.register));
   }
 
   /**
@@ -57,7 +57,7 @@ class AuthController implements ControllerInterface {
    * @param {NextFunction} next the next function
    */
   private register = async (req: Request, res: Response, next: NextFunction) => {
-    passport.authenticate('register', (err: any, user: User, info: InfoMessage) => {
+    await passport.authenticate('register', (err: any, user: User, info: InfoMessage) => {
       if (err) {
         console.log(err);
       }
@@ -102,7 +102,7 @@ class AuthController implements ControllerInterface {
    * @param {NextFunction} next the next function
    */
   private login = async (req: Request, res: Response, next: NextFunction) => {
-    passport.authenticate('login', (err: any, user: User, info: InfoMessage) => {
+    await passport.authenticate('login', (err: any, user: User, info: InfoMessage) => {
       if (err) {
         console.log(err);
       }

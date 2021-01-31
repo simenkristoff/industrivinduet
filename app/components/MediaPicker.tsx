@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
-import MediaContainer from '@/containers/MediaContainer';
+import { MediaContainer } from '@/containers/MediaContainer';
 const MediaPicker: React.FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const handleModal = () => {

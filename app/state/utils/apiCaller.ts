@@ -1,5 +1,3 @@
-import axios, { Method, AxiosRequestConfig } from 'axios';
-
 import { getToken } from '../ducks/auth/helpers';
 
 function handleErrors(response: Response) {

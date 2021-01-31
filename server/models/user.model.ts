@@ -5,7 +5,7 @@ import { MemberModel } from '../models';
 
 import { Member } from './member.model';
 
-enum Permissions {
+enum UserPermissions {
   ADMIN = 'ADMIN',
   USER = 'USER',
 }
@@ -17,7 +17,7 @@ enum Permissions {
 export interface UserBase {
   email: string;
   password: string;
-  permissions: string[];
+  permissions: UserPermissions;
   member: Types.ObjectId | Member;
 }
 
@@ -42,9 +42,9 @@ export const UserSchema: Schema<User, IUser> = new Schema({
   email: { type: String, required: true, unique: true, trim: true },
   password: { type: String, required: true },
   permissions: {
-    type: [String],
-    enum: Permissions,
-    default: [Permissions['USER']],
+    type: UserPermissions,
+    enum: UserPermissions,
+    default: UserPermissions['USER'],
   },
   member: {
     type: Schema.Types.ObjectId,
@@ -58,7 +58,7 @@ UserSchema.plugin(autopopulate);
 
 UserSchema.pre<User>('updateOne', async function () {
   if (!this.get('permissions')) {
-    this.update({ permissions: ['USER'] });
+    this.update({ permissions: UserPermissions['USER'] });
   }
 });
 

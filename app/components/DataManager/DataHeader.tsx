@@ -5,6 +5,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { DataHeaderInterface } from './interface';
 
 export const DataHeader: React.FC<DataHeaderInterface> = ({
+  hasPermission,
   name,
   toggle,
 }: DataHeaderInterface) => {
@@ -13,7 +14,14 @@ export const DataHeader: React.FC<DataHeaderInterface> = ({
       ghost={false}
       title={name.plural}
       extra={[
-        <Button key='1' type='primary' size='large' icon={<PlusOutlined />} onClick={toggle}>
+        <Button
+          key='1'
+          type='primary'
+          size='large'
+          icon={<PlusOutlined />}
+          onClick={toggle}
+          disabled={!hasPermission}
+        >
           Legg til {name.singular}
         </Button>,
       ]}

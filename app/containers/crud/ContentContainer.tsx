@@ -12,9 +12,9 @@ import {
 import { ColumnsType } from 'antd/lib/table';
 import { ContentForm } from '@/components/forms';
 
-import CrudContainer from './CrudContainer';
+import { CrudContainer } from './CrudContainer';
 
-const ContentContainer: React.FC = () => {
+export const ContentContainer: React.FC = () => {
   const dispatch = useDispatch();
   const contentState: ContentState = useSelector(({ content }: IApplicationState) => ({
     byId: content.byId,
@@ -64,5 +64,3 @@ const ContentContainer: React.FC = () => {
 
   return <CrudContainer {...stateToProps} {...dispatchToProps} />;
 };
-
-export default ContentContainer;

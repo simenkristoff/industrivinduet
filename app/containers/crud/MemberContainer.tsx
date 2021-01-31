@@ -15,9 +15,9 @@ import { fetchRoles } from '@/state/ducks/role/actions';
 import { GroupEntity } from '@/state/ducks/group/types';
 import { RoleEntity } from '@/state/ducks/role/types';
 
-import CrudContainer from './CrudContainer';
+import { CrudContainer } from './CrudContainer';
 
-const MemberContainer: React.FC = () => {
+export const MemberContainer: React.FC = () => {
   const dispatch = useDispatch();
   const memberState: MemberState = useSelector(({ member }: IApplicationState) => ({
     byId: member.byId,
@@ -82,5 +82,3 @@ const MemberContainer: React.FC = () => {
 
   return <CrudContainer {...stateToProps} {...dispatchToProps} />;
 };
-
-export default MemberContainer;

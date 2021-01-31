@@ -12,9 +12,9 @@ import {
 import { ColumnsType } from 'antd/lib/table';
 import { GroupForm } from '@/components/forms';
 
-import CrudContainer from './CrudContainer';
+import { CrudContainer } from './CrudContainer';
 
-const GroupContainer: React.FC = () => {
+export const GroupContainer: React.FC = () => {
   const dispatch = useDispatch();
   const groupState: GroupState = useSelector(({ group }: IApplicationState) => ({
     byId: group.byId,
@@ -51,5 +51,3 @@ const GroupContainer: React.FC = () => {
 
   return <CrudContainer {...stateToProps} {...dispatchToProps} />;
 };
-
-export default GroupContainer;

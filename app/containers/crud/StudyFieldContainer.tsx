@@ -12,9 +12,9 @@ import {
 import { ColumnsType } from 'antd/lib/table';
 import { StudyFieldForm } from '@/components/forms';
 
-import CrudContainer from './CrudContainer';
+import { CrudContainer } from './CrudContainer';
 
-const StudyFieldContainer: React.FC = () => {
+export const StudyFieldContainer: React.FC = () => {
   const dispatch = useDispatch();
   const studyfieldState: StudyFieldState = useSelector(({ studyfield }: IApplicationState) => ({
     byId: studyfield.byId,
@@ -56,5 +56,3 @@ const StudyFieldContainer: React.FC = () => {
 
   return <CrudContainer {...stateToProps} {...dispatchToProps} />;
 };
-
-export default StudyFieldContainer;

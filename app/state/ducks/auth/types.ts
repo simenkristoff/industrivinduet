@@ -1,12 +1,12 @@
 import { generateAsyncAction } from '../../utils';
 import { IMetaAction, IPayloadMetaAction, ObjectId } from '../../interface';
-import { UserEntity } from '../user/types';
+import { UserEntity, UserPermissions } from '../user/types';
 import { MemberEntity } from '../member/types';
 
 export interface AuthState {
   readonly _id: ObjectId | null;
   readonly email: string | null;
-  readonly permissions: string[] | null;
+  readonly permissions: UserPermissions | null;
   readonly member: MemberEntity | null;
   readonly token: EncodedToken | null;
   readonly isLoggedIn: boolean;
@@ -23,7 +23,7 @@ export interface LoginCredentials {
 export interface RegisterCredentials {
   email: string;
   password: string;
-  permissions: string[];
+  permissions: UserPermissions;
 }
 
 export interface AuthResponse {
@@ -40,7 +40,7 @@ export interface DecodedToken {
   sub: {
     id: ObjectId;
     email: string;
-    permissions: string[];
+    permissions: UserPermissions;
     member: MemberEntity;
   };
 }

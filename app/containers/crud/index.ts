@@ -1,8 +1,8 @@
-export { default as ContentContainer } from './ContentContainer';
-export { default as StudyFieldContainer } from './StudyFieldContainer';
-export { default as PartnerContainer } from './PartnerContainer';
-export { default as GroupContainer } from './GroupContainer';
-export { default as RoleContainer } from './RoleContainer';
-export { default as MemberContainer } from './MemberContainer';
-export { default as EventContainer } from './EventContainer';
-export { default as JobContainer } from './JobContainer';
+export { ContentContainer as ContentContainer } from './ContentContainer';
+export { StudyFieldContainer as StudyFieldContainer } from './StudyFieldContainer';
+export { PartnerContainer as PartnerContainer } from './PartnerContainer';
+export { GroupContainer as GroupContainer } from './GroupContainer';
+export { RoleContainer as RoleContainer } from './RoleContainer';
+export { MemberContainer as MemberContainer } from './MemberContainer';
+export { EventContainer as EventContainer } from './EventContainer';
+export { JobContainer as JobContainer } from './JobContainer';

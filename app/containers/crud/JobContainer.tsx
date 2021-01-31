@@ -10,9 +10,9 @@ import moment from 'moment';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
 import { fetchMembers } from '@/state/ducks/member/actions';
 
-import CrudContainer from './CrudContainer';
+import { CrudContainer } from './CrudContainer';
 
-const JobContainer: React.FC = () => {
+export const JobContainer: React.FC = () => {
   const dispatch = useDispatch();
   const jobState: JobState = useSelector(({ job }: IApplicationState) => ({
     byId: job.byId,
@@ -66,6 +66,7 @@ const JobContainer: React.FC = () => {
   ];
 
   const stateToProps = {
+    requireAdmin: false,
     state: jobState,
     columns,
     modal: {
@@ -80,5 +81,3 @@ const JobContainer: React.FC = () => {
 
   return <CrudContainer {...stateToProps} {...dispatchToProps} />;
 };
-
-export default JobContainer;

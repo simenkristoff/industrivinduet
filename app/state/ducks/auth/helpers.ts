@@ -1,7 +1,8 @@
-import dotenv from 'dotenv';
 import jwtDecode from 'jwt-decode';
 import cookie from 'js-cookie';
 import moment from 'moment';
+
+import { UserPermissions } from '../user/types';
 
 import { AuthState, DecodedToken, EncodedToken, Token } from './types';
 
@@ -59,12 +60,12 @@ export const checkUserIsAuth = (currentUser: AuthState) => {
  * @param currentUser
  */
 export const checkUserIsAdmin = (currentUser: AuthState) => {
-  if (!currentUser || !Array.isArray(currentUser.permissions)) {
+  if (!currentUser || !currentUser.permissions) {
     return false;
   }
 
   const { permissions } = currentUser;
-  if (permissions.includes('ADMIN')) {
+  if (permissions === UserPermissions['ADMIN']) {
     return true;
   }
 

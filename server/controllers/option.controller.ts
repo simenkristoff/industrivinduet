@@ -24,17 +24,17 @@ class OptionController implements ControllerInterface {
     this.router.get(`${this.path}/:id`, asyncHandler(this.get));
     this.router.post(
       this.path,
-      passport.authenticate('jwt', { session: false }),
+      passport.authenticate('jwt-admin', { session: false }),
       asyncHandler(this.create),
     );
     this.router.put(
       `${this.path}/:id`,
-      passport.authenticate('jwt', { session: false }),
+      passport.authenticate('jwt-admin', { session: false }),
       asyncHandler(this.update),
     );
     this.router.delete(
       `${this.path}/:id`,
-      passport.authenticate('jwt', { session: false }),
+      passport.authenticate('jwt-admin', { session: false }),
       asyncHandler(this.delete),
     );
   }
