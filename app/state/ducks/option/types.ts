@@ -8,10 +8,10 @@ import { IMetaAction, IPayloadMetaAction } from '../../interface';
  * @type
  */
 export type OptionState = {
-  readonly general: GeneralOptions;
-  readonly event: EventOptions;
-  readonly job: JobOptions;
-  readonly socials: SocialOptions;
+  readonly general: GeneralOptions | {};
+  readonly event: EventOptions | {};
+  readonly job: JobOptions | {};
+  readonly socials: SocialOptions | {};
   readonly loading: boolean;
   readonly errors: Array<String>;
 };
@@ -77,7 +77,7 @@ export interface SocialOptions {
  * @interface
  */
 export interface OptionEntity extends Entity {
-  details: GeneralOptions;
+  general: GeneralOptions;
   event: EventOptions;
   job: JobOptions;
   socials: SocialOptions;
