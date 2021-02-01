@@ -87,7 +87,7 @@ export namespace Generator {
 
   export function randomDate(): Date {
     const start: Date = new Date(2020, 1, 1, 0, 0);
-    const end: Date = new Date(2020, 12, 31, 24, 59);
+    const end: Date = new Date(2022, 12, 31, 24, 59);
 
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
   }

@@ -2,7 +2,6 @@ import { Request, Response, NextFunction, Router } from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 
-import { NotAuthorizedException } from '../exceptions';
 import { asyncHandler } from '../middlewares';
 import { ControllerInterface } from '../types';
 import { User, UserModel } from '../models';

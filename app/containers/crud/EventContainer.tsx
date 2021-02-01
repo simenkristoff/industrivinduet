@@ -78,6 +78,14 @@ export const EventContainer: React.FC = () => {
       },
       render: (record?) => `${record.name.first} ${record.name.last}`,
     },
+    {
+      title: 'Status',
+      dataIndex: 'active',
+      key: 'active',
+      align: 'center',
+      sorter: (a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1),
+      render: (record) => (record === true ? 'Aktiv' : 'Inaktiv'),
+    },
   ];
 
   const expandable: ExpandableConfig<EventEntity> = {

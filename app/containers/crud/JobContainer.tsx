@@ -63,6 +63,14 @@ export const JobContainer: React.FC = () => {
       sorter: (a, b) => a.deadline.toString().localeCompare(b.deadline.toString()),
       render: (record) => moment(record).format('ll'),
     },
+    {
+      title: 'Status',
+      dataIndex: 'active',
+      key: 'active',
+      align: 'center',
+      sorter: (a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1),
+      render: (record) => (record === true ? 'Aktiv' : 'Inaktiv'),
+    },
   ];
 
   const stateToProps = {

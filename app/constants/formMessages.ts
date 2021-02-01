@@ -217,6 +217,13 @@ const FormMessages = {
     REQUIRED: 'Legg ved lenke til søknad',
     TYPE: 'Ugyldig lenke',
   },
+  ACTIVE: {
+    LABEL: 'Aktiv',
+    INFO: {
+      EVENT: 'Inaktive arrangementer vises ikke på forsiden',
+      JOB: 'Inaktive stillingsannonser vises ikke på forsiden',
+    },
+  },
 };
 
 export default FormMessages;

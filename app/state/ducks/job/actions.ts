@@ -5,17 +5,27 @@ import { JobActionTypes, JobEntity } from './types';
 
 /**
  * @desc Fetch all Jobs.
- * @param {number} limit how many Jobs to fetch
  */
-export const fetchJobs = (limit?: number) => {
+export const fetchJobs = () => {
+  return action(JobActionTypes.FETCH.START, [], {
+    method: 'get',
+    route: 'api/jobs',
+  });
+};
+
+/**
+ * @desc Fetch all active Jobs.
+ * @param {number} limit how many active Jobs to fetch
+ */
+export const fetchActiveJobs = (limit?: number) => {
   let query = '';
   if (limit) {
-    query = `?limit=${limit}&sorted`;
+    query = `?limit=${limit}`;
   }
 
   return action(JobActionTypes.FETCH.START, [], {
     method: 'get',
-    route: `api/jobs${query}`,
+    route: `api/jobs/active${query}`,
   });
 };
 

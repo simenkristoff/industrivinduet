@@ -30,6 +30,7 @@ export interface JobEntity extends Entity {
   image: string;
   link: string;
   studyfields: StudyFieldEntity[] | null;
+  active: boolean;
 }
 
 /**
@@ -48,7 +49,8 @@ export const JobActionTypes = {
  * @desc Interface for all the available Job state actions.
  */
 export interface JobActions {
-  fetchJobs: (limit?: number) => IMetaAction;
+  fetchJobs: () => IMetaAction;
+  fetchActiveJobs: (limit?: number) => IMetaAction;
   fetchJob: (id: ObjectId) => IMetaAction;
   createJob: (job: JobEntity) => IPayloadMetaAction<JobEntity>;
   updateJob: (job: JobEntity) => IPayloadMetaAction<JobEntity>;

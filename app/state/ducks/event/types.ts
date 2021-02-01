@@ -33,6 +33,7 @@ export interface EventEntity extends Entity {
   link: string;
   studyfields: StudyFieldEntity[] | null;
   member: MemberEntity | null;
+  active: boolean;
 }
 
 /**
@@ -51,7 +52,8 @@ export const EventActionTypes = {
  * @desc Interface for all the available Event state actions.
  */
 export interface EventActions {
-  fetchEvents: (limit?: number) => IMetaAction;
+  fetchEvents: () => IMetaAction;
+  fetchActiveEvents: (limit?: number) => IMetaAction;
   fetchEvent: (id: ObjectId) => IMetaAction;
   createEvent: (event: EventEntity) => IPayloadMetaAction<EventEntity>;
   updateEvent: (event: EventEntity) => IPayloadMetaAction<EventEntity>;

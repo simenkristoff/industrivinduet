@@ -21,6 +21,7 @@ class EventController implements ControllerInterface {
 
   private initializeRoutes() {
     this.router.get(this.path, asyncHandler(this.getAll));
+    this.router.get(`${this.path}/active`, asyncHandler(this.getActive));
     this.router.get(`${this.path}/:id`, asyncHandler(this.get));
     this.router.post(
       this.path,
@@ -53,10 +54,33 @@ class EventController implements ControllerInterface {
    * @param {NextFunction} next the next function
    */
   private getAll = async (req: Request, res: Response, next: NextFunction) => {
-    const sort = req.query.sorted ? { date: 1 } : undefined;
-    const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
     await EventModel.find()
-      .sort(sort)
+      .sort({ date: -1 })
+      .exec((err: CallbackError, docs: Event[]) => {
+        if (err) {
+          return next(new HttpException(500, err.message));
+        }
+        res.status(200).send(docs);
+      });
+  };
+
+  /**
+   * GET all active documents from a the Event collection. The request will
+   * respond with a '500 Internal Server Error' if an error occurs.
+   * Else, respond with '200 Ok' and return the documents.
+   *
+   * @name GET/api/events/active
+   * @memberof EventController
+   * @function @async
+   *
+   * @param {Request} req the request
+   * @param {Response} res the response
+   * @param {NextFunction} next the next function
+   */
+  private getActive = async (req: Request, res: Response, next: NextFunction) => {
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
+    await EventModel.find({ active: true })
+      .sort({ date: 1 })
       .limit(limit as number)
       .exec((err: CallbackError, docs: Event[]) => {
         if (err) {

@@ -17,19 +17,21 @@ function generateJobs(): JobSeed[] {
     const type = Generator.randomJobType();
     const company = Generator.randomCompany();
     const title = `${type} hos ${company.name}`;
+    const deadline = Generator.randomDate();
     const job: JobSeed = {
       _id: getObjectId(`job-${i}`),
       title,
       company: company.name,
       type,
       startdate: Generator.randomDate(),
-      deadline: Generator.randomDate(),
+      deadline,
       places: Generator.randomLocations(),
       description: Generator.generateDescription(Math.floor(Math.random() * 5)),
       grades: Generator.randomGrades(),
       image: company.logo,
       link: company.link,
       studyfields: Generator.randomStudyFields(),
+      active: new Date().getTime() <= deadline.getTime() ? true : false,
       createdAt: new Date(),
       updatedAt: new Date(),
       _v: 0,

@@ -46,6 +46,7 @@ const eventsData: EventEntity[] = [
       image:
         'https://www.adobe.com/content/dam/cc/us/en/creativecloud/photography/discover/portrait-photography/CODERED_B1_portrait_photography-P4a_438x447.jpg.img.jpg',
     },
+    active: true,
   },
   {
     _id: 'event2',
@@ -92,6 +93,7 @@ const eventsData: EventEntity[] = [
       image:
         'https://www.adobe.com/content/dam/cc/us/en/creativecloud/photography/discover/portrait-photography/CODERED_B1_portrait_photography-P4a_438x447.jpg.img.jpg',
     },
+    active: true,
   },
 ];
 
