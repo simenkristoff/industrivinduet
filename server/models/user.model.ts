@@ -5,7 +5,7 @@ import { MemberModel } from '../models';
 
 import { Member } from './member.model';
 
-enum UserPermissions {
+export enum UserPermissions {
   ADMIN = 'ADMIN',
   USER = 'USER',
 }

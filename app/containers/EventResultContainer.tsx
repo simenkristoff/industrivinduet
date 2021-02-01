@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { IApplicationState } from '@/state/interface';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
-import { fetchEvents } from '@/state/ducks/event/actions';
+import { fetchActiveEvents } from '@/state/ducks/event/actions';
 import { EventEntity } from '@/state/ducks/event/types';
 import { EventCard } from '@/components/EventCard';
 import { FilterTypeInterface, SearchFilterType } from '@/utils/filters';
@@ -22,7 +22,7 @@ export const EventResultContainer = () => {
 
   useEffect(() => {
     dispatch(fetchStudyFields());
-    dispatch(fetchEvents());
+    dispatch(fetchActiveEvents());
   }, []);
 
   const searchFilterTypes: SearchFilterType<EventEntity> = {

@@ -19,11 +19,12 @@ function generateEvents(): EventSeed[] {
     const title = `${type} med ${company.name}`;
     const endtime = Generator.randomBoolean() ? Generator.randomDate() : undefined;
     const dining = Generator.randomBoolean() ? Generator.randomCampusPlace() : undefined;
+    const date = Generator.randomDate();
     const event: EventSeed = {
       _id: getObjectId(`event-${i}`),
       title,
       type,
-      date: Generator.randomDate(),
+      date,
       starttime: Generator.randomDate(),
       endtime,
       place: Generator.randomCampusPlace(),
@@ -34,6 +35,7 @@ function generateEvents(): EventSeed[] {
       link: company.link,
       studyfields: Generator.randomStudyFields(),
       member: Generator.randomMember(),
+      active: new Date().getTime() <= date.getTime() ? true : false,
       createdAt: new Date(),
       updatedAt: new Date(),
       _v: 0,

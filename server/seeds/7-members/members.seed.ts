@@ -28,8 +28,23 @@ function generateMembers(): MemberSeed[] {
     createdAt: new Date(),
     updatedAt: new Date(),
   };
-
   members.push(admin);
+
+  const user: MemberSeed = {
+    _id: getObjectId('user'),
+    name: {
+      first: 'Simen',
+      last: 'Kristoffersen',
+    },
+    email: 'simen.kristoffersen98@gmail.no',
+    phone: '90360922',
+    image: Generator.randomPortrait(),
+    role: null,
+    _v: 0,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+  members.push(user);
 
   roles.forEach((role, index) => {
     const { name, email } = Generator.randomName();

@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import App from './app';
 import { Logger, validateEnv } from './utils';
+import { scheduler } from './agendas/scheduler';
 import {
   OptionController,
   MediaController,
@@ -32,6 +33,19 @@ const app = new App([
   new JobController(),
 ]);
 app.listen();
+
+scheduler();
+// const scheduler = new Scheduler();
+
+// scheduler.start();
+// scheduler.schedule();
+
+// // (async function () {
+// //   const weeklyReport = agenda.create('archive events');
+// //   await agenda.start();
+// //   //await weeklyReport.repeatEvery('10 seconds').save();
+// //   await weeklyReport.repeatEvery('1 week').save();
+// //
 
 process.on('unhandledRejection', (err: any) => {
   Logger.error(err.name, err.message);

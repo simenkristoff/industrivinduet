@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { IApplicationState } from '@/state/interface';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
-import { fetchJobs } from '@/state/ducks/job/actions';
+import { fetchActiveJobs } from '@/state/ducks/job/actions';
 import { JobEntity } from '@/state/ducks/job/types';
 import { JobItem } from '@/components/JobItem';
 import { FilterTypeInterface, SearchFilterType } from '@/utils/filters';
@@ -22,7 +22,7 @@ export const JobResultContainer = () => {
 
   useEffect(() => {
     dispatch(fetchStudyFields());
-    dispatch(fetchJobs());
+    dispatch(fetchActiveJobs());
   }, []);
 
   const searchFilterTypes: SearchFilterType<JobEntity> = {

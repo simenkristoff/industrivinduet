@@ -24,6 +24,7 @@ export interface EventBase {
   studyfields: Types.ObjectId[] | StudyField[] | null;
   member: Types.ObjectId | Member | null;
   link: string;
+  active: boolean;
 }
 
 /**
@@ -66,6 +67,7 @@ export const EventSchema: Schema<Event, Model<Event>> = new Schema(
       default: null,
       autopopulate: true,
     },
+    active: { type: Boolean, default: true },
   },
   { timestamps: true },
 );

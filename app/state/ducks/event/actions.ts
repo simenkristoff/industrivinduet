@@ -5,17 +5,27 @@ import { EventActionTypes, EventEntity } from './types';
 
 /**
  * @desc Fetch all Events.
- * @param {number} limit how many Jobs to fetch
  */
-export const fetchEvents = (limit?: number) => {
+export const fetchEvents = () => {
+  return action(EventActionTypes.FETCH.START, [], {
+    method: 'get',
+    route: 'api/events',
+  });
+};
+
+/**
+ * @desc Fetch all active Events.
+ * @param {number} limit how many active Events to fetch
+ */
+export const fetchActiveEvents = (limit?: number) => {
   let query = '';
   if (limit) {
-    query = `?limit=${limit}&sorted`;
+    query = `?limit=${limit}`;
   }
 
   return action(EventActionTypes.FETCH.START, [], {
     method: 'get',
-    route: `api/events${query}`,
+    route: `api/events/active${query}`,
   });
 };
 

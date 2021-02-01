@@ -22,6 +22,7 @@ export interface JobBase {
   image: string;
   studyfields: Types.ObjectId[] | StudyField[] | null;
   link: string;
+  active: boolean;
 }
 
 /**
@@ -55,6 +56,7 @@ export const JobSchema: Schema<Job, Model<Job>> = new Schema(
         autopopulate: true,
       },
     ],
+    active: { type: Boolean, default: true },
   },
   { timestamps: true },
 );

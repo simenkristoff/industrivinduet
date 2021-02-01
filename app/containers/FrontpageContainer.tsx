@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IApplicationState } from '@/types';
 import { OptionState } from '@/state/ducks/option/types';
-import { fetchEvents } from '@/state/ducks/event/actions';
-import { fetchJobs } from '@/state/ducks/job/actions';
+import { fetchActiveEvents } from '@/state/ducks/event/actions';
+import { fetchActiveJobs } from '@/state/ducks/job/actions';
 import { fetchPartners } from '@/state/ducks/partner/actions';
 import { EventEntity } from '@/state/ducks/event/types';
 import { JobEntity } from '@/state/ducks/job/types';
@@ -26,8 +26,8 @@ export const FrontpageContainer = () => {
   };
 
   const dispatchToProps = {
-    fetchEvents: useCallback((limit: number) => dispatch(fetchEvents(limit)), [dispatch]),
-    fetchJobs: useCallback((limit: number) => dispatch(fetchJobs(limit)), [dispatch]),
+    fetchEvents: useCallback((limit: number) => dispatch(fetchActiveEvents(limit)), [dispatch]),
+    fetchJobs: useCallback((limit: number) => dispatch(fetchActiveJobs(limit)), [dispatch]),
     fetchPartners: useCallback(() => dispatch(fetchPartners()), [dispatch]),
   };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
-import { Form, Input, Collapse, Row, Col, Select, Checkbox } from 'antd';
+import { Form, Input, Collapse, Row, Col, Select, Checkbox, Switch } from 'antd';
 import { JobEntity } from '@/state/ducks/job/types';
 import { DataFormInterface, IApplicationState } from '@/types';
 import { FormMessage, grades } from '@/constants';
@@ -55,6 +55,18 @@ export const JobForm: React.FC<DataFormInterface<JobEntity>> = ({
         <Col span={24} md={8}>
           <Collapse defaultActiveKey={['general']}>
             <Panel header='Generelt' key='general'>
+              <Form.Item
+                name='active'
+                valuePropName='checked'
+                label={FormMessage.ACTIVE.LABEL}
+                tooltip={{
+                  title: FormMessage.ACTIVE.INFO.JOB,
+                  icon: <InfoCircleOutlined />,
+                }}
+              >
+                <Switch />
+              </Form.Item>
+
               <Form.Item
                 name='title'
                 label={FormMessage.TITLE.LABEL}

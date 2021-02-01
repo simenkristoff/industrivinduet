@@ -33,6 +33,7 @@ const jobsData: JobEntity[] = [
         link: 'https://www.ntnu.no/studier/mtprod/oppbygning/ep',
       },
     ],
+    active: true,
   },
   {
     _id: 'job2',
@@ -66,6 +67,7 @@ const jobsData: JobEntity[] = [
         link: 'https://www.ntnu.no/studier/mtprod/oppbygning/ep',
       },
     ],
+    active: true,
   },
 ];
 
