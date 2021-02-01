@@ -1,30 +1,21 @@
 import React from 'react';
 import { Button, Form, Input, InputNumber, Space, Switch } from 'antd';
-import { EventOptions } from '@/state/ducks/option/types';
 import { InfoCircleOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { OptionMessage } from '@/constants';
 
 import { OptionFormInterface } from './interface';
 
-interface IProps extends OptionFormInterface {
-  data: {
-    event: EventOptions | {};
-  };
-}
-
-const EventOptionsForm: React.FC<IProps> = ({ form, data }: IProps) => {
-  console.log(data);
-
+const EventOptionsForm: React.FC<OptionFormInterface> = ({ form, data }: OptionFormInterface) => {
   return (
     <Form
       form={form}
       name='event_options_form'
-      initialValues={data.event}
+      initialValues={data}
       layout='vertical'
       requiredMark={false}
     >
       <Form.Item
-        name={['homepage', 'displayEvents']}
+        name={['event', 'homepage', 'displayEvents']}
         label={OptionMessage.EVENT.DISPLAY.LABEL}
         tooltip={{ title: OptionMessage.EVENT.DISPLAY.INFO, icon: <InfoCircleOutlined /> }}
         valuePropName='checked'
@@ -36,7 +27,7 @@ const EventOptionsForm: React.FC<IProps> = ({ form, data }: IProps) => {
         {() => {
           return (
             <Form.Item
-              name={['homepage', 'numberOfEvents']}
+              name={['event', 'homepage', 'numberOfEvents']}
               label={OptionMessage.EVENT.AMOUNT.LABEL}
               tooltip={{ title: OptionMessage.EVENT.AMOUNT.INFO, icon: <InfoCircleOutlined /> }}
               rules={[{ required: true }]}
@@ -44,7 +35,7 @@ const EventOptionsForm: React.FC<IProps> = ({ form, data }: IProps) => {
               <InputNumber
                 min={1}
                 max={6}
-                disabled={!form.getFieldValue(['homepage', 'displayEvents'])}
+                disabled={!form.getFieldValue(['event', 'homepage', 'displayEvents'])}
               />
             </Form.Item>
           );
@@ -53,7 +44,7 @@ const EventOptionsForm: React.FC<IProps> = ({ form, data }: IProps) => {
 
       <Space direction='vertical'>
         <label htmlFor='eventTypes'>{OptionMessage.EVENT.TYPE.LABEL}</label>
-        <Form.List name='eventTypes'>
+        <Form.List name={['event', 'eventTypes']}>
           {(fields, { add, remove }) => {
             return (
               <>

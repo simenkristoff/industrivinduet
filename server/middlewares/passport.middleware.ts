@@ -117,7 +117,6 @@ passport.use(
         return done(null, false);
       }
       try {
-        Logger.debug(jwtPayload.sub);
         UserModel.findById(jwtPayload.sub.id).then((user: User) => {
           if (user) {
             Logger.debug('User found in database.');
@@ -154,7 +153,6 @@ passport.use(
         return done(null, false);
       }
       try {
-        Logger.debug(jwtPayload.sub);
         UserModel.findById(jwtPayload.sub.id).then((user: User) => {
           if (user) {
             Logger.debug('User found in database.');

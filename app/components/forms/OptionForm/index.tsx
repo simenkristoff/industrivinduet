@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Tabs, Button } from 'antd';
-import { OptionPropsAll } from '@/state/ducks/option/types';
+import { Tabs } from 'antd';
+import { OptionEntity, OptionPropsAll } from '@/state/ducks/option/types';
+import { FormInstance } from 'antd/lib/form';
 
-import { OptionFormInterface } from './interface';
 import GeneralOptionsForm from './GeneralOptionsForm';
 import EventOptionsForm from './EventOptionsForm';
 import JobOptionsForm from './JobOptionsForm';
@@ -10,7 +10,9 @@ import SocialOptionsForm from './SocialOptionsForm';
 
 const { TabPane } = Tabs;
 
-interface IProps extends OptionPropsAll, OptionFormInterface {}
+interface IProps extends OptionPropsAll {
+  form: FormInstance<OptionEntity>;
+}
 
 const OptionForm: React.FC<IProps> = ({
   general,
