@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import { all, fork } from 'redux-saga/effects';
 
 import { IApplicationState } from '../interface';
@@ -37,6 +39,14 @@ export type Reducers = typeof reducers;
 export const rootReducer = combineReducers<IApplicationState>({
   ...reducers,
 });
+
+export const configStorage = {
+  key: 'root',
+  storage,
+  whitelist: ['options'],
+};
+
+export const persistentReducer = persistReducer(configStorage, rootReducer);
 
 export function* rootSaga() {
   yield all([

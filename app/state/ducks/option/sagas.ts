@@ -52,8 +52,7 @@ function* handleUpdate(params: IPayloadMetaAction<OptionEntity>): Generator {
  */
 function* handleReset(params: IMetaAction): Generator {
   try {
-    yield call(apiCaller, params.meta.method, params.meta.route);
-    const data = yield call(fetchOptions);
+    const data = yield call(apiCaller, params.meta.method, params.meta.route);
     yield put({ type: OptionActionTypes.RESET.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {

@@ -52,30 +52,37 @@ export const Frontpage: React.FC<IProps> = ({
       fetchPartners();
     }
   }, [options.loading]);
+  console.log(jobs);
+  console.log(events);
 
   return (
     <div className='frontpage-wrapper'>
-      {events && (
+      {events.length > 0 && (
         <Row gutter={[16, 16]} justify='center'>
           {events.map((event) => (
             <EventCard key={event._id} data={event} column={{ sm: eventColSize }} />
           ))}
         </Row>
       )}
+
       <Row gutter={[16, 16]}>
-        <Col md={jobs ? 8 : 24} sm={24} className='partners-wrapper'>
+        <Col md={jobs.length > 0 ? 8 : 24} sm={24} className='partners-wrapper'>
           <section className='partners'>
             <h3 className='section-title'>Samarbeidspartnere</h3>
             {partners &&
               partners.map((partner) => <PartnerCard data={partner} key={partner._id} />)}
           </section>
         </Col>
-        <Col md={16} sm={24}>
-          <section className='jobs'>
-            <h3 className='section-title'>Stillingsannonser</h3>
-            {jobs && jobs.map((job) => <JobItem data={job} key={job._id} margin={false} />)}
-          </section>
-        </Col>
+        {jobs.length > 0 && (
+          <Col md={16} sm={24}>
+            <section className='jobs'>
+              <h3 className='section-title'>Stillingsannonser</h3>
+              {jobs.map((job) => (
+                <JobItem data={job} key={job._id} margin={false} />
+              ))}
+            </section>
+          </Col>
+        )}
       </Row>
       <Row gutter={[16, 16]}>
         <Col span={24}>

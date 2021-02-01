@@ -21,19 +21,13 @@ class OptionController implements ControllerInterface {
 
   private initializeRoutes() {
     this.router.get(this.path, asyncHandler(this.getAll));
-    this.router.get(`${this.path}/:id`, asyncHandler(this.get));
-    this.router.post(
-      this.path,
-      passport.authenticate('jwt-admin', { session: false }),
-      asyncHandler(this.create),
-    );
     this.router.put(
-      `${this.path}/:id`,
+      this.path,
       passport.authenticate('jwt-admin', { session: false }),
       asyncHandler(this.update),
     );
     this.router.delete(
-      `${this.path}/:id`,
+      this.path,
       passport.authenticate('jwt-admin', { session: false }),
       asyncHandler(this.delete),
     );
@@ -62,57 +56,11 @@ class OptionController implements ControllerInterface {
   };
 
   /**
-   * GET a document by Id from the Option collection. The request
-   * will respond with a '404 Not Found' response if the Option could not be found.
-   * Else, respond with '200 Ok' and return the document.
-   *
-   * @name GET/api/options/:id
-   * @memberof OptionController
-   * @function @async
-   *
-   * @param {Request} req the request
-   * @param {Response} res the response
-   * @param {NextFunction} next the next function
-   */
-  private get = async (req: Request, res: Response, next: NextFunction) => {
-    await OptionModel.findById(req.params.id, (err: CallbackError, doc: Option) => {
-      if (!doc) {
-        return next(new NotFoundException('No Option found with that ID'));
-      }
-      res.status(200).send(doc);
-    });
-  };
-
-  /**
-   * POST a new document to the Option collection. The request will
-   * respond with a '500 Internal Server Error' if an error occurs.
-   * Else, respond with '200 Ok' and return the new document.
-   *
-   * @name POST/api/options
-   * @memberof OptionController
-   * @function @async
-   *
-   * @param {Request} req the request
-   * @param {Response} res the response
-   * @param {NextFunction} next the next function
-   */
-  private create = async (req: Request, res: Response, next: NextFunction) => {
-    await new OptionModel({
-      ...req.body,
-    }).save((err, doc) => {
-      if (err) {
-        return next(new HttpException(500, err.message));
-      }
-      res.status(200).send(doc);
-    });
-  };
-
-  /**
    * PUT a document to the Option collection. The request
    * will respond with a '404 Not Found' response if the Option could not be found.
    * Else, respond with '200 Ok' and return the new document.
    *
-   * @name PUT/api/options/:id
+   * @name PUT/api/options
    * @memberof OptionController
    * @function @async
    *
@@ -121,16 +69,17 @@ class OptionController implements ControllerInterface {
    * @param {NextFunction} next the next function
    */
   private update = async (req: Request, res: Response, next: NextFunction) => {
-    await OptionModel.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, doc) => {
+    await OptionModel.findOneAndUpdate({}, req.body, { new: true }, (err, doc) => {
+      console.log(doc);
       if (!doc) {
-        return next(new NotFoundException('No Option found with that ID'));
+        return next(new NotFoundException('No Option document'));
       }
       res.status(200).send(doc);
     });
   };
 
   /**
-   * DELETE a document from the Option collection. The request will
+   * DELETE a document from the Option collection and creates a new one. The request will
    * respond with a '404 Not Found' response if the Option could not be found,
    * or '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok'.
@@ -144,15 +93,22 @@ class OptionController implements ControllerInterface {
    * @param {NextFunction} next the next function
    */
   private delete = async (req: Request, res: Response, next: NextFunction) => {
-    await OptionModel.findById({ _id: req.params.id }, {}, {}, (err, doc) => {
+    await OptionModel.findOne({}, {}, {}, (err, doc) => {
       if (!doc) {
-        return next(new NotFoundException('No Option found with that ID'));
+        return next(new NotFoundException('No Option document found'));
       }
       doc.remove({}, (err) => {
         if (err) {
           return next(new HttpException(500, err.message));
         }
-        res.status(200).send({ message: 'Successfully deleted Option!' });
+
+        new OptionModel().save((err, doc) => {
+          if (err) {
+            return next(new HttpException(500, err.message));
+          }
+
+          res.status(200).send(doc);
+        });
       });
     });
   };

@@ -77,7 +77,7 @@ export interface SocialOptions {
  * @interface
  */
 export interface OptionEntity extends Entity {
-  details: GeneralOptions;
+  general: GeneralOptions;
   event: EventOptions;
   job: JobOptions;
   socials: SocialOptions;

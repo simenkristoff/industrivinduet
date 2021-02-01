@@ -26,7 +26,9 @@ export const optionReducer = (
     case OptionActionTypes.FETCH.START: {
       return { ...state, loading: true };
     }
-    case OptionActionTypes.FETCH.SUCCESS: {
+    case OptionActionTypes.FETCH.SUCCESS:
+    case OptionActionTypes.UPDATE.SUCCESS:
+    case OptionActionTypes.RESET.SUCCESS: {
       return { ...initialState, ...action.payload };
     }
 

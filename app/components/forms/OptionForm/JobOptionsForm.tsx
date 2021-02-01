@@ -1,30 +1,21 @@
 import React from 'react';
 import { Button, Form, Input, InputNumber, Space, Switch } from 'antd';
-import { JobOptions } from '@/state/ducks/option/types';
 import { InfoCircleOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { OptionMessage } from '@/constants';
 
 import { OptionFormInterface } from './interface';
 
-interface IProps extends OptionFormInterface {
-  data: {
-    job: JobOptions | {};
-  };
-}
-
-const JobOptionsForm: React.FC<IProps> = ({ form, data }: IProps) => {
-  console.log(data);
-
+const JobOptionsForm: React.FC<OptionFormInterface> = ({ form, data }: OptionFormInterface) => {
   return (
     <Form
       form={form}
       name='job_options_form'
-      initialValues={data.job}
+      initialValues={data}
       layout='vertical'
       requiredMark={false}
     >
       <Form.Item
-        name={['homepage', 'displayJobs']}
+        name={['job', 'homepage', 'displayJobs']}
         label={OptionMessage.EVENT.DISPLAY.LABEL}
         tooltip={{ title: OptionMessage.EVENT.DISPLAY.INFO, icon: <InfoCircleOutlined /> }}
         valuePropName='checked'
@@ -36,7 +27,7 @@ const JobOptionsForm: React.FC<IProps> = ({ form, data }: IProps) => {
         {() => {
           return (
             <Form.Item
-              name={['homepage', 'numberOfJobs']}
+              name={['job', 'homepage', 'numberOfJobs']}
               label={OptionMessage.EVENT.AMOUNT.LABEL}
               tooltip={{ title: OptionMessage.EVENT.AMOUNT.INFO, icon: <InfoCircleOutlined /> }}
               rules={[{ required: true }]}
@@ -44,7 +35,7 @@ const JobOptionsForm: React.FC<IProps> = ({ form, data }: IProps) => {
               <InputNumber
                 min={1}
                 max={6}
-                disabled={!form.getFieldValue(['homepage', 'displayJobs'])}
+                disabled={!form.getFieldValue(['job', 'homepage', 'displayJobs'])}
               />
             </Form.Item>
           );
@@ -53,7 +44,7 @@ const JobOptionsForm: React.FC<IProps> = ({ form, data }: IProps) => {
 
       <Space direction='vertical'>
         <label htmlFor='jobTypes'>{OptionMessage.EVENT.TYPE.LABEL}</label>
-        <Form.List name='jobTypes'>
+        <Form.List name={['job', 'jobTypes']}>
           {(fields, { add, remove }) => {
             return (
               <>

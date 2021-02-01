@@ -3,7 +3,7 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { Persistor, persistStore } from 'redux-persist';
 
-import { rootReducer, rootSaga } from './ducks';
+import { rootSaga, persistentReducer } from './ducks';
 import sagaMiddleware from './middlewares/sagas';
 import { IApplicationState } from './interface';
 
@@ -20,7 +20,7 @@ export default function configureStore(initialState: IApplicationState): IStore 
 
   const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
-  const store = createStore(rootReducer, initialState, enhancer);
+  const store = createStore(persistentReducer, initialState, enhancer);
 
   sagaMiddleware.run(rootSaga);
 

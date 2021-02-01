@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form, PageHeader } from 'antd';
 import { fetchOptions, resetOptions, updateOptions } from '@/state/ducks/option/actions';
@@ -24,9 +24,16 @@ export const OptionContainer = () => {
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    form.validateFields();
-    //form.validateFields().then((values) => dispatch(updateOptions(values)));
+    form.validateFields().then((values) => dispatch(updateOptions(values)));
   };
+
+  const handleReset = () => {
+    dispatch(resetOptions());
+  };
+
+  useEffect(() => {
+    form.resetFields();
+  }, [handleSubmit, handleReset]);
 
   const dispatchToProps = {
     fetchOptions: useCallback(() => dispatch(fetchOptions()), [dispatch]),
@@ -42,8 +49,11 @@ export const OptionContainer = () => {
         ghost={false}
         title='Innstillinger'
         extra={[
-          <Button key='1' type='primary' size='large' onClick={handleSubmit}>
+          <Button key='update' type='primary' size='large' onClick={handleSubmit}>
             Lagre innstillinger
+          </Button>,
+          <Button key='reset' danger size='large' onClick={handleReset}>
+            Tilbakestill
           </Button>,
         ]}
       />
