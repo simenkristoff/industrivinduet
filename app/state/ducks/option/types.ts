@@ -8,10 +8,10 @@ import { IMetaAction, IPayloadMetaAction } from '../../interface';
  * @type
  */
 export type OptionState = {
-  readonly general: GeneralOptions;
-  readonly event: EventOptions;
-  readonly job: JobOptions;
-  readonly socials: SocialOptions;
+  readonly general: GeneralOptions | {};
+  readonly event: EventOptions | {};
+  readonly job: JobOptions | {};
+  readonly socials: SocialOptions | {};
   readonly loading: boolean;
   readonly errors: Array<String>;
 };

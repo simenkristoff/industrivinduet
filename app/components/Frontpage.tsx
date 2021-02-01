@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Row, Col, Spin, Image, Button } from 'antd';
-import { OptionState } from '@/state/ducks/option/types';
+import { EventOptions, GeneralOptions, JobOptions, OptionState } from '@/state/ducks/option/types';
 import { EventEntity } from '@/state/ducks/event/types';
 import { JobEntity } from '@/state/ducks/job/types';
 import { PartnerEntity } from '@/state/ducks/partner/types';
@@ -34,8 +34,10 @@ export const Frontpage: React.FC<IProps> = ({
   fetchJobs,
   fetchPartners,
 }: IProps) => {
-  const { event, job } = options;
-  if (!event.homepage || !job.homepage) {
+  const general = options.general as GeneralOptions;
+  const event = options.event as EventOptions;
+  const job = options.job as JobOptions;
+  if (!event.homepage || !job.homepage || !general) {
     return <Spin />;
   }
 
@@ -83,10 +85,10 @@ export const Frontpage: React.FC<IProps> = ({
             </div>
             <div className='contact-overlay text-center'>
               <div className='section-main'>
-                {options.general.sitename && [
-                  <img className='icon' src={iv_icon} alt={options.general.sitename} key='icon' />,
+                {general.sitename && [
+                  <img className='icon' src={iv_icon} alt={general.sitename} key='icon' />,
                   <h2 className='section-title pb-0' key='sitename'>
-                    {options.general.sitename}
+                    {general.sitename}
                   </h2>,
                 ]}
 

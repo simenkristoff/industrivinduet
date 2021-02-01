@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Layout, Row, Col } from 'antd';
-import { OptionState } from '@/state/ducks/option/types';
+import { GeneralOptions, OptionState, SocialOptions } from '@/state/ducks/option/types';
 import { PartnerEntity } from '@/state/ducks/partner/types';
 import moment from 'moment';
 
@@ -14,7 +14,8 @@ interface IProps {
 }
 
 export const Footer: React.FC<IProps> = ({ options, partners, fetchPartners }: IProps) => {
-  const { general, socials } = options;
+  const general = options.general as GeneralOptions;
+  const socials = options.socials as SocialOptions;
 
   useEffect(() => {
     fetchPartners();
