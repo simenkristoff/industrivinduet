@@ -39,6 +39,7 @@ export const RoleContainer: React.FC = () => {
       title: 'Stillingsnavn',
       dataIndex: 'name',
       key: 'name',
+      sorter: (a, b) => a.name.localeCompare(b.name, 'nb'),
     },
     {
       title: 'Gruppe',

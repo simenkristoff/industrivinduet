@@ -1,6 +1,6 @@
 import { Entity } from '@/types';
+import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
-import { generateAsyncAction } from '../../utils';
 import {
   BaseState,
   IMetaAction,

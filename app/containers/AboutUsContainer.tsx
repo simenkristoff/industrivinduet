@@ -22,7 +22,6 @@ export const AboutUsContainer = () => {
   );
 
   function sortMembers(): MemberEntity[] {
-    console.log('sorting');
     const groups: groupType = {};
     const uniqueGroups = _.uniq(
       membersData

@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { Action, PayloadAction, TypeConstant } from 'typesafe-actions';
 
 export { default as apiCaller } from './apiCaller';
-export { default as generateAsyncAction } from './generateAsyncAction';
+export { generateAsyncAction as generateAsyncAction } from './generateAsyncAction';
 
 export function mergeObject<T extends Object>(
   object: T,

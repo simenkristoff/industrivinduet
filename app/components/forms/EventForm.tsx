@@ -7,6 +7,7 @@ import { DataFormInterface, IApplicationState } from '@/types';
 import { FormMessage, grades } from '@/constants';
 import { DatePickerInput, EditorInput, TimePickerInput } from '@/components/adapters';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { EventOptions } from '@/state/ducks/option/types';
 
 const { Panel } = Collapse;
 
@@ -15,7 +16,9 @@ export const EventForm: React.FC<DataFormInterface<EventEntity>> = ({
   data,
   editMode,
 }: DataFormInterface<EventEntity>) => {
-  const eventOptions = useSelector(({ options }: IApplicationState) => options.event);
+  const eventOptions: EventOptions = useSelector(
+    ({ options }: IApplicationState) => options.event as EventOptions,
+  );
   const members = useSelector(({ member }: IApplicationState) => member.data);
   const studyfields = useSelector(({ studyfield }: IApplicationState) => studyfield.data);
 
@@ -46,7 +49,7 @@ export const EventForm: React.FC<DataFormInterface<EventEntity>> = ({
             name='description'
             rules={[{ required: true, message: FormMessage.DESCRIPTION.REQUIRED.DEFAULT }]}
           >
-            <EditorInput />
+            <EditorInput height={500} />
           </Form.Item>
         </Col>
 

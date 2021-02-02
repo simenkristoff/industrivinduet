@@ -4,6 +4,7 @@
 
     section {
         position: relative;
+        @include shadow-box-light();
         &:not(.no-border) {
             border: 1px solid style-color(border-light);
             border-radius: theme-structure(border-radius);

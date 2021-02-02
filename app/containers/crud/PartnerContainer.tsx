@@ -37,6 +37,7 @@ export const PartnerContainer: React.FC = () => {
       title: 'Bedrift',
       dataIndex: 'image',
       key: 'image',
+      sorter: (a, b) => a.name.localeCompare(b.name, 'nb'),
       // eslint-disable-next-line react/display-name
       render: (record) => <Image src={record} width={100} />,
     },

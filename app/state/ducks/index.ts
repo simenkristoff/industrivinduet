@@ -14,6 +14,7 @@ import { partner, partnerSaga } from './partner';
 import { group, groupSaga } from './group';
 import { role, roleSaga } from './role';
 import { member, memberSaga } from './member';
+import { user, userSaga } from './user';
 import { event, eventSaga } from './event';
 import { job, jobSaga } from './job';
 
@@ -27,6 +28,7 @@ const reducers = {
   group,
   role,
   member,
+  user,
   event,
   job,
 };
@@ -59,6 +61,7 @@ export function* rootSaga() {
     fork(groupSaga),
     fork(roleSaga),
     fork(memberSaga),
+    fork(userSaga),
     fork(eventSaga),
     fork(jobSaga),
   ]);

@@ -46,6 +46,7 @@ class App {
       (process.env.UPLOADS_STATIC_FOLDER_PREFIX as unknown) as string,
       express.static('./server/resources/static/assets' + process.env.UPLOAD_DIR),
     );
+    this.app.use('/resources', express.static('./resources'));
   }
 
   private initializeMiddlewares() {

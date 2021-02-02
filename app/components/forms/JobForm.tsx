@@ -7,6 +7,7 @@ import { DataFormInterface, IApplicationState } from '@/types';
 import { FormMessage, grades } from '@/constants';
 import { DatePickerInput, EditorInput } from '@/components/adapters';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { JobOptions } from '@/state/ducks/option/types';
 
 const { Panel } = Collapse;
 
@@ -15,7 +16,9 @@ export const JobForm: React.FC<DataFormInterface<JobEntity>> = ({
   data,
   editMode,
 }: DataFormInterface<JobEntity>) => {
-  const jobOptions = useSelector(({ options }: IApplicationState) => options.job);
+  const jobOptions: JobOptions = useSelector(
+    ({ options }: IApplicationState) => options.job as JobOptions,
+  );
   const members = useSelector(({ member }: IApplicationState) => member.data);
   const studyfields = useSelector(({ studyfield }: IApplicationState) => studyfield.data);
 
@@ -48,7 +51,7 @@ export const JobForm: React.FC<DataFormInterface<JobEntity>> = ({
             name='description'
             rules={[{ required: true, message: FormMessage.DESCRIPTION.REQUIRED.DEFAULT }]}
           >
-            <EditorInput />
+            <EditorInput height={500} />
           </Form.Item>
         </Col>
 

@@ -12,6 +12,7 @@ import {
   GroupController,
   RoleController,
   MemberController,
+  UserController,
   EventController,
   JobController,
 } from './controllers';
@@ -29,23 +30,13 @@ const app = new App([
   new GroupController(),
   new RoleController(),
   new MemberController(),
+  new UserController(),
   new EventController(),
   new JobController(),
 ]);
 app.listen();
 
 scheduler();
-// const scheduler = new Scheduler();
-
-// scheduler.start();
-// scheduler.schedule();
-
-// // (async function () {
-// //   const weeklyReport = agenda.create('archive events');
-// //   await agenda.start();
-// //   //await weeklyReport.repeatEvery('10 seconds').save();
-// //   await weeklyReport.repeatEvery('1 week').save();
-// //
 
 process.on('unhandledRejection', (err: any) => {
   Logger.error(err.name, err.message);

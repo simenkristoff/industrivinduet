@@ -31,7 +31,7 @@ export const AboutUs: React.FC<IProps> = ({
   const key = data.length > 0 ? data[0].linkText : '';
 
   return (
-    <Tabs tabPosition='left' key={key}>
+    <Tabs tabPosition='top' defaultActiveKey={key}>
       {data.map((content, index) => (
         <TabPane tab={content.linkText} key={content.linkText}>
           {content.displayTitle && <h2>{content.title}</h2>}

@@ -11,6 +11,7 @@ import { OptionState } from './ducks/option/types';
 import { PartnerState } from './ducks/partner/types';
 import { RoleState } from './ducks/role/types';
 import { StudyFieldState } from './ducks/studyfield/types';
+import { UserState } from './ducks/user/types';
 
 /**
  * @desc Type of state which allows for generic CRUD-actions.
@@ -32,6 +33,7 @@ export interface IRootState {
   group: GroupState;
   role: RoleState;
   member: MemberState;
+  user: UserState;
   event: EventState;
   job: JobState;
 }

@@ -2,7 +2,6 @@ import apiCaller from '@/state/utils/apiCaller';
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 
 import { IPayloadMetaAction } from '../../interface';
-import { UserEntity } from '../user/types';
 
 import { AuthActionTypes, LoginCredentials, RegisterCredentials } from './types';
 import { removeToken, saveToken } from './helpers';

@@ -36,6 +36,7 @@ export const GroupContainer: React.FC = () => {
       title: 'Gruppenavn',
       dataIndex: 'name',
       key: 'name',
+      sorter: (a, b) => a.name.localeCompare(b.name, 'nb'),
     },
   ];
 

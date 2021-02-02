@@ -1,6 +1,7 @@
-import { generateAsyncAction } from '../../utils';
+import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
+
 import { IMetaAction, IPayloadMetaAction, ObjectId } from '../../interface';
-import { UserEntity, UserPermissions } from '../user/types';
+import { UserPermissions } from '../user/types';
 import { MemberEntity } from '../member/types';
 
 export interface AuthState {
@@ -24,11 +25,6 @@ export interface RegisterCredentials {
   email: string;
   password: string;
   permissions: UserPermissions;
-}
-
-export interface AuthResponse {
-  user: UserEntity;
-  token: EncodedToken;
 }
 
 export type EncodedToken = string;

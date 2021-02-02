@@ -40,7 +40,7 @@ function renderWithContents(data: PartnerEntity) {
 
 export const PartnerCard: React.FC<IProps> = ({ data, column, render }: IProps) => {
   return (
-    <Col className='partner-card' {...column}>
+    <Col span={24} className='partner-card' {...column}>
       {render === 'image' ? renderImageOnly(data) : renderWithContents(data)}
     </Col>
   );
