@@ -52,8 +52,6 @@ export const Frontpage: React.FC<IProps> = ({
       fetchPartners();
     }
   }, [options.loading]);
-  console.log(jobs);
-  console.log(events);
 
   return (
     <div className='frontpage-wrapper'>

@@ -50,7 +50,7 @@ export const EventContainer: React.FC = () => {
     },
     {
       title: 'Type',
-      className: 'd-none d-lg-table-cell',
+      className: 'hide-md',
       dataIndex: 'type',
       key: 'type',
       align: 'center',
@@ -66,7 +66,7 @@ export const EventContainer: React.FC = () => {
     },
     {
       title: 'Ansvarlig',
-      className: 'd-none d-lg-table-cell',
+      className: 'hide-md',
       dataIndex: 'member',
       key: 'member',
       align: 'center',
@@ -80,6 +80,7 @@ export const EventContainer: React.FC = () => {
     },
     {
       title: 'Status',
+      className: 'hide-md',
       dataIndex: 'active',
       key: 'active',
       align: 'center',

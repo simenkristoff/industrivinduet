@@ -5,7 +5,6 @@ import { OptionState } from '@/state/ducks/option/types';
 import { fetchOptions } from '@/state/ducks/option/actions';
 import { IApplicationState } from '@/types';
 import { AdminLayout, MainLayout } from '@/layouts';
-import { Admin } from '@/components/Admin';
 import { FrontpageContainer } from '@/containers/FrontpageContainer';
 import { LoginContainer } from '@/containers/LoginContainer';
 import { RegisterContainer } from '@/containers/RegisterContainer';
@@ -15,6 +14,7 @@ import { JobResultContainer } from '@/containers/JobResultContainer';
 import { JobSingleContainer } from '@/containers/JobSingleContainer';
 import { AboutUsContainer } from '@/containers/AboutUsContainer';
 import { ContactContainer } from '@/containers/ContactContainer';
+import { Admin } from '@/components/Admin';
 
 import '@/sass/App.scss';
 

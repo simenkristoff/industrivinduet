@@ -12,12 +12,13 @@ import {
   EventContainer,
   JobContainer,
 } from '@/containers/crud';
+import { AdminContainer } from '@/containers/AdminContainer';
 
 export const Admin: React.FC = () => {
   return (
     <Switch>
       <Route exact path='/admin'>
-        <h1>Hello world</h1>
+        <AdminContainer />
       </Route>
       <Route path='/admin/arrangementer'>
         <EventContainer />
