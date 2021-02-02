@@ -13,7 +13,7 @@ import {
   JobContainer,
 } from '@/containers/crud';
 
-const AdminPage: React.FC = () => {
+export const Admin: React.FC = () => {
   return (
     <Switch>
       <Route exact path='/admin'>
@@ -52,5 +52,3 @@ const AdminPage: React.FC = () => {
     </Switch>
   );
 };
-
-export default AdminPage;

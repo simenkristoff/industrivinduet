@@ -2,14 +2,17 @@ import React, { useEffect } from 'react';
 import { Tabs, Row } from 'antd';
 import { ContentEntity } from '@/state/ducks/content/types';
 import { MemberEntity } from '@/state/ducks/member/types';
+import { PartnerEntity } from '@/state/ducks/partner/types';
 
 import { MemberCard } from './MemberCard';
+import { PartnerCard } from './PartnerCard';
 
 const { TabPane } = Tabs;
 
 interface IProps {
   data: ContentEntity[];
-  members: MemberEntity[] | undefined;
+  members: MemberEntity[];
+  partners: PartnerEntity[];
   fetchContents: () => void;
   fetchMembers: () => void;
 }
@@ -17,6 +20,7 @@ interface IProps {
 export const AboutUs: React.FC<IProps> = ({
   data,
   members,
+  partners,
   fetchContents,
   fetchMembers,
 }: IProps) => {
@@ -34,13 +38,24 @@ export const AboutUs: React.FC<IProps> = ({
           <div className='content' dangerouslySetInnerHTML={{ __html: content.content }} />
         </TabPane>
       ))}
-      <TabPane tab='Medlemmer' key='members'>
-        <Row gutter={[16, 16]}>
-          {members?.map((member) => (
-            <MemberCard key={member._id} data={member} displayImage />
-          ))}
-        </Row>
-      </TabPane>
+      {members?.length > 0 && (
+        <TabPane tab='Medlemmer' key='members'>
+          <Row gutter={[16, 16]}>
+            {members?.map((member) => (
+              <MemberCard key={member._id} data={member} displayImage />
+            ))}
+          </Row>
+        </TabPane>
+      )}
+      {partners?.length > 0 && (
+        <TabPane tab='Samarbeidspartnere' key='partners'>
+          <Row gutter={[16, 16]}>
+            {partners?.map((partner) => (
+              <PartnerCard key={partner._id} data={partner} render='withContent' />
+            ))}
+          </Row>
+        </TabPane>
+      )}
     </Tabs>
   );
 };

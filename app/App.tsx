@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import { AdminPage } from '@/pages';
-import { AdminLayout, MainLayout } from '@/layouts';
-import { AboutUsContainer } from '@/containers/AboutUsContainer';
-import { EventResultContainer } from '@/containers/EventResultContainer';
-import { JobResultContainer } from '@/containers/JobResultContainer';
-import { fetchOptions } from '@/state/ducks/option/actions';
-import { LoginContainer } from '@/containers/LoginContainer';
 import { OptionState } from '@/state/ducks/option/types';
+import { fetchOptions } from '@/state/ducks/option/actions';
 import { IApplicationState } from '@/types';
+import { AdminLayout, MainLayout } from '@/layouts';
+import { Admin } from '@/components/Admin';
+import { FrontpageContainer } from '@/containers/FrontpageContainer';
+import { LoginContainer } from '@/containers/LoginContainer';
+import { RegisterContainer } from '@/containers/RegisterContainer';
+import { EventResultContainer } from '@/containers/EventResultContainer';
+import { EventSingleContainer } from '@/containers/EventSingleContainer';
+import { JobResultContainer } from '@/containers/JobResultContainer';
+import { JobSingleContainer } from '@/containers/JobSingleContainer';
+import { AboutUsContainer } from '@/containers/AboutUsContainer';
+import { ContactContainer } from '@/containers/ContactContainer';
 
-import { FrontpageContainer } from './containers/FrontpageContainer';
-import { EventSingleContainer } from './containers/EventSingleContainer';
-import { JobSingleContainer } from './containers/JobSingleContainer';
-import { ContactContainer } from './containers/ContactContainer';
 import '@/sass/App.scss';
-import { RegisterContainer } from './containers/RegisterContainer';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -110,7 +110,7 @@ const App: React.FC = () => {
           path='/admin'
           render={() => (
             <AdminLayout>
-              <AdminPage />
+              <Admin />
             </AdminLayout>
           )}
         />

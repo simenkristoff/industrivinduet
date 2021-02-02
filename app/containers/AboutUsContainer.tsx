@@ -7,6 +7,8 @@ import { MemberEntity } from '@/state/ducks/member/types';
 import { fetchMembers } from '@/state/ducks/member/actions';
 import { AboutUs } from '@/components/AboutUs';
 import { roleValuesEnum } from '@/constants';
+import { PartnerEntity } from '@/state/ducks/partner/types';
+import { fetchPartners } from '@/state/ducks/partner/actions';
 
 type groupType = {
   [key: string]: MemberEntity[];
@@ -15,6 +17,9 @@ type groupType = {
 export const AboutUsContainer = () => {
   const dispatch = useDispatch();
   const membersData: MemberEntity[] = useSelector(({ member }: IApplicationState) => member.data);
+  const partnersData: PartnerEntity[] = useSelector(
+    ({ partner }: IApplicationState) => partner.data,
+  );
 
   function sortMembers(): MemberEntity[] {
     console.log('sorting');
@@ -51,11 +56,13 @@ export const AboutUsContainer = () => {
   const stateToProps = useSelector(({ content }: IApplicationState) => ({
     data: content.data,
     members: sortMembers(),
+    partners: partnersData,
   }));
 
   const dispatchToProps = {
     fetchContents: useCallback(() => dispatch(fetchContents()), [dispatch]),
     fetchMembers: useCallback(() => dispatch(fetchMembers()), [dispatch]),
+    fetchPartners: useCallback(() => dispatch(fetchPartners()), [dispatch]),
   };
 
   return <AboutUs {...stateToProps} {...dispatchToProps} />;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Spin } from 'antd';
 import { MailOutlined, PhoneOutlined, EnvironmentOutlined } from '@ant-design/icons';
-import { OptionState } from '@/state/ducks/option/types';
+import { GeneralOptions, OptionState, SocialOptions } from '@/state/ducks/option/types';
 import { Map } from '@/components/Map';
 
 import { Socials } from './Socials';
@@ -11,7 +11,8 @@ interface IProps {
 }
 
 export const Contact: React.FC<IProps> = ({ options }: IProps) => {
-  const { general, socials } = options;
+  const general = options.general as GeneralOptions;
+  const socials = options.socials as SocialOptions;
   if (!general || !socials) {
     return <Spin />;
   }
