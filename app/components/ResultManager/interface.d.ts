@@ -4,6 +4,7 @@ import { FormInstance } from 'antd/lib/form';
 
 export interface ResultItemInterface<T extends Entity> {
   data: T;
+  className?: string;
 }
 
 export interface ResultHeaderInterface {

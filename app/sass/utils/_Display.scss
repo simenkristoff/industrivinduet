@@ -1,0 +1,14 @@
+
+
+@mixin display-utils {
+    
+    @each $breakpoint, $size in $breakpoints {
+        .hide-#{$breakpoint} {
+            @media (max-width: ($size - 1)) {
+                display: none;
+              }
+        } 
+    }
+}
+
+@include display-utils();

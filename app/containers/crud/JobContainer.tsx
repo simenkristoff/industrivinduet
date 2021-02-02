@@ -49,7 +49,7 @@ export const JobContainer: React.FC = () => {
     },
     {
       title: 'Type',
-      className: 'd-none d-lg-table-cell',
+      className: 'hide-md',
       dataIndex: 'type',
       key: 'type',
       align: 'center',
@@ -65,6 +65,7 @@ export const JobContainer: React.FC = () => {
     },
     {
       title: 'Status',
+      className: 'hide-md',
       dataIndex: 'active',
       key: 'active',
       align: 'center',

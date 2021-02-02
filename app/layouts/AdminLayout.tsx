@@ -9,8 +9,8 @@ const AdminLayout: React.FC = (props) => {
     <WithAuth>
       <Layout>
         <HeaderContainer />
-        <Layout>
-          <Layout.Sider>
+        <Layout hasSider>
+          <Layout.Sider collapsible collapsedWidth={0} breakpoint='lg'>
             <AdminSidebar />
           </Layout.Sider>
           <Layout className='admin-container bg-light'>

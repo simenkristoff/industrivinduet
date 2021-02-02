@@ -1,0 +1,31 @@
+
+.admin-landing {
+    section {
+        position: relative;
+
+        &.full-height {
+            height: 100%;
+        }
+        
+        &:not(.no-border) {
+            border: 1px solid style-color(border-light);
+            border-radius: theme-structure(border-radius);
+        }
+
+        .section-header {
+            background-color: theme-color(primary);
+            margin-bottom: -.5rem;
+            .section-title {
+                color: theme-color(light);
+            }
+        }
+
+        .section-title {
+            padding: 1rem .5rem;
+        }
+
+        .section-content:not(.no-pad) {
+            padding: 1rem .5rem;
+        }
+    }
+}

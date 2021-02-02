@@ -9,6 +9,7 @@ import { ResultItemInterface } from './ResultManager/interface';
 
 interface IProps extends ResultItemInterface<JobEntity> {
   margin?: boolean;
+  displayContent?: boolean;
 }
 
 const imageCol = {
@@ -20,11 +21,14 @@ const imageCol = {
   },
 };
 
-export const JobItem: React.FC<IProps> = ({ data, margin }: IProps) => {
+export const JobItem: React.FC<IProps> = ({ data, margin, className, displayContent }: IProps) => {
   const { _id, title, company, type, startdate, deadline, places, image } = data;
 
   return (
-    <Link className={`job-item ${margin ? 'mb-1' : ''}`} to={`/stillingsannonser/${_id}`}>
+    <Link
+      className={`job-item ${className} ${margin ? 'mb-1' : ''}`}
+      to={`/stillingsannonser/${_id}`}
+    >
       <Row gutter={[0, 0]} wrap={false} align='middle'>
         <div className='job-image'>
           <img src={image} alt={title} />
@@ -34,14 +38,18 @@ export const JobItem: React.FC<IProps> = ({ data, margin }: IProps) => {
             className='job-description'
             title={title}
             colon={false}
-            extra={<span className='type'>{type}</span>}
+            extra={displayContent && <span className='type'>{type}</span>}
           >
-            <Descriptions.Item label='Søknadsfrist'>
-              {moment(deadline).format('ll')}
-            </Descriptions.Item>
-            <Descriptions.Item label={<EnvironmentOutlined />}>
-              {places.map((place) => place + ' ')}
-            </Descriptions.Item>
+            {displayContent && (
+              <div className='content'>
+                <Descriptions.Item label='Søknadsfrist'>
+                  {moment(deadline).format('ll')}
+                </Descriptions.Item>
+                <Descriptions.Item label={<EnvironmentOutlined />}>
+                  {places.map((place) => place + ' ')}
+                </Descriptions.Item>
+              </div>
+            )}
           </Descriptions>
         </Col>
       </Row>
@@ -51,4 +59,5 @@ export const JobItem: React.FC<IProps> = ({ data, margin }: IProps) => {
 
 JobItem.defaultProps = {
   margin: true,
+  displayContent: true,
 };

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IApplicationState } from '@/types';
-import { OptionState } from '@/state/ducks/option/types';
+import { EventOptions, OptionState } from '@/state/ducks/option/types';
 import { fetchActiveEvents } from '@/state/ducks/event/actions';
 import { fetchActiveJobs } from '@/state/ducks/job/actions';
 import { fetchPartners } from '@/state/ducks/partner/actions';
@@ -16,11 +16,11 @@ export const FrontpageContainer = () => {
   const events: EventEntity[] = useSelector(({ event }: IApplicationState) => event.data);
   const jobs: JobEntity[] = useSelector(({ job }: IApplicationState) => job.data);
   const partners: PartnerEntity[] = useSelector(({ partner }: IApplicationState) => partner.data);
-
+  const eventOptions = options.event as EventOptions;
   const stateToProps = {
     options,
     events,
-    eventColSize: Math.floor(24 / options.event.homepage?.numberOfEvents),
+    eventColSize: Math.floor(24 / eventOptions.homepage?.numberOfEvents),
     jobs,
     partners,
   };
