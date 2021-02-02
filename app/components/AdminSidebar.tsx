@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import {
   DashboardOutlined,
+  UnlockOutlined,
   CalendarOutlined,
   SolutionOutlined,
   LayoutOutlined,
@@ -15,15 +17,29 @@ import {
   TeamOutlined,
   ControlOutlined,
 } from '@ant-design/icons';
+import { IApplicationState } from '@/types';
+import { AuthState } from '@/state/ducks/auth/types';
+import { checkUserIsAdmin } from '@/state/ducks/auth/helpers';
 
 const { SubMenu } = Menu;
 
 export const AdminSidebar: React.FC = (props) => {
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const currentUser: AuthState = useSelector(({ auth }: IApplicationState) => auth);
+  useEffect(() => {
+    setIsAdmin(checkUserIsAdmin(currentUser));
+  }, []);
+
   return (
     <Menu mode='inline' defaultSelectedKeys={['1']} style={{ height: '100%' }}>
       <Menu.Item key='1' icon={<DashboardOutlined />}>
         <Link to='/admin'>Dashboard</Link>
       </Menu.Item>
+      {isAdmin && (
+        <Menu.Item key='users' icon={<UnlockOutlined />}>
+          <Link to='/admin/brukere'>Brukere</Link>
+        </Menu.Item>
+      )}
       <Menu.Item key='2' icon={<CalendarOutlined />}>
         <Link to='/admin/arrangementer'>Arrangementer</Link>
       </Menu.Item>

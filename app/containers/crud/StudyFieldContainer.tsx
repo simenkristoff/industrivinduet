@@ -36,11 +36,13 @@ export const StudyFieldContainer: React.FC = () => {
       title: 'Navn',
       dataIndex: 'name',
       key: 'name',
+      sorter: (a, b) => a.name.localeCompare(b.name, 'nb'),
     },
     {
       title: 'Forkortelse',
       dataIndex: 'abbr',
       key: 'abbr',
+      sorter: (a, b) => a.abbr.localeCompare(b.abbr, 'nb'),
     },
   ];
 

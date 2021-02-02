@@ -36,16 +36,19 @@ export const ContentContainer: React.FC = () => {
       title: 'Tittel',
       dataIndex: 'title',
       key: 'title',
+      sorter: (a, b) => a.title.localeCompare(b.title, 'nb'),
     },
     {
       title: 'Lenke',
       dataIndex: 'linkText',
       key: 'linkText',
+      sorter: (a, b) => a.linkText.localeCompare(b.linkText, 'nb'),
     },
     {
       title: 'Prioritet',
       dataIndex: 'priority',
       key: 'priority',
+      sorter: (a, b) => a.priority - b.priority,
     },
   ];
 

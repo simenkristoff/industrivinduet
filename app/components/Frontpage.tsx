@@ -76,7 +76,7 @@ export const Frontpage: React.FC<IProps> = ({
             <section className='jobs'>
               <h3 className='section-title'>Stillingsannonser</h3>
               {jobs.map((job) => (
-                <JobItem data={job} key={job._id} margin={false} />
+                <JobItem className='' data={job} key={job._id} margin={false} />
               ))}
             </section>
           </Col>

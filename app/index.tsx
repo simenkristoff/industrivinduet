@@ -17,13 +17,13 @@ const render = () => {
   ReactDOM.render(
     // <React.StrictMode>
     <Provider store={store}>
-      {/* <PersistGate persistor={persistor}> */}
-      <ConfigProvider locale={locale}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ConfigProvider>
-      {/* </PersistGate> */}
+      <PersistGate persistor={persistor}>
+        <ConfigProvider locale={locale}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ConfigProvider>
+      </PersistGate>
     </Provider>,
     // </React.StrictMode>,
     document.getElementById('root'),

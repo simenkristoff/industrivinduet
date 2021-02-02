@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { IApplicationState } from '@/types';
@@ -11,14 +11,24 @@ import { EventEntity } from '@/state/ducks/event/types';
 import { JobEntity } from '@/state/ducks/job/types';
 import { AdminLanding } from '@/components/AdminLanding';
 import { MemberEntity } from '@/state/ducks/member/types';
+import { UserEntity, UserPermissions } from '@/state/ducks/user/types';
+import { fetchUsers } from '@/state/ducks/user/actions';
+import { checkUserIsAdmin } from '@/state/ducks/auth/helpers';
 
 export const AdminContainer = () => {
   const dispatch = useDispatch();
-  const { ...currentUser }: AuthState = useSelector(({ auth }: IApplicationState) => auth);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  const currentUser: AuthState = useSelector(({ auth }: IApplicationState) => auth);
+  const users: UserEntity[] = useSelector(({ user }: IApplicationState) => user.data);
   const members: MemberEntity[] = useSelector(({ member }: IApplicationState) => member.data);
   const roleCount: number = useSelector(({ role }: IApplicationState) => role.data.length);
   const events: EventEntity[] = useSelector(({ event }: IApplicationState) => event.data);
   const jobs: JobEntity[] = useSelector(({ job }: IApplicationState) => job.data);
+
+  useEffect(() => {
+    setIsAdmin(checkUserIsAdmin(currentUser));
+  }, []);
 
   function getLeaders(): MemberEntity[] {
     return _.filter(members, (member) => member.role?.roleType === 'Leder');
@@ -28,10 +38,17 @@ export const AdminContainer = () => {
     return _.filter(members, (member) => member.role === undefined || member.role === null);
   }
 
+  function getAdmins(): UserEntity[] {
+    return _.filter(users, (user) => user.permissions === UserPermissions.ADMIN);
+  }
+
   const stateToProps = {
+    isAdmin,
     leaders: getLeaders(),
     nonOccupied: getNonOccupied(),
     memberCount: members.length,
+    userCount: users.length,
+    adminCount: getAdmins().length,
     roleCount,
     events,
     jobs,
@@ -40,6 +57,7 @@ export const AdminContainer = () => {
   const dispatchToProps = {
     fetchMembers: useCallback(() => dispatch(fetchMembers()), [dispatch]),
     fetchRoles: useCallback(() => dispatch(fetchRoles()), [dispatch]),
+    fetchUsers: useCallback(() => dispatch(fetchUsers()), [dispatch]),
     fetchEvents: useCallback(() => dispatch(fetchActiveEvents(2)), [dispatch]),
     fetchJobs: useCallback(() => dispatch(fetchActiveJobs(2)), [dispatch]),
   };

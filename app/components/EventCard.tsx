@@ -13,12 +13,12 @@ interface IProps extends ResultItemInterface<EventEntity> {
   column?: ColProps;
 }
 
-export const EventCard: React.FC<IProps> = ({ data, column }: IProps) => {
+export const EventCard: React.FC<IProps> = ({ data, column, className }: IProps) => {
   const { _id, title, type, date, starttime, endtime, place, image } = data;
 
   return (
     <Col {...column}>
-      <Link className='event-card' to={`/arrangementer/${_id}`}>
+      <Link className={`event-card shadow-box-light`} to={`/arrangementer/${_id}`}>
         <div className='card-header'>
           <img className='cover' src={cover} />
           <img className='logo' src={image} alt={title} />

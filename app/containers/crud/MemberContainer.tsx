@@ -40,6 +40,7 @@ export const MemberContainer: React.FC = () => {
       title: 'Navn',
       dataIndex: 'name',
       key: 'name',
+      sorter: (a, b) => a.name.first.localeCompare(b.name.first, 'nb'),
       render: (record) => `${record.first} ${record.last}`,
     },
     {

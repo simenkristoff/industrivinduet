@@ -2,6 +2,7 @@
 .admin-landing {
     section {
         position: relative;
+        @include shadow-box-light();
 
         &.full-height {
             height: 100%;
@@ -13,7 +14,10 @@
         }
 
         .section-header {
-            background-color: theme-color(primary);
+            background-image: url("/resources/gears_card.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             margin-bottom: -.5rem;
             .section-title {
                 color: theme-color(light);

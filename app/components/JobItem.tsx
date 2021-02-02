@@ -60,4 +60,5 @@ export const JobItem: React.FC<IProps> = ({ data, margin, className, displayCont
 JobItem.defaultProps = {
   margin: true,
   displayContent: true,
+  className: 'shadow-box-light',
 };

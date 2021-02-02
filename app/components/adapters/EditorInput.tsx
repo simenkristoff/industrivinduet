@@ -4,23 +4,16 @@ import { Editor, IAllProps as EditorFieldProps } from '@tinymce/tinymce-react';
 let editorConfig: EditorFieldProps = {
   apiKey: 'zu41a2730rcj7g0nhdmfsduyhu9d987ap1cripcst31ougmt',
   outputFormat: 'html',
-  init: {
-    language: 'nb_NO',
-    menubar: false,
-    statusbar: false,
-    toolbar:
-      'styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
-    height: '200px',
-  },
 };
 
 interface IProps {
   value?: string;
   onChange?: (value: string) => void;
   config?: EditorFieldProps;
+  height?: number;
 }
 
-export const EditorInput: React.FC<IProps> = ({ value = '', onChange, config }: IProps) => {
+export const EditorInput: React.FC<IProps> = ({ value = '', onChange, config, height }: IProps) => {
   useEffect(() => {
     if (config) {
       editorConfig = { ...editorConfig, ...config };
@@ -38,6 +31,22 @@ export const EditorInput: React.FC<IProps> = ({ value = '', onChange, config }: 
   };
 
   return (
-    <Editor initialValue={value.toString()} onEditorChange={handleEditorChange} {...editorConfig} />
+    <Editor
+      initialValue={value.toString()}
+      onEditorChange={handleEditorChange}
+      {...editorConfig}
+      init={{
+        language: 'nb_NO',
+        plugins: ['image', 'autoresize'],
+        menubar: false,
+        statusbar: false,
+        resize: true,
+        toolbar:
+          'styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
+        min_height: height ? height : 200,
+        autoresize_bottom_margin: 50,
+        autoresize_on_init: true,
+      }}
+    />
   );
 };

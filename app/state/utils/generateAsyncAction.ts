@@ -1,9 +1,7 @@
 import { AsyncActionType } from '../interface';
 
-const generateAsyncAction = (name: string): AsyncActionType => ({
+export const generateAsyncAction = (name: string): AsyncActionType => ({
   START: `${name}.START`,
   SUCCESS: `${name}.SUCCESS`,
   ERROR: `${name}.ERROR`,
 });
-
-export default generateAsyncAction;

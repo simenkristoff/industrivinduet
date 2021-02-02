@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { MediaContainer } from '@/containers/MediaContainer';
 import { OptionContainer } from '@/containers/OptionContainer';
 import {
+  UserContainer,
   ContentContainer,
   StudyFieldContainer,
   PartnerContainer,
@@ -19,6 +20,9 @@ export const Admin: React.FC = () => {
     <Switch>
       <Route exact path='/admin'>
         <AdminContainer />
+      </Route>
+      <Route exact path='/admin/brukere'>
+        <UserContainer />
       </Route>
       <Route path='/admin/arrangementer'>
         <EventContainer />

@@ -20,7 +20,17 @@ export const RoleForm: React.FC<DataFormInterface<RoleEntity>> = ({
         <Input type='hidden' />
       </Form.Item>
 
-      <Form.Item name='name' rules={[{ required: true, message: FormMessage.ROLE.REQUIRED.NAME }]}>
+      <Form.Item
+        name='name'
+        rules={[
+          { required: true, message: FormMessage.ROLE.REQUIRED.NAME },
+          () => ({
+            validator(_, value) {
+              return uniqueValue(data, value, roles, ['name'], true, FormMessage.ROLE.UNIQUE.NAME);
+            },
+          }),
+        ]}
+      >
         <Input placeholder='Stillingsnavn' />
       </Form.Item>
 
