@@ -6,7 +6,7 @@ import Container from '@/components/Container';
 
 const MainLayout = (props: any) => {
   return (
-    <Layout>
+    <>
       <HeaderContainer />
       <Container className='main-container'>
         <Layout>
@@ -14,7 +14,7 @@ const MainLayout = (props: any) => {
         </Layout>
       </Container>
       <FooterContainer />
-    </Layout>
+    </>
   );
 };
 

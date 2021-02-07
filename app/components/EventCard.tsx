@@ -15,10 +15,16 @@ interface IProps extends ResultItemInterface<EventEntity> {
 
 export const EventCard: React.FC<IProps> = ({ data, column, className }: IProps) => {
   const { _id, title, type, date, starttime, endtime, place, image } = data;
+  const classes: string[] = ['event-card', 'shadow-box-light'];
+  if (className) {
+    className.split(' ').forEach((_c) => {
+      classes.push(_c);
+    });
+  }
 
   return (
     <Col {...column}>
-      <Link className={`event-card shadow-box-light`} to={`/arrangementer/${_id}`}>
+      <Link className={classes.join(' ')} to={`/arrangementer/${_id}`}>
         <div className='card-header'>
           <img className='cover' src={cover} />
           <img className='logo' src={image} alt={title} />
