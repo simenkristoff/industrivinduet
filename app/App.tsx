@@ -29,7 +29,6 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log(location.pathname);
     if (location.pathname === '/') {
       setIsFrontpage(true);
     } else {

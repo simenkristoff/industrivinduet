@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import { WithAuth } from '@/hoc';
 import { HeaderContainer } from '@/containers/HeaderContainer';
+import { BreadcrumbContainer } from '@/containers/BreadcrumbContainer';
 import { AdminSidebar } from '@/components/AdminSidebar';
 
 const AdminLayout: React.FC = (props) => {
@@ -14,6 +15,7 @@ const AdminLayout: React.FC = (props) => {
             <AdminSidebar />
           </Layout.Sider>
           <Layout className='admin-container'>
+            <BreadcrumbContainer isDashboard />
             <Layout.Content className='admin-content'>{props.children}</Layout.Content>
           </Layout>
         </Layout>

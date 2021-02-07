@@ -14,11 +14,12 @@ export const register = (data: RegisterCredentials) =>
 /**
  * @desc Login User
  */
-export const login = (data: LoginCredentials) =>
-  action(AuthActionTypes.LOGIN.START, data, {
+export const login = (data: LoginCredentials) => {
+  return action(AuthActionTypes.LOGIN.START, data, {
     method: 'post',
     route: 'auth/login',
   });
+};
 
 /**
  * @desc Logout User.

@@ -101,6 +101,7 @@ class AuthController implements ControllerInterface {
    * @param {NextFunction} next the next function
    */
   private login = async (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.body);
     await passport.authenticate('login', (err: any, user: User, info: InfoMessage) => {
       if (err) {
         console.log(err);
