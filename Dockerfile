@@ -11,7 +11,7 @@ RUN apt-get -y install curl && \
 FROM node:12-alpine
 
 # Set environment variables
-ENV PORT=5000
+ENV PORT=8080
 ARG CLIENT_ID
 
 COPY . srv/
