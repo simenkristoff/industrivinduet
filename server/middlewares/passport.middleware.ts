@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 import { UserModel, User, Member } from '../models';
 import { Logger } from '../utils';
 
-const BCRYPT_SALT_ROUNDS = 12;
+const BCRYPT_SALT_ROUNDS = process.env.BCRYPT_SALT_ROUNDS as string;
 
 /**
  * Register new user
