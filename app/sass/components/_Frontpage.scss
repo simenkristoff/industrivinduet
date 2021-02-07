@@ -3,6 +3,7 @@
 .frontpage-wrapper {
 
     section {
+        background-color: theme-color(light);
         position: relative;
         @include shadow-box-light();
         &:not(.no-border) {

@@ -58,7 +58,12 @@ export const Frontpage: React.FC<IProps> = ({
       {events.length > 0 && (
         <Row gutter={[16, 16]} justify='center'>
           {events.map((event) => (
-            <EventCard key={event._id} data={event} column={{ sm: eventColSize }} />
+            <EventCard
+              key={event._id}
+              data={event}
+              column={{ sm: eventColSize }}
+              className='bg-light'
+            />
           ))}
         </Row>
       )}

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import { OptionState } from '@/state/ducks/option/types';
 import { fetchOptions } from '@/state/ducks/option/actions';
 import { IApplicationState } from '@/types';
@@ -19,15 +19,26 @@ import { Admin } from '@/components/Admin';
 import '@/sass/App.scss';
 
 const App: React.FC = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
+  const [isFrontpage, setIsFrontpage] = useState<boolean>(false);
 
   const options: OptionState = useSelector(({ options }: IApplicationState) => options);
   useEffect(() => {
     dispatch(fetchOptions());
   }, []);
 
+  useEffect(() => {
+    console.log(location.pathname);
+    if (location.pathname === '/') {
+      setIsFrontpage(true);
+    } else {
+      setIsFrontpage(false);
+    }
+  }, [location]);
+
   return (
-    <div id='App'>
+    <div id='App' className={isFrontpage ? 'bg-gray' : ''}>
       <Switch>
         <Route
           exact
