@@ -2,7 +2,6 @@ import path from 'path';
 
 import dotenv from 'dotenv';
 import express from 'express';
-import multer from 'multer';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import mongoose from 'mongoose';
@@ -23,7 +22,7 @@ class App {
   constructor(controllers: ControllerInterface[]) {
     this.app = express();
     this.connect();
-    this.initializeFileMiddleware();
+    this.initializeMediaMiddleware();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
     this.initializeErrorHandling();
@@ -40,8 +39,8 @@ class App {
     return this.app;
   }
 
-  private initializeFileMiddleware() {
-    this.app.use(mediaMiddleware);
+  private initializeMediaMiddleware() {
+    //this.app.use(mediaMiddleware);
     this.app.use(
       (process.env.UPLOADS_STATIC_FOLDER_PREFIX as unknown) as string,
       express.static('./server/resources/static/assets' + process.env.UPLOAD_DIR),
@@ -50,11 +49,11 @@ class App {
   }
 
   private initializeMiddlewares() {
+    this.app.use(cors({ origin: this.isProduction ? false : '*' }));
     this.app.use(helmet()); // Sets HTTP headers that can defend agains xss attacks
     this.app.use(hpp()); // Protects against HTTP Parameter Pollution
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
-    this.app.use(cors({ origin: this.isProduction ? false : '*' }));
     this.app.use(passport.initialize());
     if (!this.isProduction) {
       this.app.use(logger);

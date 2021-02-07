@@ -1,44 +1,58 @@
-import React, { useEffect } from 'react';
-import { MediaFile, MediaPropsAll } from '@/state/ducks/media/types';
+import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
 
-export const MediaLibrary: React.FC<MediaPropsAll> = (props: MediaPropsAll) => {
-  const {
-    file,
-    files,
-    loading,
-    errors,
-    fetchFiles,
-    getFile,
-    uploadFile,
-    deleteFile,
-    setFile,
-  } = props;
+import { MediaLibraryInterface, MediaLibraryItems } from './interface';
+
+import { MediaHeader, MediaGallery, MediaHelpers } from '.';
+
+export const MediaLibrary: React.FC<MediaLibraryInterface> = ({
+  fileData,
+  path,
+  inModal,
+  uploadFile,
+  deleteFile,
+  createFolder,
+  updateFolder,
+  handleBackClick,
+  handleSelect,
+  handleFolderClick,
+  handleImageSelect,
+}: MediaLibraryInterface) => {
+  const [items, setItems] = useState<MediaLibraryItems>({
+    directories: [],
+    images: [],
+  });
+  const dirNames = _.map(items.directories, 'name');
 
   useEffect(() => {
-    fetchFiles();
-  }, [fetchFiles]);
-
-  const handleClick = (event: any) => {
-    const file: MediaFile = {
-      name: 'hei',
-      url: event.target.currentSrc,
-    };
-    setFile(file);
-  };
+    if (Object.keys(fileData.nodes).length > 0) {
+      setItems(MediaHelpers.renderTree(fileData.nodes, path));
+    }
+  }, [path]);
 
   return (
-    <div>
-      <h1>Filer</h1>
-      {files.map((file, index) => (
-        <img
-          width='150'
-          height='150'
-          src={file.url}
-          key={file.name}
-          alt={file.name}
-          onClick={handleClick}
-        />
-      ))}
+    <div className='media-library'>
+      <MediaHeader
+        path={path}
+        dirNames={dirNames}
+        uploadFile={uploadFile}
+        onBack={handleBackClick}
+        createFolder={createFolder}
+      />
+      <MediaGallery
+        data={items}
+        dirNames={dirNames}
+        inModal={inModal}
+        deleteFile={deleteFile}
+        updateFolder={updateFolder}
+        handleSelect={handleSelect}
+        handleFolderClick={handleFolderClick}
+        handleImageSelect={handleImageSelect}
+      />
     </div>
   );
+};
+
+MediaLibrary.defaultProps = {
+  inModal: false,
 };

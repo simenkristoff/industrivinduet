@@ -44,13 +44,11 @@ module.exports = merge(common, {
   },
   devServer: {
     historyApiFallback: true,
-    proxy: {
-      '/api': 'http://localhost:5000',
-    },
     open: true,
     compress: true,
     hot: true,
     port: 3000,
+    proxy: {},
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

@@ -1,0 +1,17 @@
+
+
+.media-gallery-wrapper {
+    background-color: theme-color(light);
+    min-height: 100vh;
+    .media-gallery {
+        justify-content: center;
+        > .ant-col {
+            padding: .5rem;
+        }
+
+        @include respond-above(sm) {
+            justify-content: space-between;
+        }
+        
+    }
+}

@@ -1,0 +1,38 @@
+
+.media-folder {
+    background-color: theme-color(light);
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+
+    .folder-wrapper {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10rem;
+        height: 100%;
+        width: 100%;
+    }
+
+    .media-input {
+        width: 80%;
+        z-index: 5;
+        margin-bottom: .75rem;
+        transition: none!important;
+
+        &.error {
+            border-color: theme-color(danger);
+        }
+
+        &:not(.edit) {
+            border-color: transparent;
+            transition: none!important;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+    }
+}

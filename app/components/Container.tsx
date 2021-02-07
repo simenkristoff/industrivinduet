@@ -7,13 +7,18 @@ interface IProps {
   ghost?: boolean;
   children?: JSX.Element | JSX.Element[];
 }
-const Container: React.FC<IProps> = (props: IProps) => {
-  let classes = props.size === 'full' ? 'container-full ' : 'container ';
-  if (props.ghost) classes += ' is-ghost ';
-  if (props.className) classes += props.className;
+const Container: React.FC<IProps> = ({ className, style, size, ghost, ...props }: IProps) => {
+  const classes: string[] = [];
+  classes.push(size === 'full' ? 'container-full' : 'container');
+  if (ghost) classes.push('is-ghost');
+  if (className) {
+    className.split(' ').forEach((_c) => {
+      classes.push(_c);
+    });
+  }
 
   return (
-    <div className={`${classes}`} style={props.style}>
+    <div className={classes.join(' ')} style={style}>
       {props.children}
     </div>
   );

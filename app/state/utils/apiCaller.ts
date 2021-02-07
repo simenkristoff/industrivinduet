@@ -8,6 +8,20 @@ function handleErrors(response: Response) {
   return response;
 }
 
+export function fileApiCaller<FormData>(method: string, path: string, data?: any) {
+  return fetch(`http://localhost:8080/${path}`, {
+    method,
+    mode: 'cors',
+    headers: {
+      Authorization: `JWT ${getToken()?.encodedToken}`,
+    },
+    body: data,
+  })
+    .then(handleErrors)
+    .then((res) => res.json())
+    .catch();
+}
+
 export default function apiCaller<T>(
   method: string,
   path: string,

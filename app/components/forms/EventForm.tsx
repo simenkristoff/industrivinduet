@@ -9,6 +9,8 @@ import { DatePickerInput, EditorInput, TimePickerInput } from '@/components/adap
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { EventOptions } from '@/state/ducks/option/types';
 
+import { MediaPicker } from '../MediaPicker';
+
 const { Panel } = Collapse;
 
 export const EventForm: React.FC<DataFormInterface<EventEntity>> = ({
@@ -54,7 +56,13 @@ export const EventForm: React.FC<DataFormInterface<EventEntity>> = ({
         </Col>
 
         <Col span={24} md={8}>
-          <Collapse defaultActiveKey={['general']}>
+          <Collapse defaultActiveKey={['profiling']}>
+            <Panel header='Profilering' key='profiling'>
+              <Form.Item name='image'>
+                <MediaPicker />
+              </Form.Item>
+            </Panel>
+
             <Panel header='Generelt' key='general'>
               <Form.Item
                 name='active'
@@ -168,8 +176,6 @@ export const EventForm: React.FC<DataFormInterface<EventEntity>> = ({
                 </Select>
               </Form.Item>
             </Panel>
-
-            <Panel header='Profilering' key='profiling'></Panel>
 
             <Panel header='Tid og dato' key='timeanddate'>
               <Form.Item

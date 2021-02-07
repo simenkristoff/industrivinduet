@@ -40,7 +40,7 @@ body, #root, #App {
         grid-area: header;
     }
 
-    .main-container {
+    .main-container, .admin-container {
         grid-area: main;
     }
 

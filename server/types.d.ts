@@ -17,6 +17,18 @@ export interface MessageInterface {
   language: String;
   status: Number;
 }
+/**
+ * Interface describing a MediaFile
+ * @interface
+ */
+export interface MediaTypeInterface {
+  readonly path: string;
+  readonly name: string;
+  readonly isDir: boolean;
+  readonly size: number;
+  readonly ext?: string;
+  readonly children: Array<MediaTypeInterface>;
+}
 
 /**
  * Interface describes the basic Controller.

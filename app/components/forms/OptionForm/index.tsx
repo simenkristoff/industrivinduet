@@ -31,7 +31,7 @@ const OptionForm: React.FC<IProps> = ({
   const options = { general, event, job, socials };
 
   return (
-    <>
+    <div className='options-manager'>
       <Tabs defaultActiveKey='general' tabPosition='top'>
         <TabPane tab='Generelt' key='general'>
           <GeneralOptionsForm form={form} data={options} />
@@ -46,7 +46,7 @@ const OptionForm: React.FC<IProps> = ({
           <SocialOptionsForm form={form} data={options} />
         </TabPane>
       </Tabs>
-    </>
+    </div>
   );
 };
 

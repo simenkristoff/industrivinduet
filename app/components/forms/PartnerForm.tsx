@@ -6,6 +6,7 @@ import { DataFormInterface, IApplicationState } from '@/types';
 import { uniqueValue } from '@/utils/validation';
 import { FormMessage } from '@/constants';
 import { EditorInput } from '@/components/adapters';
+import { MediaPicker } from '@/components/MediaPicker';
 
 export const PartnerForm: React.FC<DataFormInterface<PartnerEntity>> = ({
   form,
@@ -24,6 +25,10 @@ export const PartnerForm: React.FC<DataFormInterface<PartnerEntity>> = ({
     >
       <Form.Item name='_id' hidden rules={[{ required: editMode }]}>
         <Input type='hidden' />
+      </Form.Item>
+
+      <Form.Item name='image'>
+        <MediaPicker />
       </Form.Item>
 
       <Form.Item
