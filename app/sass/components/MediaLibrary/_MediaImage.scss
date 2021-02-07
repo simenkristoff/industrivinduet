@@ -1,0 +1,41 @@
+
+.media-image {
+    border: 1px solid style-color(border-light);
+    border-radius: theme-structure(border-radius);
+
+    .ant-image {
+        position: relative;
+        z-index: 5;
+        align-self: center;
+        height: 100%;
+        width: 100%;
+
+        > img {
+            width: 100%;
+            height: 100%;
+            object-position: center center;
+            object-fit: scale-down;
+        }
+    }
+
+    .image-details {
+        z-index: 10;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background-color: rgba(0, 0, 0, .875);
+        bottom: -55px;
+        height: 55px;
+        padding: .3rem 0;
+        flex-flow: column;
+        text-align: center;
+        color: theme-color(text-light);
+    }
+
+    &:hover {
+        .image-details {
+            bottom: 0;   
+        }
+    }
+}

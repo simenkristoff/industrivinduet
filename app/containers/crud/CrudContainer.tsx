@@ -140,7 +140,7 @@ export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.El
   };
 
   return (
-    <div>
+    <div className='content-manager'>
       <DataHeader {...headerProps} {...headerCallbacks} />
       <DataList {...listProps} {...listCallbacks} />
       <DataModal {...modalProps} {...modalCallbacks} />

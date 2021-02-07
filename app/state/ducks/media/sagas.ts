@@ -1,10 +1,10 @@
-import apiCaller from '@/state/utils/apiCaller';
-import { action } from 'typesafe-actions';
+import apiCaller, { fileApiCaller } from '@/state/utils/apiCaller';
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import { MediaFolderType } from '@/components/MediaLibrary/interface';
 
-import { IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
+import { IMetaAction, IPayloadMetaAction } from '../../interface';
 
-import { MediaActionTypes, MediaFile } from './types';
+import { MediaActionTypes, MediaType } from './types';
 
 /**
  * @desc Business logic of effect.
@@ -22,22 +22,10 @@ function* handleFetch(params: IMetaAction): Generator {
   }
 }
 
-function* handleGet(params: IPayloadMetaAction<MediaFile>): Generator {
+function* handleUpload(params: IPayloadMetaAction<FormData>): Generator {
   try {
-    const file = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
-    yield put({ type: MediaActionTypes.GET.SUCCESS, payload: file });
-  } catch (err) {
-    if (err instanceof Error) {
-      yield put({ type: MediaActionTypes.GET.ERROR, payload: err.message });
-    } else {
-      yield put({ type: MediaActionTypes.GET.ERROR, payload: 'An unknown error occured.' });
-    }
-  }
-}
+    const file = yield call(fileApiCaller, params.meta.method, params.meta.route, params.payload);
 
-function* handleUpload(params: IPayloadMetaAction<MediaFile>): Generator {
-  try {
-    const file = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({ type: MediaActionTypes.UPLOAD.SUCCESS, payload: file });
   } catch (err) {
     if (err instanceof Error) {
@@ -48,9 +36,11 @@ function* handleUpload(params: IPayloadMetaAction<MediaFile>): Generator {
   }
 }
 
-function* handleDelete(params: IPayloadMetaAction<MediaFile>): Generator {
+function* handleDelete(params: IPayloadMetaAction<MediaType>): Generator {
   try {
-    const file = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
+    const file = yield call(apiCaller, params.meta.method, params.meta.route, {
+      files: params.payload,
+    });
     yield put({ type: MediaActionTypes.DELETE.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
@@ -61,14 +51,34 @@ function* handleDelete(params: IPayloadMetaAction<MediaFile>): Generator {
   }
 }
 
-function* handleSet(params: IPayloadAction<MediaFile>): Generator {
+function* handleCreateFolder(params: IPayloadMetaAction<MediaFolderType>): Generator {
   try {
-    yield put({ type: MediaActionTypes.SET.SUCCESS, payload: params.payload });
+    yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
+    yield put({ type: MediaActionTypes.CREATE_FOLDER.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MediaActionTypes.SET.ERROR, payload: err.message });
+      yield put({ type: MediaActionTypes.CREATE_FOLDER.ERROR, payload: err.message });
     } else {
-      yield put({ type: MediaActionTypes.SET.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: MediaActionTypes.CREATE_FOLDER.ERROR,
+        payload: 'An unknown error occured.',
+      });
+    }
+  }
+}
+
+function* handleUpdateFolder(params: IPayloadMetaAction<MediaFolderType>): Generator {
+  try {
+    yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
+    yield put({ type: MediaActionTypes.UPDATE_FOLDER.SUCCESS, payload: params.payload });
+  } catch (err) {
+    if (err instanceof Error) {
+      yield put({ type: MediaActionTypes.UPDATE_FOLDER.ERROR, payload: err.message });
+    } else {
+      yield put({
+        type: MediaActionTypes.UPDATE_FOLDER.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -80,10 +90,6 @@ function* watchFetchRequest(): Generator {
   yield takeEvery(MediaActionTypes.FETCH.START, handleFetch);
 }
 
-function* watchGetRequest(): Generator {
-  yield takeEvery(MediaActionTypes.GET.START, handleGet);
-}
-
 function* watchUploadRequest(): Generator {
   yield takeEvery(MediaActionTypes.UPLOAD.START, handleUpload);
 }
@@ -92,8 +98,12 @@ function* watchDeleteRequest(): Generator {
   yield takeEvery(MediaActionTypes.DELETE.START, handleDelete);
 }
 
-function* watchSetRequest(): Generator {
-  yield takeEvery(MediaActionTypes.SET.START, handleSet);
+function* watchCreateFolderRequest(): Generator {
+  yield takeEvery(MediaActionTypes.CREATE_FOLDER.START, handleCreateFolder);
+}
+
+function* watchUpdateFolderRequest(): Generator {
+  yield takeEvery(MediaActionTypes.UPDATE_FOLDER.START, handleUpdateFolder);
 }
 
 /**
@@ -102,9 +112,9 @@ function* watchSetRequest(): Generator {
 export default function* mediaSaga() {
   yield all([
     fork(watchFetchRequest),
-    fork(watchGetRequest),
     fork(watchUploadRequest),
     fork(watchDeleteRequest),
-    fork(watchSetRequest),
+    fork(watchCreateFolderRequest),
+    fork(watchUpdateFolderRequest),
   ]);
 }

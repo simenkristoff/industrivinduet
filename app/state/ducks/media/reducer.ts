@@ -1,12 +1,11 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
 
-import { updateObjectInArray, deleteObjectInArray } from '../../utils';
-
-import { MediaActionTypes, MediaFile, MediaState } from './types';
+import { appendMediaFile, reduceMediaFile, updateFolder } from './helpers';
+import { MediaActionTypes, MediaState } from './types';
 
 export const initialState: MediaState = {
-  file: {},
-  files: [],
+  selectedFile: {},
+  nodes: {},
   loading: false,
   errors: [],
 };
@@ -16,25 +15,33 @@ export const mediaReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): MediaState => {
   switch (action.type) {
-    case MediaActionTypes.FETCH.START: {
+    case MediaActionTypes.FETCH.START:
+    case MediaActionTypes.UPLOAD.START:
+    case MediaActionTypes.DELETE.START:
+    case MediaActionTypes.CREATE_FOLDER.START:
+    case MediaActionTypes.UPDATE_FOLDER.START: {
       return { ...state, loading: true };
     }
     case MediaActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, files: action.payload };
+      return { ...initialState, nodes: action.payload };
     }
     case MediaActionTypes.UPLOAD.SUCCESS: {
-      return { ...state, files: [...state.files, action.payload] };
+      return { ...state, nodes: appendMediaFile(state.nodes, action.payload), loading: false };
     }
     case MediaActionTypes.DELETE.SUCCESS: {
-      return { ...state, files: deleteObjectInArray<MediaFile>(state.files, action) };
+      return { ...state, nodes: reduceMediaFile(state.nodes, action.payload), loading: false };
     }
-    case MediaActionTypes.SET.SUCCESS: {
-      return { ...state, file: action.payload };
+    case MediaActionTypes.CREATE_FOLDER.SUCCESS: {
+      return { ...state, nodes: appendMediaFile(state.nodes, action.payload), loading: false };
+    }
+    case MediaActionTypes.UPDATE_FOLDER.SUCCESS: {
+      return { ...state, nodes: updateFolder(state.nodes, action.payload), loading: false };
     }
     case MediaActionTypes.FETCH.ERROR:
     case MediaActionTypes.UPLOAD.ERROR:
     case MediaActionTypes.DELETE.ERROR:
-    case MediaActionTypes.SET.ERROR: {
+    case MediaActionTypes.CREATE_FOLDER.ERROR:
+    case MediaActionTypes.UPDATE_FOLDER.ERROR: {
       return {
         ...state,
         errors: [...state.errors, action.payload],

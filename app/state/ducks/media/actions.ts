@@ -1,6 +1,7 @@
+import { MediaFolderType } from '@/components/MediaLibrary/interface';
 import { action } from 'typesafe-actions';
 
-import { MediaActionTypes, MediaFile } from './types';
+import { MediaActionTypes, MediaType } from './types';
 
 /**
  * @desc Fetch all Files.
@@ -12,35 +13,46 @@ export const fetchFiles = () =>
   });
 
 /**
- * @desc Get a File
- * @param name name of the file
- */
-export const getFile = (name: string) =>
-  action(MediaActionTypes.GET.START, name, {
-    method: 'get',
-    route: `api/files/${name}`,
-  });
-
-/**
  * @desc Upload a new File
  * @param file the file to upload
+ * @param path the files folder path
  */
-export const uploadFile = (file: MediaFile) =>
-  action(MediaActionTypes.UPLOAD.START, file, {
+export const uploadFile = (file: File, path: string) => {
+  const query = path.length > 0 ? `?path=${path}` : '';
+  const formData = new FormData();
+  formData.append('image', file, path + '/' + file.name);
+
+  return action(MediaActionTypes.UPLOAD.START, formData, {
     method: 'post',
-    route: 'api/upload',
+    route: `api/upload${query}`,
   });
+};
 
 /**
  * @desc Delete File.
  */
-export const deleteFile = (file: MediaFile) =>
-  action(MediaActionTypes.DELETE.START, file, {
+export const deleteFile = (file: MediaType) =>
+  action(MediaActionTypes.DELETE.START, [file], {
     method: 'delete',
-    route: `api/files/${file.name}`,
+    route: `api/files`,
   });
 
 /**
- * @desc Set File.
+ * @desc Create a new Folder
+ * @param folder the folder to create
  */
-export const setFile = (file: MediaFile) => action(MediaActionTypes.SET.START, file);
+export const createFolder = (folder: MediaFolderType) =>
+  action(MediaActionTypes.CREATE_FOLDER.START, folder, {
+    method: 'post',
+    route: `api/folders`,
+  });
+
+/**
+ * @desc Update a Folder
+ * @param folder the folder to update
+ */
+export const updateFolder = (folder: MediaFolderType) =>
+  action(MediaActionTypes.UPDATE_FOLDER.START, folder, {
+    method: 'put',
+    route: `api/folders`,
+  });

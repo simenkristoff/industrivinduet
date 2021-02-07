@@ -1,20 +1,37 @@
-import React, { useState } from 'react';
-import { Button, Modal } from 'antd';
+import React, { useRef } from 'react';
+import { Input, Image } from 'antd';
 import { MediaContainer } from '@/containers/MediaContainer';
-const MediaPicker: React.FC = () => {
-  const [visible, setVisible] = useState<boolean>(false);
-  const handleModal = () => {
-    setVisible(!visible);
-  };
+import { FileImageOutlined } from '@ant-design/icons';
+
+interface MediaPickerProps {
+  value?: string;
+  id?: string;
+  onChange?: (value: string) => void;
+}
+
+export const MediaPicker: React.FC<MediaPickerProps> = ({
+  value,
+  id,
+  onChange,
+}: MediaPickerProps) => {
+  const inputEl = useRef<Input>(null);
 
   return (
-    <>
-      <Button onClick={handleModal}>Click me</Button>
-      <Modal visible={visible} onCancel={handleModal}>
-        <MediaContainer />
-      </Modal>
-    </>
+    <div className='media-picker'>
+      {value && (
+        <div className='preview'>
+          <Image src={`http://localhost:8080/media/${value}`} />
+        </div>
+      )}
+      <MediaContainer modal input={inputEl} callback={(image) => onChange!(image.path)} />
+      <Input
+        ref={inputEl}
+        id={id}
+        value={value}
+        prefix={<FileImageOutlined />}
+        readOnly
+        placeholder='Velg mediabibliotek'
+      />
+    </div>
   );
 };
-
-export default MediaPicker;

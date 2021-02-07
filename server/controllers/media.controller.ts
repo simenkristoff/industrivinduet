@@ -1,14 +1,12 @@
-import fs, { Dir, stat } from 'fs';
-import * as path from 'path';
+import fs from 'fs';
 
 import _ from 'lodash';
-import dotenv from 'dotenv';
 import { Request, Response, NextFunction, Router } from 'express';
-import { CallbackError } from 'mongoose';
 
-import { walker, Logger } from '../utils';
+import { TreeNode } from '../utils/mediaUtils';
+import { MediaUtils, Logger } from '../utils';
 import { asyncHandler, passport, mediaMiddleware } from '../middlewares';
-import { ControllerInterface } from '../types';
+import { ControllerInterface, MediaTypeInterface } from '../types';
 import { HttpException } from '../exceptions';
 
 interface FileInstance {
@@ -49,55 +47,90 @@ class MediaController implements ControllerInterface {
       asyncHandler(this.getListFiles),
     );
     this.router.delete(
-      `${this.path}/files/:name`,
+      `${this.path}/files`,
       //passport.authenticate('jwt', { session: false }),
       asyncHandler(this.delete),
     );
-    this.router.get(
-      `${this.path}/files/:name`,
+    this.router.post(
+      `${this.path}/folders`,
       //passport.authenticate('jwt', { session: false }),
-      asyncHandler(this.download),
+      asyncHandler(this.createFolder),
+    );
+    this.router.put(
+      `${this.path}/folders`,
+      //passport.authenticate('jwt', { session: false }),
+      asyncHandler(this.updateFolder),
     );
   }
 
   private upload = async (req: Request, res: Response, next: NextFunction) => {
     await mediaMiddleware(req, res);
-
     if (!req.file) {
       return next(new HttpException(400, 'No File uploaded'));
     }
-
-    res.status(200).send({
-      message: 'Successfully uploaded the file: ' + req.file.originalname,
-    });
+    const fileNode: TreeNode = MediaUtils.parseFile(req.file, req.query.path as string);
+    res.status(200).send(fileNode);
   };
 
   private getListFiles = async (req: Request, res: Response, next: NextFunction) => {
     const url = this.STATIC_URL;
-    const test = await walker(this.DIRECTORY, (err, results) => {
-      if (err) throw err;
-      res.status(200).send(results);
-    });
-    console.log(test);
+    const dir = MediaUtils.dirWalker(this.DIRECTORY);
+    res.status(200).send(dir);
   };
 
   private delete = async (req: Request, res: Response, next: NextFunction) => {
-    const fileName = req.params.name;
-    await fs.unlink(this.DIRECTORY + fileName, (err) => {
-      console.log(this.DIRECTORY + fileName);
+    const files: MediaTypeInterface[] = req.body.files;
+    if (!files) {
+      return next(new HttpException(400, 'No Files to delete'));
+    }
+
+    await _.forEach(files, (file) => {
+      if (file.isDir) {
+        fs.rmdirSync(this.DIRECTORY + file.path, { recursive: true });
+      } else {
+        fs.unlink(this.DIRECTORY + file.path, (err) => {
+          if (err) {
+            return next(new HttpException(400, `Could not delete file ${file.name}`));
+          }
+        });
+      }
+    });
+
+    res.status(200).send({
+      message: `Successfully deleted ${files.length} files`,
+    });
+  };
+
+  private createFolder = async (req: Request, res: Response, next: NextFunction) => {
+    const folder: MediaTypeInterface = req.body;
+    fs.mkdir(this.DIRECTORY + folder.path, (err) => {
+      if (err) {
+        return next(new HttpException(400, 'Could not create folder'));
+      }
+      fs.chmodSync(this.DIRECTORY + folder.path, 0o777);
       res.status(200).send({
-        message: 'Successfully deleted the file: ' + fileName,
+        message: `Successfully created folder`,
       });
     });
   };
 
-  private download = async (req: Request, res: Response, next: NextFunction) => {
-    const fileName = req.params.name;
-
-    res.download(this.DIRECTORY + fileName, fileName, (err) => {
+  private updateFolder = async (req: Request, res: Response, next: NextFunction) => {
+    const folder: MediaTypeInterface = req.body;
+    const newPaths = folder.path.split('/');
+    newPaths.pop();
+    newPaths.push(folder.name);
+    if (!folder.isDir) {
+      return next(new HttpException(400, 'No Folder to update'));
+    }
+    fs.rename(this.DIRECTORY + folder.path, this.DIRECTORY + newPaths.join('/'), (err) => {
       if (err) {
-        return next(new HttpException(500, 'Could not download the file. ' + err));
+        console.log(err);
+
+        return next(new HttpException(400, 'Failed to update folder'));
       }
+      res.status(200).send({
+        message: `Successfully updated folder`,
+      });
     });
   };
 }

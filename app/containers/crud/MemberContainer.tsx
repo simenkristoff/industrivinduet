@@ -76,7 +76,7 @@ export const MemberContainer: React.FC = () => {
     columns,
     name: {
       singular: 'Medlem',
-      plural: 'Medlemer',
+      plural: 'Medlemmer',
     },
     dataForm: MemberForm,
   };

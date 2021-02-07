@@ -6,7 +6,7 @@ import { DataFormInterface, IApplicationState } from '@/types';
 import { uniqueValue } from '@/utils/validation';
 import { FormMessage } from '@/constants';
 
-import MediaPicker from '../MediaPicker';
+import { MediaPicker } from '../MediaPicker';
 
 export const MemberForm: React.FC<DataFormInterface<MemberEntity>> = ({
   form,
@@ -28,7 +28,9 @@ export const MemberForm: React.FC<DataFormInterface<MemberEntity>> = ({
         <Input type='hidden' />
       </Form.Item>
 
-      <MediaPicker />
+      <Form.Item name='image'>
+        <MediaPicker />
+      </Form.Item>
 
       <Form.Item
         name={['name', 'first']}

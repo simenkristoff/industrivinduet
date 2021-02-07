@@ -2,6 +2,7 @@
 .admin-landing {
     section {
         position: relative;
+        background-color: theme-color(light);
         @include shadow-box-light();
 
         &.full-height {

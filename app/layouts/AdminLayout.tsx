@@ -13,7 +13,7 @@ const AdminLayout: React.FC = (props) => {
           <Layout.Sider collapsible collapsedWidth={0} breakpoint='lg'>
             <AdminSidebar />
           </Layout.Sider>
-          <Layout className='admin-container bg-light'>
+          <Layout className='admin-container'>
             <Layout.Content className='admin-content'>{props.children}</Layout.Content>
           </Layout>
         </Layout>

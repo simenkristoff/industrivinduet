@@ -1,0 +1,9 @@
+
+.media-modal {
+    max-width: 100%;
+
+
+    @include respond-above(md) {
+        max-width: 80%;
+    }
+}

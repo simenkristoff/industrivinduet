@@ -1,35 +1,40 @@
-import { Entity } from '@/types';
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
+import { MediaFolderType } from '@/components/MediaLibrary/interface';
 
 import { IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
-import { GroupEntity } from '../group/types';
+
+import { media } from '.';
 
 export type MediaState = {
-  readonly file: MediaFile | {};
-  readonly files: MediaFile[];
+  readonly selectedFile: MediaType | {};
+  readonly nodes: MediaType | {};
   readonly loading: boolean;
   readonly errors: Array<String>;
 };
 
-export interface MediaFile {
+export type MediaType = {
+  path: string;
   name: string;
-  url: string;
-}
+  isDir: boolean;
+  size: number;
+  ext?: string;
+  children: Array<MediaType>;
+};
 
 export const MediaActionTypes = {
   FETCH: generateAsyncAction('@@media.FETCH'),
-  GET: generateAsyncAction('@@media.GET'),
   UPLOAD: generateAsyncAction('@@media.UPLOAD'),
   DELETE: generateAsyncAction('@@media.DELETE'),
-  SET: generateAsyncAction('@@media.SET'),
+  CREATE_FOLDER: generateAsyncAction('@@media.CREATE_FOLDER'),
+  UPDATE_FOLDER: generateAsyncAction('@@media.UPDATE_FOLDER'),
 };
 
 export interface MediaActions {
   fetchFiles: () => IMetaAction;
-  getFile: (name: string) => IPayloadMetaAction<string>;
-  uploadFile: (file: MediaFile) => IPayloadMetaAction<MediaFile>;
-  deleteFile: (file: MediaFile) => IPayloadMetaAction<MediaFile>;
-  setFile: (file: MediaFile) => IPayloadAction<MediaFile>;
+  uploadFile: (file: MediaType) => IPayloadMetaAction<MediaType>;
+  deleteFile: (file: MediaType) => IPayloadMetaAction<MediaType>;
+  createFolder: (folder: MediaFolderType) => IPayloadMetaAction<MediaFolderType>;
+  updateFodler: (folder: MediaFolderType) => IPayloadMetaAction<MediaFolderType>;
 }
 
 export interface MediaPropsAll extends MediaState, MediaActions {}

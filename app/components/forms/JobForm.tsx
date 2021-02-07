@@ -9,6 +9,8 @@ import { DatePickerInput, EditorInput } from '@/components/adapters';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { JobOptions } from '@/state/ducks/option/types';
 
+import { MediaPicker } from '../MediaPicker';
+
 const { Panel } = Collapse;
 
 export const JobForm: React.FC<DataFormInterface<JobEntity>> = ({
@@ -56,7 +58,13 @@ export const JobForm: React.FC<DataFormInterface<JobEntity>> = ({
         </Col>
 
         <Col span={24} md={8}>
-          <Collapse defaultActiveKey={['general']}>
+          <Collapse defaultActiveKey={['profiling']}>
+            <Panel header='Profilering' key='profiling'>
+              <Form.Item name='image'>
+                <MediaPicker />
+              </Form.Item>
+            </Panel>
+
             <Panel header='Generelt' key='general'>
               <Form.Item
                 name='active'
@@ -153,8 +161,6 @@ export const JobForm: React.FC<DataFormInterface<JobEntity>> = ({
                 </Select>
               </Form.Item>
             </Panel>
-
-            <Panel header='Profilering' key='profiling'></Panel>
 
             <Panel header='Tid og dato' key='timeanddate'>
               <Form.Item

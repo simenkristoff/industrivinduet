@@ -1,0 +1,22 @@
+
+
+.new-folder {
+    position: relative;
+
+    .form-popup {
+        z-index: 1000;
+        position: absolute;
+        top: 100%;
+        left: -50%;
+        transform: translateX(25%);
+        padding: 1rem;
+        background-color: theme-color(light);
+        border: 1px solid;
+        border-color: style-color(border-light);
+        border-radius: theme-structure(border-radius);
+
+        &.hide {
+            display: none;
+        }
+    }
+}

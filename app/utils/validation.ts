@@ -10,6 +10,35 @@ import { Entity } from '@/types';
  * @param initialState the initial state of the form
  * @param currentValue the current value of the field to validate
  * @param lookupData the data to lookup for verifying an unique value
+ * @param message the error message
+ *
+ * @returns Promise
+ */
+export function uniqueName(
+  initialState: string | {},
+  currentValue: any,
+  lookupData: Array<string>,
+  message: string,
+): Promise<any> {
+  if (!currentValue) return Promise.resolve();
+  if (initialState && initialState === currentValue) return Promise.resolve();
+  console.log(lookupData);
+  if (!lookupData.some((value) => value.toLowerCase() === currentValue.toLowerCase())) {
+    return Promise.resolve();
+  }
+
+  return Promise.reject(message);
+}
+
+/**
+ *
+ * Function to verify wether an input value is unique or not.
+ * The function validates input data against an array of previously
+ * stored values.
+ *
+ * @param initialState the initial state of the form
+ * @param currentValue the current value of the field to validate
+ * @param lookupData the data to lookup for verifying an unique value
  * @param selector the selector path i.e ['user', 'username'] or 'user.username'
  * @param isExact wether to fail on exact match, usually used for Strings
  * @param message the error message
