@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "Nettside for bedriftskontakten til Produktutvikling og Produksjon (siv.ing Maskin) ved NTNU Trondheim.",
   "main": "server/server.ts",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/simenkristoff/industrivinduet.git"
+  },
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "server": "nodemon --config config/nodemon.config.json",
-    "build": "cross-env NODE_ENV=development webpack serve --config config/webpack.prod.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
     "prod": "node -r ts-node/register/transpile-only server/server.ts",
     "start": "npm run client",
     "test": "jest --config config/jest.config.js",
