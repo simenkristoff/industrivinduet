@@ -35,7 +35,7 @@
               "useTabs": false,
               "arrowParens": "always",
               "jsxSingleQuote": true,
-            "trailingComma": "all",
+              "trailingComma": "all",
               "endOfLine": "auto"
             }
           ],

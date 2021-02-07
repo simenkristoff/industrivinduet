@@ -16,7 +16,7 @@
     "start": "npm run client",
     "test": "jest --config config/jest.config.js",
     "format": "prettier --write \"./*.{js,jsx,ts,tsx,css,scss,md}\"",
-    "eslint": "eslint src/*.{ts,tsx}",
+    "eslint": "eslint ./**",
     "seed": "dotenv -e .env -- cross-var seed --drop-collections %SERVER_SEEDS_PATH%"
   },
   "keywords": [

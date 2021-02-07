@@ -1,0 +1,14 @@
+/dist/
+/node_modules/
+/config/
+/public/
+/resources/
+/server/resources/**
+*.code-workspace
+*.pem
+*.ppk
+*.json
+*.log
+*.scss
+*.less
+*.css
