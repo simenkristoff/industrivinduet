@@ -65,8 +65,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.md'],
     // Allow `@/` to map to `src/client/`
     alias: {
-      '@': path.resolve(__dirname, '../app'),
-      '@commons': path.resolve(__dirname, '../commons'),
+      '@': path.resolve(__dirname, '../client'),
       '@resources': path.resolve(__dirname, '../resources'),
       stream: 'stream-browserify',
       path: 'path-browserify',

@@ -1,4 +1,3 @@
-  
 {
     "compilerOptions": {
       "baseUrl": ".",
@@ -18,11 +17,10 @@
       "esModuleInterop": true,
       "sourceMap": true,
       "paths": {
-        "@/*": ["./app/*"],
-        "@commons/*": ["./commons/*"],
+        "@/*": ["./client/*"],
         "@resources/*": ["./resources/*"]
       }
     },
-    "include": ["commons", "app", "server"],
+    "include": ["client", "server"],
     "exclude": ["./dist", "node_modules", "./config"]
   }

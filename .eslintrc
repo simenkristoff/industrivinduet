@@ -60,8 +60,7 @@
         "import/resolver": {
           "alias": {
             "map": [
-              ["@", "./app"],
-              ["@commons", "./commons"],
+              ["@", "./client"],
               ["@resources", "./resources"]
             ],
             "extensions": [".ts", ".tsx", ".js", ".jsx", ".json"]

@@ -1,12 +1,3 @@
-# Install dependencies
-FROM ubuntu:20.04
-# Clean and update
-RUN apt-get clean && apt-get update
-RUN apt-get -y install curl && \
-    apt-get -y install wget && \
-    apt-get -y install apt-utils && \
-    apt-get autoremove -y
-
 # Use small Alpine Linux image
 FROM node:12-alpine
 
@@ -14,9 +5,9 @@ FROM node:12-alpine
 ENV PORT=8080
 ARG CLIENT_ID
 
-COPY . srv/
+COPY . app/
 
-WORKDIR srv/
+WORKDIR app/
 
 # Make sure dependencies exist for Webpack loaders
 RUN apk add --no-cache \
