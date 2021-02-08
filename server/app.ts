@@ -1,7 +1,7 @@
 import path from 'path';
 
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import mongoose from 'mongoose';
@@ -22,7 +22,7 @@ class App {
   constructor(controllers: ControllerInterface[]) {
     this.app = express();
     this.connect();
-    this.initializeMediaMiddleware();
+    this.initializeMediaStatics();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
     this.initializeErrorHandling();
@@ -39,8 +39,7 @@ class App {
     return this.app;
   }
 
-  private initializeMediaMiddleware() {
-    //this.app.use(mediaMiddleware);
+  private initializeMediaStatics() {
     this.app.use(
       (process.env.UPLOADS_STATIC_FOLDER_PREFIX as unknown) as string,
       express.static('./server/resources/static/assets' + process.env.UPLOAD_DIR),
@@ -49,8 +48,13 @@ class App {
   }
 
   private initializeMiddlewares() {
+    this.app.set('trust proxy', 1);
     this.app.use(cors({ origin: this.isProduction ? false : '*' }));
-    this.app.use(helmet()); // Sets HTTP headers that can defend agains xss attacks
+    this.app.use(
+      helmet({
+        contentSecurityPolicy: false,
+      }),
+    ); // Sets HTTP headers that can defend agains xss attacks
     this.app.use(hpp()); // Protects against HTTP Parameter Pollution
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
@@ -65,11 +69,12 @@ class App {
   }
 
   private initializeControllers(controllers: ControllerInterface[]) {
+    this.app.use(express.static(path.join(__dirname, '../dist/')));
     controllers.forEach((controller) => {
-      this.app.use('/', controller.router);
+      this.app.use('/api', controller.router);
     });
-    this.app.get('/', (req, res) => {
-      res.send('Invalid endpoint');
+    this.app.get('*', (req: Request, res: Response) => {
+      res.sendFile(path.join(__dirname, '../dist/index.html'));
     });
   }
 

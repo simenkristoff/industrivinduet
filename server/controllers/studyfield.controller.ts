@@ -12,7 +12,7 @@ import { StudyFieldModel, StudyField } from '../models';
  * @namespace StudyFieldController
  */
 class StudyFieldController implements ControllerInterface {
-  public path = '/api/studyfields';
+  public path = '/studyfields';
   public router = Router();
 
   constructor() {

@@ -12,7 +12,7 @@ import { MemberModel, Member } from '../models';
  * @namespace MemberController
  */
 class MemberController implements ControllerInterface {
-  public path = '/api/members';
+  public path = '/members';
   public router = Router();
 
   constructor() {

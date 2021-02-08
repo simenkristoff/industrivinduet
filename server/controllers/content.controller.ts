@@ -12,7 +12,7 @@ import { ContentModel, Content } from '../models';
  * @namespace ContentController
  */
 class ContentController implements ControllerInterface {
-  public path = '/api/contents';
+  public path = '/contents';
   public router = Router();
 
   constructor() {

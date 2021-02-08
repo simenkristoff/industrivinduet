@@ -12,7 +12,7 @@ import { EventModel, Event } from '../models';
  * @namespace EventController
  */
 class EventController implements ControllerInterface {
-  public path = '/api/events';
+  public path = '/events';
   public router = Router();
 
   constructor() {

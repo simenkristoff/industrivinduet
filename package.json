@@ -4,8 +4,8 @@
   "description": "Nettside for bedriftskontakten til Produktutvikling og Produksjon (siv.ing Maskin) ved NTNU Trondheim.",
   "main": "server/server.ts",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/simenkristoff/industrivinduet.git"
+    "type": "git",
+    "url": "https://github.com/simenkristoff/industrivinduet.git"
   },
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",

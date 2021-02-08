@@ -12,7 +12,7 @@ import { JobModel, Job } from '../models';
  * @namespace JobController
  */
 class JobController implements ControllerInterface {
-  public path = '/api/jobs';
+  public path = '/jobs';
   public router = Router();
 
   constructor() {

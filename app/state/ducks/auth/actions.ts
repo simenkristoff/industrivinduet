@@ -8,7 +8,7 @@ import { AuthActionTypes, LoginCredentials, RegisterCredentials } from './types'
 export const register = (data: RegisterCredentials) =>
   action(AuthActionTypes.REGISTER.START, data, {
     method: 'post',
-    route: 'auth/register',
+    route: 'api/register',
   });
 
 /**
@@ -17,7 +17,7 @@ export const register = (data: RegisterCredentials) =>
 export const login = (data: LoginCredentials) => {
   return action(AuthActionTypes.LOGIN.START, data, {
     method: 'post',
-    route: 'auth/login',
+    route: 'api/login',
   });
 };
 

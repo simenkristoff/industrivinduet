@@ -12,7 +12,7 @@ import { GroupModel, Group } from '../models';
  * @namespace GroupController
  */
 class GroupController implements ControllerInterface {
-  public path = '/api/groups';
+  public path = '/groups';
   public router = Router();
 
   constructor() {

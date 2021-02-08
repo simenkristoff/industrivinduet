@@ -12,7 +12,7 @@ import { OptionModel, Option } from '../models';
  * @namespace OptionController
  */
 class OptionController implements ControllerInterface {
-  public path = '/api/options';
+  public path = '/options';
   public router = Router();
 
   constructor() {

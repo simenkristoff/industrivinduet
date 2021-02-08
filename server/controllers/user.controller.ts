@@ -12,7 +12,7 @@ import { UserModel, User } from '../models';
  * @namespace UserController
  */
 class UserController implements ControllerInterface {
-  public path = '/api/users';
+  public path = '/users';
   public router = Router();
 
   constructor() {

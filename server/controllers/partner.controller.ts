@@ -12,7 +12,7 @@ import { PartnerModel, Partner } from '../models';
  * @namespace PartnerController
  */
 class PartnerController implements ControllerInterface {
-  public path = '/api/partners';
+  public path = '/partners';
   public router = Router();
 
   constructor() {

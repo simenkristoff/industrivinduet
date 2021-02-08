@@ -16,7 +16,6 @@ interface InfoMessage {
  * @namespace AuthController
  */
 class AuthController implements ControllerInterface {
-  public path = '/auth';
   public router = Router();
 
   constructor() {
@@ -41,8 +40,8 @@ class AuthController implements ControllerInterface {
   };
 
   private initializeRoutes() {
-    this.router.post(`${this.path}/login`, asyncHandler(this.login));
-    this.router.post(`${this.path}/register`, asyncHandler(this.register));
+    this.router.post('/login', asyncHandler(this.login));
+    this.router.post('/register', asyncHandler(this.register));
   }
 
   /**

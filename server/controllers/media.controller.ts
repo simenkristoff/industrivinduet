@@ -26,7 +26,6 @@ interface FileEntry {
 }
 
 class MediaController implements ControllerInterface {
-  public path = '/api';
   public router = Router();
   private DIRECTORY = `./server/resources/static/assets${process.env.UPLOAD_DIR}/`;
   private STATIC_URL = `http://localhost:8080${process.env.UPLOADS_STATIC_FOLDER_PREFIX}/`;
@@ -37,28 +36,28 @@ class MediaController implements ControllerInterface {
 
   private initializeRoutes() {
     this.router.post(
-      `${this.path}/upload`,
-      //passport.authenticate('jwt', { session: false }),
+      '/upload',
+      passport.authenticate('jwt', { session: false }),
       asyncHandler(this.upload),
     );
     this.router.get(
-      `${this.path}/files`,
-      //passport.authenticate('jwt', { session: false }),
+      '/files',
+      passport.authenticate('jwt', { session: false }),
       asyncHandler(this.getListFiles),
     );
     this.router.delete(
-      `${this.path}/files`,
-      //passport.authenticate('jwt', { session: false }),
+      '/files',
+      passport.authenticate('jwt', { session: false }),
       asyncHandler(this.delete),
     );
     this.router.post(
-      `${this.path}/folders`,
-      //passport.authenticate('jwt', { session: false }),
+      '/folders',
+      passport.authenticate('jwt', { session: false }),
       asyncHandler(this.createFolder),
     );
     this.router.put(
-      `${this.path}/folders`,
-      //passport.authenticate('jwt', { session: false }),
+      '/folders',
+      passport.authenticate('jwt', { session: false }),
       asyncHandler(this.updateFolder),
     );
   }

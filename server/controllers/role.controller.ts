@@ -12,7 +12,7 @@ import { RoleModel, Role } from '../models';
  * @namespace RoleController
  */
 class RoleController implements ControllerInterface {
-  public path = '/api/roles';
+  public path = '/roles';
   public router = Router();
 
   constructor() {

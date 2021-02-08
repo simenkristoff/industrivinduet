@@ -35,6 +35,6 @@ export interface MediaTypeInterface {
  * @interface
  */
 export interface ControllerInterface {
-  path: string;
+  path?: string;
   router: Router;
 }
