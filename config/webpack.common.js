@@ -20,7 +20,7 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 }, {});
 
 module.exports = {
-  entry: ['./app/index.tsx'],
+  entry: ['./client/index.tsx'],
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[fullhash].bundle.js',
