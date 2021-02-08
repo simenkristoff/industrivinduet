@@ -1,6 +1,7 @@
 # Use small Alpine Linux image
 FROM node:12-alpine
 
+
 # Set environment variables
 ENV PORT=8080
 ARG CLIENT_ID

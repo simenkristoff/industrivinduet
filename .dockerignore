@@ -2,7 +2,8 @@ node_modules
 dist
 .git
 .vscode
-!app
+!nginx
+!client
 !server
 !public
 !docs
