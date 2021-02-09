@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, useLocation } from 'react-router-dom';
+import { IApplicationState } from '@/types';
+
 import { OptionState } from '@/state/ducks/option/types';
 import { fetchOptions } from '@/state/ducks/option/actions';
-import { IApplicationState } from '@/types';
 import { AdminLayout, MainLayout } from '@/layouts';
 import { FrontpageContainer } from '@/containers/FrontpageContainer';
 import { LoginContainer } from '@/containers/LoginContainer';

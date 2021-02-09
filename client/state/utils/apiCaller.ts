@@ -1,5 +1,8 @@
 import { getToken } from '../ducks/auth/helpers';
 
+const API_URL =
+  process.env.NODE_ENV === 'production' ? 'http://localhost' : 'http://localhost:8080';
+
 function handleErrors(response: Response) {
   if (!response.ok) {
     throw Error(response.statusText);
@@ -9,7 +12,7 @@ function handleErrors(response: Response) {
 }
 
 export function fileApiCaller<FormData>(method: string, path: string, data?: any) {
-  return fetch(`http://localhost:8080/${path}`, {
+  return fetch(`${API_URL}/${path}`, {
     method,
     mode: 'cors',
     headers: {
@@ -27,7 +30,7 @@ export default function apiCaller<T>(
   path: string,
   data?: any,
 ): Promise<T[] | null> {
-  return fetch(`http://localhost:8080/${path}`, {
+  return fetch(`${API_URL}/${path}`, {
     method,
     headers: {
       Accept: 'application/json',

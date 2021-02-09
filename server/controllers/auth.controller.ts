@@ -5,6 +5,7 @@ import passport from 'passport';
 import { asyncHandler } from '../middlewares';
 import { ControllerInterface } from '../types';
 import { User, UserModel } from '../models';
+import Logger from '../utils/logger';
 
 interface InfoMessage {
   message: string;
@@ -57,10 +58,9 @@ class AuthController implements ControllerInterface {
   private register = async (req: Request, res: Response, next: NextFunction) => {
     await passport.authenticate('register', (err: any, user: User, info: InfoMessage) => {
       if (err) {
-        console.log(err);
+        Logger.log('Error', err);
       }
       if (info !== undefined) {
-        console.log(info.message);
         res.send(info.message);
       } else {
         req.logIn(user, async (err) => {
@@ -77,7 +77,7 @@ class AuthController implements ControllerInterface {
             },
             { returnOriginal: false, useFindAndModify: false },
           ).then((modifiedUser: User) => {
-            console.log('User created in database.');
+            Logger.debug('User created in database.');
             const token = this.genToken(modifiedUser);
             res.status(200).send({
               user: modifiedUser,
@@ -100,17 +100,15 @@ class AuthController implements ControllerInterface {
    * @param {NextFunction} next the next function
    */
   private login = async (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.body);
     await passport.authenticate('login', (err: any, user: User, info: InfoMessage) => {
       if (err) {
-        console.log(err);
+        Logger.log('Error', err);
       }
       if (info !== undefined) {
-        console.log(info.message);
+        Logger.debug(info.message);
         res.send(info.message);
       } else {
         req.logIn(user, (err) => {
-          console.log(user.email);
           UserModel.findOne({ email: user.email }).then((user: User) => {
             const token = this.genToken(user);
             res.status(200).send({

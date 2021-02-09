@@ -1,25 +1,26 @@
 version: '3'
 
 services:
-  nginx:
-    restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    ports:
-      - '80:80'
   mongo:
     container_name: mongo
-    image: mongo
+    image: mongo:latest
     ports:
       - '27017:27017'
+    volumes:
+      - data-volume:/data/db
   app:
+    container_name: app
     restart: always
+    env_file: prod.env
     build:
       dockerfile: Dockerfile
       context: .
     ports:
       - "80:8080"
+    depends_on:
+      - mongo
     volumes:
       - /app/node_modules
       - ./app
+volumes:
+  data-volume:

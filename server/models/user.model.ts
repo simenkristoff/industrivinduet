@@ -18,7 +18,8 @@ export interface UserBase {
   email: string;
   password: string;
   permissions: UserPermissions;
-  member: Types.ObjectId | Member;
+  isRoot: boolean;
+  member?: Types.ObjectId | Member;
 }
 
 /**
@@ -46,10 +47,11 @@ export const UserSchema: Schema<User, IUser> = new Schema({
     enum: UserPermissions,
     default: UserPermissions['USER'],
   },
+  isRoot: { type: Boolean, default: false },
   member: {
     type: Schema.Types.ObjectId,
     ref: 'Member',
-    required: true,
+    required: false,
     unique: true,
     autopopulate: true,
   },

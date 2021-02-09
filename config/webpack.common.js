@@ -2,15 +2,13 @@ const path = require('path');
 
 const dotenv = require('dotenv');
 const webpack = require('webpack');
+const { merge } = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-/**
- * Obtain client id for OAuth link in React
- *
- * If in development mode or local production mode, search the .env file for
- * client id. If using Docker, pass a build arg.
- */
 const env = dotenv.config().parsed;
 
 const envKeys = Object.keys(env).reduce((prev, next) => {
@@ -19,60 +17,83 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
   return prev;
 }, {});
 
-module.exports = {
+let webpackConfig = {
   entry: ['./client/index.tsx'],
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[fullhash].bundle.js',
+    chunkFilename: '[name].[id].[chunkhash].js',
     publicPath: '/',
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          enforce: true,
+          chunks: 'all',
+        },
+      },
+    },
   },
   module: {
     rules: [
-      /**
-       * TypeScript (.ts/.tsx files)
-       *
-       * The TypeScript loader will compile all .ts/.tsx files to .js. Babel is
-       * not necessary here since TypeScript is taking care of all transpiling.
-       */
       {
         test: /\.(ts|js)x?$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
           },
         ],
-        exclude: /node_modules/,
       },
-      // Fonts
       {
-        test: /\.(woff(2)?|eot|ttf|otf)$/,
-        type: 'asset/inline',
+        test: /\.(c|sc)ss$/,
+        use: [
+          process.env.NODE_ENV === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
       },
-      // Markdown
       {
-        test: /\.md$/,
-        type: 'asset/source',
+        test: /\.(svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
+        ],
       },
-      // Images
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg|webp|svg)$/i,
-        type: 'asset/resource',
+        test: /\.(png|jpg|jpeg|gif|ttf|woff|woff2|eot|mp3)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
       },
     ],
   },
-  resolve: {
-    // Resolve in this order
-    extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.md'],
-    // Allow `@/` to map to `src/client/`
-    alias: {
-      '@': path.resolve(__dirname, '../client'),
-      '@resources': path.resolve(__dirname, '../resources'),
-      stream: 'stream-browserify',
-      path: 'path-browserify',
-    },
-  },
   plugins: [
-    // Get environment variables in React
+    new webpack.ProgressPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].[fullhash].css',
+      chunkFilename: 'styles/[name].[id].[chunkhash].css',
+      ignoreOrder: true,
+    }),
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin(envKeys),
     new CopyWebpackPlugin({
@@ -88,5 +109,27 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
+    new HtmlWebpackPlugin({
+      template: './public/template.html',
+      favicon: './public/favicon.ico',
+      hash: true,
+    }),
   ],
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.md'],
+    alias: {
+      '@': path.resolve(__dirname, '../client'),
+      '@resources': path.resolve(__dirname, '../resources'),
+      stream: 'stream-browserify',
+      path: 'path-browserify',
+    },
+  },
 };
+
+if (process.env.ADDONS === 'bundleanalyzer') {
+  webpackConfig = merge(webpackConfig, {
+    plugins: [new BundleAnalyzerPlugin()],
+  });
+}
+
+module.exports = webpackConfig;
