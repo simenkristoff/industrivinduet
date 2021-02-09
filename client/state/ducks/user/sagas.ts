@@ -1,5 +1,6 @@
-import apiCaller from '@/state/utils/apiCaller';
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+
+import apiCaller from '@/state/utils/apiCaller';
 
 import { IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
 

@@ -10,7 +10,7 @@
         }
 
         @include respond-above(sm) {
-            justify-content: start;
+            justify-content: flex-start;
         }
         
     }

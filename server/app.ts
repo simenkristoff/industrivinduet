@@ -2,7 +2,7 @@ import path from 'path';
 
 import dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import mongoose from 'mongoose';

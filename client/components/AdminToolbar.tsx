@@ -34,7 +34,7 @@ export const AdminToolbar: React.FC<IProps> = ({
         </Menu.Item>
       )}
       <Menu.Item key='2'>
-        <Link to='/admin'>{name?.first}</Link>
+        <Link to='/admin'>{name ? name.first : 'Admin'}</Link>
       </Menu.Item>
       <Menu.Item key='3'>
         <a onClick={() => logout()}>Logg ut</a>

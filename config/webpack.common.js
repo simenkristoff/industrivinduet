@@ -17,6 +17,10 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
   return prev;
 }, {});
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+console.log(path.resolve(__dirname, 'postcss.config.js'));
+
 let webpackConfig = {
   entry: ['./client/index.tsx'],
   output: {
@@ -52,11 +56,17 @@ let webpackConfig = {
         ],
       },
       {
-        test: /\.(c|sc)ss$/,
+        test: /\.(scss|css)$/,
         use: [
-          process.env.NODE_ENV === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+            },
+          },
+          {
+            loader: 'postcss-loader',
           },
           {
             loader: 'sass-loader',

@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 import { UserModel, User, Member } from '../models';
 import { Logger } from '../utils';
