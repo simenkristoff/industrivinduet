@@ -1,5 +1,6 @@
 import React from 'react';
 import { LoginOutlined, LogoutOutlined, UserAddOutlined } from '@ant-design/icons';
+
 import Logo from '@resources/logo.png';
 import Nav from '@/components/Navigation';
 import { MemberEntity } from '@/state/ducks/member/types';

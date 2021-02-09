@@ -1,7 +1,8 @@
 import path from 'path';
 
 import dotenv from 'dotenv';
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
+import bcrypt from 'bcrypt';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import mongoose from 'mongoose';
@@ -11,9 +12,11 @@ import cors from 'cors';
 import { passport, logger, errorMiddleware, mediaMiddleware } from './middlewares';
 import { ControllerInterface } from './types';
 import { Logger } from './utils';
-import { OptionModel } from './models';
+import { OptionModel, UserModel, UserPermissions } from './models';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+const BCRYPT_SALT_ROUNDS = process.env.BCRYPT_SALT_ROUNDS as string;
 
 class App {
   public app: express.Application;
@@ -26,6 +29,7 @@ class App {
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
     this.initializeErrorHandling();
+    this.initializeRoot();
     this.initializeOptions();
   }
 
@@ -75,6 +79,27 @@ class App {
     });
     this.app.get('*', (req: Request, res: Response) => {
       res.sendFile(path.join(__dirname, '../dist/index.html'));
+    });
+  }
+
+  private initializeRoot() {
+    UserModel.estimatedDocumentCount({}, (err, count) => {
+      if (!err && count === 0) {
+        const password = bcrypt.hashSync('iv_admin', parseInt(BCRYPT_SALT_ROUNDS));
+        UserModel.create({
+          email: 'admin@industrivinduet.no',
+          password,
+          permissions: UserPermissions.ADMIN,
+          isRoot: true,
+        })
+          .then((user) => {
+            user.save();
+            Logger.debug('Intialized Root User');
+          })
+          .catch((err) => {
+            Logger.debug('Error initializing Root User', err);
+          });
+      }
     });
   }
 
