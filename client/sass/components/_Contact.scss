@@ -1,12 +1,11 @@
 
 .contact-wrapper {
-
-    h1 {
-        border-bottom: 2px solid theme-color(primary);
-        @include respond-above(md) {
-            margin-right: 4rem;
-        }
+  h1 {
+    border-bottom: 2px solid theme-color(primary);
+    @include respond-above(md) {
+      margin-right: 4rem;
     }
+  }
 
     
 }

@@ -1,14 +1,14 @@
 
 .results {
-    width: 100%;
+  width: 100%;
 }
 
 .result-content {
-    display: flex;
-    flex-flow: column;
+  display: flex;
+  flex-flow: column;
 
-    .ant-empty {
-        padding-top: 2rem;
-        margin: 0 auto;
-    }
+  .ant-empty {
+    margin: 0 auto;
+    padding-top: 2rem;
+  }
 }

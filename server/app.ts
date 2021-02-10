@@ -9,7 +9,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import { passport, logger, errorMiddleware, mediaMiddleware } from './middlewares';
+import { passport, logger, errorMiddleware } from './middlewares';
 import { ControllerInterface } from './types';
 import { Logger } from './utils';
 import { OptionModel, UserModel, UserPermissions } from './models';
@@ -45,7 +45,7 @@ class App {
 
   private initializeMediaStatics() {
     this.app.use(
-      (process.env.UPLOADS_STATIC_FOLDER_PREFIX as unknown) as string,
+      '/media',
       express.static('./server/resources/static/assets' + process.env.UPLOAD_DIR),
     );
     this.app.use('/resources', express.static('./resources'));
@@ -118,9 +118,15 @@ class App {
   }
 
   private async connect() {
-    const { DB_HOST, DB_PORT, DB_NAME } = process.env;
+    const {
+      MONGO_DB_HOST,
+      MONGO_DB_PORT,
+      MONGO_DB_NAME,
+      MONGO_DB_USERNAME,
+      MONGO_DB_PASSWORD,
+    } = process.env;
     try {
-      mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
+      mongoose.connect(`mongodb://${MONGO_DB_HOST}:${MONGO_DB_PORT}/${MONGO_DB_NAME}`, {
         useNewUrlParser: true,
         useFindAndModify: false,
         useUnifiedTopology: true,

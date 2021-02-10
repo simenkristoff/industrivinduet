@@ -1,57 +1,58 @@
 
 .member-card-wrapper {
-    min-width: 100%;
+  min-width: 100%;
 
-    &.has-image {
-        padding: 2rem!important;
-        max-width: 300px;
-        min-width: auto;
+  &.has-image {
+    max-width: 300px;
+    min-width: auto;
+    padding: 2rem !important;
 
-        .member-card {
-            min-height: 300px;
-        }
+    .member-card {
+      min-height: 300px;
     }
+  }
     
     
 }
 
 .member-card {
 
-    .card-header {
-        height: auto;
+  @include respond-below(md) {
+    padding: 0 !important;
+  }
+
+  .card-header {
+    display: flex;
+    height: auto;
+    justify-content: center;
+    width: 100%;
+
+    > .ant-image {
+      height: 175px;
+
+
+      > img.member-profile {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
         width: 100%;
-        display: flex; 
-        justify-content: center;
+      }
+    }
+  }
 
-        > .ant-image {
-            height: 175px;
+  .card-body {
+    padding: 0 0.25rem;
+    word-break: break-all;
+    word-wrap: break-word;
 
-
-            > img.member-profile {
-                width: 100%;
-                height: 100%;
-                object-position: center center;
-                object-fit: cover;
-            }
-        }
+    .member-name {
+      margin: 0.5rem 0 0.1rem;
     }
 
-    .card-body {
-        padding: 0 .25rem;
-        word-wrap: break-word;
-        word-break: break-all; 
-        .member-name {
-            margin: .5rem 0 .1rem 0;
-        }
-
-        ul.member-details {
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
-        }
+    ul.member-details {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
     }
-
-    @include respond-below(md) {
-        padding: 0!important;
-    }
+  }
 }

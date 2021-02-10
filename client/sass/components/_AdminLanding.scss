@@ -1,36 +1,37 @@
 
 .admin-landing {
-    section {
-        position: relative;
-        background-color: theme-color(light);
-        @include shadow-box-light();
+  section {
+    @include shadow-box-light();
+    background-color: theme-color(light);
+    position: relative;
 
-        &.full-height {
-            height: 100%;
-        }
-        
-        &:not(.no-border) {
-            border: 1px solid style-color(border-light);
-            border-radius: theme-structure(border-radius);
-        }
-
-        .section-header {
-            background-image: url("/resources/gears_card.jpg");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            margin-bottom: -.5rem;
-            .section-title {
-                color: theme-color(light);
-            }
-        }
-
-        .section-title {
-            padding: 1rem .5rem;
-        }
-
-        .section-content:not(.no-pad) {
-            padding: 1rem .5rem;
-        }
+    &.full-height {
+      height: 100%;
     }
+        
+    &:not(.no-border) {
+      border: 1px solid style-color(border-light);
+      border-radius: theme-structure(border-radius);
+    }
+
+    .section-header {
+      background-image: url('/resources/gears_card.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-bottom: -0.5rem;
+
+      .section-title {
+        color: theme-color(light);
+      }
+    }
+
+    .section-title {
+      padding: 1rem 0.5rem;
+    }
+
+    .section-content:not(.no-pad) {
+      padding: 1rem 0.5rem;
+    }
+  }
 }

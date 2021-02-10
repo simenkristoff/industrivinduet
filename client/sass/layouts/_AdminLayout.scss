@@ -3,13 +3,13 @@
 // ContentManager
 
 .admin-content {
+  .ant-page-header,
+  .media-header {
+    margin-bottom: 1rem;
+  }
 
-    .ant-page-header, .media-header {
-        margin-bottom: 1rem;
-    }
-
-    .options-manager {
-        background-color: theme-color(light);
-        padding: 0 1.5rem;
-    }
+  .options-manager {
+    background-color: theme-color(light);
+    padding: 0 1.5rem;
+  }
 }

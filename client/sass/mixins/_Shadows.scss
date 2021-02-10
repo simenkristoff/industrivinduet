@@ -1,17 +1,17 @@
 
 @mixin shadow-box() {
-    border: 2px solid style-color(border-light);
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06);
+  border: 2px solid style-color(border-light);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 @mixin shadow-box-light() {
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .shadow-box {
-    @include shadow-box();
+  @include shadow-box();
 }
 
 .shadow-box-light {
-    @include shadow-box-light();
+  @include shadow-box-light();
 }

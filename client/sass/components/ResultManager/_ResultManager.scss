@@ -9,13 +9,13 @@
 @import './ResultContent';
 
 .result-manager {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .result-wrapper {
-    margin-left: 1rem;
+  margin-left: 1rem;
 
-    @include respond-below(md) {
-        margin-left: 0;
-    }
+  @include respond-below(md) {
+    margin-left: 0;
+  }
 }

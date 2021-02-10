@@ -1,14 +1,14 @@
 
 .partner-card {
+  .ant-image {
+    margin: 0 auto;
 
-    .ant-image {
-        margin: 0 auto;
-        img.partner-logo {
-            width: 100%;
-            max-height: 300px;
-            object-fit: contain;
-            margin: 0 auto;
-        }
+    img.partner-logo {
+      margin: 0 auto;
+      max-height: 300px;
+      object-fit: contain;
+      width: 100%;
     }
+  }
     
 }

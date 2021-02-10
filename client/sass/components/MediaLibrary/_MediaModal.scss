@@ -1,11 +1,11 @@
 
 .media-modal {
-    min-width: 100%;
-    max-width: 100%;
+  max-width: 100%;
+  min-width: 100%;
 
 
-    @include respond-above(md) {
-        min-width: 80%;
-        width: 80%;
-    }
+  @include respond-above(md) {
+    min-width: 80%;
+    width: 80%;
+  }
 }

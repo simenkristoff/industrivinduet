@@ -1,6 +1,6 @@
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 import { UserBase, UserPermissions } from '../../models';
 
@@ -19,6 +19,7 @@ const users: UserSeed[] = [
     permissions: UserPermissions.ADMIN,
     email: 'simen.kristoffersen98@gmail.com',
     password: bcrypt.hashSync('123456', BCRYPT_SALT_ROUNDS),
+    isRoot: false,
     member: getObjectId('admin'),
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -29,6 +30,7 @@ const users: UserSeed[] = [
     permissions: UserPermissions.USER,
     email: 'simen.kristoffersen98@gmail.no',
     password: bcrypt.hashSync('123456', BCRYPT_SALT_ROUNDS),
+    isRoot: false,
     member: getObjectId('user'),
     createdAt: new Date(),
     updatedAt: new Date(),

@@ -1,9 +1,10 @@
 .ant-layout {
-  min-height: auto!important;
+  min-height: auto !important;
 }
 
-.admin-content, .main-content {
-    margin: 0;
+.admin-content,
+.main-content {
+  margin: 0;
 }
 
 .main-container {
@@ -12,20 +13,20 @@
   }
 }
   
-  @include respond-above(md) {
-    .admin-container {
-      padding: 0 2rem;
+@include respond-above(md) {
+  .admin-container {
+    padding: 0 2rem;
   
-      .admin-content {
-        min-height: 100vh;
-        padding: 2rem;
-      }
-    }
-  
-    .main-container {
-      padding: 0 2rem;
+    .admin-content {
+      min-height: 100vh;
+      padding: 2rem;
     }
   }
+  
+  .main-container {
+    padding: 0 2rem;
+  }
+}
 
 /* AdminLayout */
 @import './AdminLayout';

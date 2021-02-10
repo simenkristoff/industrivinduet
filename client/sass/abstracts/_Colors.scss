@@ -9,43 +9,43 @@ $color-bg-secondary-light: #4f5b62;
 $color-bg-secondary-dark: #000a12;
 
 // Text
-$color-text: #222222;
-$color-text-light: #ffffff;
+$color-text: #222;
+$color-text-light: #fff;
 $color-text-muted: lighten($color-text, 30);
 $color-text-light-muted: darken($color-text-light, 15);
 
 // States
 $color-state-bg-success: #4caf50;
-$color-state-text-success: #ffffff;
+$color-state-text-success: #fff;
 
 $color-state-bg-warning: #fdd835;
-$color-state-text-warning: #ffffff;
+$color-state-text-warning: #fff;
 
 $color-state-bg-error: #e53935;
-$color-state-text-error: #ffffff;
+$color-state-text-error: #fff;
 
 // Dark
 $color-bg-dark: #263238;
 
 // Light
-$color-bg-light: #ffffff;
+$color-bg-light: #fff;
 
 $theme-colors: (
   'primary': #1890ff,
   'primary-light': #69c0ff,
   'primary-dark': #096dd9,
   'primary-hover': #40a9ff,
-  'primary-text': #222222,
+  'primary-text': #222,
   'secondary': $color-bg-secondary,
   'success': $color-state-bg-success,
   'warning': $color-state-bg-warning,
   'danger': $color-state-bg-error,
   'dark': $color-bg-dark,
-  'light': #ffffff,
+  'light': #fff,
   'gray': #f0f2f5,
   'muted': $color-text-muted,
-  'text-primary': #222222,
-  'text-light': #ffffff,
+  'text-primary': #222,
+  'text-light': #fff,
 );
 
 @function theme-color($color) {

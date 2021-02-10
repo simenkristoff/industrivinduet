@@ -1,7 +1,10 @@
 import { getToken } from '../ducks/auth/helpers';
 
+const API_DEV_PORT = process.env.SERVER_PORT as string;
 const API_URL =
-  process.env.NODE_ENV === 'production' ? 'http://localhost' : 'http://localhost:8080';
+  process.env.NODE_ENV === 'production'
+    ? (process.env.API_URL as string)
+    : `http://localhost:${API_DEV_PORT}`;
 
 function handleErrors(response: Response) {
   if (!response.ok) {

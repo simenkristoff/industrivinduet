@@ -11,7 +11,7 @@ services:
   app:
     container_name: app
     restart: always
-    env_file: prod.env
+    env_file: .env.prod
     build:
       dockerfile: Dockerfile
       context: .
