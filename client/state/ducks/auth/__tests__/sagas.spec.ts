@@ -1,13 +1,14 @@
-import apiCaller from '@/state/utils/apiCaller';
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
+import { AuthActionTypes } from '@/types';
+
+import apiCaller from '@/state/utils/apiCaller';
 
 import { login, logout, register } from '../actions';
 import authSaga from '../sagas';
-import { AuthActionTypes } from '../types';
 
-import { authLogin, authUser, authToken } from './__mockData__/authData';
+import { authLogin, authRegister, authUser, authToken } from './__mockData__/authData';
 
 describe('auth saga', () => {
   it('handle login success', () => {
@@ -33,7 +34,7 @@ describe('auth saga', () => {
         type: AuthActionTypes.REGISTER.SUCCESS,
         payload: { user: authUser, token: authToken },
       })
-      .dispatch(register(authUser))
+      .dispatch(register(authRegister))
       .run();
   });
   it('handle register error', () => {
@@ -42,7 +43,7 @@ describe('auth saga', () => {
     return expectSaga(authSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
       .put({ type: AuthActionTypes.REGISTER.ERROR, payload: error.message })
-      .dispatch(register(authUser))
+      .dispatch(register(authRegister))
       .run();
   });
   it('handle logout success', () => {

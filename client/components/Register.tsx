@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row, Col, Card } from 'antd';
-import { RegisterCredentials } from '@/state/ducks/auth/types';
-import { Error } from '@/components/Error';
+import { RegisterCredentials } from '@/types';
 
-import { RegisterForm } from './forms';
+import { Error } from '@/components/Error';
+import { RegisterForm } from '@/components/forms';
 
 export interface IProps {
   register: (credentials: RegisterCredentials) => void;

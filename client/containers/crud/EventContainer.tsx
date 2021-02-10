@@ -1,7 +1,12 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/types';
-import { EventEntity, EventState } from '@/state/ducks/event/types';
+import { ColumnsType } from 'antd/lib/table';
+import moment from 'moment';
+import { ExpandableConfig } from 'antd/lib/table/interface';
+import { IApplicationState, EventEntity, EventState } from '@/types';
+
+import { EventForm } from '@/components/forms';
+import { EventExpandable } from '@/components/EventExpandable';
 import {
   createEvent,
   deleteEvent,
@@ -9,11 +14,6 @@ import {
   setEvent,
   updateEvent,
 } from '@/state/ducks/event/actions';
-import { ColumnsType } from 'antd/lib/table';
-import { EventForm } from '@/components/forms';
-import moment from 'moment';
-import { ExpandableConfig } from 'antd/lib/table/interface';
-import EventExpandable from '@/components/EventExpandable';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
 import { fetchMembers } from '@/state/ducks/member/actions';
 

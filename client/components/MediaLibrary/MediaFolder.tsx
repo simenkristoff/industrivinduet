@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Col, Input } from 'antd';
 import { DeleteOutlined, EditOutlined, FolderFilled } from '@ant-design/icons';
-import { media } from '@/state/ducks/media';
-
-import { MediaFolderInterface, MediaFolderType } from './interface';
+import { MediaFolderInterface, MediaFolderType } from '@/types';
 
 export const MediaFolder: React.FC<MediaFolderInterface> = ({
   data,

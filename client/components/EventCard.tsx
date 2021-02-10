@@ -1,13 +1,12 @@
-import { EventEntity } from '@/state/ducks/event/types';
 import React from 'react';
 import { Col } from 'antd';
 import { Link } from 'react-router-dom';
-import cover from '@resources/gears_card.jpg';
 import moment from 'moment';
 import { CalendarOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import { ColProps } from 'antd/lib/col';
+import { ResultItemInterface, EventEntity } from '@/types';
 
-import { ResultItemInterface } from './ResultManager/interface';
+import cover from '@resources/gears_card.jpg';
 
 interface IProps extends ResultItemInterface<EventEntity> {
   column?: ColProps;

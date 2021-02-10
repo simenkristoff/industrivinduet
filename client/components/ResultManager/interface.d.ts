@@ -1,5 +1,4 @@
-import { Entity } from '@/types';
-import { FilterTypeInterface } from '@/utils/filters';
+import { Entity, FilterTypeInterface } from '@/types';
 import { FormInstance } from 'antd/lib/form';
 
 export interface ResultItemInterface<T extends Entity> {

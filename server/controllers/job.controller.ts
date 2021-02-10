@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction, Router } from 'express';
 import { CallbackError } from 'mongoose';
-
-import { asyncHandler, passport } from '../middlewares';
-import { HttpException, NotFoundException } from '../exceptions';
-import { ControllerInterface } from '../types';
-import { JobModel, Job } from '../models';
+import { ControllerInterface, Job } from '@server/types';
+import { asyncHandler, passport } from '@server/middlewares';
+import { HttpException, NotFoundException } from '@server/exceptions';
+import { JobModel } from '@server/models';
 
 /**
  * Class representing the API-controller for Jobs.

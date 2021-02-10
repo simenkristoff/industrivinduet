@@ -1,25 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { Row, Col, Descriptions, Image } from 'antd';
-import { CalendarOutlined, ClockCircleOutlined, EnvironmentOutlined } from '@ant-design/icons';
-import { JobEntity } from '@/state/ducks/job/types';
-
-import { ResultItemInterface } from './ResultManager/interface';
+import { Row, Col, Descriptions } from 'antd';
+import { EnvironmentOutlined } from '@ant-design/icons';
+import { JobEntity } from '@/types';
+import { ResultItemInterface } from '@/components/ResultManager/interface';
 
 interface IProps extends ResultItemInterface<JobEntity> {
   margin?: boolean;
   displayContent?: boolean;
 }
-
-const imageCol = {
-  md: {
-    span: 4,
-  },
-  xl: {
-    span: 4,
-  },
-};
 
 export const JobItem: React.FC<IProps> = ({ data, margin, className, displayContent }: IProps) => {
   const { _id, title, company, type, startdate, deadline, places, image } = data;
@@ -36,20 +26,20 @@ export const JobItem: React.FC<IProps> = ({ data, margin, className, displayCont
         <Col className='description-wrapper' flex='auto'>
           <Descriptions
             className='job-description'
+            layout='horizontal'
+            column={{ xs: 1, sm: 1, md: 2, lg: 4 }}
             title={title}
             colon={false}
             extra={displayContent && <span className='type'>{type}</span>}
           >
-            {displayContent && (
-              <div className='content'>
-                <Descriptions.Item label='Søknadsfrist'>
-                  {moment(deadline).format('ll')}
-                </Descriptions.Item>
-                <Descriptions.Item label={<EnvironmentOutlined />}>
-                  {places.map((place) => place + ' ')}
-                </Descriptions.Item>
-              </div>
-            )}
+            {displayContent && [
+              <Descriptions.Item label='Søknadsfrist' key='deadline'>
+                {moment(deadline).format('ll')}
+              </Descriptions.Item>,
+              <Descriptions.Item label={<EnvironmentOutlined />} key='location'>
+                {places.map((place) => place + ' ')}
+              </Descriptions.Item>,
+            ]}
           </Descriptions>
         </Col>
       </Row>

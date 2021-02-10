@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
+import { UserActionTypes, UserEntity } from '@/types';
 
 import { createUser, deleteUser, fetchUsers, setUser, updateUser } from '../actions';
-import { UserActionTypes, UserEntity } from '../types';
 
 import userData from './__mockData__/userData';
 

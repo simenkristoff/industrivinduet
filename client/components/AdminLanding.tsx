@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { Row, Col } from 'antd';
-import { EventEntity } from '@/state/ducks/event/types';
-import { JobEntity } from '@/state/ducks/job/types';
-import { MemberEntity } from '@/state/ducks/member/types';
+import { EventEntity, JobEntity, MemberEntity } from '@/types';
 
-import { EventItem } from './EventItem';
-import { JobItem } from './JobItem';
+import { EventItem } from '@/components/EventItem';
+import { JobItem } from '@/components/JobItem';
 
 interface IProps {
   isAdmin: boolean;

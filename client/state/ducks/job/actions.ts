@@ -1,7 +1,5 @@
-import { ObjectId } from '@/state/interface';
 import { action } from 'typesafe-actions';
-
-import { JobActionTypes, JobEntity } from './types';
+import { ObjectId, JobActionTypes, JobEntity } from '@/types';
 
 /**
  * @desc Fetch all Jobs.

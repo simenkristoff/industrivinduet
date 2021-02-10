@@ -1,8 +1,7 @@
 import { Schema, Model, model, Document } from 'mongoose';
-
-import { Cascader, Filter } from '../utils';
-
-import { Role, RoleModel } from './role.model';
+import { Role } from '@server/types';
+import { Cascader, Filter } from '@server/utils';
+import { RoleModel } from '@server/models';
 
 /**
  * The base Group.

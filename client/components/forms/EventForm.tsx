@@ -2,14 +2,12 @@ import React from 'react';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { Form, Input, Collapse, Row, Col, Select, Checkbox, Switch } from 'antd';
-import { EventEntity } from '@/state/ducks/event/types';
-import { DataFormInterface, IApplicationState } from '@/types';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { DataFormInterface, IApplicationState, EventEntity, EventOptions } from '@/types';
+
 import { FormMessage, grades } from '@/constants';
 import { DatePickerInput, EditorInput, TimePickerInput } from '@/components/adapters';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { EventOptions } from '@/state/ducks/option/types';
-
-import { MediaPicker } from '../MediaPicker';
+import { MediaPicker } from '@/components/MediaPicker';
 
 const { Panel } = Collapse;
 

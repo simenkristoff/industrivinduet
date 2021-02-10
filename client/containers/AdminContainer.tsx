@@ -1,17 +1,21 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/types';
-import { AuthState } from '@/state/ducks/auth/types';
+import {
+  IApplicationState,
+  AuthState,
+  EventEntity,
+  JobEntity,
+  MemberEntity,
+  UserEntity,
+  UserPermissions,
+} from '@/types';
+
+import { AdminLanding } from '@/components/AdminLanding';
 import { fetchMembers } from '@/state/ducks/member/actions';
 import { fetchRoles } from '@/state/ducks/role/actions';
 import { fetchActiveEvents } from '@/state/ducks/event/actions';
 import { fetchActiveJobs } from '@/state/ducks/job/actions';
-import { EventEntity } from '@/state/ducks/event/types';
-import { JobEntity } from '@/state/ducks/job/types';
-import { AdminLanding } from '@/components/AdminLanding';
-import { MemberEntity } from '@/state/ducks/member/types';
-import { UserEntity, UserPermissions } from '@/state/ducks/user/types';
 import { fetchUsers } from '@/state/ducks/user/actions';
 import { checkUserIsAdmin } from '@/state/ducks/auth/helpers';
 

@@ -1,8 +1,7 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+import { ContentActionTypes, ContentEntity, ContentState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
-
-import { ContentActionTypes, ContentEntity, ContentState } from './types';
 
 export const initialState: ContentState = {
   byId: {},

@@ -1,10 +1,9 @@
 import React, { useRef } from 'react';
 import { Col, Image } from 'antd';
-import { DeleteOutlined, EditOutlined, SelectOutlined } from '@ant-design/icons';
+import { DeleteOutlined, SelectOutlined } from '@ant-design/icons';
+import { MediaImageInterface } from '@/types';
 
-import { MediaImageInterface } from './interface';
-
-import { MediaHelpers } from '.';
+import { MediaHelpers } from './';
 
 export const MediaImage: React.FC<MediaImageInterface> = ({
   data,

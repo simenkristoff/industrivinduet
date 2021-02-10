@@ -1,10 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
 import { Row } from 'antd';
+import { MediaGalleryInterface } from '@/types';
 
-import { MediaGalleryInterface } from './interface';
-
-import { MediaFolder, MediaImage } from '.';
+import { MediaFolder, MediaImage } from './';
 
 export const MediaGallery: React.FC<MediaGalleryInterface> = ({
   data,

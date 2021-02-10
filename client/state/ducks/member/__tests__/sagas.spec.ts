@@ -1,11 +1,12 @@
-import apiCaller from '@/state/utils/apiCaller';
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
+import { MemberActionTypes } from '@/types';
+
+import apiCaller from '@/state/utils/apiCaller';
 
 import { createMember, deleteMember, fetchMembers, setMember, updateMember } from '../actions';
 import memberSaga from '../sagas';
-import { MemberActionTypes } from '../types';
 
 import memberData from './__mockData__/memberData';
 

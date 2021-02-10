@@ -1,4 +1,4 @@
-import { PartnerEntity } from '../../types';
+import { PartnerEntity } from '@/types';
 
 const partnersData: PartnerEntity[] = [
   {

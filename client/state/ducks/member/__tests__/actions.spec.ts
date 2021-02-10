@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
+import { MemberActionTypes, MemberEntity } from '@/types';
 
 import { createMember, deleteMember, fetchMembers, setMember, updateMember } from '../actions';
-import { MemberActionTypes, MemberEntity } from '../types';
 
 import memberData from './__mockData__/memberData';
 

@@ -1,6 +1,5 @@
 import { action } from 'typesafe-actions';
-
-import { ContentActionTypes, ContentEntity } from './types';
+import { ContentActionTypes, ContentEntity } from '@/types';
 
 /**
  * @desc Fetch all Contents.

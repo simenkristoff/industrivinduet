@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Form, Input } from 'antd';
-import { GroupEntity } from '@/state/ducks/group/types';
-import { DataFormInterface, IApplicationState } from '@/types';
-import { uniqueValue } from '@/utils/validation';
+import { DataFormInterface, IApplicationState, GroupEntity } from '@/types';
+
 import { FormMessage } from '@/constants';
+import { uniqueValue } from '@/utils';
 
 export const GroupForm: React.FC<DataFormInterface<GroupEntity>> = ({
   form,

@@ -2,12 +2,10 @@ import fs from 'fs';
 
 import _ from 'lodash';
 import { Request, Response, NextFunction, Router } from 'express';
-
-import { TreeNode } from '../utils/mediaUtils';
-import { MediaUtils, Logger } from '../utils';
-import { asyncHandler, passport, mediaMiddleware } from '../middlewares';
-import { ControllerInterface, MediaTypeInterface } from '../types';
-import { HttpException } from '../exceptions';
+import { ControllerInterface, MediaTypeInterface } from '@server/types';
+import { MediaUtils, TreeNode } from '@server/utils';
+import { asyncHandler, passport, mediaMiddleware } from '@server/middlewares';
+import { HttpException } from '@server/exceptions';
 
 interface FileInstance {
   basename: string;

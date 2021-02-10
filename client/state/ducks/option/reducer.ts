@@ -1,8 +1,5 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
-
-import { mergeObject } from '../../utils';
-
-import { OptionActionTypes, OptionState } from './types';
+import { OptionActionTypes, OptionState } from '@/types';
 
 export const initialState: OptionState = {
   general: {},

@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { Form, Modal } from 'antd';
-import { Entity } from '@/state/interface';
-
-import { DataModalInterface } from './interface';
+import { Modal } from 'antd';
+import { Entity, DataModalInterface } from '@/types';
 
 export const DataModal = <T extends Entity>(props: DataModalInterface<T>): JSX.Element => {
   const { name, editMode, visible, data, width, form, dataForm, submit, close } = props;

@@ -1,13 +1,12 @@
 import React, { useCallback } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/state/interface';
-import { fetchContents } from '@/state/ducks/content/actions';
-import { MemberEntity } from '@/state/ducks/member/types';
-import { fetchMembers } from '@/state/ducks/member/actions';
-import { AboutUs } from '@/components/AboutUs';
+import { IApplicationState, MemberEntity, PartnerEntity } from '@/types';
+
 import { roleValuesEnum } from '@/constants';
-import { PartnerEntity } from '@/state/ducks/partner/types';
+import { AboutUs } from '@/components/AboutUs';
+import { fetchContents } from '@/state/ducks/content/actions';
+import { fetchMembers } from '@/state/ducks/member/actions';
 import { fetchPartners } from '@/state/ducks/partner/actions';
 
 type groupType = {

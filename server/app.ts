@@ -8,11 +8,10 @@ import hpp from 'hpp';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-
-import { passport, logger, errorMiddleware } from './middlewares';
-import { ControllerInterface } from './types';
-import { Logger } from './utils';
-import { OptionModel, UserModel, UserPermissions } from './models';
+import { passport, logger, errorMiddleware } from '@server/middlewares';
+import { ControllerInterface, UserPermissions } from '@server/types';
+import { Logger } from '@server/utils';
+import { OptionModel, UserModel } from '@server/models';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 

@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/types';
 import { ColumnsType } from 'antd/lib/table';
+import { IApplicationState, UserEntity, UserState } from '@/types';
 
-import { UserEntity, UserState } from '@/state/ducks/user/types';
+import { UserForm } from '@/components/forms';
 import {
   createUser,
   deleteUser,
@@ -11,7 +11,6 @@ import {
   setUser,
   updateUser,
 } from '@/state/ducks/user/actions';
-import { UserForm } from '@/components/forms';
 
 import { CrudContainer } from './CrudContainer';
 

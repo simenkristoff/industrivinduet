@@ -1,12 +1,8 @@
 import { Model, model, Schema, Document, Types } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
-
-import { Cascader, Filter } from '../utils';
-
-import { Event, EventModel } from './event.model';
-import { Job, JobModel } from './job.model';
-import { Role } from './role.model';
-import { User, UserModel } from './user.model';
+import { Event, Role, User } from '@server/types';
+import { Cascader, Filter } from '@server/utils';
+import { EventModel, UserModel } from '@server/models';
 
 /**
  * The base Member.

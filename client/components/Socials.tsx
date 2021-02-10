@@ -1,6 +1,6 @@
 import React from 'react';
-import { SocialOptions } from '@/state/ducks/option/types';
 import { FacebookFilled, InstagramFilled, LinkedinFilled } from '@ant-design/icons';
+import { SocialOptions } from '@/types';
 
 enum IconSize {
   'small' = '16px',

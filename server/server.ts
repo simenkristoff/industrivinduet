@@ -1,7 +1,7 @@
 import 'dotenv/config';
-import App from './app';
-import { Logger, validateEnv } from './utils';
-import { scheduler } from './agendas/scheduler';
+import { Logger, validateEnv } from '@server/utils';
+import { scheduler } from '@server/agendas/scheduler';
+import App from '@server/app';
 import {
   OptionController,
   MediaController,
@@ -15,7 +15,7 @@ import {
   UserController,
   EventController,
   JobController,
-} from './controllers';
+} from '@server/controllers';
 
 // Validate Environment-variables
 validateEnv();

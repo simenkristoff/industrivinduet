@@ -1,8 +1,7 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+import { StudyFieldActionTypes, StudyFieldEntity, StudyFieldState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
-
-import { StudyFieldActionTypes, StudyFieldEntity, StudyFieldState } from './types';
 
 export const initialState: StudyFieldState = {
   byId: {},

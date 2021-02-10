@@ -1,4 +1,4 @@
-import { GroupEntity } from '../../types';
+import { GroupEntity } from '@/types';
 
 const groupsData: GroupEntity[] = [
   {

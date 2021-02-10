@@ -1,6 +1,5 @@
 import { Schema, Model, model, Document } from 'mongoose';
-
-import { Filter } from '../utils';
+import { Filter } from '@server/utils';
 
 /**
  * The base Content.

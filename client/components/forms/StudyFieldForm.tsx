@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Form, Input } from 'antd';
-import { StudyFieldEntity } from '@/state/ducks/studyfield/types';
-import { DataFormInterface, IApplicationState } from '@/types';
-import { uniqueValue } from '@/utils/validation';
+import { DataFormInterface, IApplicationState, StudyFieldEntity } from '@/types';
+
 import { FormMessage } from '@/constants';
 import { EditorInput } from '@/components/adapters';
+import { uniqueValue } from '@/utils';
 
 export const StudyFieldForm: React.FC<DataFormInterface<StudyFieldEntity>> = ({
   form,

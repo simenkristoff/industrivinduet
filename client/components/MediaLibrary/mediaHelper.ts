@@ -1,8 +1,7 @@
 import _ from 'lodash';
-import { MediaType } from '@/state/ducks/media/types';
-import { Bytes } from '@/constants';
+import { MediaType, MediaFolderType, MediaImageType, MediaLibraryItems } from '@/types';
 
-import { MediaFolderType, MediaImageType, MediaLibraryItems } from './interface';
+import { Bytes } from '@/constants';
 
 namespace MediaHelpers {
   export function formatBytes(bytes: number) {

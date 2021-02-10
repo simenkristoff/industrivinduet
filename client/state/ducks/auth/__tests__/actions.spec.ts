@@ -1,9 +1,9 @@
 import { action } from 'typesafe-actions';
+import { AuthActionTypes } from '@/types';
 
 import { register, login, logout } from '../actions';
-import { AuthActionTypes } from '../types';
 
-import { authLogin, authUser } from './__mockData__/authData';
+import { authLogin, authRegister, authUser } from './__mockData__/authData';
 
 describe('auth actions', () => {
   /**
@@ -15,7 +15,7 @@ describe('auth actions', () => {
       route: 'auth/register',
     });
 
-    expect(register(authUser)).toEqual(expectedAction);
+    expect(register(authRegister)).toEqual(expectedAction);
   });
 
   /**

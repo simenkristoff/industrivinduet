@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react';
 import { Row, Col, Spin, Button } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
+import {
+  EventOptions,
+  GeneralOptions,
+  JobOptions,
+  OptionState,
+  EventEntity,
+  JobEntity,
+  PartnerEntity,
+} from '@/types';
 
+import { EventCard } from '@/components/EventCard';
+import { JobItem } from '@/components/JobItem';
+import { PartnerCard } from '@/components/PartnerCard';
 import { GoogleMapsContainer } from '@/containers/GoogleMapsContainer';
 import iv_icon from '@resources/iv_icon.png';
 import smorekoppen from '@resources/smorekoppen_banner.jpg';
-import { EventOptions, GeneralOptions, JobOptions, OptionState } from '@/state/ducks/option/types';
-import { EventEntity } from '@/state/ducks/event/types';
-import { JobEntity } from '@/state/ducks/job/types';
-import { PartnerEntity } from '@/state/ducks/partner/types';
-
-import { EventCard } from './EventCard';
-import { JobItem } from './JobItem';
-import { PartnerCard } from './PartnerCard';
 
 interface IProps {
   options: OptionState;

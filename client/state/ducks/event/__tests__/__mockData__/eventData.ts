@@ -1,4 +1,4 @@
-import { EventEntity } from '../../types';
+import { EventEntity } from '@/types';
 
 const eventsData: EventEntity[] = [
   {

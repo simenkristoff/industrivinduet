@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { CheckOutlined, FolderAddOutlined } from '@ant-design/icons';
-import { uniqueName } from '@/utils/validation';
+import { MediaFolderType, NewFolderInterface } from '@/types';
 
-import { MediaFolderType, NewFolderInterface } from './interface';
+import { uniqueName } from '@/utils';
 
 export const NewFolder: React.FC<NewFolderInterface> = ({
   dirNames,

@@ -1,8 +1,6 @@
-import { Schema, Model, Document, Query, LeanDocument } from 'mongoose';
-
-import { HttpException, NotFoundException } from '../exceptions';
-
-import Logger from './logger';
+import { Schema, Model, Document, LeanDocument } from 'mongoose';
+import { HttpException, NotFoundException } from '@server/exceptions';
+import { Logger } from '@server/utils';
 
 /**
  * Namespace Cascader holds functions for managing relations

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Editor, IAllProps as EditorFieldProps } from '@tinymce/tinymce-react';
 
 let editorConfig: EditorFieldProps = {
-  apiKey: 'zu41a2730rcj7g0nhdmfsduyhu9d987ap1cripcst31ougmt',
+  apiKey: process.env.TINYMCE_API as string,
   outputFormat: 'html',
 };
 

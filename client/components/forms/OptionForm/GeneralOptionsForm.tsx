@@ -1,11 +1,10 @@
 import React from 'react';
 import { Form, Input } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { OptionMessage } from '@/constants';
-import { orgPattern, phonePattern } from '@/constants/patterns';
-import { EditorInput } from '@/components/adapters';
+import { OptionFormInterface } from '@/types';
 
-import { OptionFormInterface } from './interface';
+import { OptionMessage, orgPattern, phonePattern } from '@/constants';
+import { EditorInput } from '@/components/adapters';
 
 const GeneralOptionsForm: React.FC<OptionFormInterface> = ({ form, data }: OptionFormInterface) => {
   return (

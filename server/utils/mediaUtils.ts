@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 
 import _ from 'lodash';
-import { MediaTypeInterface } from 'server/types';
+import { MediaTypeInterface } from '@server/types';
 
 export class TreeNode implements MediaTypeInterface {
   public path: string;
@@ -26,7 +26,7 @@ export class TreeNode implements MediaTypeInterface {
   }
 }
 
-namespace MediaUtils {
+export namespace MediaUtils {
   export function parseFile(file: Express.Multer.File, filepath?: string): TreeNode {
     const filename = filepath ? `${filepath}/${file.filename}` : file.filename;
     const stat = fs.statSync(file.path);
@@ -67,5 +67,3 @@ namespace MediaUtils {
     return root;
   }
 }
-
-export default MediaUtils;

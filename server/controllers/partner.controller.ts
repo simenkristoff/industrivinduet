@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction, Router } from 'express';
 import { CallbackError } from 'mongoose';
-
-import { asyncHandler, passport } from '../middlewares';
-import { HttpException, NotFoundException } from '../exceptions';
-import { ControllerInterface } from '../types';
-import { PartnerModel, Partner } from '../models';
+import { ControllerInterface, Partner } from '@server/types';
+import { asyncHandler, passport } from '@server/middlewares';
+import { HttpException, NotFoundException } from '@server/exceptions';
+import { PartnerModel } from '@server/models';
 
 /**
  * Class representing the API-controller for Partners.

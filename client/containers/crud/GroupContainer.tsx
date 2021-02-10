@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/types';
-import { GroupEntity, GroupState } from '@/state/ducks/group/types';
+import { ColumnsType } from 'antd/lib/table';
+import { IApplicationState, GroupEntity, GroupState } from '@/types';
+
+import { GroupForm } from '@/components/forms';
 import {
   createGroup,
   deleteGroup,
@@ -9,8 +11,6 @@ import {
   setGroup,
   updateGroup,
 } from '@/state/ducks/group/actions';
-import { ColumnsType } from 'antd/lib/table';
-import { GroupForm } from '@/components/forms';
 
 import { CrudContainer } from './CrudContainer';
 

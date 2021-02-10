@@ -1,6 +1,6 @@
 import morgan from 'morgan';
 
-const { Logger } = require('../utils');
+const { Logger } = require('@server/utils');
 
 Logger.stream = {
   write: function (message: any, encoding: any) {

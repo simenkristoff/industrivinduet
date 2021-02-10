@@ -1,7 +1,6 @@
 import { MediaFolderType } from '@/components/MediaLibrary/interface';
 import { action } from 'typesafe-actions';
-
-import { MediaActionTypes, MediaType } from './types';
+import { MediaActionTypes, MediaType } from '@/types';
 
 /**
  * @desc Fetch all Files.

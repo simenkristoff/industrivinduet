@@ -1,17 +1,27 @@
-import { UserEntity } from '@/state/ducks/user/types';
-
-import { AuthState, EncodedToken, LoginCredentials } from '../../types';
+import {
+  UserEntity,
+  UserPermissions,
+  AuthState,
+  EncodedToken,
+  LoginCredentials,
+  RegisterCredentials,
+} from '@/types';
 
 export const authLogin: LoginCredentials = {
   email: 'simen.kristoffersen98@gmail.com',
   password: '123456',
 };
 
+export const authRegister: RegisterCredentials = {
+  email: 'simen.kristoffersen98@gmail.com',
+  permissions: UserPermissions.ADMIN,
+  password: '123456',
+};
+
 export const authUser: UserEntity = {
   _id: 'admin123',
-  permissions: ['USER', 'ADMIN'],
+  permissions: UserPermissions.ADMIN,
   email: 'simen.kristoffersen98@gmail.com',
-  password: '123456',
   member: {
     _id: 'd033e22ae348aeb5660fc214',
     name: {

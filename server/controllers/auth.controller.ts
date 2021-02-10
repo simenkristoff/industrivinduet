@@ -1,15 +1,10 @@
 import { Request, Response, NextFunction, Router } from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
-
-import { asyncHandler } from '../middlewares';
-import { ControllerInterface } from '../types';
-import { User, UserModel } from '../models';
-import Logger from '../utils/logger';
-
-interface InfoMessage {
-  message: string;
-}
+import { ControllerInterface, InfoMessage, User } from '@server/types';
+import { Logger } from '@server/utils';
+import { asyncHandler } from '@server/middlewares';
+import { UserModel } from '@server/models';
 
 /**
  * Class representing the API-controller for the Auth middleware.

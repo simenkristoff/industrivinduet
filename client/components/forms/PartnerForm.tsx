@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Form, Input } from 'antd';
-import { PartnerEntity } from '@/state/ducks/partner/types';
-import { DataFormInterface, IApplicationState } from '@/types';
-import { uniqueValue } from '@/utils/validation';
+import { DataFormInterface, IApplicationState, PartnerEntity } from '@/types';
+
 import { FormMessage } from '@/constants';
 import { EditorInput } from '@/components/adapters';
 import { MediaPicker } from '@/components/MediaPicker';
+import { uniqueValue } from '@/utils';
 
 export const PartnerForm: React.FC<DataFormInterface<PartnerEntity>> = ({
   form,

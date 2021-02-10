@@ -1,4 +1,4 @@
-import { StudyFieldEntity } from '../../types';
+import { StudyFieldEntity } from '@/types';
 
 const studyfieldsData: StudyFieldEntity[] = [
   {

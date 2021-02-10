@@ -1,4 +1,4 @@
-import { ExceptionInterface } from '../types';
+import { ExceptionInterface } from '@server/types';
 
 export default class HttpException extends Error implements ExceptionInterface {
   public statusCode;

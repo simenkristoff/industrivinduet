@@ -1,6 +1,5 @@
 import { action } from 'typesafe-actions';
-
-import { UserActionTypes, UserEntity } from './types';
+import { UserActionTypes, UserEntity } from '@/types';
 
 /**
  * @desc Fetch all Users.

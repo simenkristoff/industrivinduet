@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { IApplicationState } from '@/types';
+import { IApplicationState, LoginCredentials } from '@/types';
+
 import { login } from '@/state/ducks/auth/actions';
 import { Login } from '@/components/Login';
-import { LoginCredentials } from '@/state/ducks/auth/types';
 
 export const LoginContainer = () => {
   const history = useHistory();

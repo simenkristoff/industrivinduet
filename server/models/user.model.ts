@@ -1,9 +1,7 @@
 import { Schema, Model, model, Document, Types } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
-
-import { MemberModel } from '../models';
-
-import { Member } from './member.model';
+import { Member } from '@server/types';
+import { MemberModel } from '@server/models';
 
 export enum UserPermissions {
   ADMIN = 'ADMIN',

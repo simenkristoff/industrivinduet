@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { Error as MongoError } from 'mongoose';
-
-import { Logger } from '../utils';
-import { HttpException } from '../exceptions';
+import { Logger } from '@server/utils';
+import { HttpException } from '@server/exceptions';
 
 /**
  * Handle Mongoose CastErrors

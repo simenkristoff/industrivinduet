@@ -1,6 +1,5 @@
 import { action } from 'typesafe-actions';
-
-import { StudyFieldActionTypes, StudyFieldEntity } from './types';
+import { StudyFieldActionTypes, StudyFieldEntity } from '@/types';
 
 /**
  * @desc Fetch all StudyFields.

@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { IApplicationState } from '@/types';
-import { AuthState } from '@/state/ducks/auth/types';
+import { IApplicationState, AuthState } from '@/types';
 
 const useAuth = () => {
   const history = useHistory();

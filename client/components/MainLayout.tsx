@@ -1,11 +1,12 @@
 import React from 'react';
 import { Layout } from 'antd';
+
 import { HeaderContainer } from '@/containers/HeaderContainer';
 import { BreadcrumbContainer } from '@/containers/BreadcrumbContainer';
 import { FooterContainer } from '@/containers/FooterContainer';
-import Container from '@/components/Container';
+import { Container } from '@/components/Container';
 
-const MainLayout = (props: any) => {
+export const MainLayout: React.FC = (props: any) => {
   return (
     <>
       <HeaderContainer />
@@ -19,5 +20,3 @@ const MainLayout = (props: any) => {
     </>
   );
 };
-
-export default MainLayout;

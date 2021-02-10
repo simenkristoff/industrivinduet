@@ -1,29 +1,29 @@
 .table-col-expanded {
-	align-items: stretch;
-	display: flex;
-	flex: 1 1 100%;
-	flex-flow: row;
-	justify-content: space-evenly;
+  align-items: stretch;
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: row;
+  justify-content: space-evenly;
   
-	.ant-image {
-		align-self: center;
-		max-width: 100px;
-		width: auto;
+  .ant-image {
+    align-self: center;
+    max-width: 100px;
+    width: auto;
 
-		> img {
-			height: auto;
-			object-fit: contain;
-			width: 100%;
-		}
-	}
+    > img {
+      height: auto;
+      object-fit: contain;
+      width: 100%;
+    }
+  }
   
-	dl {
-		display: inline-block;
-		margin: 0;
-		padding: 0;
+  dl {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
   
-		dt {
-			color: darken(theme-color(primary), 15);
-		}
-	}
+    dt {
+      color: darken(theme-color(primary), 15);
+    }
+  }
 }

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
+import { MediaLibraryInterface, MediaLibraryItems } from '@/types';
 
-import { MediaLibraryInterface, MediaLibraryItems } from './interface';
-
-import { MediaHeader, MediaGallery, MediaHelpers } from '.';
+import { MediaHeader, MediaGallery, MediaHelpers } from './';
 
 export const MediaLibrary: React.FC<MediaLibraryInterface> = ({
   fileData,

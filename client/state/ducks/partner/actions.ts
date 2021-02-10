@@ -1,6 +1,5 @@
 import { action } from 'typesafe-actions';
-
-import { PartnerActionTypes, PartnerEntity } from './types';
+import { PartnerActionTypes, PartnerEntity } from '@/types';
 
 /**
  * @desc Fetch all Partners.

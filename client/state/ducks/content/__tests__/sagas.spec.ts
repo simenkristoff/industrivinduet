@@ -1,11 +1,12 @@
-import apiCaller from '@/state/utils/apiCaller';
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
+import { ContentActionTypes } from '@/types';
+
+import apiCaller from '@/state/utils/apiCaller';
 
 import { createContent, deleteContent, fetchContents, setContent, updateContent } from '../actions';
 import contentSaga from '../sagas';
-import { ContentActionTypes } from '../types';
 
 import contentData from './__mockData__/contentData';
 

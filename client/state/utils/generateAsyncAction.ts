@@ -1,4 +1,4 @@
-import { AsyncActionType } from '../interface';
+import { AsyncActionType } from '@/types';
 
 export const generateAsyncAction = (name: string): AsyncActionType => ({
   START: `${name}.START`,

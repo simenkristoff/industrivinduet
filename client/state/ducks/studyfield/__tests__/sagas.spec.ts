@@ -1,7 +1,9 @@
-import apiCaller from '@/state/utils/apiCaller';
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
+import { StudyFieldActionTypes } from '@/types';
+
+import apiCaller from '@/state/utils/apiCaller';
 
 import {
   createStudyField,
@@ -11,7 +13,6 @@ import {
   updateStudyField,
 } from '../actions';
 import studyfieldSaga from '../sagas';
-import { StudyFieldActionTypes } from '../types';
 
 import studyfieldData from './__mockData__/studyfieldData';
 

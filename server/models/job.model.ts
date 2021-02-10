@@ -1,10 +1,7 @@
 import { Model, model, Schema, Document, Types } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
-
-import { Filter } from '../utils';
-
-import { Member } from './member.model';
-import { StudyField } from './studyfield.model';
+import { StudyField } from '@server/types';
+import { Filter } from '@server/utils';
 
 /**
  * The base Job.

@@ -1,6 +1,5 @@
 import { action } from 'typesafe-actions';
-
-import { AuthActionTypes, LoginCredentials, RegisterCredentials } from './types';
+import { AuthActionTypes, LoginCredentials, RegisterCredentials } from '@/types';
 
 /**
  * @desc Register new User

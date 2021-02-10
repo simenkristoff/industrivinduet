@@ -1,6 +1,5 @@
 import { action } from 'typesafe-actions';
-
-import { RoleActionTypes, RoleEntity } from './types';
+import { RoleActionTypes, RoleEntity } from '@/types';
 
 /**
  * @desc Fetch all Roles.

@@ -2,11 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Form, Input, InputNumber, Switch } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { ContentEntity } from '@/state/ducks/content/types';
-import { DataFormInterface, IApplicationState } from '@/types';
-import { uniqueValue } from '@/utils/validation';
+import { DataFormInterface, IApplicationState, ContentEntity } from '@/types';
+
 import { FormMessage } from '@/constants';
 import { EditorInput } from '@/components/adapters';
+import { uniqueValue } from '@/utils';
 
 export const ContentForm: React.FC<DataFormInterface<ContentEntity>> = ({
   form,

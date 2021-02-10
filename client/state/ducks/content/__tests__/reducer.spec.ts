@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
+import { ContentActionTypes } from '@/types';
 
 import { fetchContents } from '../actions';
 import { contentReducer, initialState } from '../reducer';
-import { ContentActionTypes } from '../types';
 
 import contentData from './__mockData__/contentData';
 

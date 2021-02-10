@@ -1,10 +1,8 @@
 import { Schema, Model, model, Document, Types } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
-
-import { Cascader, Filter } from '../utils';
-
-import { Group } from './group.model';
-import { Member, MemberModel } from './member.model';
+import { Group, Member } from '@server/types';
+import { Cascader, Filter } from '@server/utils';
+import { MemberModel } from '@server/models';
 
 /**
  * The base Role.

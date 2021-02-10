@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
+import { StudyFieldActionTypes } from '@/types';
 
 import { fetchStudyFields } from '../actions';
 import { studyfieldReducer, initialState } from '../reducer';
-import { StudyFieldActionTypes } from '../types';
 
 import studyfieldData from './__mockData__/studyfieldData';
 

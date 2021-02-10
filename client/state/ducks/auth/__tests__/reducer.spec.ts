@@ -1,5 +1,6 @@
+import { AuthActionTypes } from '@/types';
+
 import { authReducer } from '../reducer';
-import { AuthActionTypes } from '../types';
 
 import {
   authLogin,

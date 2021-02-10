@@ -1,9 +1,6 @@
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
-import { MediaFolderType } from '@/components/MediaLibrary/interface';
 
-import { IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
-
-import { media } from '.';
+import { IMetaAction, IPayloadMetaAction } from '../../interface';
 
 export type MediaState = {
   readonly selectedFile: MediaType | {};
@@ -20,6 +17,12 @@ export type MediaType = {
   ext?: string;
   children: Array<MediaType>;
 };
+
+export type MediaFolderType = {} & MediaType;
+
+export type MediaImageType = {
+  ext: string;
+} & MediaType;
 
 export const MediaActionTypes = {
   FETCH: generateAsyncAction('@@media.FETCH'),

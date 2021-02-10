@@ -1,10 +1,9 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import { UserActionTypes, UserEntity } from '@/types';
 
 import apiCaller from '@/state/utils/apiCaller';
 
 import { IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
-
-import { UserActionTypes, UserEntity } from './types';
 
 /**
  * @desc Business logic of the effects.

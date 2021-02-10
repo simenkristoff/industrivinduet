@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
+import { MemberActionTypes } from '@/types';
 
 import { fetchMembers } from '../actions';
 import { memberReducer, initialState } from '../reducer';
-import { MemberActionTypes } from '../types';
 
 import memberData from './__mockData__/memberData';
 

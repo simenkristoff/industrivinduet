@@ -1,8 +1,6 @@
-import { Entity } from '@/types';
+import { IMetaAction, IPayloadMetaAction, Entity } from '@/types';
 
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
-
-import { IMetaAction, IPayloadMetaAction } from '../../interface';
 
 /**
  * @desc Type describing the Option state.

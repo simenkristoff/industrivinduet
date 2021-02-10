@@ -1,11 +1,4 @@
-import { MediaState, MediaType } from '@/state/ducks/media/types';
-import { RcFile } from 'antd/lib/upload';
-
-export type MediaFolderType = {} & MediaType;
-
-export type MediaImageType = {
-  ext: string;
-} & MediaType;
+import { MediaState, MediaType, MediaFolderType, MediaImageType } from '@/types';
 
 export interface MediaLibraryItems {
   directories: MediaFolderType[];

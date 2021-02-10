@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { Input, Image } from 'antd';
-import { MediaContainer } from '@/containers/MediaContainer';
 import { FileImageOutlined } from '@ant-design/icons';
+
+import { MediaContainer } from '@/containers/MediaContainer';
 
 interface MediaPickerProps {
   value?: string;

@@ -1,9 +1,9 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { IApplicationState, MemberEntity } from '@/types';
+
 import { logout } from '@/state/ducks/auth/actions';
 import { Header } from '@/components/Header';
-import { IApplicationState } from '@/types';
-import { MemberEntity } from '@/state/ducks/member/types';
 
 interface HeaderProps {
   isAdminNamespace: boolean;

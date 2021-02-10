@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/types';
-import { ContentEntity, ContentState } from '@/state/ducks/content/types';
+import { ColumnsType } from 'antd/lib/table';
+import { IApplicationState, ContentEntity, ContentState } from '@/types';
+
+import { ContentForm } from '@/components/forms';
 import {
   createContent,
   deleteContent,
@@ -9,8 +11,6 @@ import {
   setContent,
   updateContent,
 } from '@/state/ducks/content/actions';
-import { ColumnsType } from 'antd/lib/table';
-import { ContentForm } from '@/components/forms';
 
 import { CrudContainer } from './CrudContainer';
 

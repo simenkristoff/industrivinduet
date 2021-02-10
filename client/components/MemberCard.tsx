@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tooltip, Image, Col } from 'antd';
-import { MemberEntity } from '@/state/ducks/member/types';
+import { MemberEntity } from '@/types';
+
 import Profile from '@resources/profile_default.png';
 
 interface IProps {

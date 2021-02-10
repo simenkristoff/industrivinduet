@@ -1,6 +1,5 @@
 import { action } from 'typesafe-actions';
-
-import { OptionActionTypes, OptionEntity } from './types';
+import { OptionActionTypes, OptionEntity } from '@/types';
 
 /**
  * @desc Fetch Options.

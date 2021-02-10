@@ -1,5 +1,8 @@
-import React, { useCallback, useState, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { IApplicationState, MediaState, MediaType, MediaFolderType, MediaImageType } from '@/types';
+import { Input, Modal, Spin } from 'antd';
+
 import {
   fetchFiles,
   uploadFile,
@@ -7,17 +10,11 @@ import {
   createFolder,
   updateFolder,
 } from '@/state/ducks/media/actions';
-import { MediaType, MediaState } from '@/state/ducks/media/types';
-import { IApplicationState } from '@/state/interface';
 import { MediaLibrary } from '@/components/MediaLibrary';
-import { Input, Modal, Spin } from 'antd';
-import { MediaFolderType, MediaImageType } from '@/components/MediaLibrary/interface';
-
-interface MediaTogglerInterface {}
 
 interface MediaContainerInterface {
-  modal: boolean;
-  input: React.RefObject<Input>;
+  modal?: boolean;
+  input?: React.RefObject<Input>;
   callback?: (image: MediaImageType) => void;
 }
 

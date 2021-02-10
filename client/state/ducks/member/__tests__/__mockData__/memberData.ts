@@ -1,4 +1,4 @@
-import { MemberEntity } from '../../types';
+import { MemberEntity } from '@/types';
 
 const membersData: MemberEntity[] = [
   {

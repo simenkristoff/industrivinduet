@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Form, Input, InputNumber, Space, Switch } from 'antd';
 import { InfoCircleOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { OptionMessage } from '@/constants';
+import { OptionFormInterface } from '@/types';
 
-import { OptionFormInterface } from './interface';
+import { OptionMessage } from '@/constants';
 
 const JobOptionsForm: React.FC<OptionFormInterface> = ({ form, data }: OptionFormInterface) => {
   return (

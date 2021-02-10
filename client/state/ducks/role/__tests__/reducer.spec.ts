@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
+import { RoleActionTypes } from '@/types';
 
 import { fetchRoles } from '../actions';
 import { roleReducer, initialState } from '../reducer';
-import { RoleActionTypes, RoleEntity } from '../types';
 
 import roleData from './__mockData__/roleData';
 

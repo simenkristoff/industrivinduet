@@ -1,9 +1,13 @@
-import apiCaller from '@/state/utils/apiCaller';
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import {
+  IPayloadMetaAction,
+  AuthActionTypes,
+  LoginCredentials,
+  RegisterCredentials,
+} from '@/types';
 
-import { IPayloadMetaAction } from '../../interface';
+import apiCaller from '@/state/utils/apiCaller';
 
-import { AuthActionTypes, LoginCredentials, RegisterCredentials } from './types';
 import { removeToken, saveToken } from './helpers';
 
 /**

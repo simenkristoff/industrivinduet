@@ -1,7 +1,6 @@
 import Agenda from 'agenda';
-
-import { EventModel } from '../../models';
-import { Logger } from '../../utils';
+import { Logger } from '@server/utils';
+import { EventModel } from '@server/models';
 
 module.exports = (agenda: Agenda) => {
   agenda.define('archive events', { priority: 'high' }, async (job, done) => {

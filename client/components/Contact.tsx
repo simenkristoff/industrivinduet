@@ -1,11 +1,10 @@
 import React from 'react';
 import { Row, Col, Spin } from 'antd';
 import { MailOutlined, PhoneOutlined, EnvironmentOutlined } from '@ant-design/icons';
+import { GeneralOptions, OptionState, SocialOptions } from '@/types';
 
-import { GeneralOptions, OptionState, SocialOptions } from '@/state/ducks/option/types';
 import { GoogleMapsContainer } from '@/containers/GoogleMapsContainer';
-
-import { Socials } from './Socials';
+import { Socials } from '@/components/Socials';
 
 interface IProps {
   options: OptionState;

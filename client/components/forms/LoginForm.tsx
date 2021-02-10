@@ -1,7 +1,8 @@
 import React from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { LoginCredentials } from '@/state/ducks/auth/types';
+import { LoginCredentials } from '@/types';
+
 import { FormMessage } from '@/constants';
 
 export interface IProps {

@@ -1,12 +1,12 @@
-import apiCaller from '@/state/utils/apiCaller';
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
-import { action } from 'typesafe-actions';
+import { RoleActionTypes } from '@/types';
+
+import apiCaller from '@/state/utils/apiCaller';
 
 import { createRole, deleteRole, fetchRoles, setRole, updateRole } from '../actions';
 import roleSaga from '../sagas';
-import { RoleActionTypes } from '../types';
 
 import roleData from './__mockData__/roleData';
 

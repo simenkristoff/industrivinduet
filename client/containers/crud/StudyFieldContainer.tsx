@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/types';
-import { StudyFieldEntity, StudyFieldState } from '@/state/ducks/studyfield/types';
+import { ColumnsType } from 'antd/lib/table';
+import { IApplicationState, StudyFieldEntity, StudyFieldState } from '@/types';
+
+import { StudyFieldForm } from '@/components/forms';
 import {
   createStudyField,
   deleteStudyField,
@@ -9,8 +11,6 @@ import {
   setStudyField,
   updateStudyField,
 } from '@/state/ducks/studyfield/actions';
-import { ColumnsType } from 'antd/lib/table';
-import { StudyFieldForm } from '@/components/forms';
 
 import { CrudContainer } from './CrudContainer';
 

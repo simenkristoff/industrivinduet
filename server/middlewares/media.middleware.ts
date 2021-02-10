@@ -2,10 +2,9 @@ import util from 'util';
 import path from 'path';
 import fs from 'fs';
 
-import _, { range } from 'lodash';
+import _ from 'lodash';
 import multer from 'multer';
-
-import { Logger } from '../utils';
+import { Logger } from '@server/utils';
 
 const MAX_UPLOAD_SIZE = (process.env.MAX_UPLOAD_SIZE as unknown) as number;
 const UPLOAD_DIR = process.env.UPLOAD_DIR;

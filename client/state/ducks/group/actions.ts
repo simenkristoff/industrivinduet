@@ -1,6 +1,5 @@
 import { action } from 'typesafe-actions';
-
-import { GroupActionTypes, GroupEntity } from './types';
+import { GroupActionTypes, GroupEntity } from '@/types';
 
 /**
  * @desc Fetch all Groups.

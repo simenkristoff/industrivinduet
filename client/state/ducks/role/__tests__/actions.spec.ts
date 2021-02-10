@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
+import { RoleActionTypes, RoleEntity } from '@/types';
 
 import { createRole, deleteRole, fetchRoles, setRole, updateRole } from '../actions';
-import { RoleActionTypes, RoleEntity } from '../types';
 
 import roleData from './__mockData__/roleData';
 

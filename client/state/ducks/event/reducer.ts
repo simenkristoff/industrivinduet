@@ -1,8 +1,7 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+import { EventActionTypes, EventEntity, EventState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
-
-import { EventActionTypes, EventEntity, EventState } from './types';
 
 export const initialState: EventState = {
   byId: {},
