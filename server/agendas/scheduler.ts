@@ -1,7 +1,13 @@
 import Agenda from 'agenda';
 
-const { DB_HOST, DB_PORT, DB_NAME } = process.env;
-const url = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+const {
+  MONGO_DB_HOST,
+  MONGO_DB_PORT,
+  MONGO_DB_NAME,
+  MONGO_DB_USERNAME,
+  MONGO_DB_PASSWORD,
+} = process.env;
+const url = `mongodb://${MONGO_DB_HOST}:${MONGO_DB_PORT}/${MONGO_DB_NAME}`;
 const agenda = new Agenda({
   db: { address: url, collection: 'schedules', options: { useUnifiedTopology: true } },
   processEvery: '30 seconds',

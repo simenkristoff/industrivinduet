@@ -19,8 +19,6 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-console.log(path.resolve(__dirname, 'postcss.config.js'));
-
 let webpackConfig = {
   entry: ['./client/index.tsx'],
   output: {

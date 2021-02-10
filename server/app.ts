@@ -126,11 +126,12 @@ class App {
       MONGO_DB_PASSWORD,
     } = process.env;
     try {
-      mongoose.connect(`mongodb://${MONGO_DB_HOST}:${MONGO_DB_PORT}/${MONGO_DB_NAME}`, {
+      mongoose.connect(`mongodb://${MONGO_DB_HOST}:${MONGO_DB_PORT}`, {
         useNewUrlParser: true,
         useFindAndModify: false,
         useUnifiedTopology: true,
         useCreateIndex: true,
+        dbName: MONGO_DB_NAME,
       });
       Logger.debug('Connected to MongoDB');
     } catch (error) {

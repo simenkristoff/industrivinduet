@@ -56,7 +56,6 @@ export const Frontpage: React.FC<IProps> = ({
 
   return (
     <div className='frontpage-wrapper'>
-      <h1>Helllo</h1>
       {events.length > 0 && (
         <Row gutter={[16, 16]} justify='center'>
           {events.map((event) => (
