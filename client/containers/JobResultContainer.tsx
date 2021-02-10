@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { IApplicationState } from '@/state/interface';
+
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
 import { fetchActiveJobs } from '@/state/ducks/job/actions';
 import { JobEntity } from '@/state/ducks/job/types';
@@ -9,12 +10,15 @@ import { JobItem } from '@/components/JobItem';
 import { FilterTypeInterface, SearchFilterType } from '@/utils/filters';
 import { grades } from '@/constants';
 import { StudyFieldEntity } from '@/state/ducks/studyfield/types';
+import { JobOptions } from '@/state/ducks/option/types';
 
 import { ResultContainer } from './ResultContainer';
 
 export const JobResultContainer = () => {
   const dispatch = useDispatch();
-  const types: string[] = useSelector(({ options }: IApplicationState) => options.job.jobTypes);
+  const types: string[] = useSelector(
+    ({ options }: IApplicationState) => (options.job as JobOptions).jobTypes,
+  );
   const studyfields: StudyFieldEntity[] = useSelector(
     ({ studyfield }: IApplicationState) => studyfield.data,
   );

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Row, Col, Spin } from 'antd';
 import { MailOutlined, PhoneOutlined, EnvironmentOutlined } from '@ant-design/icons';
+
 import { GeneralOptions, OptionState, SocialOptions } from '@/state/ducks/option/types';
-import { Map } from '@/components/Map';
+import { GoogleMapsContainer } from '@/containers/GoogleMapsContainer';
 
 import { Socials } from './Socials';
 
@@ -51,7 +52,7 @@ export const Contact: React.FC<IProps> = ({ options }: IProps) => {
           <Socials socials={socials} theme='primary' size='large' />
         </Col>
         <Col md={12} span={24}>
-          <Map />
+          <GoogleMapsContainer />
         </Col>
       </Row>
     </div>
