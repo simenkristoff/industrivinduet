@@ -1,3 +1,7 @@
+/**
+ * Module responsible for running repeatable tasks on the server.
+ * @module scheduler
+ */
 import Agenda from 'agenda';
 
 const {
@@ -13,9 +17,15 @@ const agenda = new Agenda({
   processEvery: '30 seconds',
 });
 
+// Setup tasks
 require('./tasks/archiveEvents')(agenda);
 require('./tasks/archiveJobs')(agenda);
 
+/**
+ * Runs the scheduler.
+ * @function @async
+ * @memberof scheduler
+ */
 export async function scheduler() {
   const eventReport = agenda.create('archive events');
   const jobReport = agenda.create('archive jobs');

@@ -1,21 +1,22 @@
-import { Schema, Model, Document, Query, LeanDocument } from 'mongoose';
+import { Schema, Model, Document, LeanDocument } from 'mongoose';
 
 import { HttpException, NotFoundException } from '../exceptions';
-
-import Logger from './logger';
+import { Logger } from '../utils';
 
 /**
  * Namespace Cascader holds functions for managing relations
  * when deleting and updating documents.
  *
  * @namespace Cascader
+ *
+ * @function softCascadeDocument
+ * @function hardCascadeDocument
  */
 namespace Cascader {
   /**
    * Removes relationship references to a Document which is about to be deleted.
    * If the reference is an array, the reference will be removed from the array.
    *
-   * @function
    * @memberof Cascader
    *
    * @param {Schema<T, Model<T>>} schema schema of the object to delete
@@ -64,7 +65,6 @@ namespace Cascader {
   /**
    * Deletes relationship references to a Document which is about to be deleted.
    *
-   * @function
    * @memberof Cascader
    *
    * @param schema schema of the object to delete

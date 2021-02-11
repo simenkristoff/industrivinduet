@@ -8,8 +8,7 @@ import locale from 'antd/lib/locale/nb_NO';
 
 import 'antd/dist/antd.css';
 import App from '@/App';
-
-import configureStore from './state';
+import configureStore from '@/state';
 
 const initialState = (window as any).initialReduxState;
 const { store, persistor } = configureStore(initialState);

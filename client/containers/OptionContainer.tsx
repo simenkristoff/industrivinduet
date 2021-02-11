@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form, PageHeader } from 'antd';
+import { IApplicationState, OptionEntity, OptionState } from '@/types';
+
 import { fetchOptions, resetOptions, updateOptions } from '@/state/ducks/option/actions';
-import { OptionEntity, OptionState } from '@/state/ducks/option/types';
-import { IApplicationState } from '@/state/interface';
 import { OptionForm } from '@/components/forms';
 
 export const OptionContainer = () => {

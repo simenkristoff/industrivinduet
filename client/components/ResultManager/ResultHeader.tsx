@@ -1,8 +1,7 @@
 import React from 'react';
-import { Layout } from 'antd';
-import { SearchInput } from '@/components/SearchInput';
+import { ResultHeaderInterface } from '@/types';
 
-import { ResultHeaderInterface } from './interface';
+import { SearchInput } from '@/components/SearchInput';
 
 export const ResultHeader: React.FC<ResultHeaderInterface> = ({
   title,

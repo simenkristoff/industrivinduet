@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface NavItemProps {
+interface IProps {
   to?: string;
   icon?: React.ReactNode;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
-const NavItem: React.FC<NavItemProps> = (props) => {
-  const { to, icon, className, onClick }: NavItemProps = props;
+const NavItem: React.FC<IProps> = (props) => {
+  const { to, icon, className, onClick }: IProps = props;
 
   return (
     <li className={`nav-item ${className}`}>

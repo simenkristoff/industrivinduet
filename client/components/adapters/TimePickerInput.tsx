@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { TimePicker } from 'antd';
 import moment, { Moment } from 'moment';
 import 'moment/locale/nb';

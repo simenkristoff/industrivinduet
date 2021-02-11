@@ -1,7 +1,7 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+import { MediaActionTypes, MediaState } from '@/types';
 
 import { appendMediaFile, reduceMediaFile, updateFolder } from './helpers';
-import { MediaActionTypes, MediaState } from './types';
 
 export const initialState: MediaState = {
   selectedFile: {},

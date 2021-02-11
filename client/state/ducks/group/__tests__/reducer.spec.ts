@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
+import { GroupActionTypes } from '@/types';
 
 import { fetchGroups } from '../actions';
 import { groupReducer, initialState } from '../reducer';
-import { GroupActionTypes, GroupEntity } from '../types';
 
 import groupData from './__mockData__/groupData';
 

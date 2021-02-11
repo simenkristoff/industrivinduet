@@ -1,8 +1,6 @@
 import React from 'react';
 import { Layout, Row, Col, Empty } from 'antd';
-import { Entity } from '@/types';
-
-import { ResultContentInterface, ResultItemInterface } from './interface';
+import { Entity, ResultContentInterface, ResultItemInterface } from '@/types';
 
 const { Content } = Layout;
 

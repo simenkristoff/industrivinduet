@@ -1,12 +1,12 @@
 import React from 'react';
 
-type NavListProps = {
+interface IProps {
   align?: 'left' | 'center' | 'right';
   className?: string;
-};
+}
 
-const NavList: React.FC<NavListProps> = (props) => {
-  const { align, className }: NavListProps = props;
+const NavList: React.FC<IProps> = (props) => {
+  const { align, className }: IProps = props;
 
   return <ul className={`nav-list ${align} ${className}`}>{props.children}</ul>;
 };

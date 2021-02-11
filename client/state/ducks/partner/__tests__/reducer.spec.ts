@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
+import { PartnerActionTypes } from '@/types';
 
 import { fetchPartners } from '../actions';
 import { partnerReducer, initialState } from '../reducer';
-import { PartnerActionTypes, PartnerEntity } from '../types';
 
 import partnerData from './__mockData__/partnerData';
 

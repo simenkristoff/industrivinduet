@@ -1,6 +1,5 @@
 import { action } from 'typesafe-actions';
-
-import { MemberActionTypes, MemberEntity } from './types';
+import { MemberActionTypes, MemberEntity } from '@/types';
 
 /**
  * @desc Fetch all Members.

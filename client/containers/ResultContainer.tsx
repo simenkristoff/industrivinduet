@@ -1,14 +1,9 @@
 import React, { useCallback } from 'react';
-import { Entity } from '@/types';
-import { ResultItemInterface } from '@/components/ResultManager/interface';
-import { ResultManager } from '@/components/ResultManager';
-import {
-  filterArray,
-  FilterTypeInterface,
-  initializeFilters,
-  SearchFilterType,
-} from '@/utils/filters';
 import { FormInstance } from 'antd/lib/form';
+import { Entity, ResultItemInterface, FilterTypeInterface, SearchFilterType } from '@/types';
+
+import { ResultManager } from '@/components/ResultManager';
+import { initializeFilters, filterArray } from '@/utils';
 
 interface IProps<T extends Entity> {
   title: string;

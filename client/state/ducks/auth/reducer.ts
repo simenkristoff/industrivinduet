@@ -1,7 +1,7 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+import { AuthActionTypes, AuthState } from '@/types';
 
 import { getToken } from './helpers';
-import { AuthActionTypes, AuthState } from './types';
 
 const currentUser = getToken();
 

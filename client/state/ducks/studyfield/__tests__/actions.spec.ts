@@ -1,4 +1,5 @@
 import { action } from 'typesafe-actions';
+import { StudyFieldActionTypes, StudyFieldEntity } from '@/types';
 
 import {
   createStudyField,
@@ -7,7 +8,6 @@ import {
   setStudyField,
   updateStudyField,
 } from '../actions';
-import { StudyFieldActionTypes, StudyFieldEntity } from '../types';
 
 import studyfieldData from './__mockData__/studyfieldData';
 

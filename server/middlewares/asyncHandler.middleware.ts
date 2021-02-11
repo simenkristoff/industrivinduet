@@ -1,13 +1,9 @@
-import { Request, Response, NextFunction, RequestHandler } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
-import { AsyncRequestHandler } from '../types';
-
-// export default (handler: AsyncRequestHandler): RequestHandler => {
-//   return (req, res, next) => {
-//     return handler(req, res, next).catch(next);
-//   };
-// };
-
+/**
+ * Wraps an asynchronous requests in a try-catch.
+ * @param fn request function
+ */
 const asyncHandler = (fn: any) => {
   return (req: Request, res: Response, next: NextFunction) => {
     fn(req, res, next).catch(next);

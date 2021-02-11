@@ -1,8 +1,8 @@
 import React from 'react';
 import { Upload, Button } from 'antd';
-import { ArrowLeftOutlined, FolderAddOutlined, UploadOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, UploadOutlined } from '@ant-design/icons';
+import { MediaHeaderInterface } from '@/types';
 
-import { MediaHeaderInterface } from './interface';
 import { NewFolder } from './NewFolder';
 
 export const MediaHeader: React.FC<MediaHeaderInterface> = ({

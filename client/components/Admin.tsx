@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+
+import { AdminContainer } from '@/containers/AdminContainer';
 import { MediaContainer } from '@/containers/MediaContainer';
 import { OptionContainer } from '@/containers/OptionContainer';
 import {
@@ -13,7 +15,6 @@ import {
   EventContainer,
   JobContainer,
 } from '@/containers/crud';
-import { AdminContainer } from '@/containers/AdminContainer';
 
 export const Admin: React.FC = () => {
   return (

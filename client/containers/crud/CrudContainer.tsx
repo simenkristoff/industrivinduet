@@ -1,16 +1,19 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
 import { ColumnsType } from 'antd/lib/table';
-import { Entity, IApplicationState } from '@/state/interface';
-import { CrudInterface, DataListInterface } from '@/types';
 import { Button, Form, Space } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { DataHeader, DataList, DataModal } from '@/components/DataManager';
-import { UserPermissions } from '@/state/ducks/user/types';
 import { useSelector } from 'react-redux';
+import {
+  Entity,
+  IApplicationState,
+  CrudInterface,
+  DataListInterface,
+  UserPermissions,
+} from '@/types';
+
+import { DataHeader, DataList, DataModal } from '@/components/DataManager';
 
 export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element => {
-  const history = useHistory();
   const permission: UserPermissions | null = useSelector(
     ({ auth }: IApplicationState) => auth.permissions,
   );

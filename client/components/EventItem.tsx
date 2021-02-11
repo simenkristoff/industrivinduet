@@ -1,20 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { Row, Col, Descriptions, Image } from 'antd';
+import { Row, Col, Descriptions } from 'antd';
 import { CalendarOutlined, ClockCircleOutlined, EnvironmentOutlined } from '@ant-design/icons';
-import { EventEntity } from '@/state/ducks/event/types';
-
-import { ResultItemInterface } from './ResultManager/interface';
-
-const imageCol = {
-  md: {
-    span: 4,
-  },
-  xl: {
-    span: 4,
-  },
-};
+import { ResultItemInterface, EventEntity } from '@/types';
 
 interface IProps extends ResultItemInterface<EventEntity> {
   displayContent?: boolean;
@@ -33,22 +22,23 @@ export const EventItem: React.FC<IProps> = ({ data, className, displayContent }:
         <Col className='description-wrapper' flex='auto'>
           <Descriptions
             className='event-description'
+            layout='horizontal'
             title={title}
             colon={false}
             extra={displayContent && <span className='type'>{type}</span>}
           >
-            {displayContent && (
-              <div className='content'>
-                <Descriptions.Item label={<CalendarOutlined />}>
-                  {moment(date).format('ll')}
-                </Descriptions.Item>
-                <Descriptions.Item label={<ClockCircleOutlined />}>
-                  {moment(starttime).format('HH:mm')}
-                  {endtime && moment(endtime).format('-HH:mm')}
-                </Descriptions.Item>
-                <Descriptions.Item label={<EnvironmentOutlined />}>{place}</Descriptions.Item>
-              </div>
-            )}
+            {displayContent && [
+              <Descriptions.Item label={<CalendarOutlined />} key='date'>
+                {moment(date).format('ll')}
+              </Descriptions.Item>,
+              <Descriptions.Item label={<ClockCircleOutlined />} key='time'>
+                {moment(starttime).format('HH:mm')}
+                {endtime && moment(endtime).format('-HH:mm')}
+              </Descriptions.Item>,
+              <Descriptions.Item label={<EnvironmentOutlined />} key='location'>
+                {place}
+              </Descriptions.Item>,
+            ]}
           </Descriptions>
         </Col>
       </Row>

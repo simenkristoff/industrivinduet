@@ -1,4 +1,4 @@
-import { RoleEntity } from '../../types';
+import { RoleEntity } from '@/types';
 
 const rolesData: RoleEntity[] = [
   {

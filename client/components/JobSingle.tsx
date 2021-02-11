@@ -1,12 +1,10 @@
 import React from 'react';
 import { Row, Col, Button, Descriptions } from 'antd';
-import { JobEntity } from '@/state/ducks/job/types';
-import banner from '@resources/ntnu_banner.jpeg';
 import moment from 'moment';
-import { MemberEntity } from '@/state/ducks/member/types';
+import { JobEntity } from '@/types';
 
-import Container from './Container';
-import { MemberCard } from './MemberCard';
+import { Container } from '@/components/Container';
+import banner from '@resources/ntnu_banner.jpeg';
 
 interface IProps {
   data: JobEntity;
@@ -48,7 +46,7 @@ export const JobSingle: React.FC<IProps> = ({ data }: IProps) => {
       </Row>
       <Row className='info-section'>
         <Col span={24}>
-          <Descriptions column={{ xs: 1, sm: 1, md: 2, lg: 4 }} layout='horizontal'>
+          <Descriptions layout='horizontal'>
             <Descriptions.Item label='Søknadsfrist'>
               {moment(deadline).format('lll')}
             </Descriptions.Item>

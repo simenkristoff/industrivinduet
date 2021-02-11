@@ -1,11 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 import { Layout, Form, Checkbox, Select, Space, Button } from 'antd';
-import { Entity } from '@/types';
-import { FilterDependency } from '@/utils/filters';
+import { Entity, FilterDependency, ResultFilterInterface } from '@/types';
 import { FilterOutlined } from '@ant-design/icons';
-
-import { ResultFilterInterface } from './interface';
 
 const { Sider } = Layout;
 

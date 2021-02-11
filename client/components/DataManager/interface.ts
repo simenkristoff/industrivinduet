@@ -1,9 +1,9 @@
-import { UserPermissions } from '@/state/ducks/user/types';
-import { BaseState, Entity } from '@/state/interface';
 import { FormInstance } from 'antd/lib/form';
 import { ExpandableConfig, ColumnsType } from 'antd/lib/table/interface';
 
-interface AuthInterface {
+import { BaseState, Entity } from '@/types';
+
+export interface AuthInterface {
   hasPermission: boolean;
 }
 

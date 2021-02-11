@@ -1,24 +1,32 @@
 import { Request, Response, NextFunction, Router } from 'express';
 import { CallbackError } from 'mongoose';
 
+import { ControllerInterface, Event } from '../types';
 import { asyncHandler, passport } from '../middlewares';
 import { HttpException, NotFoundException } from '../exceptions';
-import { ControllerInterface } from '../types';
-import { EventModel, Event } from '../models';
+import { EventModel } from '../models';
 
 /**
  * Class representing the API-controller for Events.
- * @class
- * @namespace EventController
+ * @class EventController
+ * @implements {ControllerInterface}
  */
 class EventController implements ControllerInterface {
   public path = '/events';
   public router = Router();
 
+  /**
+   * Intializes Controller
+   * @constructor
+   */
   constructor() {
     this.initializeRoutes();
   }
 
+  /**
+   * Initializes API routes
+   * @private
+   */
   private initializeRoutes() {
     this.router.get(this.path, asyncHandler(this.getAll));
     this.router.get(`${this.path}/active`, asyncHandler(this.getActive));
@@ -45,6 +53,7 @@ class EventController implements ControllerInterface {
    * respond with a '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok' and return the documents.
    *
+   * @private
    * @name GET/api/events
    * @memberof EventController
    * @function @async
@@ -69,6 +78,7 @@ class EventController implements ControllerInterface {
    * respond with a '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok' and return the documents.
    *
+   * @private
    * @name GET/api/events/active
    * @memberof EventController
    * @function @async
@@ -95,6 +105,7 @@ class EventController implements ControllerInterface {
    * will respond with a '404 Not Found' response if the Event could not be found.
    * Else, respond with '200 Ok' and return the document.
    *
+   * @private
    * @name GET/api/events/:id
    * @memberof EventController
    * @function @async
@@ -117,6 +128,7 @@ class EventController implements ControllerInterface {
    * respond with a '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok' and return the new document.
    *
+   * @private
    * @name POST/api/events
    * @memberof EventController
    * @function @async
@@ -141,6 +153,7 @@ class EventController implements ControllerInterface {
    * will respond with a '404 Not Found' response if the Event could not be found.
    * Else, respond with '200 Ok' and return the new document.
    *
+   * @private
    * @name PUT/api/events/:id
    * @memberof EventController
    * @function @async
@@ -167,6 +180,7 @@ class EventController implements ControllerInterface {
    * or '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok'.
    *
+   * @private
    * @name DELETE/api/events
    * @memberof EventController
    * @function @async

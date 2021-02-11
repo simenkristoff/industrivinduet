@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
+import { JobActionTypes, JobEntity } from '@/types';
 
 import { createJob, deleteJob, fetchJobs, setJob, updateJob } from '../actions';
-import { JobActionTypes, JobEntity } from '../types';
 
 import jobData from './__mockData__/jobData';
 

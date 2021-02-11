@@ -1,6 +1,10 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IApplicationState } from '@/types';
+import { Image } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
+
+import { PartnerForm } from '@/components/forms';
 import { PartnerEntity, PartnerState } from '@/state/ducks/partner/types';
 import {
   createPartner,
@@ -9,9 +13,6 @@ import {
   setPartner,
   updatePartner,
 } from '@/state/ducks/partner/actions';
-import { Image } from 'antd';
-import { ColumnsType } from 'antd/lib/table';
-import { PartnerForm } from '@/components/forms';
 
 import { CrudContainer } from './CrudContainer';
 

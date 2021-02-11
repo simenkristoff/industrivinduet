@@ -1,10 +1,7 @@
-import apiCaller from '@/state/utils/apiCaller';
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import { IMetaAction, IPayloadMetaAction, OptionActionTypes, OptionEntity } from '@/types';
 
-import { IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
-
-import { fetchOptions } from './actions';
-import { OptionActionTypes, OptionEntity } from './types';
+import apiCaller from '@/state/utils/apiCaller';
 
 /**
  * @desc Business logic of the effects.

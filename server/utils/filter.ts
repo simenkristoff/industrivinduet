@@ -2,12 +2,15 @@
  * Namespace Filter holds functions for manipulation fields of input.
  *
  * @namespace Filter
+ *
+ * @function capitalize
+ * @function lowerCase
+ * @function titleCase
  */
 namespace Filter {
   /**
    * Transforms the first letter in a text to uppercase.
    *
-   * @function
    * @memberof Filter
    *
    * @param {string} text the text to transform
@@ -20,7 +23,6 @@ namespace Filter {
   /**
    * Transforms all letters to lowercase
    *
-   * @function
    * @memberof Filter
    *
    * @param {string} text the text to transform
@@ -33,7 +35,6 @@ namespace Filter {
   /**
    * Transforms all the first letter of each word to uppercase
    *
-   * @function
    * @memberof Filter
    *
    * @param {string} text the text to transform

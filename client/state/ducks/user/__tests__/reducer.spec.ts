@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
+import { UserActionTypes } from '@/types';
 
 import { fetchUsers } from '../actions';
 import { userReducer, initialState } from '../reducer';
-import { UserActionTypes } from '../types';
 
 import userData from './__mockData__/userData';
 

@@ -9,19 +9,29 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import { passport, logger, errorMiddleware } from './middlewares';
-import { ControllerInterface } from './types';
-import { Logger } from './utils';
 import { OptionModel, UserModel, UserPermissions } from './models';
+import { Logger } from './utils';
+import { ControllerInterface } from './types';
+import { passport, logger, errorMiddleware } from './middlewares';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const BCRYPT_SALT_ROUNDS = process.env.BCRYPT_SALT_ROUNDS as string;
 
+/**
+ * Class App. The wrapper class for the backend-service. The servers logic and configuration is
+ * initialized in this class.
+ * @class App
+ */
 class App {
   public app: express.Application;
   private isProduction = process.env.NODE_ENV === 'production';
 
+  /**
+   * Creates the App.
+   * @constructor
+   * @param {ControllerInterface[]} controllers array of the route controllers to be initialized
+   */
   constructor(controllers: ControllerInterface[]) {
     this.app = express();
     this.connect();
@@ -33,16 +43,29 @@ class App {
     this.initializeOptions();
   }
 
+  /**
+   * Listen to the server instance.
+   * @public
+   */
   public listen(): void {
     this.app.listen(process.env.SERVER_PORT, () => {
       Logger.debug(`Server running on port ${process.env.SERVER_PORT}`);
     });
   }
 
+  /**
+   * Returns the server
+   * @public
+   * @returns {express.Application} the server application
+   */
   public getServer(): express.Application {
     return this.app;
   }
 
+  /**
+   * Initialize static routes for media-files
+   * @private
+   */
   private initializeMediaStatics() {
     this.app.use(
       '/media',
@@ -51,6 +74,10 @@ class App {
     this.app.use('/resources', express.static('./resources'));
   }
 
+  /**
+   * Initialize middlewares
+   * @private
+   */
   private initializeMiddlewares() {
     this.app.set('trust proxy', 1);
     this.app.use(cors({ origin: this.isProduction ? false : '*' }));
@@ -68,6 +95,10 @@ class App {
     }
   }
 
+  /**
+   * Initialize error-handler
+   * @private
+   */
   private initializeErrorHandling() {
     this.app.use(errorMiddleware);
   }
@@ -82,6 +113,10 @@ class App {
     });
   }
 
+  /**
+   * Initialize Root User in the MongoDB database. Ensures that there's always an User with admin rights.
+   * @private
+   */
   private initializeRoot() {
     UserModel.estimatedDocumentCount({}, (err, count) => {
       if (!err && count === 0) {
@@ -103,6 +138,10 @@ class App {
     });
   }
 
+  /**
+   * Initialize Options in MongoDB database.
+   * @private
+   */
   private initializeOptions() {
     OptionModel.estimatedDocumentCount({}, (err, count) => {
       if (!err && count === 0) {
@@ -117,6 +156,11 @@ class App {
     });
   }
 
+  /**
+   * Connect to the MongoDB database.
+   * @private
+   * @async
+   */
   private async connect() {
     const {
       MONGO_DB_HOST,

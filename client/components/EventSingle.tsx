@@ -1,12 +1,11 @@
 import React from 'react';
 import { Row, Col, Button, Descriptions } from 'antd';
-import { EventEntity } from '@/state/ducks/event/types';
-import banner from '@resources/ntnu_banner.jpeg';
 import moment from 'moment';
-import { MemberEntity } from '@/state/ducks/member/types';
+import { EventEntity, MemberEntity } from '@/types';
 
-import Container from './Container';
-import { MemberCard } from './MemberCard';
+import { Container } from '@/components/Container';
+import { MemberCard } from '@/components/MemberCard';
+import banner from '@resources/ntnu_banner.jpeg';
 
 interface IProps {
   data: EventEntity;

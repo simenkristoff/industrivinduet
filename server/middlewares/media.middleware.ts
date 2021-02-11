@@ -2,7 +2,7 @@ import util from 'util';
 import path from 'path';
 import fs from 'fs';
 
-import _, { range } from 'lodash';
+import _ from 'lodash';
 import multer from 'multer';
 
 import { Logger } from '../utils';
@@ -10,12 +10,16 @@ import { Logger } from '../utils';
 const MAX_UPLOAD_SIZE = (process.env.MAX_UPLOAD_SIZE as unknown) as number;
 const UPLOAD_DIR = process.env.UPLOAD_DIR;
 
+/**
+ * Setup Multer Disk Storage for media files
+ */
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const dir = './server/resources/static/assets' + UPLOAD_DIR;
     const path = req.query.path;
     var dest = path ? `${dir}/${path}` : dir;
     var stat = null;
+    // If destination consists of non-existent sub-directories, create new ones.
     try {
       stat = fs.statSync(dest);
     } catch (err) {
@@ -41,6 +45,9 @@ const storage = multer.diskStorage({
   },
 });
 
+/**
+ * Upload file to Disk Storage
+ */
 const uploadFile = multer({
   storage: storage,
   limits: { fileSize: MAX_UPLOAD_SIZE },

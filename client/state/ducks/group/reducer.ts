@@ -1,8 +1,7 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+import { GroupActionTypes, GroupEntity, GroupState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
-
-import { GroupActionTypes, GroupEntity, GroupState } from './types';
 
 export const initialState: GroupState = {
   byId: {},

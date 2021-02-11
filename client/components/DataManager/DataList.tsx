@@ -1,8 +1,6 @@
-import { Entity } from '@/state/interface';
 import Table from 'antd/lib/table';
 import React from 'react';
-
-import { DataListInterface } from './interface';
+import { Entity, DataListInterface } from '@/types';
 
 export const DataList = <T extends Entity>({
   state,

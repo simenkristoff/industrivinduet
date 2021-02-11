@@ -1,4 +1,4 @@
-import { JobEntity } from '../../types';
+import { JobEntity } from '@/types';
 
 const jobsData: JobEntity[] = [
   {

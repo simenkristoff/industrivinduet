@@ -7,7 +7,13 @@ interface IProps {
   ghost?: boolean;
   children?: JSX.Element | JSX.Element[];
 }
-const Container: React.FC<IProps> = ({ className, style, size, ghost, ...props }: IProps) => {
+export const Container: React.FC<IProps> = ({
+  className,
+  style,
+  size,
+  ghost,
+  ...props
+}: IProps) => {
   const classes: string[] = [];
   classes.push(size === 'full' ? 'container-full' : 'container');
   if (ghost) classes.push('is-ghost');
@@ -28,5 +34,3 @@ Container.defaultProps = {
   size: 'default',
   ghost: true,
 };
-
-export default Container;

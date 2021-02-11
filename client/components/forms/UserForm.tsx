@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Radio } from 'antd';
-import { UserEntity } from '@/state/ducks/user/types';
-import { DataFormInterface } from '@/types';
+import { DataFormInterface, UserEntity } from '@/types';
+
 import { FormMessage, userTypes } from '@/constants';
 
 export const UserForm: React.FC<DataFormInterface<UserEntity>> = ({

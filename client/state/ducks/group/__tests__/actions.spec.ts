@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
+import { GroupActionTypes, GroupEntity } from '@/types';
 
 import { createGroup, deleteGroup, fetchGroups, setGroup, updateGroup } from '../actions';
-import { GroupActionTypes, GroupEntity } from '../types';
 
 import groupData from './__mockData__/groupData';
 

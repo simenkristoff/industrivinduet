@@ -1,8 +1,7 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+import { RoleActionTypes, RoleEntity, RoleState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
-
-import { RoleActionTypes, RoleEntity, RoleState } from './types';
 
 export const initialState: RoleState = {
   byId: {},

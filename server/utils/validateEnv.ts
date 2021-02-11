@@ -1,5 +1,8 @@
-import { cleanEnv, port, str, num, url, host } from 'envalid';
+import { cleanEnv, port, str, num, host } from 'envalid';
 
+/**
+ * Validate environment-variables
+ */
 function validateEnv(): void {
   cleanEnv(process.env, {
     SERVER_PORT: port(),

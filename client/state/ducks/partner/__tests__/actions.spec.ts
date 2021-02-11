@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
+import { PartnerActionTypes, PartnerEntity } from '@/types';
 
 import { createPartner, deletePartner, fetchPartners, setPartner, updatePartner } from '../actions';
-import { PartnerActionTypes, PartnerEntity } from '../types';
 
 import partnerData from './__mockData__/partnerData';
 

@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
+import { EventActionTypes } from '@/types';
 
 import { fetchEvents } from '../actions';
 import { eventReducer, initialState } from '../reducer';
-import { EventActionTypes } from '../types';
 
 import eventData from './__mockData__/eventData';
 

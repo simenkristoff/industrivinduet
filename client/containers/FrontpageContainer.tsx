@@ -1,13 +1,17 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { IApplicationState } from '@/types';
-import { EventOptions, OptionState } from '@/state/ducks/option/types';
+import {
+  IApplicationState,
+  EventOptions,
+  OptionState,
+  EventEntity,
+  JobEntity,
+  PartnerEntity,
+} from '@/types';
+
 import { fetchActiveEvents } from '@/state/ducks/event/actions';
 import { fetchActiveJobs } from '@/state/ducks/job/actions';
 import { fetchPartners } from '@/state/ducks/partner/actions';
-import { EventEntity } from '@/state/ducks/event/types';
-import { JobEntity } from '@/state/ducks/job/types';
-import { PartnerEntity } from '@/state/ducks/partner/types';
 import { Frontpage } from '@/components/Frontpage';
 
 export const FrontpageContainer = () => {

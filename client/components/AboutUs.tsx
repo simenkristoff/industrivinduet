@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { Tabs, Row } from 'antd';
-import { ContentEntity } from '@/state/ducks/content/types';
-import { MemberEntity } from '@/state/ducks/member/types';
-import { PartnerEntity } from '@/state/ducks/partner/types';
+import { ContentEntity, MemberEntity, PartnerEntity } from '@/types';
 
-import { MemberCard } from './MemberCard';
-import { PartnerCard } from './PartnerCard';
+import { MemberCard } from '@/components/MemberCard';
+import { PartnerCard } from '@/components/PartnerCard';
 
 const { TabPane } = Tabs;
 

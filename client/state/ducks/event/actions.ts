@@ -1,7 +1,6 @@
 import { ObjectId } from '@/state/interface';
 import { action } from 'typesafe-actions';
-
-import { EventActionTypes, EventEntity } from './types';
+import { EventActionTypes, EventEntity } from '@/types';
 
 /**
  * @desc Fetch all Events.

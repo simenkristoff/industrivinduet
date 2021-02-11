@@ -4,7 +4,6 @@ import { Filter } from '../utils';
 
 /**
  * The base Content.
- * @interface
  */
 export interface ContentBase {
   title: string;
@@ -16,12 +15,14 @@ export interface ContentBase {
 
 /**
  * The interface of a Content document.
- * @interface
+ * @extends ContentBase
+ * @extends Document
  */
 export interface Content extends ContentBase, Document {}
 
 /**
  * The Content Schema
+ * @interface Schema
  */
 export const ContentSchema: Schema<Content, Model<Content>> = new Schema(
   {
@@ -40,4 +41,8 @@ ContentSchema.pre<Content>('save', function (next) {
   next();
 });
 
+/**
+ * The Content Model
+ * @interface Model
+ */
 export const ContentModel: Model<Content> = model<Content>('Content', ContentSchema);

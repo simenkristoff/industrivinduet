@@ -1,6 +1,6 @@
-import { Entity } from '@/types';
 import _ from 'lodash';
 import { Action, PayloadAction, TypeConstant } from 'typesafe-actions';
+import { Entity } from '@/types';
 
 export { default as apiCaller } from './apiCaller';
 export { generateAsyncAction as generateAsyncAction } from './generateAsyncAction';

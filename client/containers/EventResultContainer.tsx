@@ -1,20 +1,27 @@
 import React, { useEffect } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/state/interface';
+import {
+  IApplicationState,
+  EventEntity,
+  StudyFieldEntity,
+  FilterTypeInterface,
+  SearchFilterType,
+  EventOptions,
+} from '@/types';
+
+import { grades } from '@/constants';
+import { EventCard } from '@/components/EventCard';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
 import { fetchActiveEvents } from '@/state/ducks/event/actions';
-import { EventEntity } from '@/state/ducks/event/types';
-import { EventCard } from '@/components/EventCard';
-import { FilterTypeInterface, SearchFilterType } from '@/utils/filters';
-import { grades } from '@/constants';
-import { StudyFieldEntity } from '@/state/ducks/studyfield/types';
 
 import { ResultContainer } from './ResultContainer';
 
 export const EventResultContainer = () => {
   const dispatch = useDispatch();
-  const types: string[] = useSelector(({ options }: IApplicationState) => options.event.eventTypes);
+  const types: string[] = useSelector(
+    ({ options }: IApplicationState) => (options.event as EventOptions).eventTypes,
+  );
   const studyfields: StudyFieldEntity[] = useSelector(
     ({ studyfield }: IApplicationState) => studyfield.data,
   );

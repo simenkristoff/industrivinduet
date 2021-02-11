@@ -47,9 +47,6 @@ let webpackConfig = {
         use: [
           {
             loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-            },
           },
         ],
       },

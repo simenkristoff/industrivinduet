@@ -3,6 +3,10 @@ import Agenda from 'agenda';
 import { JobModel } from '../../models';
 import { Logger } from '../../utils';
 
+/**
+ * Task. Sets outdated jobs to inactive.
+ * @module archiveJobs
+ */
 module.exports = (agenda: Agenda) => {
   agenda.define('archive jobs', { priority: 'high' }, async (job, done) => {
     await JobModel.find((err, docs) => {

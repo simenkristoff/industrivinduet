@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Image, Tooltip } from 'antd';
-import { PartnerEntity } from '@/state/ducks/partner/types';
 import { ColProps } from 'antd/lib/col';
+import { PartnerEntity } from '@/types';
 
 interface IProps {
   data: PartnerEntity;

@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
+import { JobActionTypes } from '@/types';
 
 import { fetchJobs } from '../actions';
 import { jobReducer, initialState } from '../reducer';
-import { JobActionTypes } from '../types';
 
 import jobData from './__mockData__/jobData';
 

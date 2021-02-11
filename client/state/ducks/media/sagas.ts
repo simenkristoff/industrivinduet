@@ -1,10 +1,13 @@
-import apiCaller, { fileApiCaller } from '@/state/utils/apiCaller';
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
-import { MediaFolderType } from '@/components/MediaLibrary/interface';
+import {
+  IMetaAction,
+  IPayloadMetaAction,
+  MediaActionTypes,
+  MediaType,
+  MediaFolderType,
+} from '@/types';
 
-import { IMetaAction, IPayloadMetaAction } from '../../interface';
-
-import { MediaActionTypes, MediaType } from './types';
+import apiCaller, { fileApiCaller } from '@/state/utils/apiCaller';
 
 /**
  * @desc Business logic of effect.

@@ -1,4 +1,4 @@
-import { UserEntity, UserPermissions } from '../../types';
+import { UserEntity, UserPermissions } from '@/types';
 
 const userData: UserEntity[] = [
   {

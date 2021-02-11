@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/types';
-import { MemberEntity, MemberState } from '@/state/ducks/member/types';
+import { ColumnsType } from 'antd/lib/table';
+import { IApplicationState, MemberEntity, MemberState, GroupEntity, RoleEntity } from '@/types';
+
+import { MemberForm } from '@/components/forms';
 import {
   createMember,
   deleteMember,
@@ -9,11 +11,7 @@ import {
   setMember,
   updateMember,
 } from '@/state/ducks/member/actions';
-import { ColumnsType } from 'antd/lib/table';
-import { MemberForm } from '@/components/forms';
 import { fetchRoles } from '@/state/ducks/role/actions';
-import { GroupEntity } from '@/state/ducks/group/types';
-import { RoleEntity } from '@/state/ducks/role/types';
 
 import { CrudContainer } from './CrudContainer';
 

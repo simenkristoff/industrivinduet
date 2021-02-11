@@ -1,9 +1,8 @@
 import React from 'react';
 import { Layout } from 'antd';
-import { Entity } from '@/types';
+import { Entity, ResultManagerInterface } from '@/types';
 
 import { ResultContent } from './ResultContent';
-import { ResultManagerInterface } from './interface';
 import { ResultFilter } from './ResultFilter';
 import { ResultHeader } from './ResultHeader';
 

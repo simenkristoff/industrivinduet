@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react';
 import { Row, Col, Spin, Button } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
+import {
+  EventOptions,
+  GeneralOptions,
+  JobOptions,
+  OptionState,
+  EventEntity,
+  JobEntity,
+  PartnerEntity,
+} from '@/types';
 
-import { EventOptions, GeneralOptions, JobOptions, OptionState } from '@/state/ducks/option/types';
-import { EventEntity } from '@/state/ducks/event/types';
-import { JobEntity } from '@/state/ducks/job/types';
-import { PartnerEntity } from '@/state/ducks/partner/types';
-import smorekoppen from '@resources/smorekoppen_banner.jpg';
+import { EventCard } from '@/components/EventCard';
+import { JobItem } from '@/components/JobItem';
+import { PartnerCard } from '@/components/PartnerCard';
+import { GoogleMapsContainer } from '@/containers/GoogleMapsContainer';
 import iv_icon from '@resources/iv_icon.png';
-
-import { EventCard } from './EventCard';
-import { JobItem } from './JobItem';
-import { PartnerCard } from './PartnerCard';
-import { Map } from './Map';
+import smorekoppen from '@resources/smorekoppen_banner.jpg';
 
 interface IProps {
   options: OptionState;
@@ -92,7 +96,7 @@ export const Frontpage: React.FC<IProps> = ({
         <Col span={24}>
           <section className='contact'>
             <div className='map-wrapper'>
-              <Map />
+              <GoogleMapsContainer />
             </div>
             <div className='contact-overlay text-center'>
               <div className='section-main'>
@@ -104,7 +108,7 @@ export const Frontpage: React.FC<IProps> = ({
                 ]}
 
                 <Button size='large' ghost icon={<MailOutlined />} href='/kontakt'>
-                  Konakt oss
+                  Kontakt oss
                 </Button>
               </div>
             </div>

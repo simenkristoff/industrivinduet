@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
+import { EventActionTypes, EventEntity } from '@/types';
 
 import { createEvent, deleteEvent, fetchEvents, setEvent, updateEvent } from '../actions';
-import { EventActionTypes, EventEntity } from '../types';
 
 import eventData from './__mockData__/eventData';
 

@@ -1,11 +1,10 @@
 import React from 'react';
 import { LoginOutlined, LogoutOutlined, UserAddOutlined } from '@ant-design/icons';
+import { MemberEntity } from '@/types';
 
-import Logo from '@resources/logo.png';
+import { AdminToolbar } from '@/components/AdminToolbar';
 import Nav from '@/components/Navigation';
-import { MemberEntity } from '@/state/ducks/member/types';
-
-import { AdminToolbar } from './AdminToolbar';
+import Logo from '@resources/logo.png';
 
 interface IProps {
   isAdminNamespace: boolean;

@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { Types, Document } from 'mongoose';
+
+export * from './models/interface';
 
 /* Async Request*/
 export type AsyncRequestHandler = (req: Request, res: Response, next: NextFunction) => Promise<any>;
@@ -37,4 +38,12 @@ export interface MediaTypeInterface {
 export interface ControllerInterface {
   path?: string;
   router: Router;
+}
+
+/**
+ * Interface describing a info message from Passport
+ * @interface
+ */
+export interface InfoMessage {
+  message: string;
 }

@@ -1,8 +1,7 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+import { MemberActionTypes, MemberEntity, MemberState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
-
-import { MemberActionTypes, MemberEntity, MemberState } from './types';
 
 export const initialState: MemberState = {
   byId: {},

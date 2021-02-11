@@ -1,11 +1,12 @@
 import React from 'react';
 import { Layout } from 'antd';
+
 import { WithAuth } from '@/hoc';
 import { HeaderContainer } from '@/containers/HeaderContainer';
 import { BreadcrumbContainer } from '@/containers/BreadcrumbContainer';
 import { AdminSidebar } from '@/components/AdminSidebar';
 
-const AdminLayout: React.FC = (props) => {
+export const AdminLayout: React.FC = (props) => {
   return (
     <WithAuth>
       <Layout>
@@ -23,5 +24,3 @@ const AdminLayout: React.FC = (props) => {
     </WithAuth>
   );
 };
-
-export default AdminLayout;

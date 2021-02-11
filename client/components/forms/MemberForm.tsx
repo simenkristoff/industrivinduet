@@ -1,12 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Form, Input, Select } from 'antd';
-import { MemberEntity } from '@/state/ducks/member/types';
-import { DataFormInterface, IApplicationState } from '@/types';
-import { uniqueValue } from '@/utils/validation';
-import { FormMessage } from '@/constants';
+import { DataFormInterface, IApplicationState, MemberEntity } from '@/types';
 
-import { MediaPicker } from '../MediaPicker';
+import { FormMessage } from '@/constants';
+import { MediaPicker } from '@/components/MediaPicker';
+import { uniqueValue } from '@/utils';
 
 export const MemberForm: React.FC<DataFormInterface<MemberEntity>> = ({
   form,

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row, Col, Card } from 'antd';
-import { LoginCredentials } from '@/state/ducks/auth/types';
-import { Error } from '@/components/Error';
+import { LoginCredentials } from '@/types';
 
-import { LoginForm } from './forms';
+import { Error } from '@/components/Error';
+import { LoginForm } from '@/components/forms';
 
 export interface IProps {
   login: (credentials: LoginCredentials) => void;

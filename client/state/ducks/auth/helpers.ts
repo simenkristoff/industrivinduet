@@ -1,12 +1,9 @@
 import jwtDecode from 'jwt-decode';
 import cookie from 'js-cookie';
 import moment from 'moment';
+import { AuthState, DecodedToken, EncodedToken, Token, UserPermissions } from '@/types';
 
-import { UserPermissions } from '../user/types';
-
-import { AuthState, DecodedToken, EncodedToken, Token } from './types';
-
-const STORAGE_KEY = 'iv.auth';
+const STORAGE_KEY = process.env.STORAGE_KEY as string;
 
 export function saveToken(token: EncodedToken) {
   const decoded: DecodedToken = jwtDecode(token);

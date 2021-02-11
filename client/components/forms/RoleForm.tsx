@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Form, Input, Select } from 'antd';
-import { RoleEntity } from '@/state/ducks/role/types';
-import { DataFormInterface, IApplicationState } from '@/types';
-import { uniqueValue } from '@/utils/validation';
+import { DataFormInterface, IApplicationState, RoleEntity } from '@/types';
+
 import { FormMessage, roleTypes } from '@/constants';
+import { uniqueValue } from '@/utils';
 
 export const RoleForm: React.FC<DataFormInterface<RoleEntity>> = ({
   form,

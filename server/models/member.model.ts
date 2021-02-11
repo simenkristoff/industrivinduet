@@ -1,16 +1,12 @@
 import { Model, model, Schema, Document, Types } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
 
+import { Event, Role, User } from '../types';
 import { Cascader, Filter } from '../utils';
-
-import { Event, EventModel } from './event.model';
-import { Job, JobModel } from './job.model';
-import { Role } from './role.model';
-import { User, UserModel } from './user.model';
+import { EventModel, UserModel } from '../models';
 
 /**
  * The base Member.
- * @interface
  */
 export interface MemberBase {
   name: {
@@ -25,12 +21,14 @@ export interface MemberBase {
 
 /**
  * The interface of a Member document.
- * @interface
+ * @extends MemberBase
+ * @extends Document
  */
 export interface Member extends MemberBase, Document {}
 
 /**
  * The Member Schema
+ * @interface Schema
  */
 export const MemberSchema: Schema<Member, Model<Member>> = new Schema(
   {
@@ -76,4 +74,8 @@ MemberSchema.pre<Member>('save', function (next) {
 Cascader.hardCascadeDocument<Member, User>(MemberSchema, UserModel, 'member');
 Cascader.softCascadeDocument<Member, Event>(MemberSchema, EventModel, 'member');
 
+/**
+ * The Member Model
+ * @interface Model
+ */
 export const MemberModel: Model<Member> = model<Member>('Member', MemberSchema);

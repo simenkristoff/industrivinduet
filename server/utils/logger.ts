@@ -9,9 +9,11 @@ if (!fs.existsSync(logDirectory)) {
   fs.mkdirSync(logDirectory);
 }
 
-//const path = process.env.SERVER_LOGS_PATH as string;
-
-const Logger = winston.createLogger({
+/**
+ * Setup new Logger
+ * @type {winston.Logger}
+ */
+const Logger: winston.Logger = winston.createLogger({
   transports: [
     new winston.transports.File({
       level: 'info',
@@ -37,20 +39,5 @@ const Logger = winston.createLogger({
   ],
   exitOnError: false,
 });
-
-// const Logger = createLogger({
-//   format: format.combine(
-//     format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
-//     format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`),
-//   ),
-//   transports: [
-//     new transports.File({
-//       filename: `${path}/all-logs.log`,
-//       maxsize: 5242880,
-//       maxFiles: 5,
-//     }),
-//     new transports.Console(),
-//   ],
-// });
 
 export default Logger;

@@ -1,11 +1,12 @@
-import apiCaller from '@/state/utils/apiCaller';
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
+import { JobActionTypes } from '@/types';
+
+import apiCaller from '@/state/utils/apiCaller';
 
 import { createJob, deleteJob, fetchJobs, setJob, updateJob } from '../actions';
 import jobSaga from '../sagas';
-import { JobActionTypes } from '../types';
 
 import jobData from './__mockData__/jobData';
 

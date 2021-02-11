@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/types';
-import { JobEntity, JobState } from '@/state/ducks/job/types';
-import { createJob, deleteJob, fetchJobs, setJob, updateJob } from '@/state/ducks/job/actions';
 import { Image } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
-import { JobForm } from '@/components/forms';
 import moment from 'moment';
+import { IApplicationState, JobEntity, JobState } from '@/types';
+
+import { JobForm } from '@/components/forms';
+import { createJob, deleteJob, fetchJobs, setJob, updateJob } from '@/state/ducks/job/actions';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
 import { fetchMembers } from '@/state/ducks/member/actions';
 

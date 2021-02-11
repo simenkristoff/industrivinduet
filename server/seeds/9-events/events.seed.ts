@@ -1,7 +1,10 @@
+/**
+ * Seed Event Documents to MongoDB
+ */
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
 
-import { EventBase } from '../../models';
+import { EventBase } from '../../types';
 import { Generator } from '../generator';
 
 interface EventSeed extends EventBase {

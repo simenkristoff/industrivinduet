@@ -1,37 +1,39 @@
 import { getObjectId, getObjectIds } from 'mongo-seeding';
 import { Types } from 'mongoose';
-/**
- * GENERATOR:
- * - Random generators for seeds
- *
- * Types:
- * - Name: {name: {first: String, last: String}, email: String}
- * - Company: {name: String, link: String, logo: String}
- *
- * Functions:
- * - randomBoolean: Boolean
- * - randomName: Name[]
- * - randomPhone: String
- * - randomPortrait: String
- * - randomDate: Date
- * - randomGrades: String[]
- * - randomStudyFields: ObjectId[]
- * - randomMember: ObjectId
- * - randomCompany: Company[]
- * - randomEventType: String[]
- * - randomJobType: String[]
- * - randomCampusPlace: String
- * - randomLocations: String[]
- * - generateDescription: String
- */
 
+import { StudyField, Member } from '../types';
+/**
+ * This namespace includes functions for generating random values for documents.
+ *
+ * @function randomBoolean
+ * @function randomName
+ * @function randomPhone
+ * @function randomPortrait
+ * @function randomDate
+ * @function randomGrades
+ * @function randomStudyFields
+ * @function randomMember
+ * @function randomCompany
+ * @function randomEventType
+ * @function randomJobType
+ * @function randomCampusPlace
+ * @function randomLocations
+ * @function generateDescription
+ */
 export namespace Generator {
-  /* Random boolean */
+  /**
+   * Random boolean generator
+   * @namespace Generator
+   * @returns {boolean} boolean
+   */
   export function randomBoolean(): boolean {
     return Math.random() < 0.5;
   }
 
-  /* Random Name */
+  /**
+   * Name interface
+   * @interface Name
+   */
   interface Name {
     name: {
       first: string;
@@ -50,6 +52,11 @@ export namespace Generator {
     'Nordang',
   ];
 
+  /**
+   * Random name generator
+   * @namespace Generator
+   * @returns {Name} name
+   */
   export function randomName(): Name {
     const firstName = names[Math.floor(Math.random() * names.length)];
     const lastName = lastNames[Math.floor(Math.random() * names.length)];
@@ -65,26 +72,38 @@ export namespace Generator {
     };
   }
 
-  /* Random Phone */
+  /**
+   * Random phone number generator
+   * @namespace Generator
+   * @returns {string} phone number
+   */
   export function randomPhone(): string {
     return Math.floor(Math.random() * 100000000).toString();
   }
 
-  /* Random Portrait */
   const portraits: Array<string> = [
     'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg',
     'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9ydHJhaXR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
     'https://www.adobe.com/content/dam/cc/us/en/creativecloud/photography/discover/portrait-photography/CODERED_B1_portrait_photography-P4a_438x447.jpg.img.jpg',
     'https://lh3.googleusercontent.com/proxy/pjJvQ8SJpL6KoffX92ZBg0OBt1KuXPcJ8R5SsG_vR1b1pScOuqkF2mbmTdhrEGVwJBwB3zTLfcZBX52yKjgrwGl9ti8dAvQDJ-fG8avG24UrvvOkYu0Skqz7ix2ui8M3NSSfhQSGXA2GRIMNgUdxgjivNX5TvONjf1k7PBwtd1anvZSDU17JNKjPwsFAQw',
   ];
+
+  /**
+   * Random portrait generator
+   * @namespace Generator
+   * @returns {string} image url
+   */
   export function randomPortrait(): string {
     const randomInt: number = Math.floor(Math.random() * portraits.length);
 
     return portraits[randomInt];
   }
 
-  /* Random date */
-
+  /**
+   * Random date generator
+   * @namespace Generator
+   * @returns {Date} date
+   */
   export function randomDate(): Date {
     const start: Date = new Date(2020, 1, 1, 0, 0);
     const end: Date = new Date(2022, 12, 31, 24, 59);
@@ -92,9 +111,13 @@ export namespace Generator {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
   }
 
-  /* Random Grades */
   const grades: string[] = ['1', '2', '3', '4', '5'];
 
+  /**
+   * Random grades generator
+   * @namespace Generator
+   * @returns {string[]} grades
+   */
   export function randomGrades(): Array<string> {
     const amount: number = Math.floor(Math.random() * grades.length);
     const output: Array<string> = [];
@@ -109,9 +132,13 @@ export namespace Generator {
     return output;
   }
 
-  /* Random Studyfields */
   const studyfieldIds: Array<string> = ['puma', 'eps', 'ledsys', 'indmek'];
 
+  /**
+   * Random studyfield generator
+   * @namespace Generator
+   * @returns {StudyField[]} studyfields
+   */
   export function randomStudyFields(): Types.ObjectId[] {
     const amount: number = Math.floor(Math.random() * studyfieldIds.length);
     const output: Array<string> = [];
@@ -126,20 +153,23 @@ export namespace Generator {
     return getObjectIds(output);
   }
 
-  /* Random Members */
-
+  /**
+   * Random member generator
+   * @namespace Generator
+   * @returns {Member} member
+   */
   export function randomMember(): Types.ObjectId {
     const randomInt: number = Math.floor(Math.random() * 15);
 
     return getObjectId(`member-${randomInt}`);
   }
 
-  /* Random Companies */
   interface Company {
     name: string;
     link: string;
     logo: string;
   }
+
   const companies: Company[] = [
     {
       name: 'Kongsberg',
@@ -176,29 +206,43 @@ export namespace Generator {
     },
   ];
 
+  /**
+   * Random company generator
+   * @namespace Generator
+   * @returns {Company} company
+   */
   export function randomCompany(): Company {
     const randomInt: number = Math.floor(Math.random() * companies.length);
 
     return companies[randomInt];
   }
 
-  /* Random EventType */
   const eventTypes: Array<string> = ['Bedriftspresentasjon', 'Workshop', 'Case', 'Foredrag'];
+
+  /**
+   * Random event type generator
+   * @namespace Generator
+   * @returns {string} event type
+   */
   export function randomEventType(): string {
     const randomInt: number = Math.floor(Math.random() * eventTypes.length);
 
     return eventTypes[randomInt];
   }
 
-  /* Random JobType */
   const jobTypes: Array<string> = ['Heltid', 'Deltid', 'Sommerjobb'];
+
+  /**
+   * Random job type generator
+   * @namespace Generator
+   * @returns {string} job type
+   */
   export function randomJobType(): string {
     const randomInt: number = Math.floor(Math.random() * jobTypes.length);
 
     return jobTypes[randomInt];
   }
 
-  /* Random CampusPlace */
   const campusPlaces: Array<string> = [
     'Hangaren',
     'Kjelhuset',
@@ -209,13 +253,18 @@ export namespace Generator {
     'S2',
     'S3',
   ];
+
+  /**
+   * Random campus place generator
+   * @namespace Generator
+   * @returns {string} location at campus
+   */
   export function randomCampusPlace(): string {
     const randomInt: number = Math.floor(Math.random() * campusPlaces.length);
 
     return campusPlaces[randomInt];
   }
 
-  /* Random Locations */
   const locations: Array<string> = [
     'Oslo',
     'Bergen',
@@ -226,6 +275,11 @@ export namespace Generator {
     'Ålesund',
   ];
 
+  /**
+   * Random location generator
+   * @namespace Generator
+   * @returns {string[]} locations in Norway
+   */
   export function randomLocations(): Array<string> {
     const amount: number = Math.floor(Math.random() * locations.length);
     const output: Array<string> = [];
@@ -240,7 +294,11 @@ export namespace Generator {
     return output;
   }
 
-  /* Generate Description */
+  /**
+   * Random description generator
+   * @namespace Generator
+   * @returns {string} lorem ipsum text
+   */
   export function generateDescription(paragraphs: number): string {
     let output: string = '';
     for (var i = 0; i <= paragraphs; i++) {

@@ -1,7 +1,6 @@
 import { MediaFolderType } from '@/components/MediaLibrary/interface';
 import _ from 'lodash';
-
-import { MediaType } from './types';
+import { MediaType } from '@/types';
 
 function setupPathStack(file: MediaType, isDir: boolean = false): string[] {
   const paths = file.path.split('/');

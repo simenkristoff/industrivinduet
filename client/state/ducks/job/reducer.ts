@@ -1,8 +1,7 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+import { JobActionTypes, JobEntity, JobState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
-
-import { JobActionTypes, JobEntity, JobState } from './types';
 
 export const initialState: JobState = {
   byId: {},

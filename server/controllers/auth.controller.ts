@@ -2,28 +2,34 @@ import { Request, Response, NextFunction, Router } from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 
+import { ControllerInterface, InfoMessage, User } from '../types';
+import { Logger } from '../utils';
 import { asyncHandler } from '../middlewares';
-import { ControllerInterface } from '../types';
-import { User, UserModel } from '../models';
-import Logger from '../utils/logger';
-
-interface InfoMessage {
-  message: string;
-}
+import { UserModel } from '../models';
 
 /**
  * Class representing the API-controller for the Auth middleware.
- * @class
- * @namespace AuthController
+ * @class AuthController
+ * @implements {ControllerInterface}
  */
 class AuthController implements ControllerInterface {
   public router = Router();
 
+  /**
+   * Intializes Controller
+   * @constructor
+   */
   constructor() {
     this.initializeRoutes();
   }
 
-  private genToken = (user: User) => {
+  /**
+   * Generate token for a given user.
+   * @private
+   * @param {User} user the token holder
+   * @returns {string} generated token
+   */
+  private genToken = (user: User): string => {
     return jwt.sign(
       {
         iss: 'Industrivinduet',
@@ -40,6 +46,10 @@ class AuthController implements ControllerInterface {
     );
   };
 
+  /**
+   * Initializes API routes
+   * @private
+   */
   private initializeRoutes() {
     this.router.post('/login', asyncHandler(this.login));
     this.router.post('/register', asyncHandler(this.register));
@@ -47,9 +57,11 @@ class AuthController implements ControllerInterface {
 
   /**
    * POST - register a new User through the Auth middleware.
+   * @private
    * @name POST/auth/register
    * @memberof AuthController
-   * @function @async
+   * @function
+   * @async
    *
    * @param {Request} req the request
    * @param {Response} res the response
@@ -91,9 +103,11 @@ class AuthController implements ControllerInterface {
 
   /**
    * POST - login a User through the Auth middleware.
+   * @private
    * @name POST/auth/login
    * @memberof AuthController
-   * @function @async
+   * @function
+   * @async
    *
    * @param {Request} req the request
    * @param {Response} res the response

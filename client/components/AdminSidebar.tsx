@@ -17,13 +17,13 @@ import {
   TeamOutlined,
   ControlOutlined,
 } from '@ant-design/icons';
-import { IApplicationState } from '@/types';
-import { AuthState } from '@/state/ducks/auth/types';
+import { IApplicationState, AuthState } from '@/types';
+
 import { checkUserIsAdmin } from '@/state/ducks/auth/helpers';
 
 const { SubMenu } = Menu;
 
-export const AdminSidebar: React.FC = (props) => {
+export const AdminSidebar: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const currentUser: AuthState = useSelector(({ auth }: IApplicationState) => auth);
   useEffect(() => {

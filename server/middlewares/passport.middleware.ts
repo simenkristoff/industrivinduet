@@ -3,8 +3,9 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 import bcrypt from 'bcryptjs';
 
-import { UserModel, User, Member } from '../models';
+import { User, Member } from '../types';
 import { Logger } from '../utils';
+import { UserModel } from '../models';
 
 const BCRYPT_SALT_ROUNDS = process.env.BCRYPT_SALT_ROUNDS as string;
 

@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
+import { ContentActionTypes, ContentEntity } from '@/types';
 
 import { createContent, deleteContent, fetchContents, setContent, updateContent } from '../actions';
-import { ContentActionTypes, ContentEntity } from '../types';
 
 import contentData from './__mockData__/contentData';
 

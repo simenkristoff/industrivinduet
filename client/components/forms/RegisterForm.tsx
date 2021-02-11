@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Input, Radio, Button } from 'antd';
-import { RegisterCredentials } from '@/state/ducks/auth/types';
+import { RegisterCredentials } from '@/types';
+
 import { FormMessage, userTypes } from '@/constants';
 
 export interface IProps {

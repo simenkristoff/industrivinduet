@@ -1,24 +1,32 @@
 import { Request, Response, NextFunction, Router } from 'express';
 import { CallbackError } from 'mongoose';
 
+import { ControllerInterface, Option } from '../types';
 import { asyncHandler, passport } from '../middlewares';
 import { HttpException, NotFoundException } from '../exceptions';
-import { ControllerInterface } from '../types';
-import { OptionModel, Option } from '../models';
+import { OptionModel } from '../models';
 
 /**
  * Class representing the API-controller for Options.
- * @class
- * @namespace OptionController
+ * @class OptionController
+ * @implements {ControllerInterface}
  */
 class OptionController implements ControllerInterface {
   public path = '/options';
   public router = Router();
 
+  /**
+   * Intializes Controller
+   * @constructor
+   */
   constructor() {
     this.initializeRoutes();
   }
 
+  /**
+   * Initializes API routes
+   * @private
+   */
   private initializeRoutes() {
     this.router.get(this.path, asyncHandler(this.getAll));
     this.router.put(
@@ -38,6 +46,7 @@ class OptionController implements ControllerInterface {
    * respond with a '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok' and return the documents.
    *
+   * @private
    * @name GET/api/options
    * @memberof OptionController
    * @function @async
@@ -60,6 +69,7 @@ class OptionController implements ControllerInterface {
    * will respond with a '404 Not Found' response if the Option could not be found.
    * Else, respond with '200 Ok' and return the new document.
    *
+   * @private
    * @name PUT/api/options
    * @memberof OptionController
    * @function @async
@@ -84,6 +94,7 @@ class OptionController implements ControllerInterface {
    * or '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok'.
    *
+   * @private
    * @name DELETE/api/options
    * @memberof OptionController
    * @function @async

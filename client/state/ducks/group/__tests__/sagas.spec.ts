@@ -1,12 +1,12 @@
-import apiCaller from '@/state/utils/apiCaller';
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
-import { action } from 'typesafe-actions';
+import { GroupActionTypes } from '@/types';
+
+import apiCaller from '@/state/utils/apiCaller';
 
 import { createGroup, deleteGroup, fetchGroups, setGroup, updateGroup } from '../actions';
 import groupSaga from '../sagas';
-import { GroupActionTypes } from '../types';
 
 import groupData from './__mockData__/groupData';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Image } from 'antd';
-import { EventEntity } from '@/state/ducks/event/types';
 import moment from 'moment';
+import { EventEntity } from '@/types';
 
-const EventExpandable: React.FC<EventEntity> = ({
+export const EventExpandable: React.FC<EventEntity> = ({
   image,
   title,
   starttime,
@@ -13,9 +13,6 @@ const EventExpandable: React.FC<EventEntity> = ({
 }: EventEntity) => {
   return (
     <div className='table-col-expanded'>
-      {/* <div className='col-img'>
-        <img src={image} alt={title} />
-      </div> */}
       <Image src={image} width={100} />
 
       <dl>
@@ -37,5 +34,3 @@ const EventExpandable: React.FC<EventEntity> = ({
     </div>
   );
 };
-
-export default EventExpandable;

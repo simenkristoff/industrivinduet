@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { Layout, Row, Col } from 'antd';
-import { GeneralOptions, OptionState, SocialOptions } from '@/state/ducks/option/types';
-import { PartnerEntity } from '@/state/ducks/partner/types';
 import moment from 'moment';
+import { GeneralOptions, OptionState, SocialOptions, PartnerEntity } from '@/types';
 
-import Container from './Container';
-import { Socials } from './Socials';
+import { Container } from '@/components/Container';
+import { Socials } from '@/components/Socials';
 
 interface IProps {
   options: OptionState;
