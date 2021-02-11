@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 
-export * from '@server/models/interface';
+export * from './models/interface';
 
 /* Async Request*/
 export type AsyncRequestHandler = (req: Request, res: Response, next: NextFunction) => Promise<any>;

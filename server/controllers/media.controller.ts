@@ -2,36 +2,50 @@ import fs from 'fs';
 
 import _ from 'lodash';
 import { Request, Response, NextFunction, Router } from 'express';
-import { ControllerInterface, MediaTypeInterface } from '@server/types';
-import { MediaUtils, TreeNode } from '@server/utils';
-import { asyncHandler, passport, mediaMiddleware } from '@server/middlewares';
-import { HttpException } from '@server/exceptions';
 
-interface FileInstance {
-  basename: string;
-  dirname: string;
-  extension: string;
-  size: any;
-  type: 'file' | 'dir';
-}
+import { ControllerInterface, MediaTypeInterface } from '../types';
+import { MediaUtils, TreeNode } from '../utils';
+import { asyncHandler, passport, mediaMiddleware } from '../middlewares';
+import { HttpException } from '../exceptions';
 
-interface FileEntry {
-  name: string;
-  parent: string;
-  created: string;
-  lastUpdated: string;
-  lastAccessed: string;
-}
+// export interface FileInstance {
+//   basename: string;
+//   dirname: string;
+//   extension: string;
+//   size: any;
+//   type: 'file' | 'dir';
+// }
 
+// export interface FileEntry {
+//   name: string;
+//   parent: string;
+//   created: string;
+//   lastUpdated: string;
+//   lastAccessed: string;
+// }
+
+/**
+ * Class representing the API-controller for handling Media Files.
+ * @class MediaController
+ * @implements {ControllerInterface}
+ */
 class MediaController implements ControllerInterface {
   public router = Router();
   private DIRECTORY = `./server/resources/static/assets${process.env.UPLOAD_DIR}/`;
   private STATIC_URL = `http://localhost:8080${process.env.UPLOADS_STATIC_FOLDER_PREFIX}/`;
 
+  /**
+   * Intializes Controller
+   * @constructor
+   */
   constructor() {
     this.initializeRoutes();
   }
 
+  /**
+   * Initializes API routes
+   * @private
+   */
   private initializeRoutes() {
     this.router.post(
       '/upload',
@@ -60,6 +74,18 @@ class MediaController implements ControllerInterface {
     );
   }
 
+  /**
+   * POST media file to server and store it in disk storage
+   *
+   * @private
+   * @name POST/api/upload
+   * @memberof MediaController
+   * @function @async
+   *
+   * @param {Request} req the request
+   * @param {Response} res the response
+   * @param {NextFunction} next the next function
+   */
   private upload = async (req: Request, res: Response, next: NextFunction) => {
     await mediaMiddleware(req, res);
     if (!req.file) {
@@ -69,19 +95,43 @@ class MediaController implements ControllerInterface {
     res.status(200).send(fileNode);
   };
 
+  /**
+   * GET returns a Tree structure object of all files in disk storage.
+   *
+   * @private
+   * @name GET/api/upload
+   * @memberof MediaController
+   * @function @async
+   *
+   * @param {Request} req the request
+   * @param {Response} res the response
+   * @param {NextFunction} next the next function
+   */
   private getListFiles = async (req: Request, res: Response, next: NextFunction) => {
     const url = this.STATIC_URL;
     const dir = MediaUtils.dirWalker(this.DIRECTORY);
     res.status(200).send(dir);
   };
 
+  /**
+   * DELETE deletes a file in disk storage.
+   *
+   * @private
+   * @name DELETE/api/files
+   * @memberof MediaController
+   * @function @async
+   *
+   * @param {Request} req the request
+   * @param {Response} res the response
+   * @param {NextFunction} next the next function
+   */
   private delete = async (req: Request, res: Response, next: NextFunction) => {
     const files: MediaTypeInterface[] = req.body.files;
     if (!files) {
       return next(new HttpException(400, 'No Files to delete'));
     }
 
-    await _.forEach(files, (file) => {
+    _.forEach(files, (file) => {
       if (file.isDir) {
         fs.rmdirSync(this.DIRECTORY + file.path, { recursive: true });
       } else {
@@ -98,6 +148,18 @@ class MediaController implements ControllerInterface {
     });
   };
 
+  /**
+   * POST create a folder in disk storage.
+   *
+   * @private
+   * @name POST/api/folders
+   * @memberof MediaController
+   * @function @async
+   *
+   * @param {Request} req the request
+   * @param {Response} res the response
+   * @param {NextFunction} next the next function
+   */
   private createFolder = async (req: Request, res: Response, next: NextFunction) => {
     const folder: MediaTypeInterface = req.body;
     fs.mkdir(this.DIRECTORY + folder.path, (err) => {
@@ -111,6 +173,18 @@ class MediaController implements ControllerInterface {
     });
   };
 
+  /**
+   * PUT rename a folder in disk storage.
+   *
+   * @private
+   * @name PUT/api/folders
+   * @memberof MediaController
+   * @function @async
+   *
+   * @param {Request} req the request
+   * @param {Response} res the response
+   * @param {NextFunction} next the next function
+   */
   private updateFolder = async (req: Request, res: Response, next: NextFunction) => {
     const folder: MediaTypeInterface = req.body;
     const newPaths = folder.path.split('/');

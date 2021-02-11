@@ -18,7 +18,6 @@
       "sourceMap": true,
       "paths": {
         "@/*": ["./client/*"],
-        "@server/*": ["./server/*"],
         "@resources/*": ["./resources/*"]
       }
     },

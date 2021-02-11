@@ -1,23 +1,32 @@
 import { Request, Response, NextFunction, Router } from 'express';
 import { CallbackError } from 'mongoose';
-import { ControllerInterface, StudyField } from '@server/types';
-import { asyncHandler, passport } from '@server/middlewares';
-import { HttpException, NotFoundException } from '@server/exceptions';
-import { StudyFieldModel } from '@server/models';
+
+import { ControllerInterface, StudyField } from '../types';
+import { asyncHandler, passport } from '../middlewares';
+import { HttpException, NotFoundException } from '../exceptions';
+import { StudyFieldModel } from '../models';
 
 /**
  * Class representing the API-controller for StudyFields.
- * @class
- * @namespace StudyFieldController
+ * @class StudyFieldController
+ * @implements {ControllerInterface}
  */
 class StudyFieldController implements ControllerInterface {
   public path = '/studyfields';
   public router = Router();
 
+  /**
+   * Intializes Controller
+   * @constructor
+   */
   constructor() {
     this.initializeRoutes();
   }
 
+  /**
+   * Initializes API routes
+   * @private
+   */
   private initializeRoutes() {
     this.router.get(this.path, asyncHandler(this.getAll));
     this.router.get(`${this.path}/:id`, asyncHandler(this.get));
@@ -43,6 +52,7 @@ class StudyFieldController implements ControllerInterface {
    * respond with a '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok' and return the documents.
    *
+   * @private
    * @name GET/api/studyfields
    * @memberof StudyFieldController
    * @function @async
@@ -65,6 +75,7 @@ class StudyFieldController implements ControllerInterface {
    * will respond with a '404 Not Found' response if the StudyField could not be found.
    * Else, respond with '200 Ok' and return the document.
    *
+   * @private
    * @name GET/api/studyfields/:id
    * @memberof StudyFieldController
    * @function @async
@@ -87,6 +98,7 @@ class StudyFieldController implements ControllerInterface {
    * respond with a '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok' and return the new document.
    *
+   * @private
    * @name POST/api/studyfields
    * @memberof StudyFieldController
    * @function @async
@@ -111,6 +123,7 @@ class StudyFieldController implements ControllerInterface {
    * will respond with a '404 Not Found' response if the StudyField could not be found.
    * Else, respond with '200 Ok' and return the new document.
    *
+   * @private
    * @name PUT/api/studyfields/:id
    * @memberof StudyFieldController
    * @function @async
@@ -134,6 +147,7 @@ class StudyFieldController implements ControllerInterface {
    * or '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok'.
    *
+   * @private
    * @name DELETE/api/studyfields
    * @memberof StudyFieldController
    * @function @async

@@ -1,7 +1,10 @@
+/**
+ * Seed Options Documents to MongoDB
+ */
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
 
-import { OptionBase } from '../../models';
+import { OptionBase } from '../../types';
 
 interface OptionSeed extends OptionBase {
   _id: Types.ObjectId;

@@ -1,7 +1,10 @@
+/**
+ * Seed StudyField Documents to MongoDB
+ */
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
 
-import { StudyFieldBase } from '../../models';
+import { StudyFieldBase } from '../../types';
 
 interface StudyFieldSeed extends StudyFieldBase {
   _id: Types.ObjectId;

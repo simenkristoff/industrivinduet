@@ -1,7 +1,10 @@
+/**
+ * Seed Role Documents to MongoDB
+ */
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
 
-import { RoleBase } from '../../models';
+import { RoleBase } from '../../types';
 
 interface RoleSeed extends RoleBase {
   _id: Types.ObjectId;

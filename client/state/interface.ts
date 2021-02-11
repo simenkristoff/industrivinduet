@@ -1,5 +1,21 @@
 import { Action, PayloadAction, PayloadMetaAction, TypeConstant } from 'typesafe-actions';
 
+/**
+ * Export all types
+ */
+export * from './ducks/auth/types';
+export * from './ducks/content/types';
+export * from './ducks/event/types';
+export * from './ducks/group/types';
+export * from './ducks/job/types';
+export * from './ducks/media/types';
+export * from './ducks/member/types';
+export * from './ducks/option/types';
+export * from './ducks/partner/types';
+export * from './ducks/role/types';
+export * from './ducks/studyfield/types';
+export * from './ducks/user/types';
+
 import { AuthState } from './ducks/auth/types';
 import { ContentState } from './ducks/content/types';
 import { EventState } from './ducks/event/types';
@@ -102,19 +118,3 @@ export interface IReducerAction<TPayload>
     PayloadAction<TypeConstant, TPayload> {}
 
 export type Reducer = any;
-
-/**
- * Export all types
- */
-export * from './ducks/auth/types';
-export * from './ducks/content/types';
-export * from './ducks/event/types';
-export * from './ducks/group/types';
-export * from './ducks/job/types';
-export * from './ducks/media/types';
-export * from './ducks/member/types';
-export * from './ducks/option/types';
-export * from './ducks/partner/types';
-export * from './ducks/role/types';
-export * from './ducks/studyfield/types';
-export * from './ducks/user/types';

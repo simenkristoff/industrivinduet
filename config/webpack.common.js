@@ -47,9 +47,6 @@ let webpackConfig = {
         use: [
           {
             loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-            },
           },
         ],
       },
@@ -127,7 +124,6 @@ let webpackConfig = {
     extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.md'],
     alias: {
       '@': path.resolve(__dirname, '../client'),
-      '@server': path.resolve(__dirname, '../server'),
       '@resources': path.resolve(__dirname, '../resources'),
       stream: 'stream-browserify',
       path: 'path-browserify',

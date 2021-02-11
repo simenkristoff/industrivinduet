@@ -1,11 +1,11 @@
 import { Schema, Model, model, Document } from 'mongoose';
-import { Event, Job } from '@server/types';
-import { Cascader, Filter } from '@server/utils';
-import { EventModel, JobModel } from '@server/models';
+
+import { Event, Job } from '../types';
+import { Cascader, Filter } from '../utils';
+import { EventModel, JobModel } from '../models';
 
 /**
  * The base StudyField.
- * @interface
  */
 export interface StudyFieldBase {
   name: string;
@@ -16,12 +16,14 @@ export interface StudyFieldBase {
 
 /**
  * The interface of a StudyField document.
- * @interface
+ * @extends StudyFieldBase
+ * @extends Document
  */
 export interface StudyField extends StudyFieldBase, Document {}
 
 /**
  * The StudyField Schema
+ * @interface Schema
  */
 export const StudyFieldSchema: Schema<StudyField, Model<StudyField>> = new Schema(
   {
@@ -41,4 +43,8 @@ StudyFieldSchema.pre<StudyField>('save', function (next) {
 Cascader.softCascadeDocument<StudyField, Event>(StudyFieldSchema, EventModel, 'studyfields', true);
 Cascader.softCascadeDocument<StudyField, Job>(StudyFieldSchema, JobModel, 'studyfields', true);
 
+/**
+ * The StudyField Model
+ * @interface Model
+ */
 export const StudyFieldModel: Model<StudyField> = model<StudyField>('Studyfield', StudyFieldSchema);

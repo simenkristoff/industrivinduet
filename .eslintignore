@@ -5,9 +5,11 @@
 /public/
 /resources/
 /server/resources/**
+Dockerfile
 *.code-workspace
 *.pem
 *.ppk
+*.yml
 *.json
 *.log
 *.scss

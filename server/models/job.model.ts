@@ -1,11 +1,11 @@
 import { Model, model, Schema, Document, Types } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
-import { StudyField } from '@server/types';
-import { Filter } from '@server/utils';
+
+import { StudyField } from '../types';
+import { Filter } from '../utils';
 
 /**
  * The base Job.
- * @interface
  */
 export interface JobBase {
   title: string;
@@ -24,12 +24,14 @@ export interface JobBase {
 
 /**
  * The interface of a Job document.
- * @interface
+ * @extends JobBase
+ * @extends Document
  */
 export interface Job extends JobBase, Document {}
 
 /**
  * The Job Schema
+ * @interface Schema
  */
 export const JobSchema: Schema<Job, Model<Job>> = new Schema(
   {
@@ -68,4 +70,8 @@ JobSchema.pre<Job>('save', function (next) {
   next();
 });
 
+/**
+ * The Job Model
+ * @interface Model
+ */
 export const JobModel: Model<Job> = model<Job>('Job', JobSchema);

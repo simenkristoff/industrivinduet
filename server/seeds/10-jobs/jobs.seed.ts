@@ -1,7 +1,10 @@
+/**
+ * Seed Job Documents to MongoDB
+ */
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
 
-import { JobBase } from '../../models';
+import { JobBase } from '../../types';
 import { Generator } from '../generator';
 
 interface JobSeed extends JobBase {

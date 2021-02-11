@@ -1,7 +1,10 @@
+/**
+ * Seed Group Documents to MongoDB
+ */
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
 
-import { GroupBase } from '../../models';
+import { GroupBase } from '../../types';
 
 interface GroupSeed extends GroupBase {
   _id: Types.ObjectId;

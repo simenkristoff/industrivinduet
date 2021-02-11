@@ -1,23 +1,31 @@
 import { Request, Response, NextFunction, Router } from 'express';
 import { CallbackError } from 'mongoose';
-import { ControllerInterface, Job } from '@server/types';
-import { asyncHandler, passport } from '@server/middlewares';
-import { HttpException, NotFoundException } from '@server/exceptions';
-import { JobModel } from '@server/models';
+
+import { ControllerInterface, Job } from '../types';
+import { asyncHandler, passport } from '../middlewares';
+import { HttpException, NotFoundException } from '../exceptions';
+import { JobModel } from '../models';
 
 /**
  * Class representing the API-controller for Jobs.
- * @class
- * @namespace JobController
+ * @class JobController
+ * @implements {ControllerInterface}
  */
 class JobController implements ControllerInterface {
   public path = '/jobs';
   public router = Router();
 
+  /**
+   * Intializes Controller
+   * @constructor
+   */
   constructor() {
     this.initializeRoutes();
   }
 
+  /**
+   * Initializes API routes
+   */
   private initializeRoutes() {
     this.router.get(this.path, asyncHandler(this.getAll));
     this.router.get(`${this.path}/active`, asyncHandler(this.getActive));
@@ -44,6 +52,7 @@ class JobController implements ControllerInterface {
    * respond with a '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok' and return the documents.
    *
+   * @private
    * @name GET/api/jobs
    * @memberof JobController
    * @function @async
@@ -68,6 +77,7 @@ class JobController implements ControllerInterface {
    * respond with a '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok' and return the documents.
    *
+   * @private
    * @name GET/api/jobs/active
    * @memberof JobController
    * @function @async
@@ -94,6 +104,7 @@ class JobController implements ControllerInterface {
    * will respond with a '404 Not Found' response if the Job could not be found.
    * Else, respond with '200 Ok' and return the document.
    *
+   * @private
    * @name GET/api/jobs/:id
    * @memberof JobController
    * @function @async
@@ -116,6 +127,7 @@ class JobController implements ControllerInterface {
    * respond with a '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok' and return the new document.
    *
+   * @private
    * @name POST/api/jobs
    * @memberof JobController
    * @function @async
@@ -140,6 +152,7 @@ class JobController implements ControllerInterface {
    * will respond with a '404 Not Found' response if the Job could not be found.
    * Else, respond with '200 Ok' and return the new document.
    *
+   * @private
    * @name PUT/api/jobs/:id
    * @memberof JobController
    * @function @async
@@ -163,6 +176,7 @@ class JobController implements ControllerInterface {
    * or '500 Internal Server Error' if an error occurs.
    * Else, respond with '200 Ok'.
    *
+   * @private
    * @name DELETE/api/jobs
    * @memberof JobController
    * @function @async

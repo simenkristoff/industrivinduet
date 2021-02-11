@@ -2,7 +2,6 @@ import { Schema, Model, model, Document } from 'mongoose';
 
 /**
  * The base Partner.
- * @interface
  */
 export interface PartnerBase {
   name: string;
@@ -13,12 +12,14 @@ export interface PartnerBase {
 
 /**
  * The interface of a Partner document.
- * @interface
+ * @extends PartnerBase
+ * @extends Document
  */
 export interface Partner extends PartnerBase, Document {}
 
 /**
  * The Partner Schema
+ * @interface Schema
  */
 export const PartnerSchema: Schema<Partner, Model<Partner>> = new Schema(
   {
@@ -30,4 +31,8 @@ export const PartnerSchema: Schema<Partner, Model<Partner>> = new Schema(
   { timestamps: true },
 );
 
+/**
+ * The Partner Model
+ * @interface Model
+ */
 export const PartnerModel: Model<Partner> = model<Partner>('Partner', PartnerSchema);

@@ -1,7 +1,10 @@
+/**
+ * Seed Content Documents to MongoDB
+ */
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
 
-import { ContentBase } from '../../models';
+import { ContentBase } from '../../types';
 
 interface ContentSeed extends ContentBase {
   _id: Types.ObjectId;

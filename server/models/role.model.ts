@@ -1,12 +1,12 @@
 import { Schema, Model, model, Document, Types } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
-import { Group, Member } from '@server/types';
-import { Cascader, Filter } from '@server/utils';
-import { MemberModel } from '@server/models';
+
+import { Group, Member } from '../types';
+import { Cascader, Filter } from '../utils';
+import { MemberModel } from '../models';
 
 /**
  * The base Role.
- * @interface
  */
 export interface RoleBase {
   name: string;
@@ -16,12 +16,14 @@ export interface RoleBase {
 
 /**
  * The interface of a Role document.
- * @interface
+ * @extends RoleBase
+ * @extends Document
  */
 export interface Role extends RoleBase, Document {}
 
 /**
  * The Role Schema
+ * @interface Schema
  */
 export const RoleSchema: Schema<Role, Model<Role>> = new Schema(
   {
@@ -56,4 +58,8 @@ RoleSchema.pre<Role>('save', function (next) {
 
 Cascader.softCascadeDocument<Role, Member>(RoleSchema, MemberModel, 'role');
 
+/**
+ * The Role Model
+ * @interface Model
+ */
 export const RoleModel: Model<Role> = model<Role>('Role', RoleSchema);

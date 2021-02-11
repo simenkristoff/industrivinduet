@@ -1,3 +1,6 @@
+/**
+ * Export Middlewares
+ */
 export { default as logger } from './logger.middleware';
 export { default as errorMiddleware } from './errorHandler.middleware';
 export { default as asyncHandler } from './asyncHandler.middleware';

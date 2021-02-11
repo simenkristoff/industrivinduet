@@ -1,11 +1,11 @@
 import { Model, model, Schema, Document, Types } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
-import { Member, StudyField } from '@server/types';
-import { Filter } from '@server/utils';
+
+import { Member, StudyField } from '../types';
+import { Filter } from '../utils';
 
 /**
  * The base Event.
- * @interface
  */
 export interface EventBase {
   title: string;
@@ -26,12 +26,14 @@ export interface EventBase {
 
 /**
  * The interface of a Event document.
- * @interface
+ * @extends EventtBase
+ * @extends Document
  */
 export interface Event extends EventBase, Document {}
 
 /**
  * The Event Schema
+ * @interface Schema
  */
 export const EventSchema: Schema<Event, Model<Event>> = new Schema(
   {
@@ -78,4 +80,8 @@ EventSchema.pre<Event>('save', function (next) {
   next();
 });
 
+/**
+ * The Event Model
+ * @interface Model
+ */
 export const EventModel: Model<Event> = model<Event>('Event', EventSchema);

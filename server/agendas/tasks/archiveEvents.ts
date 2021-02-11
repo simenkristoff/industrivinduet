@@ -1,7 +1,12 @@
 import Agenda from 'agenda';
-import { Logger } from '@server/utils';
-import { EventModel } from '@server/models';
 
+import { EventModel } from '../../models';
+import { Logger } from '../../utils';
+
+/**
+ * Task. Sets outdated events to inactive.
+ * @module archiveEvents
+ */
 module.exports = (agenda: Agenda) => {
   agenda.define('archive events', { priority: 'high' }, async (job, done) => {
     await EventModel.find((err, docs) => {

@@ -1,8 +1,12 @@
+/**
+ * Seed User Documents to MongoDB
+ */
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-import { UserBase, UserPermissions } from '../../models';
+import { UserBase } from '../../types';
+import { UserPermissions } from '../../models';
 
 const BCRYPT_SALT_ROUNDS = 12;
 

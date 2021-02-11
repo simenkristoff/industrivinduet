@@ -1,8 +1,11 @@
+/**
+ * Seed Member Documents to MongoDB
+ */
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
 
+import { MemberBase } from '../../types';
 import roles from '../6-roles/roles.seed';
-import { MemberBase } from '../../models';
 import { Generator } from '../generator';
 
 interface MemberSeed extends MemberBase {

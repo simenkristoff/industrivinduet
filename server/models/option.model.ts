@@ -2,7 +2,6 @@ import { Schema, Model, model, Document } from 'mongoose';
 
 /**
  * The base Option.
- * @interface
  */
 export interface OptionBase {
   general: {
@@ -45,12 +44,14 @@ export interface OptionBase {
 
 /**
  * The interface of a Option document.
- * @interface
+ * @extends OptionBase
+ * @extends Document
  */
 export interface Option extends OptionBase, Document {}
 
 /**
  * The Option Schema
+ * @interface Schema
  */
 export const OptionSchema: Schema<Option, Model<Option>> = new Schema(
   {
@@ -134,4 +135,8 @@ OptionSchema.pre<Option>('save', function (next) {
   next();
 });
 
+/**
+ * The Option Model
+ * @interface Model
+ */
 export const OptionModel: Model<Option> = model<Option>('Option', OptionSchema);

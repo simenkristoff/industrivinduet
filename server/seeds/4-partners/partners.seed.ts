@@ -1,7 +1,10 @@
+/**
+ * Seed Partner Documents to MongoDB
+ */
 import { getObjectId } from 'mongo-seeding';
 import { Types } from 'mongoose';
 
-import { PartnerBase } from '../../models';
+import { PartnerBase } from '../../types';
 
 interface PartnerSeed extends PartnerBase {
   _id: Types.ObjectId;
