@@ -1,5 +1,4 @@
 import { Entity } from '@/types';
-
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 import {
@@ -44,6 +43,7 @@ export const JobActionTypes = {
   UPDATE: generateAsyncAction('@@job.UPDATE'),
   DELETE: generateAsyncAction('@@job.DELETE'),
   SET: generateAsyncAction('@@job.SET'),
+  CLEAR: '@@job.CLEAR',
 };
 
 /**
@@ -57,6 +57,7 @@ export interface JobActions {
   updateJob: (job: JobEntity) => IPayloadMetaAction<JobEntity>;
   deleteJob: (job: JobEntity) => IPayloadMetaAction<JobEntity>;
   setJob: (job: JobEntity) => IPayloadAction<JobEntity>;
+  clear: () => IMetaAction;
 }
 
 /**

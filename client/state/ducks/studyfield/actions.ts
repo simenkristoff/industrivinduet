@@ -1,4 +1,5 @@
 import { action } from 'typesafe-actions';
+
 import { StudyFieldActionTypes, StudyFieldEntity } from '@/types';
 
 /**
@@ -46,3 +47,8 @@ export const deleteStudyField = (data: StudyFieldEntity) =>
  */
 export const setStudyField = (data: StudyFieldEntity) =>
   action(StudyFieldActionTypes.SET.START, data);
+
+/**
+ * Clears StudyField state
+ */
+export const clear = () => action(StudyFieldActionTypes.CLEAR);

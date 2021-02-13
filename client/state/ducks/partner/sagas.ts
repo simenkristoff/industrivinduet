@@ -1,4 +1,5 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+
 import {
   IMetaAction,
   IPayloadAction,
@@ -6,7 +7,6 @@ import {
   PartnerActionTypes,
   PartnerEntity,
 } from '@/types';
-
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
@@ -23,9 +23,16 @@ function* handleFetch(params: IMetaAction): Generator {
     yield put({ type: PartnerActionTypes.FETCH.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: PartnerActionTypes.FETCH.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: PartnerActionTypes.FETCH.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: PartnerActionTypes.FETCH.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: PartnerActionTypes.FETCH.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -40,9 +47,16 @@ function* handleCreate(params: IPayloadMetaAction<PartnerEntity>): Generator {
     yield put({ type: PartnerActionTypes.CREATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: PartnerActionTypes.CREATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: PartnerActionTypes.CREATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: PartnerActionTypes.CREATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: PartnerActionTypes.CREATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -57,9 +71,16 @@ function* handleUpdate(params: IPayloadMetaAction<PartnerEntity>): Generator {
     yield put({ type: PartnerActionTypes.UPDATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: PartnerActionTypes.UPDATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: PartnerActionTypes.UPDATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: PartnerActionTypes.UPDATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: PartnerActionTypes.UPDATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -74,9 +95,16 @@ function* handleDelete(params: IPayloadMetaAction<PartnerEntity>): Generator {
     yield put({ type: PartnerActionTypes.DELETE.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: PartnerActionTypes.DELETE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: PartnerActionTypes.DELETE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: PartnerActionTypes.DELETE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: PartnerActionTypes.DELETE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -90,9 +118,16 @@ function* handleSet(params: IPayloadAction<PartnerEntity>): Generator {
     yield put({ type: PartnerActionTypes.SET.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: PartnerActionTypes.SET.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: PartnerActionTypes.SET.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: PartnerActionTypes.SET.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: PartnerActionTypes.SET.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }

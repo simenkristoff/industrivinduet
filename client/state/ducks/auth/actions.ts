@@ -63,6 +63,6 @@ export const logout = () => {
 };
 
 /**
- * Clears Sser state
+ * Clears Auth state
  */
 export const clear = () => action(AuthActionTypes.CLEAR);

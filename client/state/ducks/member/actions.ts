@@ -1,4 +1,5 @@
 import { action } from 'typesafe-actions';
+
 import { MemberActionTypes, MemberEntity } from '@/types';
 
 /**
@@ -45,3 +46,8 @@ export const deleteMember = (data: MemberEntity) =>
  * @param {MemberEntity} data the Member instance to set.
  */
 export const setMember = (data: MemberEntity) => action(MemberActionTypes.SET.START, data);
+
+/**
+ * Clears Member state
+ */
+export const clear = () => action(MemberActionTypes.CLEAR);

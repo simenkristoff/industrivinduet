@@ -21,23 +21,36 @@ export const partnerReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): PartnerState => {
   switch (action.type) {
-    case PartnerActionTypes.FETCH.START: {
-      return { ...state, loading: true };
+    case PartnerActionTypes.FETCH.START:
+    case PartnerActionTypes.CREATE.START:
+    case PartnerActionTypes.UPDATE.START:
+    case PartnerActionTypes.DELETE.START: {
+      return { ...state, loading: true, status: null };
     }
     case PartnerActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, data: action.payload };
+      return { ...initialState, data: action.payload, loading: false, status: null };
     }
     case PartnerActionTypes.CREATE.SUCCESS: {
-      return { ...state, data: [...state.data, action.payload] };
+      return { ...state, data: [...state.data, action.payload], loading: false, status: null };
     }
     case PartnerActionTypes.UPDATE.SUCCESS: {
-      return { ...state, data: updateObjectInArray<PartnerEntity>(state.data, action) };
+      return {
+        ...state,
+        data: updateObjectInArray<PartnerEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case PartnerActionTypes.DELETE.SUCCESS: {
-      return { ...state, data: deleteObjectInArray<PartnerEntity>(state.data, action) };
+      return {
+        ...state,
+        data: deleteObjectInArray<PartnerEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
-    case PartnerActionTypes.SET.SUCCESS: {
-      return { ...state, byId: action.payload };
+    case PartnerActionTypes.SET.START: {
+      return { ...state, byId: action.payload, status: null };
     }
     case PartnerActionTypes.FETCH.ERROR:
     case PartnerActionTypes.CREATE.ERROR:
@@ -49,6 +62,12 @@ export const partnerReducer = (
         status: action.payload,
       };
     }
+    case PartnerActionTypes.CLEAR:
+      return {
+        ...state,
+        loading: false,
+        status: null,
+      };
     default:
       return state;
   }

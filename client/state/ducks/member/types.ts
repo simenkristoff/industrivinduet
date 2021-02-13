@@ -32,6 +32,7 @@ export const MemberActionTypes = {
   UPDATE: generateAsyncAction('@@member.UPDATE'),
   DELETE: generateAsyncAction('@@member.DELETE'),
   SET: generateAsyncAction('@@member.SET'),
+  CLEAR: '@@member.CLEAR',
 };
 
 /**
@@ -43,6 +44,7 @@ export interface MemberActions {
   updateMember: (member: MemberEntity) => IPayloadMetaAction<MemberEntity>;
   deleteMember: (member: MemberEntity) => IPayloadMetaAction<MemberEntity>;
   setMember: (member: MemberEntity) => IPayloadAction<MemberEntity>;
+  clear: () => IMetaAction;
 }
 
 /**

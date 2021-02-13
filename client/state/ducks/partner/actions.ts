@@ -1,4 +1,5 @@
 import { action } from 'typesafe-actions';
+
 import { PartnerActionTypes, PartnerEntity } from '@/types';
 
 /**
@@ -45,3 +46,8 @@ export const deletePartner = (data: PartnerEntity) =>
  * @param {PartnerEntity} data the Partner instance to set.
  */
 export const setPartner = (data?: PartnerEntity) => action(PartnerActionTypes.SET.START, data);
+
+/**
+ * Clears Partner state
+ */
+export const clear = () => action(PartnerActionTypes.CLEAR);

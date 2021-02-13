@@ -1,4 +1,5 @@
 import { action } from 'typesafe-actions';
+
 import { ContentActionTypes, ContentEntity } from '@/types';
 
 /**
@@ -45,3 +46,8 @@ export const deleteContent = (data: ContentEntity) =>
  * @param {ContentEntity} data the Content instance to set.
  */
 export const setContent = (data: ContentEntity) => action(ContentActionTypes.SET.START, data);
+
+/**
+ * Clears Content state
+ */
+export const clear = () => action(ContentActionTypes.CLEAR);

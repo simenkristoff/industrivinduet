@@ -21,23 +21,36 @@ export const groupReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): GroupState => {
   switch (action.type) {
-    case GroupActionTypes.FETCH.START: {
-      return { ...state, loading: true };
+    case GroupActionTypes.FETCH.START:
+    case GroupActionTypes.CREATE.START:
+    case GroupActionTypes.UPDATE.START:
+    case GroupActionTypes.DELETE.START: {
+      return { ...state, loading: true, status: null };
     }
     case GroupActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, data: action.payload };
+      return { ...initialState, data: action.payload, loading: false, status: null };
     }
     case GroupActionTypes.CREATE.SUCCESS: {
-      return { ...state, data: [...state.data, action.payload] };
+      return { ...state, data: [...state.data, action.payload], loading: false, status: null };
     }
     case GroupActionTypes.UPDATE.SUCCESS: {
-      return { ...state, data: updateObjectInArray<GroupEntity>(state.data, action) };
+      return {
+        ...state,
+        data: updateObjectInArray<GroupEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case GroupActionTypes.DELETE.SUCCESS: {
-      return { ...state, data: deleteObjectInArray<GroupEntity>(state.data, action) };
+      return {
+        ...state,
+        data: deleteObjectInArray<GroupEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
-    case GroupActionTypes.SET.SUCCESS: {
-      return { ...state, byId: action.payload };
+    case GroupActionTypes.SET.START: {
+      return { ...state, byId: action.payload, status: null };
     }
     case GroupActionTypes.FETCH.ERROR:
     case GroupActionTypes.CREATE.ERROR:
@@ -49,6 +62,12 @@ export const groupReducer = (
         status: action.payload,
       };
     }
+    case GroupActionTypes.CLEAR:
+      return {
+        ...state,
+        loading: false,
+        status: null,
+      };
     default:
       return state;
   }

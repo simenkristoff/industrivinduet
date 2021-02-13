@@ -113,7 +113,7 @@ export const Frontpage: React.FC<IProps> = ({
                 <Col span={24}>
                   <section className='contact'>
                     <div className='map-wrapper'>
-                      <GoogleMapsContainer renderInDev />
+                      <GoogleMapsContainer />
                     </div>
                     <div className='contact-overlay text-center'>
                       <div className='section-main'>

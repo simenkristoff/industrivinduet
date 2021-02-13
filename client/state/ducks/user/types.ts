@@ -42,6 +42,7 @@ export const UserActionTypes = {
   DELETE: generateAsyncAction('@@user.DELETE'),
   LOOKUP_REGISTER_TOKEN: generateAsyncAction('@@user.LOOKUP_REGISTER_TOKEN'),
   SET: generateAsyncAction('@@user.SET'),
+  CLEAR: '@@user.CLEAR',
 };
 
 /**
@@ -56,6 +57,7 @@ export interface UserActions {
     token: RegisterTokenInterface,
   ) => IPayloadMetaAction<RegisterTokenInterface>;
   setUser: (user: UserEntity) => IPayloadAction<UserEntity>;
+  clear: () => IMetaAction;
 }
 
 /**

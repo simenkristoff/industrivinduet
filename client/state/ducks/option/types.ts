@@ -1,4 +1,4 @@
-import { IMetaAction, IPayloadMetaAction, Entity } from '@/types';
+import { IMetaAction, IPayloadMetaAction, Entity, ApiResponse } from '@/types';
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 /**
@@ -11,7 +11,7 @@ export type OptionState = {
   readonly job: JobOptions | {};
   readonly socials: SocialOptions | {};
   readonly loading: boolean;
-  readonly errors: Array<String>;
+  readonly status: ApiResponse | null;
 };
 
 /**
@@ -88,6 +88,7 @@ export const OptionActionTypes = {
   FETCH: generateAsyncAction('@@option.FETCH'),
   UPDATE: generateAsyncAction('@@option.UPDATE'),
   RESET: generateAsyncAction('@@option.RESET'),
+  CLEAR: '@@option.CLEAR',
 };
 
 /**
@@ -98,6 +99,7 @@ export interface OptionActions {
   fetchOptions: () => IMetaAction;
   updateOptions: (option: OptionEntity) => IPayloadMetaAction<OptionEntity>;
   resetOptions: () => IMetaAction;
+  clear: () => IMetaAction;
 }
 
 /**

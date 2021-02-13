@@ -59,3 +59,8 @@ export const lookupRegisterToken = (data: RegisterTokenInterface) => {
  * @param {UserEntity} data the User instance to set.
  */
 export const setUser = (data: UserEntity) => action(UserActionTypes.SET.START, data);
+
+/**
+ * Clears User state
+ */
+export const clear = () => action(UserActionTypes.CLEAR);

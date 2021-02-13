@@ -1,5 +1,4 @@
 import { Entity } from '@/types';
-
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
@@ -29,6 +28,7 @@ export const ContentActionTypes = {
   UPDATE: generateAsyncAction('@@content.UPDATE'),
   DELETE: generateAsyncAction('@@content.DELETE'),
   SET: generateAsyncAction('@@content.SET'),
+  CLEAR: '@@content.CLEAR',
 };
 
 /**
@@ -40,6 +40,7 @@ export interface ContentActions {
   updateContent: (content: ContentEntity) => IPayloadMetaAction<ContentEntity>;
   deleteContent: (content: ContentEntity) => IPayloadMetaAction<ContentEntity>;
   setContent: (content: ContentEntity) => IPayloadAction<ContentEntity>;
+  clear: () => IMetaAction;
 }
 
 /**

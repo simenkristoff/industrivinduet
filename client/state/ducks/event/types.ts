@@ -1,5 +1,4 @@
 import { Entity } from '@/types';
-
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 import {
@@ -47,6 +46,7 @@ export const EventActionTypes = {
   UPDATE: generateAsyncAction('@@event.UPDATE'),
   DELETE: generateAsyncAction('@@event.DELETE'),
   SET: generateAsyncAction('@@event.SET'),
+  CLEAR: '@@event.CLEAR',
 };
 
 /**
@@ -60,6 +60,7 @@ export interface EventActions {
   updateEvent: (event: EventEntity) => IPayloadMetaAction<EventEntity>;
   deleteEvent: (event: EventEntity) => IPayloadMetaAction<EventEntity>;
   setEvent: (event: EventEntity) => IPayloadAction<EventEntity>;
+  clear: () => IMetaAction;
 }
 
 /**

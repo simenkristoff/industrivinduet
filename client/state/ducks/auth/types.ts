@@ -1,6 +1,6 @@
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
-import { IMetaAction, IPayloadMetaAction, ObjectId, ApiResponse } from '../../interface';
+import { IMetaAction, IPayloadMetaAction, ObjectId, ApiResponse, IMeta } from '../../interface';
 import { UserPermissions } from '../user/types';
 import { MemberEntity } from '../member/types';
 
@@ -10,9 +10,6 @@ export interface AuthState {
   readonly permissions: UserPermissions | null;
   readonly member: MemberEntity | null;
   readonly token: EncodedToken | null;
-  readonly resetPasswordToken: string | null;
-  readonly resetPasswordExpires: number | null;
-
   readonly isLoggedIn: boolean;
   readonly loading: boolean;
   readonly status: ApiResponse | null;
@@ -77,6 +74,7 @@ export interface AuthActions {
   forgot: (credentials: ForgotPasswordCredentials) => IPayloadMetaAction<ForgotPasswordCredentials>;
   lookupRegisterToken: (token: string) => IPayloadMetaAction<string>;
   logout: () => IMetaAction;
+  clear: () => IMetaAction;
 }
 
 export interface AuthPropsAll extends AuthState, AuthActions {}

@@ -21,29 +21,40 @@ export const jobReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): JobState => {
   switch (action.type) {
-    case JobActionTypes.FETCH.START: {
-      return { ...state, loading: true };
+    case JobActionTypes.FETCH.START:
+    case JobActionTypes.FETCH_ONE.START:
+    case JobActionTypes.CREATE.START:
+    case JobActionTypes.UPDATE.START:
+    case JobActionTypes.DELETE.START: {
+      return { ...state, loading: true, status: null };
     }
     case JobActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, data: action.payload };
-    }
-    case JobActionTypes.FETCH_ONE.START: {
-      return { ...state, loading: true };
+      return { ...initialState, data: action.payload, loading: false, status: null };
     }
     case JobActionTypes.FETCH_ONE.SUCCESS: {
-      return { ...initialState, byId: action.payload };
+      return { ...initialState, byId: action.payload, loading: false, status: null };
     }
     case JobActionTypes.CREATE.SUCCESS: {
-      return { ...state, data: [...state.data, action.payload] };
+      return { ...state, data: [...state.data, action.payload], loading: false, status: null };
     }
     case JobActionTypes.UPDATE.SUCCESS: {
-      return { ...state, data: updateObjectInArray<JobEntity>(state.data, action) };
+      return {
+        ...state,
+        data: updateObjectInArray<JobEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case JobActionTypes.DELETE.SUCCESS: {
-      return { ...state, data: deleteObjectInArray<JobEntity>(state.data, action) };
+      return {
+        ...state,
+        data: deleteObjectInArray<JobEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case JobActionTypes.SET.START: {
-      return { ...state, byId: action.payload };
+      return { ...state, byId: action.payload, status: null };
     }
     case JobActionTypes.FETCH.ERROR:
     case JobActionTypes.FETCH_ONE.ERROR:
@@ -56,6 +67,12 @@ export const jobReducer = (
         status: action.payload,
       };
     }
+    case JobActionTypes.CLEAR:
+      return {
+        ...state,
+        loading: false,
+        status: null,
+      };
     default:
       return state;
   }

@@ -21,29 +21,40 @@ export const eventReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): EventState => {
   switch (action.type) {
-    case EventActionTypes.FETCH.START: {
-      return { ...state, loading: true };
+    case EventActionTypes.FETCH.START:
+    case EventActionTypes.FETCH_ONE.START:
+    case EventActionTypes.CREATE.START:
+    case EventActionTypes.UPDATE.START:
+    case EventActionTypes.DELETE.START: {
+      return { ...state, loading: true, status: null };
     }
     case EventActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, data: action.payload };
-    }
-    case EventActionTypes.FETCH_ONE.START: {
-      return { ...state, loading: true };
+      return { ...initialState, data: action.payload, loading: false, status: null };
     }
     case EventActionTypes.FETCH_ONE.SUCCESS: {
-      return { ...initialState, byId: action.payload };
+      return { ...initialState, byId: action.payload, loading: false, status: null };
     }
     case EventActionTypes.CREATE.SUCCESS: {
-      return { ...state, data: [...state.data, action.payload] };
+      return { ...state, data: [...state.data, action.payload], loading: false, status: null };
     }
     case EventActionTypes.UPDATE.SUCCESS: {
-      return { ...state, data: updateObjectInArray<EventEntity>(state.data, action) };
+      return {
+        ...state,
+        data: updateObjectInArray<EventEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case EventActionTypes.DELETE.SUCCESS: {
-      return { ...state, data: deleteObjectInArray<EventEntity>(state.data, action) };
+      return {
+        ...state,
+        data: deleteObjectInArray<EventEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case EventActionTypes.SET.START: {
-      return { ...state, byId: action.payload };
+      return { ...state, byId: action.payload, status: null };
     }
     case EventActionTypes.FETCH.ERROR:
     case EventActionTypes.FETCH_ONE.ERROR:
@@ -56,6 +67,12 @@ export const eventReducer = (
         status: action.payload,
       };
     }
+    case EventActionTypes.CLEAR:
+      return {
+        ...state,
+        loading: false,
+        status: null,
+      };
     default:
       return state;
   }

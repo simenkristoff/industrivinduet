@@ -1,4 +1,5 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+
 import {
   IMetaAction,
   IPayloadAction,
@@ -6,7 +7,6 @@ import {
   MemberActionTypes,
   MemberEntity,
 } from '@/types';
-
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
@@ -23,9 +23,16 @@ function* handleFetch(params: IMetaAction): Generator {
     yield put({ type: MemberActionTypes.FETCH.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MemberActionTypes.FETCH.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: MemberActionTypes.FETCH.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: MemberActionTypes.FETCH.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: MemberActionTypes.FETCH.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -40,9 +47,16 @@ function* handleCreate(params: IPayloadMetaAction<MemberEntity>): Generator {
     yield put({ type: MemberActionTypes.CREATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MemberActionTypes.CREATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: MemberActionTypes.CREATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: MemberActionTypes.CREATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: MemberActionTypes.CREATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -57,9 +71,16 @@ function* handleUpdate(params: IPayloadMetaAction<MemberEntity>): Generator {
     yield put({ type: MemberActionTypes.UPDATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MemberActionTypes.UPDATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: MemberActionTypes.UPDATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: MemberActionTypes.UPDATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: MemberActionTypes.UPDATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -74,9 +95,16 @@ function* handleDelete(params: IPayloadMetaAction<MemberEntity>): Generator {
     yield put({ type: MemberActionTypes.DELETE.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MemberActionTypes.DELETE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: MemberActionTypes.DELETE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: MemberActionTypes.DELETE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: MemberActionTypes.DELETE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -90,9 +118,16 @@ function* handleSet(params: IPayloadAction<MemberEntity>): Generator {
     yield put({ type: MemberActionTypes.SET.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MemberActionTypes.SET.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: MemberActionTypes.SET.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: MemberActionTypes.SET.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: MemberActionTypes.SET.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }

@@ -1,4 +1,5 @@
 import { action } from 'typesafe-actions';
+
 import { ObjectId, JobActionTypes, JobEntity } from '@/types';
 
 /**
@@ -72,3 +73,8 @@ export const deleteJob = (data: JobEntity) =>
  * @param {JobEntity} data the Job instance to set.
  */
 export const setJob = (data: JobEntity | {}) => action(JobActionTypes.SET.START, data);
+
+/**
+ * Clears Job state
+ */
+export const clear = () => action(JobActionTypes.CLEAR);

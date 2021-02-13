@@ -1,5 +1,4 @@
 import { Entity } from '@/types';
-
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
@@ -28,6 +27,7 @@ export const StudyFieldActionTypes = {
   UPDATE: generateAsyncAction('@@studyfield.UPDATE'),
   DELETE: generateAsyncAction('@@studyfield.DELETE'),
   SET: generateAsyncAction('@@studyfield.SET'),
+  CLEAR: '@@studyfield.CLEAR',
 };
 
 /**
@@ -39,6 +39,7 @@ export interface StudyFieldActions {
   updateStudyField: (studyfield: StudyFieldEntity) => IPayloadMetaAction<StudyFieldEntity>;
   deleteStudyField: (studyfield: StudyFieldEntity) => IPayloadMetaAction<StudyFieldEntity>;
   setStudyField: (studyfield: StudyFieldEntity) => IPayloadAction<StudyFieldEntity>;
+  clear: () => IMetaAction;
 }
 
 /**

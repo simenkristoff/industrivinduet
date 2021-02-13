@@ -1,5 +1,4 @@
 import { Entity } from '@/types';
-
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
@@ -25,6 +24,7 @@ export const GroupActionTypes = {
   UPDATE: generateAsyncAction('@@group.UPDATE'),
   DELETE: generateAsyncAction('@@group.DELETE'),
   SET: generateAsyncAction('@@group.SET'),
+  CLEAR: '@@group.CLEAR',
 };
 
 /**
@@ -36,6 +36,7 @@ export interface GroupActions {
   updateGroup: (group: GroupEntity) => IPayloadMetaAction<GroupEntity>;
   deleteGroup: (group: GroupEntity) => IPayloadMetaAction<GroupEntity>;
   setGroup: (group: GroupEntity) => IPayloadAction<GroupEntity>;
+  clear: () => IMetaAction;
 }
 
 /**

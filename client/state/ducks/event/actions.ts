@@ -1,5 +1,6 @@
-import { ObjectId } from '@/state/interface';
 import { action } from 'typesafe-actions';
+
+import { ObjectId } from '@/state/interface';
 import { EventActionTypes, EventEntity } from '@/types';
 
 /**
@@ -73,3 +74,8 @@ export const deleteEvent = (data: EventEntity) =>
  * @param {EventEntity} data the Event instance to set.
  */
 export const setEvent = (data: EventEntity | {}) => action(EventActionTypes.SET.START, data);
+
+/**
+ * Clears Event state
+ */
+export const clear = () => action(EventActionTypes.CLEAR);

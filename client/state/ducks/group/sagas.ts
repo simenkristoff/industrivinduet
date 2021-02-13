@@ -1,4 +1,5 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+
 import {
   IMetaAction,
   IPayloadAction,
@@ -6,7 +7,6 @@ import {
   GroupActionTypes,
   GroupEntity,
 } from '@/types';
-
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
@@ -23,9 +23,16 @@ function* handleFetch(params: IMetaAction): Generator {
     yield put({ type: GroupActionTypes.FETCH.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: GroupActionTypes.FETCH.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: GroupActionTypes.FETCH.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: GroupActionTypes.FETCH.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: GroupActionTypes.FETCH.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -40,9 +47,16 @@ function* handleCreate(params: IPayloadMetaAction<GroupEntity>): Generator {
     yield put({ type: GroupActionTypes.CREATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: GroupActionTypes.CREATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: GroupActionTypes.CREATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: GroupActionTypes.CREATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: GroupActionTypes.CREATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -57,9 +71,16 @@ function* handleUpdate(params: IPayloadMetaAction<GroupEntity>): Generator {
     yield put({ type: GroupActionTypes.UPDATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: GroupActionTypes.UPDATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: GroupActionTypes.UPDATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: GroupActionTypes.UPDATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: GroupActionTypes.UPDATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -74,9 +95,16 @@ function* handleDelete(params: IPayloadMetaAction<GroupEntity>): Generator {
     yield put({ type: GroupActionTypes.DELETE.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: GroupActionTypes.DELETE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: GroupActionTypes.DELETE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: GroupActionTypes.DELETE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: GroupActionTypes.DELETE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -90,9 +118,16 @@ function* handleSet(params: IPayloadAction<GroupEntity>): Generator {
     yield put({ type: GroupActionTypes.SET.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: GroupActionTypes.SET.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: GroupActionTypes.SET.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: GroupActionTypes.SET.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: GroupActionTypes.SET.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }

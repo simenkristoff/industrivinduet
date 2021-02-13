@@ -21,23 +21,36 @@ export const contentReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): ContentState => {
   switch (action.type) {
-    case ContentActionTypes.FETCH.START: {
-      return { ...state, loading: true };
+    case ContentActionTypes.FETCH.START:
+    case ContentActionTypes.CREATE.START:
+    case ContentActionTypes.UPDATE.START:
+    case ContentActionTypes.DELETE.START: {
+      return { ...state, loading: true, status: null };
     }
     case ContentActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, data: action.payload };
+      return { ...initialState, data: action.payload, loading: false, status: null };
     }
     case ContentActionTypes.CREATE.SUCCESS: {
-      return { ...state, data: [...state.data, action.payload] };
+      return { ...state, data: [...state.data, action.payload], loading: false, status: null };
     }
     case ContentActionTypes.UPDATE.SUCCESS: {
-      return { ...state, data: updateObjectInArray<ContentEntity>(state.data, action) };
+      return {
+        ...state,
+        data: updateObjectInArray<ContentEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case ContentActionTypes.DELETE.SUCCESS: {
-      return { ...state, data: deleteObjectInArray<ContentEntity>(state.data, action) };
+      return {
+        ...state,
+        data: deleteObjectInArray<ContentEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case ContentActionTypes.SET.START: {
-      return { ...state, byId: action.payload };
+      return { ...state, byId: action.payload, status: null };
     }
     case ContentActionTypes.FETCH.ERROR:
     case ContentActionTypes.CREATE.ERROR:
@@ -49,6 +62,12 @@ export const contentReducer = (
         status: action.payload,
       };
     }
+    case ContentActionTypes.CLEAR:
+      return {
+        ...state,
+        loading: false,
+        status: null,
+      };
     default:
       return state;
   }

@@ -21,23 +21,36 @@ export const memberReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): MemberState => {
   switch (action.type) {
-    case MemberActionTypes.FETCH.START: {
-      return { ...state, loading: true };
+    case MemberActionTypes.FETCH.START:
+    case MemberActionTypes.CREATE.START:
+    case MemberActionTypes.UPDATE.START:
+    case MemberActionTypes.DELETE.START: {
+      return { ...state, loading: true, status: null };
     }
     case MemberActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, data: action.payload };
+      return { ...initialState, data: action.payload, loading: false, status: null };
     }
     case MemberActionTypes.CREATE.SUCCESS: {
-      return { ...state, data: [...state.data, action.payload] };
+      return { ...state, data: [...state.data, action.payload], loading: false, status: null };
     }
     case MemberActionTypes.UPDATE.SUCCESS: {
-      return { ...state, data: updateObjectInArray<MemberEntity>(state.data, action) };
+      return {
+        ...state,
+        data: updateObjectInArray<MemberEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case MemberActionTypes.DELETE.SUCCESS: {
-      return { ...state, data: deleteObjectInArray<MemberEntity>(state.data, action) };
+      return {
+        ...state,
+        data: deleteObjectInArray<MemberEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case MemberActionTypes.SET.START: {
-      return { ...state, byId: action.payload };
+      return { ...state, byId: action.payload, status: null };
     }
     case MemberActionTypes.FETCH.ERROR:
     case MemberActionTypes.CREATE.ERROR:
@@ -49,6 +62,12 @@ export const memberReducer = (
         status: action.payload,
       };
     }
+    case MemberActionTypes.CLEAR:
+      return {
+        ...state,
+        loading: false,
+        status: null,
+      };
     default:
       return state;
   }

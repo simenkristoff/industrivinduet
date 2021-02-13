@@ -1,4 +1,5 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+
 import {
   IMetaAction,
   IPayloadAction,
@@ -6,7 +7,6 @@ import {
   EventActionTypes,
   EventEntity,
 } from '@/types';
-
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
@@ -23,9 +23,16 @@ function* handleFetch(params: IMetaAction): Generator {
     yield put({ type: EventActionTypes.FETCH.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: EventActionTypes.FETCH.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: EventActionTypes.FETCH.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: EventActionTypes.FETCH.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: EventActionTypes.FETCH.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -40,9 +47,16 @@ function* handleFetchOne(params: IMetaAction): Generator {
     yield put({ type: EventActionTypes.FETCH_ONE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: EventActionTypes.FETCH_ONE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: EventActionTypes.FETCH_ONE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: EventActionTypes.FETCH_ONE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: EventActionTypes.FETCH_ONE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -57,9 +71,16 @@ function* handleCreate(params: IPayloadMetaAction<EventEntity>): Generator {
     yield put({ type: EventActionTypes.CREATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: EventActionTypes.CREATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: EventActionTypes.CREATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: EventActionTypes.CREATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: EventActionTypes.CREATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -74,9 +95,16 @@ function* handleUpdate(params: IPayloadMetaAction<EventEntity>): Generator {
     yield put({ type: EventActionTypes.UPDATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: EventActionTypes.UPDATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: EventActionTypes.UPDATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: EventActionTypes.UPDATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: EventActionTypes.UPDATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -91,9 +119,16 @@ function* handleDelete(params: IPayloadMetaAction<EventEntity>): Generator {
     yield put({ type: EventActionTypes.DELETE.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: EventActionTypes.DELETE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: EventActionTypes.DELETE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: EventActionTypes.DELETE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: EventActionTypes.DELETE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -107,9 +142,16 @@ function* handleSet(params: IPayloadAction<EventEntity>): Generator {
     yield put({ type: EventActionTypes.SET.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: EventActionTypes.SET.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: EventActionTypes.SET.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: EventActionTypes.SET.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: EventActionTypes.SET.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }

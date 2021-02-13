@@ -21,23 +21,36 @@ export const roleReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): RoleState => {
   switch (action.type) {
-    case RoleActionTypes.FETCH.START: {
-      return { ...state, loading: true };
+    case RoleActionTypes.FETCH.START:
+    case RoleActionTypes.CREATE.START:
+    case RoleActionTypes.UPDATE.START:
+    case RoleActionTypes.DELETE.START: {
+      return { ...state, loading: true, status: null };
     }
     case RoleActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, data: action.payload };
+      return { ...initialState, data: action.payload, loading: false, status: null };
     }
     case RoleActionTypes.CREATE.SUCCESS: {
-      return { ...state, data: [...state.data, action.payload] };
+      return { ...state, data: [...state.data, action.payload], loading: false, status: null };
     }
     case RoleActionTypes.UPDATE.SUCCESS: {
-      return { ...state, data: updateObjectInArray<RoleEntity>(state.data, action) };
+      return {
+        ...state,
+        data: updateObjectInArray<RoleEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case RoleActionTypes.DELETE.SUCCESS: {
-      return { ...state, data: deleteObjectInArray<RoleEntity>(state.data, action) };
+      return {
+        ...state,
+        data: deleteObjectInArray<RoleEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case RoleActionTypes.SET.START: {
-      return { ...state, byId: action.payload };
+      return { ...state, byId: action.payload, status: null };
     }
     case RoleActionTypes.FETCH.ERROR:
     case RoleActionTypes.CREATE.ERROR:
@@ -49,6 +62,12 @@ export const roleReducer = (
         status: action.payload,
       };
     }
+    case RoleActionTypes.CLEAR:
+      return {
+        ...state,
+        loading: false,
+        status: null,
+      };
     default:
       return state;
   }

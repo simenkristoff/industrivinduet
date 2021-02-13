@@ -1,4 +1,5 @@
 import { action } from 'typesafe-actions';
+
 import { GroupActionTypes, GroupEntity } from '@/types';
 
 /**
@@ -45,3 +46,8 @@ export const deleteGroup = (data: GroupEntity) =>
  * @param {GroupEntity} data the Group instance to set.
  */
 export const setGroup = (data?: GroupEntity) => action(GroupActionTypes.SET.START, data);
+
+/**
+ * Clears Group state
+ */
+export const clear = () => action(GroupActionTypes.CLEAR);

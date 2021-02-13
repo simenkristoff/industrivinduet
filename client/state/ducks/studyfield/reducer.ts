@@ -21,23 +21,36 @@ export const studyfieldReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): StudyFieldState => {
   switch (action.type) {
-    case StudyFieldActionTypes.FETCH.START: {
-      return { ...state, loading: true };
+    case StudyFieldActionTypes.FETCH.START:
+    case StudyFieldActionTypes.CREATE.START:
+    case StudyFieldActionTypes.UPDATE.START:
+    case StudyFieldActionTypes.DELETE.START: {
+      return { ...state, loading: true, status: null };
     }
     case StudyFieldActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, data: action.payload };
+      return { ...initialState, data: action.payload, loading: false, status: null };
     }
     case StudyFieldActionTypes.CREATE.SUCCESS: {
-      return { ...state, data: [...state.data, action.payload] };
+      return { ...state, data: [...state.data, action.payload], loading: false, status: null };
     }
     case StudyFieldActionTypes.UPDATE.SUCCESS: {
-      return { ...state, data: updateObjectInArray<StudyFieldEntity>(state.data, action) };
+      return {
+        ...state,
+        data: updateObjectInArray<StudyFieldEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case StudyFieldActionTypes.DELETE.SUCCESS: {
-      return { ...state, data: deleteObjectInArray<StudyFieldEntity>(state.data, action) };
+      return {
+        ...state,
+        data: deleteObjectInArray<StudyFieldEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case StudyFieldActionTypes.SET.START: {
-      return { ...state, byId: action.payload };
+      return { ...state, byId: action.payload, status: null };
     }
     case StudyFieldActionTypes.FETCH.ERROR:
     case StudyFieldActionTypes.CREATE.ERROR:
@@ -49,6 +62,12 @@ export const studyfieldReducer = (
         status: action.payload,
       };
     }
+    case StudyFieldActionTypes.CLEAR:
+      return {
+        ...state,
+        loading: false,
+        status: null,
+      };
     default:
       return state;
   }

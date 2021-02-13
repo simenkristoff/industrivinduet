@@ -1,6 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
-import { IMetaAction, IPayloadMetaAction, OptionActionTypes, OptionEntity } from '@/types';
 
+import { IMetaAction, IPayloadMetaAction, OptionActionTypes, OptionEntity } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
@@ -17,9 +17,16 @@ function* handleFetch(params: IMetaAction): Generator {
     yield put({ type: OptionActionTypes.FETCH.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: OptionActionTypes.FETCH.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: OptionActionTypes.FETCH.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: OptionActionTypes.FETCH.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: OptionActionTypes.FETCH.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -34,9 +41,16 @@ function* handleUpdate(params: IPayloadMetaAction<OptionEntity>): Generator {
     yield put({ type: OptionActionTypes.UPDATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: OptionActionTypes.UPDATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: OptionActionTypes.UPDATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: OptionActionTypes.UPDATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: OptionActionTypes.UPDATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -53,9 +67,16 @@ function* handleReset(params: IMetaAction): Generator {
     yield put({ type: OptionActionTypes.RESET.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: OptionActionTypes.RESET.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: OptionActionTypes.RESET.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: OptionActionTypes.RESET.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: OptionActionTypes.RESET.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }

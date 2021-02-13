@@ -1,4 +1,5 @@
 import { action } from 'typesafe-actions';
+
 import { OptionActionTypes, OptionEntity } from '@/types';
 
 /**
@@ -28,3 +29,8 @@ export const resetOptions = () =>
     method: 'delete',
     route: `api/options`,
   });
+
+/**
+ * Clears Option state
+ */
+export const clear = () => action(OptionActionTypes.CLEAR);

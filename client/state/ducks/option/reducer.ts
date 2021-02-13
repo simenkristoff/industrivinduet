@@ -8,7 +8,7 @@ export const initialState: OptionState = {
   job: {},
   socials: {},
   loading: false,
-  errors: [],
+  status: null,
 };
 
 /**
@@ -21,23 +21,31 @@ export const optionReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): OptionState => {
   switch (action.type) {
-    case OptionActionTypes.FETCH.START: {
-      return { ...state, loading: true };
+    case OptionActionTypes.FETCH.START:
+    case OptionActionTypes.UPDATE.START:
+    case OptionActionTypes.RESET.START: {
+      return { ...state, loading: true, status: null };
     }
     case OptionActionTypes.FETCH.SUCCESS:
     case OptionActionTypes.UPDATE.SUCCESS:
     case OptionActionTypes.RESET.SUCCESS: {
-      return { ...initialState, ...action.payload };
+      return { ...initialState, ...action.payload, loading: false, status: null };
     }
-
     case OptionActionTypes.FETCH.ERROR:
     case OptionActionTypes.UPDATE.ERROR:
     case OptionActionTypes.RESET.ERROR: {
       return {
         ...state,
-        errors: [...state.errors, action.payload],
+        loading: false,
+        status: action.payload,
       };
     }
+    case OptionActionTypes.CLEAR:
+      return {
+        ...state,
+        loading: false,
+        status: null,
+      };
     default:
       return state;
   }

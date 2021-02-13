@@ -1,6 +1,6 @@
-import { MediaFolderType } from '@/components/MediaLibrary/interface';
 import { action } from 'typesafe-actions';
-import { MediaActionTypes, MediaType } from '@/types';
+
+import { MediaFolderType, MediaActionTypes, MediaType } from '@/types';
 
 /**
  * @desc Fetch all Files.
@@ -55,3 +55,8 @@ export const updateFolder = (folder: MediaFolderType) =>
     method: 'put',
     route: `api/folders`,
   });
+
+/**
+ * Clears Media state
+ */
+export const clear = () => action(MediaActionTypes.CLEAR);

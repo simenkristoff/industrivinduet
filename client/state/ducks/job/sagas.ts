@@ -1,4 +1,5 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+
 import {
   IMetaAction,
   IPayloadAction,
@@ -6,7 +7,6 @@ import {
   JobActionTypes,
   JobEntity,
 } from '@/types';
-
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
@@ -23,9 +23,16 @@ function* handleFetch(params: IMetaAction): Generator {
     yield put({ type: JobActionTypes.FETCH.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: JobActionTypes.FETCH.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: JobActionTypes.FETCH.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: JobActionTypes.FETCH.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: JobActionTypes.FETCH.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -40,9 +47,16 @@ function* handleFetchOne(params: IMetaAction): Generator {
     yield put({ type: JobActionTypes.FETCH_ONE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: JobActionTypes.FETCH_ONE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: JobActionTypes.FETCH_ONE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: JobActionTypes.FETCH_ONE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: JobActionTypes.FETCH_ONE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -57,9 +71,16 @@ function* handleCreate(params: IPayloadMetaAction<JobEntity>): Generator {
     yield put({ type: JobActionTypes.CREATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: JobActionTypes.CREATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: JobActionTypes.CREATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: JobActionTypes.CREATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: JobActionTypes.CREATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -74,9 +95,16 @@ function* handleUpdate(params: IPayloadMetaAction<JobEntity>): Generator {
     yield put({ type: JobActionTypes.UPDATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: JobActionTypes.UPDATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: JobActionTypes.UPDATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: JobActionTypes.UPDATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: JobActionTypes.UPDATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -91,9 +119,16 @@ function* handleDelete(params: IPayloadMetaAction<JobEntity>): Generator {
     yield put({ type: JobActionTypes.DELETE.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: JobActionTypes.DELETE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: JobActionTypes.DELETE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: JobActionTypes.DELETE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: JobActionTypes.DELETE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -107,9 +142,16 @@ function* handleSet(params: IPayloadAction<JobEntity>): Generator {
     yield put({ type: JobActionTypes.SET.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: JobActionTypes.SET.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: JobActionTypes.SET.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: JobActionTypes.SET.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: JobActionTypes.SET.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }

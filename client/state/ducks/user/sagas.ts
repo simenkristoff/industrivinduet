@@ -19,9 +19,16 @@ function* handleFetch(params: IMetaAction): Generator {
     yield put({ type: UserActionTypes.FETCH.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: UserActionTypes.FETCH.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: UserActionTypes.FETCH.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: UserActionTypes.FETCH.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: UserActionTypes.FETCH.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -36,9 +43,16 @@ function* handleCreate(params: IPayloadMetaAction<UserEntity>): Generator {
     yield put({ type: UserActionTypes.CREATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: UserActionTypes.CREATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: UserActionTypes.CREATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: UserActionTypes.CREATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: UserActionTypes.CREATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -53,9 +67,16 @@ function* handleUpdate(params: IPayloadMetaAction<UserEntity>): Generator {
     yield put({ type: UserActionTypes.UPDATE.SUCCESS, payload: data });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: UserActionTypes.UPDATE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: UserActionTypes.UPDATE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: UserActionTypes.UPDATE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: UserActionTypes.UPDATE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -70,9 +91,16 @@ function* handleDelete(params: IPayloadMetaAction<UserEntity>): Generator {
     yield put({ type: UserActionTypes.DELETE.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: UserActionTypes.DELETE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: UserActionTypes.DELETE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: UserActionTypes.DELETE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: UserActionTypes.DELETE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -113,9 +141,16 @@ function* handleSet(params: IPayloadAction<UserEntity>): Generator {
     yield put({ type: UserActionTypes.SET.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: UserActionTypes.SET.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: UserActionTypes.SET.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: UserActionTypes.SET.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: UserActionTypes.SET.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }

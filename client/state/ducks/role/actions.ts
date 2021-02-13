@@ -1,4 +1,5 @@
 import { action } from 'typesafe-actions';
+
 import { RoleActionTypes, RoleEntity } from '@/types';
 
 /**
@@ -45,3 +46,8 @@ export const deleteRole = (data: RoleEntity) =>
  * @param {RoleEntity} data the Role instance to set.
  */
 export const setRole = (data: RoleEntity) => action(RoleActionTypes.SET.START, data);
+
+/**
+ * Clears Role state
+ */
+export const clear = () => action(RoleActionTypes.CLEAR);

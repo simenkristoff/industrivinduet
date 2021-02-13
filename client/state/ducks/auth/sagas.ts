@@ -10,7 +10,7 @@ import {
 } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
 
-import { removeToken, saveToken } from './helpers';
+import { saveToken } from './helpers';
 
 /**
  * @desc Business logic of effect.
@@ -86,7 +86,7 @@ function* handleForgotPassword(params: IPayloadMetaAction<ForgotPasswordCredenti
   }
 }
 
-function* handleResetPassword(params: IPayloadMetaAction<ForgotPasswordCredentials>): Generator {
+function* handleResetPassword(params: IPayloadMetaAction<ResetPasswordCredentials>): Generator {
   try {
     const response = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({

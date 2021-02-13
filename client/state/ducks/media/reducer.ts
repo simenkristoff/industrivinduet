@@ -1,4 +1,5 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+
 import { MediaActionTypes, MediaState } from '@/types';
 
 import { appendMediaFile, reduceMediaFile, updateFolder } from './helpers';
@@ -7,7 +8,7 @@ export const initialState: MediaState = {
   selectedFile: {},
   nodes: {},
   loading: false,
-  errors: [],
+  status: null,
 };
 
 export const mediaReducer = (
@@ -20,22 +21,42 @@ export const mediaReducer = (
     case MediaActionTypes.DELETE.START:
     case MediaActionTypes.CREATE_FOLDER.START:
     case MediaActionTypes.UPDATE_FOLDER.START: {
-      return { ...state, loading: true };
+      return { ...state, loading: true, status: null };
     }
     case MediaActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, nodes: action.payload };
+      return { ...initialState, nodes: action.payload, loading: false, status: null };
     }
     case MediaActionTypes.UPLOAD.SUCCESS: {
-      return { ...state, nodes: appendMediaFile(state.nodes, action.payload), loading: false };
+      return {
+        ...state,
+        nodes: appendMediaFile(state.nodes, action.payload),
+        loading: false,
+        status: null,
+      };
     }
     case MediaActionTypes.DELETE.SUCCESS: {
-      return { ...state, nodes: reduceMediaFile(state.nodes, action.payload), loading: false };
+      return {
+        ...state,
+        nodes: reduceMediaFile(state.nodes, action.payload),
+        loading: false,
+        status: null,
+      };
     }
     case MediaActionTypes.CREATE_FOLDER.SUCCESS: {
-      return { ...state, nodes: appendMediaFile(state.nodes, action.payload), loading: false };
+      return {
+        ...state,
+        nodes: appendMediaFile(state.nodes, action.payload),
+        loading: false,
+        status: null,
+      };
     }
     case MediaActionTypes.UPDATE_FOLDER.SUCCESS: {
-      return { ...state, nodes: updateFolder(state.nodes, action.payload), loading: false };
+      return {
+        ...state,
+        nodes: updateFolder(state.nodes, action.payload),
+        loading: false,
+        status: null,
+      };
     }
     case MediaActionTypes.FETCH.ERROR:
     case MediaActionTypes.UPLOAD.ERROR:
@@ -44,9 +65,16 @@ export const mediaReducer = (
     case MediaActionTypes.UPDATE_FOLDER.ERROR: {
       return {
         ...state,
-        errors: [...state.errors, action.payload],
+        loading: false,
+        status: action.payload,
       };
     }
+    case MediaActionTypes.CLEAR:
+      return {
+        ...state,
+        loading: false,
+        status: null,
+      };
     default:
       return state;
   }

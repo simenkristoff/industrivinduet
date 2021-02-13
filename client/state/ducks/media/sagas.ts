@@ -1,4 +1,5 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+
 import {
   IMetaAction,
   IPayloadMetaAction,
@@ -6,7 +7,6 @@ import {
   MediaType,
   MediaFolderType,
 } from '@/types';
-
 import apiCaller, { fileApiCaller } from '@/state/utils/apiCaller';
 
 /**
@@ -18,9 +18,16 @@ function* handleFetch(params: IMetaAction): Generator {
     yield put({ type: MediaActionTypes.FETCH.SUCCESS, payload: file });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MediaActionTypes.FETCH.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: MediaActionTypes.FETCH.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: MediaActionTypes.FETCH.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: MediaActionTypes.FETCH.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -32,9 +39,16 @@ function* handleUpload(params: IPayloadMetaAction<FormData>): Generator {
     yield put({ type: MediaActionTypes.UPLOAD.SUCCESS, payload: file });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MediaActionTypes.UPLOAD.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: MediaActionTypes.UPLOAD.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: MediaActionTypes.UPLOAD.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: MediaActionTypes.UPLOAD.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -47,9 +61,16 @@ function* handleDelete(params: IPayloadMetaAction<MediaType>): Generator {
     yield put({ type: MediaActionTypes.DELETE.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MediaActionTypes.DELETE.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: MediaActionTypes.DELETE.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: MediaActionTypes.DELETE.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: MediaActionTypes.DELETE.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -60,7 +81,11 @@ function* handleCreateFolder(params: IPayloadMetaAction<MediaFolderType>): Gener
     yield put({ type: MediaActionTypes.CREATE_FOLDER.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MediaActionTypes.CREATE_FOLDER.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: MediaActionTypes.CREATE_FOLDER.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
       yield put({
         type: MediaActionTypes.CREATE_FOLDER.ERROR,
@@ -76,7 +101,11 @@ function* handleUpdateFolder(params: IPayloadMetaAction<MediaFolderType>): Gener
     yield put({ type: MediaActionTypes.UPDATE_FOLDER.SUCCESS, payload: params.payload });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: MediaActionTypes.UPDATE_FOLDER.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: MediaActionTypes.UPDATE_FOLDER.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
       yield put({
         type: MediaActionTypes.UPDATE_FOLDER.ERROR,

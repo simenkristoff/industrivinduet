@@ -1,5 +1,4 @@
 import { Entity } from '@/types';
-
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
@@ -28,6 +27,7 @@ export const PartnerActionTypes = {
   UPDATE: generateAsyncAction('@@partner.UPDATE'),
   DELETE: generateAsyncAction('@@partner.DELETE'),
   SET: generateAsyncAction('@@partner.SET'),
+  CLEAR: '@@partner.CLEAR',
 };
 
 /**
@@ -39,6 +39,7 @@ export interface PartnerActions {
   updatePartner: (partner: PartnerEntity) => IPayloadMetaAction<PartnerEntity>;
   deletePartner: (partner: PartnerEntity) => IPayloadMetaAction<PartnerEntity>;
   setPartner: (partner: PartnerEntity) => IPayloadAction<PartnerEntity>;
+  clear: () => IMetaAction;
 }
 
 /**

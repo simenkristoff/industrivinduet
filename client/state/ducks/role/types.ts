@@ -1,5 +1,4 @@
 import { Entity } from '@/types';
-
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
@@ -28,6 +27,7 @@ export const RoleActionTypes = {
   UPDATE: generateAsyncAction('@@role.UPDATE'),
   DELETE: generateAsyncAction('@@role.DELETE'),
   SET: generateAsyncAction('@@role.SET'),
+  CLEAR: '@@role.CLEAR',
 };
 
 /**
@@ -39,6 +39,7 @@ export interface RoleActions {
   updateRole: (role: RoleEntity) => IPayloadMetaAction<RoleEntity>;
   deleteRole: (role: RoleEntity) => IPayloadMetaAction<RoleEntity>;
   setRole: (role: RoleEntity) => IPayloadAction<RoleEntity>;
+  clear: () => IMetaAction;
 }
 
 /**
