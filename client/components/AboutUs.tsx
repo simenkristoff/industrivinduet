@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Tabs, Row } from 'antd';
-import { ContentEntity, MemberEntity, PartnerEntity } from '@/types';
 
+import { ContentEntity, MemberEntity, PartnerEntity } from '@/types';
 import { MemberCard } from '@/components/MemberCard';
 import { PartnerCard } from '@/components/PartnerCard';
 

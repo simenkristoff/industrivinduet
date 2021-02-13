@@ -1,4 +1,5 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+
 import { UserActionTypes, UserEntity, UserState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
@@ -6,8 +7,8 @@ import { updateObjectInArray, deleteObjectInArray } from '../../utils';
 export const initialState: UserState = {
   byId: {},
   data: [],
-  errors: [],
   loading: false,
+  status: null,
 };
 
 /**
@@ -20,7 +21,10 @@ export const userReducer = (
   action: Action<TypeConstant> & PayloadAction<TypeConstant, any>,
 ): UserState => {
   switch (action.type) {
-    case UserActionTypes.FETCH.START: {
+    case UserActionTypes.FETCH.START:
+    case UserActionTypes.DELETE.START:
+    case UserActionTypes.CREATE.START:
+    case UserActionTypes.DELETE.START: {
       return { ...state, loading: true };
     }
     case UserActionTypes.FETCH.SUCCESS: {
@@ -35,6 +39,7 @@ export const userReducer = (
     case UserActionTypes.DELETE.SUCCESS: {
       return { ...state, data: deleteObjectInArray<UserEntity>(state.data, action) };
     }
+    case UserActionTypes.LOOKUP_REGISTER_TOKEN.SUCCESS:
     case UserActionTypes.SET.START: {
       return { ...state, byId: action.payload };
     }
@@ -42,10 +47,12 @@ export const userReducer = (
     case UserActionTypes.CREATE.ERROR:
     case UserActionTypes.UPDATE.ERROR:
     case UserActionTypes.DELETE.ERROR:
+    case UserActionTypes.LOOKUP_REGISTER_TOKEN.ERROR:
     case UserActionTypes.SET.ERROR: {
       return {
         ...state,
-        errors: [...state.errors, action.payload],
+        loading: false,
+        status: action.payload,
       };
     }
     default:

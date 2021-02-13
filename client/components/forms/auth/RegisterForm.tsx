@@ -1,31 +1,40 @@
 import React from 'react';
-import { Form, Input, Radio, Button } from 'antd';
-import { RegisterCredentials } from '@/types';
+import { Form, Input, Button } from 'antd';
 
-import { FormMessage, userTypes } from '@/constants';
+import { RegisterCredentials, UserEntity } from '@/types';
+import { FormMessage } from '@/constants';
 
 export interface IProps {
+  user: UserEntity | {};
   register: (credentials: RegisterCredentials) => void;
 }
 
-export const RegisterForm: React.FC<IProps> = ({ register }: IProps) => {
+export const RegisterForm: React.FC<IProps> = ({ register, user }: IProps) => {
   const [form] = Form.useForm();
 
   return (
     <Form
       form={form}
-      initialValues={{ permissions: userTypes.USER }}
+      initialValues={user}
       name='register_form'
       onFinish={register}
       layout='vertical'
       requiredMark={false}
     >
-      <Form.Item name='email' rules={[{ required: true, message: FormMessage.EMAIL.REQUIRED }]}>
-        <Input placeholder={FormMessage.EMAIL.LABEL} />
+      <Form.Item name={['registerToken']} hidden rules={[{ required: true }]}>
+        <Input type='hidden' readOnly />
+      </Form.Item>
+
+      <Form.Item name={['permissions']} hidden rules={[{ required: true }]}>
+        <Input type='hidden' readOnly />
+      </Form.Item>
+
+      <Form.Item name={['email']} rules={[{ required: true, message: FormMessage.EMAIL.REQUIRED }]}>
+        <Input placeholder={FormMessage.EMAIL.LABEL} readOnly={true} />
       </Form.Item>
 
       <Form.Item
-        name='password'
+        name={['password']}
         rules={[{ required: true, message: FormMessage.PASSWORD.REQUIRED.DEFAULT }]}
       >
         <Input.Password placeholder={FormMessage.PASSWORD.LABEL.DEFAULT} />
@@ -49,20 +58,6 @@ export const RegisterForm: React.FC<IProps> = ({ register }: IProps) => {
         ]}
       >
         <Input.Password placeholder={FormMessage.PASSWORD.LABEL.REPEAT} />
-      </Form.Item>
-
-      <Form.Item
-        name='permissions'
-        label={FormMessage.PERMISSIONS.LABEL}
-        rules={[{ required: true, message: FormMessage.PERMISSIONS.REQUIRED }]}
-      >
-        <Radio.Group>
-          {Object.entries(userTypes).map(([key, type]) => (
-            <Radio value={key} key={key}>
-              {type}
-            </Radio>
-          ))}
-        </Radio.Group>
       </Form.Item>
 
       <Form.Item className='text-center'>

@@ -1,4 +1,5 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+
 import { JobActionTypes, JobEntity, JobState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
@@ -6,8 +7,8 @@ import { updateObjectInArray, deleteObjectInArray } from '../../utils';
 export const initialState: JobState = {
   byId: {},
   data: [],
-  errors: [],
   loading: false,
+  status: null,
 };
 
 /**
@@ -52,7 +53,7 @@ export const jobReducer = (
     case JobActionTypes.SET.ERROR: {
       return {
         ...state,
-        errors: [...state.errors, action.payload],
+        status: action.payload,
       };
     }
     default:

@@ -1,4 +1,5 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+
 import { PartnerActionTypes, PartnerEntity, PartnerState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
@@ -6,8 +7,8 @@ import { updateObjectInArray, deleteObjectInArray } from '../../utils';
 export const initialState: PartnerState = {
   byId: {},
   data: [],
-  errors: [],
   loading: false,
+  status: null,
 };
 
 /**
@@ -45,7 +46,7 @@ export const partnerReducer = (
     case PartnerActionTypes.SET.ERROR: {
       return {
         ...state,
-        errors: [...state.errors, action.payload],
+        status: action.payload,
       };
     }
     default:

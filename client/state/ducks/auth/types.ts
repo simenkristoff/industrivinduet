@@ -1,6 +1,6 @@
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
-import { IMetaAction, IPayloadMetaAction, ObjectId } from '../../interface';
+import { IMetaAction, IPayloadMetaAction, ObjectId, ApiResponse } from '../../interface';
 import { UserPermissions } from '../user/types';
 import { MemberEntity } from '../member/types';
 
@@ -10,10 +10,12 @@ export interface AuthState {
   readonly permissions: UserPermissions | null;
   readonly member: MemberEntity | null;
   readonly token: EncodedToken | null;
+  readonly resetPasswordToken: string | null;
+  readonly resetPasswordExpires: number | null;
+
   readonly isLoggedIn: boolean;
-  readonly loginFailed: boolean;
-  readonly loggingIn: boolean;
-  readonly errors: Array<String>;
+  readonly loading: boolean;
+  readonly status: ApiResponse | null;
 }
 
 export interface LoginCredentials {
@@ -25,6 +27,18 @@ export interface RegisterCredentials {
   email: string;
   password: string;
   permissions: UserPermissions;
+  registerToken: string;
+  registerExpires: number;
+}
+
+export interface ForgotPasswordCredentials {
+  email: string;
+}
+
+export interface ResetPasswordCredentials {
+  token: string;
+  password: string;
+  confirmedPassword: string;
 }
 
 export type EncodedToken = string;
@@ -51,13 +65,17 @@ export type GetCookie = (arg0: string) => EncodedToken | undefined;
 export const AuthActionTypes = {
   REGISTER: generateAsyncAction('@@auth.REGISTER'),
   LOGIN: generateAsyncAction('@@auth.LOGIN'),
-  LOGOUT: generateAsyncAction('@@auth.LOGOUT'),
+  SEND_FORGOT_PASSWORD: generateAsyncAction('@@auth.SEND_FORGOT_PASSWORD'),
+  RESET_PASSWORD: generateAsyncAction('@@auth.RESET_PASSWORD'),
+  LOGOUT: '@@auth.LOGOUT',
   CLEAR: '@@auth.CLEAR',
 };
 
 export interface AuthActions {
   register: (credentials: RegisterCredentials) => IPayloadMetaAction<RegisterCredentials>;
   login: (credentials: LoginCredentials) => IPayloadMetaAction<LoginCredentials>;
+  forgot: (credentials: ForgotPasswordCredentials) => IPayloadMetaAction<ForgotPasswordCredentials>;
+  lookupRegisterToken: (token: string) => IPayloadMetaAction<string>;
   logout: () => IMetaAction;
 }
 

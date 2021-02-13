@@ -1,5 +1,4 @@
 import { Entity } from '@/types';
-
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
@@ -8,6 +7,14 @@ import { MemberEntity } from '../member/types';
 export enum UserPermissions {
   ADMIN = 'ADMIN',
   USER = 'USER',
+}
+
+/**
+ * Register Token interface
+ * @interface RegisterTokenInterface
+ */
+export interface RegisterTokenInterface {
+  token: string;
 }
 
 /**
@@ -21,7 +28,8 @@ export type UserState = BaseState<UserEntity>;
 export interface UserEntity extends Entity {
   email: string;
   permissions: UserPermissions;
-  member: MemberEntity;
+  member: MemberEntity | null;
+  isRegistered: boolean;
 }
 
 /**
@@ -32,6 +40,7 @@ export const UserActionTypes = {
   CREATE: generateAsyncAction('@@user.CREATE'),
   UPDATE: generateAsyncAction('@@user.UPDATE'),
   DELETE: generateAsyncAction('@@user.DELETE'),
+  LOOKUP_REGISTER_TOKEN: generateAsyncAction('@@user.LOOKUP_REGISTER_TOKEN'),
   SET: generateAsyncAction('@@user.SET'),
 };
 
@@ -43,6 +52,9 @@ export interface UserActions {
   createUser: (user: UserEntity) => IPayloadMetaAction<UserEntity>;
   updateUser: (user: UserEntity) => IPayloadMetaAction<UserEntity>;
   deleteUser: (user: UserEntity) => IPayloadMetaAction<UserEntity>;
+  lookupRegisterToken: (
+    token: RegisterTokenInterface,
+  ) => IPayloadMetaAction<RegisterTokenInterface>;
   setUser: (user: UserEntity) => IPayloadAction<UserEntity>;
 }
 

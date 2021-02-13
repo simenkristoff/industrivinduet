@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Row, Col, Descriptions } from 'antd';
 import { CalendarOutlined, ClockCircleOutlined, EnvironmentOutlined } from '@ant-design/icons';
+
 import { ResultItemInterface, EventEntity } from '@/types';
 
 interface IProps extends ResultItemInterface<EventEntity> {
   displayContent?: boolean;
 }
+
+const BACKEND_URL = process.env.BACKEND_URL as string;
 
 export const EventItem: React.FC<IProps> = ({ data, className, displayContent }: IProps) => {
   const { _id, title, type, date, starttime, endtime, place, image } = data;
@@ -16,7 +19,7 @@ export const EventItem: React.FC<IProps> = ({ data, className, displayContent }:
     <Link className={`event-item ${className}`} to={`/arrangementer/${_id}`}>
       <Row gutter={[0, 0]} wrap={false} align='middle'>
         <div className='event-image'>
-          <img src={image} alt={title} />
+          <img src={`${BACKEND_URL}/media/${image}`} alt={title} />
         </div>
 
         <Col className='description-wrapper' flex='auto'>

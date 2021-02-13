@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form, Input, Space } from 'antd';
 import { FacebookOutlined, InstagramOutlined, LinkedinOutlined } from '@ant-design/icons';
-import { OptionFormInterface } from '@/types';
 
+import { OptionFormInterface } from '@/types';
 import { OptionMessage } from '@/constants';
 
 const SocialOptionsForm: React.FC<OptionFormInterface> = ({ form, data }: OptionFormInterface) => {

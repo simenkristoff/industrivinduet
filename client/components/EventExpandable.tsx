@@ -1,7 +1,10 @@
 import React from 'react';
 import { Image } from 'antd';
 import moment from 'moment';
+
 import { EventEntity } from '@/types';
+
+const BACKEND_URL = process.env.BACKEND_URL as string;
 
 export const EventExpandable: React.FC<EventEntity> = ({
   image,
@@ -13,7 +16,7 @@ export const EventExpandable: React.FC<EventEntity> = ({
 }: EventEntity) => {
   return (
     <div className='table-col-expanded'>
-      <Image src={image} width={100} />
+      <Image src={`${BACKEND_URL}/media/${image}`} width={100} />
 
       <dl>
         <dt>Starter: </dt>

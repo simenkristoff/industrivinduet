@@ -6,9 +6,9 @@ import { cleanEnv, port, str, num, host } from 'envalid';
 function validateEnv(): void {
   cleanEnv(process.env, {
     SERVER_PORT: port(),
-    MONGO_DB_HOST: host(),
-    MONGO_DB_PORT: port(),
-    MONGO_DB_NAME: str(),
+    DB_HOST: host(),
+    DB_PORT: port(),
+    DB_NAME: str(),
     BCRYPT_SALT_ROUNDS: num(),
     JWT_SECRET_KEY: str(),
     SERVER_SEEDS_PATH: str(),

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { LoginCredentials } from '@/types';
+import { Link } from 'react-router-dom';
 
+import { LoginCredentials } from '@/types';
 import { FormMessage } from '@/constants';
 
 export interface IProps {
@@ -44,6 +45,11 @@ export const LoginForm: React.FC<IProps> = ({ login }: IProps) => {
         <Button type='primary' size='large' htmlType='submit'>
           Logg inn
         </Button>
+        <Link to='/glemt_passord'>
+          <Button type='link' size='large' htmlType='submit'>
+            Glemt passordet?
+          </Button>
+        </Link>
       </Form.Item>
     </Form>
   );

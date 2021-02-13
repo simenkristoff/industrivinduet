@@ -1,11 +1,13 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+
 import {
   IPayloadMetaAction,
   AuthActionTypes,
   LoginCredentials,
   RegisterCredentials,
+  ForgotPasswordCredentials,
+  ResetPasswordCredentials,
 } from '@/types';
-
 import apiCaller from '@/state/utils/apiCaller';
 
 import { removeToken, saveToken } from './helpers';
@@ -27,7 +29,11 @@ function* handleRegister(params: IPayloadMetaAction<RegisterCredentials>): Gener
     yield put({ type: AuthActionTypes.REGISTER.SUCCESS, payload: { user, token } });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: AuthActionTypes.REGISTER.ERROR, payload: params.payload.email });
+      const { message } = err;
+      yield put({
+        type: AuthActionTypes.REGISTER.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
       yield put({ type: AuthActionTypes.REGISTER.ERROR, payload: 'An unknown error occured.' });
     }
@@ -46,22 +52,59 @@ function* handleLogin(params: IPayloadMetaAction<LoginCredentials>): Generator {
     yield put({ type: AuthActionTypes.LOGIN.SUCCESS, payload: { user, token } });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: AuthActionTypes.LOGIN.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: AuthActionTypes.LOGIN.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
       yield put({ type: AuthActionTypes.LOGIN.ERROR, payload: 'An unknown error occured.' });
     }
   }
 }
 
-function* handleLogout(): Generator {
+function* handleForgotPassword(params: IPayloadMetaAction<ForgotPasswordCredentials>): Generator {
   try {
-    yield removeToken();
-    yield put({ type: AuthActionTypes.LOGOUT.SUCCESS });
+    const response = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
+    yield put({
+      type: AuthActionTypes.SEND_FORGOT_PASSWORD.SUCCESS,
+      payload: response,
+    });
   } catch (err) {
     if (err instanceof Error) {
-      yield put({ type: AuthActionTypes.LOGOUT.ERROR, payload: err.message });
+      const { message } = err;
+      yield put({
+        type: AuthActionTypes.SEND_FORGOT_PASSWORD.ERROR,
+        payload: { status: 'error', message },
+      });
     } else {
-      yield put({ type: AuthActionTypes.LOGOUT.ERROR, payload: 'An unknown error occured.' });
+      yield put({
+        type: AuthActionTypes.SEND_FORGOT_PASSWORD.ERROR,
+        payload: 'An unknown error occured.',
+      });
+    }
+  }
+}
+
+function* handleResetPassword(params: IPayloadMetaAction<ForgotPasswordCredentials>): Generator {
+  try {
+    const response = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
+    yield put({
+      type: AuthActionTypes.SEND_FORGOT_PASSWORD.SUCCESS,
+      payload: response,
+    });
+  } catch (err) {
+    if (err instanceof Error) {
+      const { message } = err;
+      yield put({
+        type: AuthActionTypes.SEND_FORGOT_PASSWORD.ERROR,
+        payload: { status: 'error', message },
+      });
+    } else {
+      yield put({
+        type: AuthActionTypes.SEND_FORGOT_PASSWORD.ERROR,
+        payload: 'An unknown error occured.',
+      });
     }
   }
 }
@@ -77,13 +120,22 @@ function* watchLoginRequest(): Generator {
   yield takeEvery(AuthActionTypes.LOGIN.START, handleLogin);
 }
 
-function* watchLogoutRequest(): Generator {
-  yield takeEvery(AuthActionTypes.LOGOUT.START, handleLogout);
+function* watchForgotPasswordRequest(): Generator {
+  yield takeEvery(AuthActionTypes.SEND_FORGOT_PASSWORD.START, handleForgotPassword);
+}
+
+function* watchResetPasswordRequest(): Generator {
+  yield takeEvery(AuthActionTypes.RESET_PASSWORD.START, handleResetPassword);
 }
 
 /**
  * @desc saga init, forks in effects, other sagas
  */
 export default function* authSaga() {
-  yield all([fork(watchRegisterRequest), fork(watchLoginRequest), fork(watchLogoutRequest)]);
+  yield all([
+    fork(watchRegisterRequest),
+    fork(watchLoginRequest),
+    fork(watchForgotPasswordRequest),
+    fork(watchResetPasswordRequest),
+  ]);
 }

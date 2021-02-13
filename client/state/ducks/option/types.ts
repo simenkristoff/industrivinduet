@@ -1,5 +1,4 @@
 import { IMetaAction, IPayloadMetaAction, Entity } from '@/types';
-
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 /**

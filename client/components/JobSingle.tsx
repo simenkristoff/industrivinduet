@@ -1,14 +1,16 @@
 import React from 'react';
 import { Row, Col, Button, Descriptions } from 'antd';
 import moment from 'moment';
-import { JobEntity } from '@/types';
 
+import { JobEntity } from '@/types';
 import { Container } from '@/components/Container';
 import banner from '@resources/ntnu_banner.jpeg';
 
 interface IProps {
   data: JobEntity;
 }
+
+const BACKEND_URL = process.env.BACKEND_URL as string;
 
 export const JobSingle: React.FC<IProps> = ({ data }: IProps) => {
   const {
@@ -32,7 +34,7 @@ export const JobSingle: React.FC<IProps> = ({ data }: IProps) => {
           <img className='banner' src={banner} />
         </Col>
         <Col md={4} sm={6} span={24} className='logo-wrapper'>
-          <img src={image} alt={company} className='logo job-logo' />
+          <img src={`${BACKEND_URL}/media/${image}`} alt={company} className='logo job-logo' />
         </Col>
         <Col md={14} sm={12} span={24} className='title-wrapper'>
           <h3 className='type job-type'>{type}</h3>

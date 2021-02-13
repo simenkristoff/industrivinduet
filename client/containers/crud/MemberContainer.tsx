@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ColumnsType } from 'antd/lib/table';
-import { IApplicationState, MemberEntity, MemberState, GroupEntity, RoleEntity } from '@/types';
 
+import { IApplicationState, MemberEntity, MemberState, GroupEntity, RoleEntity } from '@/types';
 import { MemberForm } from '@/components/forms';
 import {
   createMember,

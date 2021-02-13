@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Row, Col, Descriptions } from 'antd';
 import { EnvironmentOutlined } from '@ant-design/icons';
+
 import { JobEntity } from '@/types';
 import { ResultItemInterface } from '@/components/ResultManager/interface';
 
@@ -10,6 +11,8 @@ interface IProps extends ResultItemInterface<JobEntity> {
   margin?: boolean;
   displayContent?: boolean;
 }
+
+const BACKEND_URL = process.env.BACKEND_URL as string;
 
 export const JobItem: React.FC<IProps> = ({ data, margin, className, displayContent }: IProps) => {
   const { _id, title, company, type, startdate, deadline, places, image } = data;
@@ -21,7 +24,7 @@ export const JobItem: React.FC<IProps> = ({ data, margin, className, displayCont
     >
       <Row gutter={[0, 0]} wrap={false} align='middle'>
         <div className='job-image'>
-          <img src={image} alt={title} />
+          <img src={`${BACKEND_URL}/media/${image}`} alt={title} />
         </div>
         <Col className='description-wrapper' flex='auto'>
           <Descriptions

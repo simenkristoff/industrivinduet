@@ -16,8 +16,6 @@ import { passport, logger, errorMiddleware } from './middlewares';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-const BCRYPT_SALT_ROUNDS = process.env.BCRYPT_SALT_ROUNDS as string;
-
 /**
  * Class App. The wrapper class for the backend-service. The servers logic and configuration is
  * initialized in this class.
@@ -118,24 +116,29 @@ class App {
    * @private
    */
   private initializeRoot() {
-    UserModel.estimatedDocumentCount({}, (err, count) => {
-      if (!err && count === 0) {
-        const password = bcrypt.hashSync('iv_admin', parseInt(BCRYPT_SALT_ROUNDS));
-        UserModel.create({
-          email: 'admin@industrivinduet.no',
-          password,
-          permissions: UserPermissions.ADMIN,
-          isRoot: true,
-        })
-          .then((user) => {
-            user.save();
-            Logger.debug('Intialized Root User');
-          })
-          .catch((err) => {
-            Logger.debug('Error initializing Root User', err);
+    UserModel.findOne(
+      { email: 'admin@industrivinduet.no', permissions: UserPermissions.ADMIN },
+      {},
+      {},
+      (err, doc) => {
+        if (err) {
+          Logger.debug('Root User Lookup failed', err);
+        }
+
+        if (!doc) {
+          const admin = new UserModel({
+            email: 'admin@industrivinduet.no',
+            password: 'iv_admin',
+            permissions: UserPermissions.ADMIN,
+            isRoot: true,
+            isRegistered: true,
           });
-      }
-    });
+
+          admin.save();
+          Logger.debug('Intialized Root User');
+        }
+      },
+    );
   }
 
   /**
@@ -162,20 +165,14 @@ class App {
    * @async
    */
   private async connect() {
-    const {
-      MONGO_DB_HOST,
-      MONGO_DB_PORT,
-      MONGO_DB_NAME,
-      MONGO_DB_USERNAME,
-      MONGO_DB_PASSWORD,
-    } = process.env;
+    const { DB_HOST, DB_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD } = process.env;
     try {
-      mongoose.connect(`mongodb://${MONGO_DB_HOST}:${MONGO_DB_PORT}`, {
+      mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}`, {
         useNewUrlParser: true,
         useFindAndModify: false,
         useUnifiedTopology: true,
         useCreateIndex: true,
-        dbName: MONGO_DB_NAME,
+        dbName: DB_NAME,
       });
       Logger.debug('Connected to MongoDB');
     } catch (error) {

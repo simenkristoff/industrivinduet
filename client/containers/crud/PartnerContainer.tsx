@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState } from '@/types';
 import { Image } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 
+import { IApplicationState } from '@/types';
 import { PartnerForm } from '@/components/forms';
 import { PartnerEntity, PartnerState } from '@/state/ducks/partner/types';
 import {
@@ -40,7 +40,9 @@ export const PartnerContainer: React.FC = () => {
       key: 'image',
       sorter: (a, b) => a.name.localeCompare(b.name, 'nb'),
       // eslint-disable-next-line react/display-name
-      render: (record) => <Image src={record} width={100} />,
+      render: (record) => (
+        <Image src={`${process.env.BACKEND_URL as string}/media/${record}`} width={100} />
+      ),
     },
     {
       dataIndex: 'name',

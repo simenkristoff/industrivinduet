@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Form, Input, Select } from 'antd';
-import { DataFormInterface, IApplicationState, MemberEntity } from '@/types';
 
+import { DataFormInterface, IApplicationState, MemberEntity } from '@/types';
 import { FormMessage } from '@/constants';
 import { MediaPicker } from '@/components/MediaPicker';
 import { uniqueValue } from '@/utils';
@@ -24,7 +24,7 @@ export const MemberForm: React.FC<DataFormInterface<MemberEntity>> = ({
       requiredMark={false}
     >
       <Form.Item name='_id' hidden rules={[{ required: editMode }]}>
-        <Input type='hidden' />
+        <Input type='hidden' readOnly />
       </Form.Item>
 
       <Form.Item name='image'>
