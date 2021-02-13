@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ColumnsType } from 'antd/lib/table';
 import moment from 'moment';
 import { ExpandableConfig } from 'antd/lib/table/interface';
-import { IApplicationState, EventEntity, EventState } from '@/types';
 
+import { IApplicationState, EventEntity, EventState } from '@/types';
 import { EventForm } from '@/components/forms';
 import { EventExpandable } from '@/components/EventExpandable';
 import {

@@ -4,17 +4,21 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { CalendarOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import { ColProps } from 'antd/lib/col';
-import { ResultItemInterface, EventEntity } from '@/types';
 
+import { ResultItemInterface, EventEntity } from '@/types';
 import cover from '@resources/gears_card.jpg';
 
 interface IProps extends ResultItemInterface<EventEntity> {
   column?: ColProps;
+  scaleOnHover?: boolean;
 }
 
-export const EventCard: React.FC<IProps> = ({ data, column, className }: IProps) => {
+const BACKEND_URL = process.env.BACKEND_URL as string;
+
+export const EventCard: React.FC<IProps> = ({ data, column, scaleOnHover, className }: IProps) => {
   const { _id, title, type, date, starttime, endtime, place, image } = data;
-  const classes: string[] = ['event-card', 'shadow-box-light'];
+  const classes: string[] = ['event-card', 'shadow-box'];
+  if (scaleOnHover) classes.push('scale');
   if (className) {
     className.split(' ').forEach((_c) => {
       classes.push(_c);
@@ -26,7 +30,7 @@ export const EventCard: React.FC<IProps> = ({ data, column, className }: IProps)
       <Link className={classes.join(' ')} to={`/arrangementer/${_id}`}>
         <div className='card-header'>
           <img className='cover' src={cover} />
-          <img className='logo' src={image} alt={title} />
+          <img className='logo' src={`${BACKEND_URL}/media/${image}`} alt={title} />
         </div>
         <div className='card-body'>
           <span className='info'>
@@ -52,4 +56,5 @@ EventCard.defaultProps = {
     sm: 12,
     xs: 24,
   },
+  scaleOnHover: false,
 };

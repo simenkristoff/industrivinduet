@@ -1,4 +1,5 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+
 import { OptionActionTypes, OptionState } from '@/types';
 
 export const initialState: OptionState = {

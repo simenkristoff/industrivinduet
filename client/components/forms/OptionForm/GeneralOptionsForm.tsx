@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form, Input } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { OptionFormInterface } from '@/types';
 
+import { OptionFormInterface } from '@/types';
 import { OptionMessage, orgPattern, phonePattern } from '@/constants';
 import { EditorInput } from '@/components/adapters';
 

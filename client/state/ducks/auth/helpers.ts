@@ -1,6 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import cookie from 'js-cookie';
 import moment from 'moment';
+
 import { AuthState, DecodedToken, EncodedToken, Token, UserPermissions } from '@/types';
 
 const STORAGE_KEY = process.env.STORAGE_KEY as string;

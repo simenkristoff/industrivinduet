@@ -81,12 +81,7 @@ export namespace Generator {
     return Math.floor(Math.random() * 100000000).toString();
   }
 
-  const portraits: Array<string> = [
-    'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg',
-    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9ydHJhaXR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-    'https://www.adobe.com/content/dam/cc/us/en/creativecloud/photography/discover/portrait-photography/CODERED_B1_portrait_photography-P4a_438x447.jpg.img.jpg',
-    'https://lh3.googleusercontent.com/proxy/pjJvQ8SJpL6KoffX92ZBg0OBt1KuXPcJ8R5SsG_vR1b1pScOuqkF2mbmTdhrEGVwJBwB3zTLfcZBX52yKjgrwGl9ti8dAvQDJ-fG8avG24UrvvOkYu0Skqz7ix2ui8M3NSSfhQSGXA2GRIMNgUdxgjivNX5TvONjf1k7PBwtd1anvZSDU17JNKjPwsFAQw',
-  ];
+  const portraits: Array<string> = ['profiler/default.png'];
 
   /**
    * Random portrait generator
@@ -174,35 +169,32 @@ export namespace Generator {
     {
       name: 'Kongsberg',
       link: 'https://www.kongsberg.com/',
-      logo:
-        'https://upload.wikimedia.org/wikipedia/en/thumb/e/ea/Kongsberg_Gruppen_logo.svg/1200px-Kongsberg_Gruppen_logo.svg.png',
+      logo: 'bedrifter/kongsberg.png',
     },
     {
       name: 'Kværner',
       link: 'https://www.akersolutions.com/',
-      logo:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Kv%C3%A6rner_logo.svg/1200px-Kv%C3%A6rner_logo.svg.png',
+      logo: 'bedrifter/kvaerner.png',
     },
     {
       name: 'Schlumberger',
       link: 'https://www.slb.com/',
-      logo: 'https://1000logos.net/wp-content/uploads/2020/09/Schlumberger-Logo.png',
+      logo: 'bedrifter/schlumberger.png',
     },
     {
       name: 'DNV-GL',
       link: 'https://www.dnvgl.com/index.html',
-      logo:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/DNV_GL_logo.svg/1200px-DNV_GL_logo.svg.png',
+      logo: 'bedrifter/dnv-gl.png',
     },
     {
       name: 'COWI',
       link: 'https://www.cowi.no/',
-      logo: 'https://dwglogo.com/wp-content/uploads/2016/02/COWI_a-s_logo.png',
+      logo: 'bedrifter/cowi.png',
     },
     {
       name: 'Equinor',
       link: 'https://www.equinor.com/en.html',
-      logo: 'https://www.3mw.no/wp-content/uploads/2018/08/LOGO-EQUINOR.png',
+      logo: 'bedrifter/equinor.png',
     },
   ];
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Form, Input, InputNumber, Space, Switch } from 'antd';
 import { InfoCircleOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { OptionFormInterface } from '@/types';
 
+import { OptionFormInterface } from '@/types';
 import { OptionMessage } from '@/constants';
 
 const EventOptionsForm: React.FC<OptionFormInterface> = ({ form, data }: OptionFormInterface) => {

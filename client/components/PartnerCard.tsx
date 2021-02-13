@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Image, Tooltip } from 'antd';
 import { ColProps } from 'antd/lib/col';
+
 import { PartnerEntity } from '@/types';
 
 interface IProps {
@@ -9,13 +10,15 @@ interface IProps {
   render?: 'image' | 'withContent';
 }
 
+const BACKEND_URL = process.env.BACKEND_URL as string;
+
 function renderImageOnly(data: PartnerEntity) {
   const { name, image, link, description } = data;
 
   return (
     <a href={link}>
       <Tooltip title={name}>
-        <Image src={image} alt={name} preview={false} />
+        <Image src={`${BACKEND_URL}/media/${image}`} alt={name} preview={false} />
       </Tooltip>
     </a>
   );
@@ -25,7 +28,13 @@ function renderWithContents(data: PartnerEntity) {
   const { name, image, link, description } = data;
 
   return [
-    <Image key={`${name}-logo`} src={image} alt={name} className='partner-logo' preview={false} />,
+    <Image
+      key={`${name}-logo`}
+      src={`${BACKEND_URL}/media/${image}`}
+      alt={name}
+      className='partner-logo'
+      preview={false}
+    />,
     <h4 key={`${name}-title`} className='partner-name'>
       {name}
     </h4>,

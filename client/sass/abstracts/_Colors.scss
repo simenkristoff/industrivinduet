@@ -15,20 +15,11 @@ $color-text-muted: lighten($color-text, 30);
 $color-text-light-muted: darken($color-text-light, 15);
 
 // States
-$color-state-bg-success: #4caf50;
 $color-state-text-success: #fff;
 
-$color-state-bg-warning: #fdd835;
 $color-state-text-warning: #fff;
 
-$color-state-bg-error: #e53935;
 $color-state-text-error: #fff;
-
-// Dark
-$color-bg-dark: #263238;
-
-// Light
-$color-bg-light: #fff;
 
 $theme-colors: (
   'primary': #1890ff,
@@ -36,14 +27,14 @@ $theme-colors: (
   'primary-dark': #096dd9,
   'primary-hover': #40a9ff,
   'primary-text': #222,
-  'secondary': $color-bg-secondary,
-  'success': $color-state-bg-success,
-  'warning': $color-state-bg-warning,
-  'danger': $color-state-bg-error,
-  'dark': $color-bg-dark,
+  'secondary': #001529,
+  'success': #4caf50,
+  'warning': #fdd835,
+  'danger': #e53935,
+  'dark': #001529,
   'light': #fff,
   'gray': #f0f2f5,
-  'muted': $color-text-muted,
+  'muted': lighten(#222, 30),
   'text-primary': #222,
   'text-light': #fff,
 );

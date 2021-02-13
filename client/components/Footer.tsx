@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Layout, Row, Col } from 'antd';
 import moment from 'moment';
-import { GeneralOptions, OptionState, SocialOptions, PartnerEntity } from '@/types';
 
+import { GeneralOptions, OptionState, SocialOptions, PartnerEntity } from '@/types';
 import { Container } from '@/components/Container';
 import { Socials } from '@/components/Socials';
 
@@ -11,6 +11,8 @@ interface IProps {
   partners: PartnerEntity[];
   fetchPartners: () => void;
 }
+
+const BACKEND_URL = process.env.BACKEND_URL as string;
 
 export const Footer: React.FC<IProps> = ({ options, partners, fetchPartners }: IProps) => {
   const general = options.general as GeneralOptions;
@@ -45,7 +47,7 @@ export const Footer: React.FC<IProps> = ({ options, partners, fetchPartners }: I
                     {partners &&
                       partners.map((partner) => (
                         <a className='partner' href={partner.link} key={partner._id}>
-                          <img src={partner.image} alt={partner.name} />
+                          <img src={`${BACKEND_URL}/media/${partner.image}`} alt={partner.name} />
                         </a>
                       ))}
                   </div>

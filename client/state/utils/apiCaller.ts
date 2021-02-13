@@ -6,12 +6,16 @@ const API_URL =
     ? (process.env.API_URL as string)
     : `http://localhost:${API_DEV_PORT}`;
 
-function handleErrors(response: Response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
+function handleResponse(response: Response) {
+  const res = response.json().then((data) => {
+    if (!response.ok) {
+      throw Error(data.message);
+    }
 
-  return response;
+    return data;
+  });
+
+  return res;
 }
 
 export function fileApiCaller<FormData>(method: string, path: string, data?: any) {
@@ -23,16 +27,11 @@ export function fileApiCaller<FormData>(method: string, path: string, data?: any
     },
     body: data,
   })
-    .then(handleErrors)
-    .then((res) => res.json())
+    .then(handleResponse)
     .catch();
 }
 
-export default function apiCaller<T>(
-  method: string,
-  path: string,
-  data?: any,
-): Promise<T[] | null> {
+export default function apiCaller<T>(method: string, path: string, data?: any) {
   return fetch(`${API_URL}/${path}`, {
     method,
     headers: {
@@ -42,7 +41,6 @@ export default function apiCaller<T>(
     },
     body: data ? JSON.stringify(data) : null,
   })
-    .then(handleErrors)
-    .then((res) => res.json())
+    .then(handleResponse)
     .catch();
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tooltip, Image, Col } from 'antd';
-import { MemberEntity } from '@/types';
 
+import { MemberEntity } from '@/types';
 import Profile from '@resources/profile_default.png';
 
 interface IProps {
@@ -10,6 +10,8 @@ interface IProps {
   borderShadow?: boolean;
   displayImage?: boolean;
 }
+
+const BACKEND_URL = process.env.BACKEND_URL as string;
 
 export const MemberCard: React.FC<IProps> = ({
   data,
@@ -35,7 +37,7 @@ export const MemberCard: React.FC<IProps> = ({
             <Image
               className='member-profile'
               alt={`${name.first} ${name.last}`}
-              src={image}
+              src={`${BACKEND_URL}/media/${image}`}
               fallback={Profile}
               preview={false}
             />

@@ -1,10 +1,16 @@
+import crypto from 'crypto';
+
 import { Request, Response, NextFunction, Router } from 'express';
 import { CallbackError } from 'mongoose';
+import Mail from 'nodemailer/lib/mailer';
 
 import { ControllerInterface, User } from '../types';
+import { Logger, transporter } from '../utils';
 import { asyncHandler, passport } from '../middlewares';
 import { HttpException, NotFoundException } from '../exceptions';
 import { UserModel } from '../models';
+
+const { APP_NAME, SMTP_USER } = process.env;
 
 /**
  * Class representing the API-controller for Users.
@@ -53,6 +59,7 @@ class UserController implements ControllerInterface {
       passport.authenticate('jwt-admin', { session: false }),
       asyncHandler(this.delete),
     );
+    this.router.post(`${this.path}/lookup`, asyncHandler(this.lookupToken));
   }
 
   /**
@@ -62,7 +69,7 @@ class UserController implements ControllerInterface {
    *
    * @private
    * @name GET/api/users
-   * @userof UserController
+   * @memberof UserController
    * @function @async
    *
    * @param {Request} req the request
@@ -85,7 +92,7 @@ class UserController implements ControllerInterface {
    *
    * @private
    * @name GET/api/users/:id
-   * @userof UserController
+   * @memberof UserController
    * @function @async
    *
    * @param {Request} req the request
@@ -108,7 +115,7 @@ class UserController implements ControllerInterface {
    *
    * @private
    * @name POST/api/users
-   * @userof UserController
+   * @memberof UserController
    * @function @async
    *
    * @param {Request} req the request
@@ -116,12 +123,46 @@ class UserController implements ControllerInterface {
    * @param {NextFunction} next the next function
    */
   private create = async (req: Request, res: Response, next: NextFunction) => {
+    const { permissions, email } = req.body;
+    if (!permissions || !email) {
+      return next(new HttpException(400, 'Mangler brukerinformasjon'));
+    }
+
+    const token = crypto.randomBytes(32).toString('hex');
+    const expires = Date.now() + 3600000 * 24; // 24 hours
+
+    const member = await UserModel.findMember(email);
+
     await new UserModel({
-      ...req.body,
+      email,
+      permissions,
+      member,
+      registerToken: token,
+      registerExpires: expires,
     }).save((err, doc) => {
       if (err) {
         return next(new HttpException(500, err.message));
       }
+
+      const mailOptions: Mail.Options = {
+        to: doc.email,
+        from: SMTP_USER,
+        subject: `${APP_NAME} registrer bruker`,
+        text:
+          'Registrer brukeren din ved å trykke på, eller kopiere følgende lenke inn i nettleseren: \n\n' +
+          `${req.headers.origin}/registrer/${token} \n\n`,
+      };
+      transporter.sendMail(mailOptions, (err) => {
+        if (err) {
+          return next(new HttpException(500, err.message));
+        }
+        Logger.debug('Mail sent');
+        res.status(200).send({
+          status: 'success',
+          message: `En mail er sendt til ${doc.email} med instruksjoner for registrering/verifisering.`,
+        });
+      });
+
       res.status(200).send(doc);
     });
   };
@@ -133,7 +174,7 @@ class UserController implements ControllerInterface {
    *
    * @private
    * @name PUT/api/users/:id
-   * @userof UserController
+   * @memberof UserController
    * @function @async
    *
    * @param {Request} req the request
@@ -157,7 +198,7 @@ class UserController implements ControllerInterface {
    *
    * @private
    * @name DELETE/api/users
-   * @userof UserController
+   * @memberof UserController
    * @function @async
    *
    * @param {Request} req the request
@@ -176,6 +217,32 @@ class UserController implements ControllerInterface {
         res.status(200).send({ message: 'Successfully deleted User!' });
       });
     });
+  };
+
+  /**
+   * POST - lookup a register token and verify that it's still active
+   * @private
+   * @name POST/api/users/lookup
+   * @memberof UserController
+   * @function
+   * @async
+   *
+   * @param {Request} req the request
+   * @param {Response} res the response
+   * @param {NextFunction} next the next function
+   */
+  private lookupToken = async (req: Request, res: Response, next: NextFunction) => {
+    const user: User = await UserModel.findOne({
+      registerToken: req.body.token,
+      registerExpires: { $gt: Date.now() },
+    });
+
+    // Return error if token is expired
+    if (!user) {
+      return next(new HttpException(400, 'Lenken har utløpt'));
+    }
+
+    res.status(200).send(user);
   };
 }
 

@@ -18,10 +18,15 @@ export enum UserPermissions {
  */
 export interface UserBase {
   email: string;
-  password: string;
+  password?: string;
   permissions: UserPermissions;
   isRoot: boolean;
+  isRegistered: boolean;
   member?: Types.ObjectId | Member;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: number;
+  registerToken?: string;
+  registerExpires?: number;
 }
 
 /**
@@ -43,23 +48,31 @@ export interface IUser extends Model<User> {
  * The User Schema
  * @interface Schema
  */
-export const UserSchema: Schema<User, IUser> = new Schema({
-  email: { type: String, required: true, unique: true, trim: true },
-  password: { type: String, required: true },
-  permissions: {
-    type: UserPermissions,
-    enum: UserPermissions,
-    default: UserPermissions['USER'],
+export const UserSchema: Schema<User, IUser> = new Schema(
+  {
+    email: { type: String, required: true, unique: true, trim: true },
+    password: { type: String, required: false },
+    permissions: {
+      type: UserPermissions,
+      enum: UserPermissions,
+      default: UserPermissions['USER'],
+    },
+    isRoot: { type: Boolean, default: false },
+    isRegistered: { type: Boolean, default: false },
+    member: {
+      type: Schema.Types.ObjectId,
+      ref: 'Member',
+      required: false,
+      unique: true,
+      autopopulate: true,
+    },
+    resetPasswordToken: { type: String, default: undefined },
+    resetPasswordExpires: { type: Date, default: undefined },
+    registerToken: { type: String, default: undefined },
+    registerExpires: { type: Date, default: undefined },
   },
-  isRoot: { type: Boolean, default: false },
-  member: {
-    type: Schema.Types.ObjectId,
-    ref: 'Member',
-    required: false,
-    unique: true,
-    autopopulate: true,
-  },
-});
+  { timestamps: true },
+);
 UserSchema.plugin(autopopulate);
 
 UserSchema.pre<User>('updateOne', async function () {

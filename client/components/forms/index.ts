@@ -1,6 +1,5 @@
+export * from './auth';
 export { default as OptionForm } from './OptionForm';
-export { LoginForm as LoginForm } from './LoginForm';
-export { RegisterForm as RegisterForm } from './RegisterForm';
 export { ContentForm as ContentForm } from './ContentForm';
 export { StudyFieldForm as StudyFieldForm } from './StudyFieldForm';
 export { PartnerForm as PartnerForm } from './PartnerForm';

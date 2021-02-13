@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row, Col, Button, Descriptions } from 'antd';
 import moment from 'moment';
-import { EventEntity, MemberEntity } from '@/types';
 
+import { EventEntity, MemberEntity } from '@/types';
 import { Container } from '@/components/Container';
 import { MemberCard } from '@/components/MemberCard';
 import banner from '@resources/ntnu_banner.jpeg';
@@ -10,6 +10,8 @@ import banner from '@resources/ntnu_banner.jpeg';
 interface IProps {
   data: EventEntity;
 }
+
+const BACKEND_URL = process.env.BACKEND_URL as string;
 
 export const EventSingle: React.FC<IProps> = ({ data }: IProps) => {
   const {
@@ -35,7 +37,7 @@ export const EventSingle: React.FC<IProps> = ({ data }: IProps) => {
           <img className='banner' src={banner} />
         </Col>
         <Col md={4} sm={6} span={24} className='logo-wrapper'>
-          <img src={image} alt={title} className='logo event-logo' />
+          <img src={`${BACKEND_URL}/media/${image}`} alt={title} className='logo event-logo' />
         </Col>
         <Col md={14} sm={12} span={24} className='title-wrapper'>
           <h3 className='type event-type'>{type}</h3>

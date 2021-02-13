@@ -16,6 +16,10 @@
   &:hover {
     border-color: rgba(theme-color(primary-hover), 0.5);
     transition: 0.3s ease-in-out;
+
+    &.scale {
+      transform: scale(1.05);
+    }
   }
 
   .card-header {

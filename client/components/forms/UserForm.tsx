@@ -1,7 +1,9 @@
 import React from 'react';
-import { Form, Input, Radio } from 'antd';
-import { DataFormInterface, UserEntity } from '@/types';
+import _ from 'lodash';
+import { Form, Input, Radio, Select } from 'antd';
+import { useSelector } from 'react-redux';
 
+import { DataFormInterface, IApplicationState, UserEntity, MemberEntity } from '@/types';
 import { FormMessage, userTypes } from '@/constants';
 
 export const UserForm: React.FC<DataFormInterface<UserEntity>> = ({
@@ -9,10 +11,19 @@ export const UserForm: React.FC<DataFormInterface<UserEntity>> = ({
   data,
   editMode,
 }: DataFormInterface<UserEntity>) => {
+  const users: string[] = useSelector(({ user }: IApplicationState) => _.map(user.data, 'email'));
+  const members: MemberEntity[] = useSelector(({ member }: IApplicationState) =>
+    _.filter(member.data, (_m) => {
+      return users.every((user) => {
+        return user !== _m.email;
+      });
+    }),
+  );
+
   return (
     <Form form={form} name='user_form' initialValues={data} layout='vertical' requiredMark={false}>
       <Form.Item name='_id' hidden rules={[{ required: editMode }]}>
-        <Input type='hidden' />
+        <Input type='hidden' readOnly />
       </Form.Item>
 
       <Form.Item
@@ -27,6 +38,20 @@ export const UserForm: React.FC<DataFormInterface<UserEntity>> = ({
             </Radio>
           ))}
         </Radio.Group>
+      </Form.Item>
+
+      <Form.Item
+        name={['email']}
+        hasFeedback
+        rules={[{ required: true, message: FormMessage.MEMBER.REQUIRED }]}
+      >
+        <Select placeholder={FormMessage.MEMBER.LABEL.USER} disabled={editMode}>
+          {members.map((member) => (
+            <Select.Option key={member._id} value={member.email}>
+              {`${member.name.first} ${member.name.last}`}
+            </Select.Option>
+          ))}
+        </Select>
       </Form.Item>
     </Form>
   );

@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ColumnsType } from 'antd/lib/table';
-import { IApplicationState, UserEntity, UserState } from '@/types';
 
+import { IApplicationState, UserEntity, UserState } from '@/types';
 import { UserForm } from '@/components/forms';
 import {
   createUser,
@@ -11,6 +11,7 @@ import {
   setUser,
   updateUser,
 } from '@/state/ducks/user/actions';
+import { fetchMembers } from '@/state/ducks/member/actions';
 
 import { CrudContainer } from './CrudContainer';
 
@@ -29,6 +30,7 @@ export const UserContainer: React.FC = () => {
     update: useCallback((user) => dispatch(updateUser(user)), [dispatch]),
     remove: useCallback((user) => dispatch(deleteUser(user)), [dispatch]),
     set: useCallback((user) => dispatch(setUser(user)), [dispatch]),
+    dependencies: { getMembers: useCallback(() => dispatch(fetchMembers()), [dispatch]) },
   };
 
   const columns: ColumnsType<UserEntity> = [
@@ -43,6 +45,13 @@ export const UserContainer: React.FC = () => {
       dataIndex: 'permissions',
       key: 'permissions',
       sorter: (a, b) => a.permissions.localeCompare(b.permissions, 'nb'),
+    },
+    {
+      title: 'Registrert',
+      dataIndex: 'isRegistered',
+      key: 'isRegistered',
+      sorter: (a, b) => (a.isRegistered === b.isRegistered ? 0 : a.isRegistered ? -1 : 1),
+      render: (record) => (record === true ? 'Registrert' : 'Ikke registrert'),
     },
   ];
 

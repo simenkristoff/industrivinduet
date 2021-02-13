@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Tabs } from 'antd';
 import { FormInstance } from 'antd/lib/form';
+
 import { OptionEntity, OptionPropsAll } from '@/types';
 
 import GeneralOptionsForm from './GeneralOptionsForm';

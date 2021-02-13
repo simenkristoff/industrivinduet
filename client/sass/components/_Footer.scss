@@ -1,10 +1,12 @@
 .site-footer {
-  background: theme-color(primary);
-  background: linear-gradient(180deg, rgba(theme-color(primary), 1) 0%, rgba(theme-color(primary-dark), 1) 100%);
-  border-top: 2px solid style-color(border-light);
+  background: theme-color(dark);
+  border-top: 1px solid rgba(200, 200, 200, 0.4);
 
   * {
-    color: theme-color('text-light');
+    &:not(svg) {
+      color: theme-color('text-light');
+      font-size: 1rem;
+    }
   }
   
   section {
@@ -19,7 +21,7 @@
       width: 100%;
 
       * {
-        color: rgba(theme-color('text-light'), 0.875);
+        color: rgba(theme-color('text-light'), 0.815);
       }
 
       ul {
@@ -38,6 +40,7 @@
       padding: 0 0.75rem;
 
       .partner { 
+        align-self: center;
         flex: 0 1 50%;
 
         > img {
@@ -60,7 +63,7 @@
   }
   
   .copyrights {
-    border-top: 1px solid rgba(200, 200, 200, 0.2);
+    border-top: 1px solid rgba(200, 200, 200, 0.1);
     display: flex;
     flex: 1 1 100%;
     justify-content: center;

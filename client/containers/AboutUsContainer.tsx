@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState, MemberEntity, PartnerEntity } from '@/types';
 
+import { IApplicationState, MemberEntity, PartnerEntity } from '@/types';
 import { roleValuesEnum } from '@/constants';
 import { AboutUs } from '@/components/AboutUs';
 import { fetchContents } from '@/state/ducks/content/actions';

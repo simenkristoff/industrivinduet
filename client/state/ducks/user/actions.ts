@@ -1,5 +1,6 @@
 import { action } from 'typesafe-actions';
-import { UserActionTypes, UserEntity } from '@/types';
+
+import { UserActionTypes, UserEntity, RegisterTokenInterface } from '@/types';
 
 /**
  * @desc Fetch all Users.
@@ -39,6 +40,19 @@ export const deleteUser = (data: UserEntity) =>
     method: 'delete',
     route: `api/users/${data._id}`,
   });
+
+/**
+ * Lookup register token
+ * @param {RegisterTokenInterface} data the register token
+ */
+export const lookupRegisterToken = (data: RegisterTokenInterface) => {
+  console.log(data);
+
+  return action(UserActionTypes.LOOKUP_REGISTER_TOKEN.START, data, {
+    method: 'post',
+    route: 'api/users/lookup',
+  });
+};
 
 /**
  * @desc Set User.

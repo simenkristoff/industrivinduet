@@ -114,6 +114,7 @@ const FormMessages = {
   MEMBER: {
     LABEL: {
       RESPONSIBLE: 'Ansvarlig medlem',
+      USER: 'Medlem du vil opprette bruker for',
     },
     SELECT: {
       BLANK: 'Ingen',

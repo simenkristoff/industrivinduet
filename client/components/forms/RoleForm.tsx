@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Form, Input, Select } from 'antd';
-import { DataFormInterface, IApplicationState, RoleEntity } from '@/types';
 
+import { DataFormInterface, IApplicationState, RoleEntity } from '@/types';
 import { FormMessage, roleTypes } from '@/constants';
 import { uniqueValue } from '@/utils';
 
@@ -17,7 +17,7 @@ export const RoleForm: React.FC<DataFormInterface<RoleEntity>> = ({
   return (
     <Form form={form} name='role_form' initialValues={data} layout='vertical' requiredMark={false}>
       <Form.Item name='_id' hidden rules={[{ required: editMode }]}>
-        <Input type='hidden' />
+        <Input type='hidden' readOnly />
       </Form.Item>
 
       <Form.Item

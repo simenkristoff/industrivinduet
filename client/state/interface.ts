@@ -36,7 +36,7 @@ export type BaseState<T extends Entity> = {
   byId: T | {};
   readonly data: T[];
   readonly loading: boolean;
-  readonly errors: Array<String>;
+  readonly status: ApiResponse | null;
 };
 
 /**
@@ -71,6 +71,19 @@ export type AsyncActionType = {
   SUCCESS: string;
   ERROR: string;
 };
+
+/**
+ * Type of response status
+ */
+export type ResponseStatus = 'success' | 'error';
+
+/**
+ * General ApiResponse
+ */
+export interface ApiResponse {
+  status: ResponseStatus;
+  message: string;
+}
 
 /**
  * @desc Type Object Id from entities from database.

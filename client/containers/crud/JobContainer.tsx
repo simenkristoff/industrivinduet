@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Image } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import moment from 'moment';
-import { IApplicationState, JobEntity, JobState } from '@/types';
 
+import { IApplicationState, JobEntity, JobState } from '@/types';
 import { JobForm } from '@/components/forms';
 import { createJob, deleteJob, fetchJobs, setJob, updateJob } from '@/state/ducks/job/actions';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
@@ -38,7 +38,7 @@ export const JobContainer: React.FC = () => {
       dataIndex: 'image',
       key: 'image',
       // eslint-disable-next-line react/display-name
-      render: (record) => <Image src={record} width={100} />,
+      render: (record) => <Image src={`${process.env.BACKEND_URL}/media/${record}`} width={100} />,
     },
     {
       title: 'Bedrift',

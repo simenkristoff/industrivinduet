@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { IApplicationState, JobEntity } from '@/types';
 
+import { IApplicationState, JobEntity } from '@/types';
 import { JobSingle } from '@/components/JobSingle';
 import { fetchJob, setJob } from '@/state/ducks/job/actions';
 

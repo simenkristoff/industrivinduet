@@ -26,10 +26,12 @@ passport.use(
           email: email,
         }).then((user: User) => {
           // Check if user is already registered
-          if (user !== null) {
+          if (user !== null && user.isRegistered) {
             Logger.debug('Email is already in use.');
 
-            return done(null, false, { message: 'Email is already in use.' });
+            return done(new Error('Denne e-mailen er allerede registert.'), false, {
+              message: 'Email is already in use.',
+            });
           } else {
             // Check if the attempted user is a member
             UserModel.findMember(email).then((member: Member) => {
@@ -40,9 +42,23 @@ passport.use(
                   message: 'Could not find member with corresponding email.',
                 });
               } else {
-                bcrypt.hash(password, BCRYPT_SALT_ROUNDS).then((hashedPassword) => {
-                  UserModel.create({ email, password: hashedPassword, member: member._id }).then(
-                    (user) => {
+                console.log('error here maybe');
+                bcrypt.hash(password, parseInt(BCRYPT_SALT_ROUNDS)).then((hashedPassword) => {
+                  user.update(
+                    {
+                      password: hashedPassword,
+                      isRegistered: true,
+                      registerToken: undefined,
+                      registerExpires: undefined,
+                    },
+                    { new: true },
+                    (err, res) => {
+                      if (err) {
+                        return done(new Error('Registrering feilet.'), false, {
+                          message: 'Email is already in use.',
+                        });
+                      }
+
                       Logger.debug('User registered!');
 
                       return done(null, user);
@@ -79,9 +95,11 @@ passport.use(
           .exec()
           .then((user: User) => {
             if (user === null) {
-              return done(null, false, { message: 'User with that e-mail does not exist.' });
+              return done(new Error('Ingen bruker med denne e-mailen er registrert.'), false, {
+                message: 'User with that e-mail does not exist.',
+              });
             } else {
-              bcrypt.compare(password, user.password).then((response) => {
+              bcrypt.compare(password, user.password!).then((response) => {
                 if (response !== true) {
                   Logger.debug('Invalid password');
 

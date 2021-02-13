@@ -1,6 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
-import { UserActionTypes, UserEntity } from '@/types';
 
+import { UserActionTypes, UserEntity } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
 
 import { IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
@@ -78,6 +78,33 @@ function* handleDelete(params: IPayloadMetaAction<UserEntity>): Generator {
 }
 
 /**
+ * Handle async token lookup.
+ * @param {IPayloadMetaAction<string>} params action with payload and meta data.
+ */
+function* handleLookupRegisterToken(params: IPayloadMetaAction<string>): Generator {
+  try {
+    const response = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
+    yield put({
+      type: UserActionTypes.LOOKUP_REGISTER_TOKEN.SUCCESS,
+      payload: response,
+    });
+  } catch (err) {
+    if (err instanceof Error) {
+      const { message } = err;
+      yield put({
+        type: UserActionTypes.LOOKUP_REGISTER_TOKEN.ERROR,
+        payload: { status: 'error', message },
+      });
+    } else {
+      yield put({
+        type: UserActionTypes.LOOKUP_REGISTER_TOKEN.ERROR,
+        payload: 'An unknown error occured.',
+      });
+    }
+  }
+}
+
+/**
  * @desc Set active User.
  * @param {IPayloadMetaAction<UserEntity>} params action with payload and meta data.
  */
@@ -112,6 +139,10 @@ function* watchDeleteRequest(): Generator {
   yield takeEvery(UserActionTypes.DELETE.START, handleDelete);
 }
 
+function* watchLookupRegisterTokenRequest(): Generator {
+  yield takeEvery(UserActionTypes.LOOKUP_REGISTER_TOKEN.START, handleLookupRegisterToken);
+}
+
 function* watchSetRequest(): Generator {
   yield takeEvery(UserActionTypes.SET.START, handleSet);
 }
@@ -125,6 +156,7 @@ export default function* userSaga() {
     fork(watchCreateRequest),
     fork(watchUpdateRequest),
     fork(watchDeleteRequest),
+    fork(watchLookupRegisterTokenRequest),
     fork(watchSetRequest),
   ]);
 }

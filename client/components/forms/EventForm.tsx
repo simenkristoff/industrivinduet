@@ -3,8 +3,8 @@ import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { Form, Input, Collapse, Row, Col, Select, Checkbox, Switch } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { DataFormInterface, IApplicationState, EventEntity, EventOptions } from '@/types';
 
+import { DataFormInterface, IApplicationState, EventEntity, EventOptions } from '@/types';
 import { FormMessage, grades } from '@/constants';
 import { DatePickerInput, EditorInput, TimePickerInput } from '@/components/adapters';
 import { MediaPicker } from '@/components/MediaPicker';
@@ -42,7 +42,7 @@ export const EventForm: React.FC<DataFormInterface<EventEntity>> = ({
       <Row gutter={[16, 16]}>
         <Col flex='auto'>
           <Form.Item name='_id' hidden rules={[{ required: editMode }]}>
-            <Input type='hidden' />
+            <Input type='hidden' readOnly />
           </Form.Item>
 
           <Form.Item

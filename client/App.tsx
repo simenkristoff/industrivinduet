@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, useLocation } from 'react-router-dom';
-import { IApplicationState, OptionState } from '@/types';
 
+import {
+  RegisterContainer,
+  LoginContainer,
+  ForgotPasswordContainer,
+  ResetPasswordContainer,
+} from '@/containers/auth';
+import { IApplicationState, OptionState } from '@/types';
 import { AdminLayout } from '@/components/AdminLayout';
 import { MainLayout } from '@/components/MainLayout';
 import { Admin } from '@/components/Admin';
 import { FrontpageContainer } from '@/containers/FrontpageContainer';
-import { LoginContainer } from '@/containers/LoginContainer';
-import { RegisterContainer } from '@/containers/RegisterContainer';
 import { EventResultContainer } from '@/containers/EventResultContainer';
 import { EventSingleContainer } from '@/containers/EventSingleContainer';
 import { JobResultContainer } from '@/containers/JobResultContainer';
@@ -40,15 +44,9 @@ const App: React.FC = () => {
   return (
     <div id='App' className={isFrontpage ? 'bg-gray' : ''}>
       <Switch>
-        <Route
-          exact
-          path='/'
-          render={() => (
-            <MainLayout>
-              <FrontpageContainer />
-            </MainLayout>
-          )}
-        />
+        <Route exact path='/'>
+          <FrontpageContainer />
+        </Route>
         <Route
           exact
           path='/arrangementer'
@@ -110,10 +108,26 @@ const App: React.FC = () => {
           )}
         />
         <Route
-          path='/registrer'
+          path='/registrer/:token'
           render={() => (
             <MainLayout>
               <RegisterContainer />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path='/glemt_passord'
+          render={() => (
+            <MainLayout>
+              <ForgotPasswordContainer />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path='/tilbakestill/:token'
+          render={() => (
+            <MainLayout>
+              <ResetPasswordContainer />
             </MainLayout>
           )}
         />

@@ -1,4 +1,5 @@
 import { Action, TypeConstant, PayloadAction } from 'typesafe-actions';
+
 import { StudyFieldActionTypes, StudyFieldEntity, StudyFieldState } from '@/types';
 
 import { updateObjectInArray, deleteObjectInArray } from '../../utils';
@@ -6,8 +7,8 @@ import { updateObjectInArray, deleteObjectInArray } from '../../utils';
 export const initialState: StudyFieldState = {
   byId: {},
   data: [],
-  errors: [],
   loading: false,
+  status: null,
 };
 
 /**
@@ -45,7 +46,7 @@ export const studyfieldReducer = (
     case StudyFieldActionTypes.SET.ERROR: {
       return {
         ...state,
-        errors: [...state.errors, action.payload],
+        status: action.payload,
       };
     }
     default:
