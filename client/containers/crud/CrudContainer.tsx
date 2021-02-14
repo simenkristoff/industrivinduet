@@ -66,6 +66,7 @@ export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.El
     ...columns,
     {
       title: 'Handlinger',
+      className: 'hide-sm',
       key: 'action',
       align: 'center',
       // eslint-disable-next-line react/display-name

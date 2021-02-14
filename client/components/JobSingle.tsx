@@ -4,7 +4,6 @@ import { Row, Col, Button, Descriptions } from 'antd';
 import moment from 'moment';
 
 import { JobEntity } from '@/types';
-import { Container } from '@/components/Container';
 import { Spinner } from '@/components/Spinner';
 
 interface IProps {
@@ -43,7 +42,7 @@ export const JobSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
     }
 
     return (
-      <Container className='single job-single'>
+      <div className='single job-single'>
         <Row className='header border-light-bottom'>
           <Col md={4} sm={6} span={24} className='logo-wrapper'>
             <img src={`${BACKEND_URL}/media/${image}`} alt={company} className='logo job-logo' />
@@ -106,7 +105,7 @@ export const JobSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
             </div>
           </Col>
         </Row>
-      </Container>
+      </div>
     );
   };
 

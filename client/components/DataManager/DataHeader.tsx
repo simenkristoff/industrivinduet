@@ -18,6 +18,7 @@ export const DataHeader: React.FC<DataHeaderInterface> = ({
           key='1'
           type='primary'
           size='large'
+          className='hide-sm'
           icon={<PlusOutlined />}
           onClick={toggle}
           disabled={!hasPermission}

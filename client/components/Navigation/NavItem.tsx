@@ -10,9 +10,15 @@ interface IProps {
 
 const NavItem: React.FC<IProps> = (props) => {
   const { to, icon, className, onClick }: IProps = props;
+  const classes: string[] = ['nav-item'];
+  if (className) {
+    className.split(' ').forEach((_c) => {
+      classes.push(_c);
+    });
+  }
 
   return (
-    <li className={`nav-item ${className}`}>
+    <li className={classes.join(' ')}>
       <Link className='nav-link' to={to!} onClick={onClick}>
         {icon}
         {props.children}

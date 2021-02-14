@@ -7,7 +7,12 @@
   justify-content: space-between;
   position: relative;
 
+  @include respond-below(md) {
+    padding: 0 15px;
+  }
+
   .navigation-toggler {
+    background-color: transparent;
     border: 1px solid;
     border-color: theme-color(primary);
     border-radius: 2px;
@@ -28,6 +33,13 @@
     display: inline-block;
     padding: 0.5rem 0;
     white-space: nowrap;
+
+    @include respond-below(md) {
+      img {
+        width: 150px;
+      }
+      
+    }
   }
 
   .nav-bar-wrapper:not(.show) {
@@ -38,6 +50,8 @@
     align-items: center;
     flex-basis: 100%;
     flex-grow: 1;
+    margin-left: -15px;
+    margin-right: -15px;
   }
     
   .nav-bar,
@@ -66,6 +80,7 @@
         display: inline-block;
         font-weight: 400;
         padding: 0.5rem 0.25rem;
+        width: 100%;
 
         & > .anticon {
           margin-right: 0.125rem;
@@ -101,6 +116,7 @@
       align-items: stretch;
       display: flex !important;
       flex-basis: auto;
+      margin: 0;
     }
 
     .nav-bar,

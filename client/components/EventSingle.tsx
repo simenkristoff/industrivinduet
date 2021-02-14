@@ -4,7 +4,6 @@ import { Row, Col, Button, Descriptions } from 'antd';
 import moment from 'moment';
 
 import { EventEntity, MemberEntity } from '@/types';
-import { Container } from '@/components/Container';
 import { MemberCard } from '@/components/MemberCard';
 import { Spinner } from '@/components/Spinner';
 
@@ -45,7 +44,7 @@ export const EventSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
     }
 
     return (
-      <Container className='single event-single'>
+      <div className='single event-single'>
         <Row className='header border-light-bottom'>
           <Col md={4} sm={6} span={24} className='logo-wrapper'>
             <img src={`${BACKEND_URL}/media/${image}`} alt={title} className='logo event-logo' />
@@ -109,7 +108,7 @@ export const EventSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
             </div>
           </Col>
         </Row>
-      </Container>
+      </div>
     );
   };
 

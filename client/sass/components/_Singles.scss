@@ -43,8 +43,22 @@
       align-self: center;
       padding: 0 0.5rem;
 
+      @include respond-below(sm) {
+        .title {
+          font-size: 1.5rem;
+        }
+
+        .type {
+          font-size: 1rem;
+        }
+      }
+
       .type {
         margin-bottom: 1.5rem;
+      }
+
+      .title {
+        word-break: break-all;
       }
     }
 

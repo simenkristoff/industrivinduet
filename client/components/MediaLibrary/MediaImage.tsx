@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
 import { Col, Image } from 'antd';
 import { DeleteOutlined, SelectOutlined } from '@ant-design/icons';
+
 import { MediaImageInterface } from '@/types';
 
 import { MediaHelpers } from './';
+
+const BACKEND_URL = process.env.BACKEND_URL as string;
 
 export const MediaImage: React.FC<MediaImageInterface> = ({
   data,
@@ -16,7 +19,7 @@ export const MediaImage: React.FC<MediaImageInterface> = ({
   const { path, name, isDir, size, ext } = data;
   if (isDir) return null;
 
-  const url = `http://localhost:8080/media/${path}`;
+  const url = `${BACKEND_URL}/media/${path}`;
 
   const formattedSize = MediaHelpers.formatBytes(size);
 

@@ -7,8 +7,15 @@ interface IProps {
 
 const NavList: React.FC<IProps> = (props) => {
   const { align, className }: IProps = props;
+  const classes: string[] = ['nav-list'];
+  if (align) classes.push(align);
+  if (className) {
+    className.split(' ').forEach((_c) => {
+      classes.push(_c);
+    });
+  }
 
-  return <ul className={`nav-list ${align} ${className}`}>{props.children}</ul>;
+  return <ul className={classes.join(' ')}>{props.children}</ul>;
 };
 
 NavList.defaultProps = {

@@ -21,6 +21,12 @@ const Nav: INav<IProps> = (props) => {
   const { id, toggler, logo, className }: IProps = props;
   const menuRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const [toggled, setToggled] = useState(false);
+  const classes: string[] = ['nav-menu', 'nav-menu-expand'];
+  if (className) {
+    className.split(' ').forEach((_c) => {
+      classes.push(_c);
+    });
+  }
 
   const handleToggle = () => {
     if (!toggled) menuRef.current.classList.add('show');
@@ -29,7 +35,7 @@ const Nav: INav<IProps> = (props) => {
   };
 
   return (
-    <nav className={`nav-menu nav-menu-expand ${className}`} id={id}>
+    <nav className={classes.join(' ')} id={id}>
       {logo && (
         <a className='nav-brand'>
           <img src={logo} />

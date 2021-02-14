@@ -68,13 +68,20 @@ export const GoogleMapsContainer: React.FC<IProps> = ({ renderInDev }: IProps) =
   }`;
 
   useEffect(() => {
-    const googleMapScript = document.createElement('script');
-    googleMapScript.src = MAP_API_URL;
-    googleMapScript.async = true;
-    window.document.body.appendChild(googleMapScript);
-    googleMapScript.addEventListener('load', () => {
+    var googleMapScript = null;
+    const scripts = document.getElementsByTagName('script');
+    for (var i = scripts.length; i--; ) {
+      if (scripts[i].src === MAP_API_URL) googleMapScript = scripts[i];
+    }
+    if (!googleMapScript) {
+      googleMapScript = document.createElement('script');
+      googleMapScript.src = MAP_API_URL;
+      googleMapScript.async = true;
+      window.document.body.appendChild(googleMapScript);
+    }
+    if (googleMapScript) {
       createMap();
-    });
+    }
   }, []);
 
   const createMap = () => {

@@ -45,10 +45,16 @@ export const OptionContainer = () => {
         ghost={false}
         title='Innstillinger'
         extra={[
-          <Button key='update' type='primary' size='large' onClick={handleSubmit}>
+          <Button
+            key='update'
+            className='hide-sm'
+            type='primary'
+            size='large'
+            onClick={handleSubmit}
+          >
             Lagre innstillinger
           </Button>,
-          <Button key='reset' danger size='large' onClick={handleReset}>
+          <Button key='reset' className='hide-sm' danger size='large' onClick={handleReset}>
             Tilbakestill
           </Button>,
         ]}

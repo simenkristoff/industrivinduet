@@ -181,11 +181,12 @@ export const JobForm: React.FC<DataFormInterface<JobEntity>> = ({
                 rules={[{ required: true, message: FormMessage.PLACE.REQUIRED.PLURAL }]}
               >
                 <Select mode='tags'>
-                  {(data as JobEntity).places.map((place) => (
-                    <Select.Option key={place} value={place}>
-                      {place}
-                    </Select.Option>
-                  ))}
+                  {(data as JobEntity).places &&
+                    (data as JobEntity).places.map((place) => (
+                      <Select.Option key={place} value={place}>
+                        {place}
+                      </Select.Option>
+                    ))}
                 </Select>
               </Form.Item>
             </Panel>

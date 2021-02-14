@@ -1,6 +1,7 @@
 import React from 'react';
 import { Upload, Button } from 'antd';
 import { ArrowLeftOutlined, UploadOutlined } from '@ant-design/icons';
+
 import { MediaHeaderInterface } from '@/types';
 
 import { NewFolder } from './NewFolder';
@@ -24,7 +25,7 @@ export const MediaHeader: React.FC<MediaHeaderInterface> = ({
       </div>
 
       <div className='header-sub'>
-        <div className='header-sub-inner'>
+        <div className='header-sub-inner hide-sm'>
           <div className='left'>
             {pathPieces && (
               <Button className='back' icon={<ArrowLeftOutlined />} onClick={onBack}>

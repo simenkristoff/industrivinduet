@@ -17,10 +17,7 @@
 /** Components **/
 @import './components/components';
 
-body,
-#root,
-#App {
-  display: block;
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -28,26 +25,20 @@ body,
   width: 100%;
 }
 
+#root {
+  height: 100%;
+  
+  width: 100%;
+}
+
 #App {
-  display: grid;
-  grid-template-areas: 'header' 'main' 'footer';
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
   height: 100%;
   overflow-x: hidden;
+  
   width: 100%;
-
-
-  .site-header {
-    grid-area: header;
-  }
 
   .main-container,
   .admin-container {
-    grid-area: main;
-  }
-
-  .site-footer {
-    grid-area: footer;
+    position: relative;
   }
 }
