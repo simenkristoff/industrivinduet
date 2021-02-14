@@ -1,6 +1,5 @@
 const path = require('path');
 
-const dotenv = require('dotenv');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,14 +7,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
-const env = dotenv.config().parsed;
-
-const envKeys = Object.keys(env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next]);
-
-  return prev;
-}, {});
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -47,6 +38,9 @@ let webpackConfig = {
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
           },
         ],
       },
@@ -100,7 +94,6 @@ let webpackConfig = {
       ignoreOrder: true,
     }),
     new CleanWebpackPlugin(),
-    new webpack.DefinePlugin(envKeys),
     new CopyWebpackPlugin({
       patterns: [
         {
