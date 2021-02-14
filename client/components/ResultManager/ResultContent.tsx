@@ -1,6 +1,8 @@
 import React from 'react';
 import { Layout, Row, Col, Empty } from 'antd';
+
 import { Entity, ResultContentInterface, ResultItemInterface } from '@/types';
+import { Spinner } from '@/components/Spinner';
 
 const { Content } = Layout;
 
@@ -15,15 +17,21 @@ function renderResults<T extends Entity>(data: T[], dataItem: React.FC<ResultIte
 }
 
 export const ResultContent = <T extends Entity>(props: ResultContentInterface<T>): JSX.Element => {
-  const { data, dataItem } = props;
+  const { data, dataItem, loading } = props;
+
+  const renderContent = () => {
+    if (loading) {
+      return <Spinner loading centered className='pt-5' />;
+    }
+
+    return <Row gutter={[16, 16]}>{renderResults(data, dataItem)}</Row>;
+  };
 
   return (
     <Content>
       <Row>
         <Col className='results'>
-          <div className='result-content'>
-            <Row gutter={[16, 16]}>{renderResults(data, dataItem)}</Row>
-          </div>
+          <div className='result-content'>{renderContent()}</div>
         </Col>
       </Row>
     </Content>

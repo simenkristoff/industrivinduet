@@ -128,7 +128,7 @@ class App {
         if (!doc) {
           const admin = new UserModel({
             email: 'admin@industrivinduet.no',
-            password: 'iv_admin',
+            password: '$2y$12$yrCrX8v.X7jHeO8g22gzEu1i2swPYkq693GAglSfYkT/Kk8HUFr16',
             permissions: UserPermissions.ADMIN,
             isRoot: true,
             isRegistered: true,

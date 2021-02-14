@@ -87,7 +87,7 @@ class PartnerController implements ControllerInterface {
   private get = async (req: Request, res: Response, next: NextFunction) => {
     await PartnerModel.findById(req.params.id, (err: CallbackError, doc: Partner) => {
       if (!doc) {
-        return next(new NotFoundException('No Partner found with that ID'));
+        return next(new NotFoundException(`Kunne ikke finne objekt med id ${req.params.id}`));
       }
       res.status(200).send(doc);
     });
@@ -135,7 +135,7 @@ class PartnerController implements ControllerInterface {
   private update = async (req: Request, res: Response, next: NextFunction) => {
     await PartnerModel.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, doc) => {
       if (!doc) {
-        return next(new NotFoundException('No Partner found with that ID'));
+        return next(new NotFoundException(`Kunne ikke finne objekt med id ${req.params.id}`));
       }
       res.status(200).send(doc);
     });
@@ -159,13 +159,13 @@ class PartnerController implements ControllerInterface {
   private delete = async (req: Request, res: Response, next: NextFunction) => {
     await PartnerModel.findById({ _id: req.params.id }, {}, {}, (err, doc) => {
       if (!doc) {
-        return next(new NotFoundException('No Partner found with that ID'));
+        return next(new NotFoundException(`Kunne ikke finne objekt med id ${req.params.id}`));
       }
       doc.remove({}, (err) => {
         if (err) {
           return next(new HttpException(500, err.message));
         }
-        res.status(200).send({ message: 'Successfully deleted Partner!' });
+        res.status(200).send({ status: 'success', message: 'Objekt slettet!' });
       });
     });
   };

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { IApplicationState } from '@/state/interface';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { EventEntity } from '@/types';
 
+import { IApplicationState, EventState } from '@/types';
 import { EventSingle } from '@/components/EventSingle';
 import { fetchEvent, setEvent } from '@/state/ducks/event/actions';
 
@@ -13,9 +12,7 @@ type ParamTypes = {
 
 export const EventSingleContainer = () => {
   const dispatch = useDispatch();
-  const event: EventEntity = useSelector(
-    ({ event }: IApplicationState) => event.byId as EventEntity,
-  );
+  const event: EventState = useSelector(({ event }: IApplicationState) => event);
   const { eventID } = useParams<ParamTypes>();
 
   useEffect(() => {
@@ -26,5 +23,5 @@ export const EventSingleContainer = () => {
     };
   }, []);
 
-  return <EventSingle data={event} />;
+  return <EventSingle data={event.byId} loading={event.loading} />;
 };

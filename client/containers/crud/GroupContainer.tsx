@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ColumnsType } from 'antd/lib/table';
-import { IApplicationState, GroupEntity, GroupState } from '@/types';
 
+import { IApplicationState, GroupEntity, GroupState } from '@/types';
 import { GroupForm } from '@/components/forms';
 import {
   createGroup,
@@ -20,7 +20,7 @@ export const GroupContainer: React.FC = () => {
     byId: group.byId,
     data: group.data,
     loading: group.loading,
-    errors: group.errors,
+    status: group.status,
   }));
 
   const dispatchToProps = {

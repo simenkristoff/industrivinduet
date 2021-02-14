@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState, OptionState, PartnerEntity } from '@/types';
 
+import { IApplicationState, OptionState, PartnerEntity } from '@/types';
 import { fetchPartners } from '@/state/ducks/partner/actions';
 import { Footer } from '@/components/Footer';
 

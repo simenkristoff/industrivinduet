@@ -116,7 +116,7 @@ class JobController implements ControllerInterface {
   private get = async (req: Request, res: Response, next: NextFunction) => {
     await JobModel.findById(req.params.id, (err: CallbackError, doc: Job) => {
       if (!doc) {
-        return next(new NotFoundException('No Job found with that ID'));
+        return next(new NotFoundException(`Kunne ikke finne objekt med id ${req.params.id}`));
       }
       res.status(200).send(doc);
     });
@@ -164,7 +164,7 @@ class JobController implements ControllerInterface {
   private update = async (req: Request, res: Response, next: NextFunction) => {
     await JobModel.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, doc) => {
       if (!doc) {
-        return next(new NotFoundException('No Job found with that ID'));
+        return next(new NotFoundException(`Kunne ikke finne objekt med id ${req.params.id}`));
       }
       res.status(200).send(doc);
     });
@@ -188,13 +188,13 @@ class JobController implements ControllerInterface {
   private delete = async (req: Request, res: Response, next: NextFunction) => {
     await JobModel.findById({ _id: req.params.id }, {}, {}, (err, doc) => {
       if (!doc) {
-        return next(new NotFoundException('No Job found with that ID'));
+        return next(new NotFoundException(`Kunne ikke finne objekt med id ${req.params.id}`));
       }
       doc.remove({}, (err) => {
         if (err) {
           return next(new HttpException(500, err.message));
         }
-        res.status(200).send({ message: 'Successfully deleted Job!' });
+        res.status(200).send({ status: 'success', message: 'Objekt slettet!' });
       });
     });
   };

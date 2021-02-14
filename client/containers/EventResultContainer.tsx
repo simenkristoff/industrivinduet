@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   IApplicationState,
+  EventState,
+  StudyFieldState,
   EventEntity,
-  StudyFieldEntity,
   FilterTypeInterface,
   SearchFilterType,
   EventOptions,
 } from '@/types';
-
 import { grades } from '@/constants';
 import { EventCard } from '@/components/EventCard';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
@@ -19,18 +20,23 @@ import { ResultContainer } from './ResultContainer';
 
 export const EventResultContainer = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState<boolean>(false);
   const types: string[] = useSelector(
     ({ options }: IApplicationState) => (options.event as EventOptions).eventTypes,
   );
-  const studyfields: StudyFieldEntity[] = useSelector(
-    ({ studyfield }: IApplicationState) => studyfield.data,
+  const studyfieldState: StudyFieldState = useSelector(
+    ({ studyfield }: IApplicationState) => studyfield,
   );
-  const stateToProps = useSelector(({ event }: IApplicationState) => event.data);
+  const eventState: EventState = useSelector(({ event }: IApplicationState) => event);
 
   useEffect(() => {
     dispatch(fetchStudyFields());
     dispatch(fetchActiveEvents());
   }, []);
+
+  useEffect(() => {
+    setLoading(studyfieldState.loading || eventState.loading);
+  }, [studyfieldState.loading, eventState.loading]);
 
   const searchFilterTypes: SearchFilterType<EventEntity> = {
     fields: ['title', 'type', 'description'],
@@ -51,15 +57,16 @@ export const EventResultContainer = () => {
     studyfields: {
       type: 'checkbox',
       field: 'abbr',
-      dependency: studyfields,
+      dependency: studyfieldState.data,
       label: 'Studieretninger',
     },
   };
 
   const resultProps = {
     title: 'Arrangementer',
-    data: stateToProps,
+    data: eventState.data,
     dataItem: EventCard,
+    loading,
     filterTypes,
     searchFilterTypes,
   };

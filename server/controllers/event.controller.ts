@@ -117,7 +117,7 @@ class EventController implements ControllerInterface {
   private get = async (req: Request, res: Response, next: NextFunction) => {
     await EventModel.findById(req.params.id, (err: CallbackError, doc: Event) => {
       if (!doc) {
-        return next(new NotFoundException('No Event found with that ID'));
+        return next(new NotFoundException(`Kunne ikke finne objekt med id ${req.params.id}`));
       }
       res.status(200).send(doc);
     });
@@ -168,7 +168,7 @@ class EventController implements ControllerInterface {
         console.log(err);
       }
       if (!doc) {
-        return next(new NotFoundException('No Event found with that ID'));
+        return next(new NotFoundException(`Kunne ikke finne objekt med id ${req.params.id}`));
       }
       res.status(200).send(doc);
     });
@@ -192,13 +192,13 @@ class EventController implements ControllerInterface {
   private delete = async (req: Request, res: Response, next: NextFunction) => {
     await EventModel.findById({ _id: req.params.id }, {}, {}, (err, doc) => {
       if (!doc) {
-        return next(new NotFoundException('No Event found with that ID'));
+        return next(new NotFoundException(`Kunne ikke finne objekt med id ${req.params.id}`));
       }
       doc.remove({}, (err) => {
         if (err) {
           return next(new HttpException(500, err.message));
         }
-        res.status(200).send({ message: 'Successfully deleted Event!' });
+        res.status(200).send({ status: 'success', message: 'Objekt slettet!' });
       });
     });
   };

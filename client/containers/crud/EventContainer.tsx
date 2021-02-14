@@ -25,7 +25,7 @@ export const EventContainer: React.FC = () => {
     byId: event.byId,
     data: event.data,
     loading: event.loading,
-    errors: event.errors,
+    status: event.status,
   }));
 
   const dispatchToProps = {
@@ -58,6 +58,7 @@ export const EventContainer: React.FC = () => {
     },
     {
       title: 'Dato',
+      className: 'hide-sm',
       dataIndex: 'date',
       key: 'date',
       align: 'center',
@@ -66,7 +67,7 @@ export const EventContainer: React.FC = () => {
     },
     {
       title: 'Ansvarlig',
-      className: 'hide-md',
+      className: 'hide-lg',
       dataIndex: 'member',
       key: 'member',
       align: 'center',

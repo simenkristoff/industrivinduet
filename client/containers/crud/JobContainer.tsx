@@ -18,7 +18,7 @@ export const JobContainer: React.FC = () => {
     byId: job.byId,
     data: job.data,
     loading: job.loading,
-    errors: job.errors,
+    status: job.status,
   }));
 
   const dispatchToProps = {
@@ -36,6 +36,7 @@ export const JobContainer: React.FC = () => {
   const columns: ColumnsType<JobEntity> = [
     {
       dataIndex: 'image',
+      className: 'hide-sm',
       key: 'image',
       // eslint-disable-next-line react/display-name
       render: (record) => <Image src={`${process.env.BACKEND_URL}/media/${record}`} width={100} />,
@@ -57,6 +58,7 @@ export const JobContainer: React.FC = () => {
     },
     {
       title: 'Frist',
+      className: 'hide-sm',
       dataIndex: 'deadline',
       key: 'deadline',
       align: 'center',

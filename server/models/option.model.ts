@@ -8,6 +8,7 @@ export interface OptionBase {
     sitename: string;
     email: string;
     address: string;
+    showMaps: boolean;
     phone?: string;
     organization: string;
     about: string;
@@ -64,6 +65,7 @@ export const OptionSchema: Schema<Option, Model<Option>> = new Schema(
         default: 'Gamle Kjemi, Gløshaugen Trondheim, Norge',
         trim: true,
       },
+      showMaps: { type: Boolean, default: true },
       phone: { type: String, required: false, default: undefined, trim: true },
       organization: { type: String, required: true, default: '996056009', trim: true },
       about: {

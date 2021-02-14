@@ -21,7 +21,7 @@ export const MemberContainer: React.FC = () => {
     byId: member.byId,
     data: member.data,
     loading: member.loading,
-    errors: member.errors,
+    status: member.status,
   }));
 
   const dispatchToProps = {
@@ -43,6 +43,7 @@ export const MemberContainer: React.FC = () => {
     },
     {
       title: 'Stilling',
+      className: 'hide-sm',
       dataIndex: 'role',
       key: 'role',
       align: 'center',
@@ -56,6 +57,7 @@ export const MemberContainer: React.FC = () => {
     },
     {
       title: 'Gruppe',
+      className: 'hide-md',
       dataIndex: ['role', 'group'],
       key: 'group',
       align: 'center',

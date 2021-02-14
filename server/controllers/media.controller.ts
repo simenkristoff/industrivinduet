@@ -8,22 +8,6 @@ import { MediaUtils, TreeNode } from '../utils';
 import { asyncHandler, passport, mediaMiddleware } from '../middlewares';
 import { HttpException } from '../exceptions';
 
-// export interface FileInstance {
-//   basename: string;
-//   dirname: string;
-//   extension: string;
-//   size: any;
-//   type: 'file' | 'dir';
-// }
-
-// export interface FileEntry {
-//   name: string;
-//   parent: string;
-//   created: string;
-//   lastUpdated: string;
-//   lastAccessed: string;
-// }
-
 /**
  * Class representing the API-controller for handling Media Files.
  * @class MediaController
@@ -89,7 +73,7 @@ class MediaController implements ControllerInterface {
   private upload = async (req: Request, res: Response, next: NextFunction) => {
     await mediaMiddleware(req, res);
     if (!req.file) {
-      return next(new HttpException(400, 'No File uploaded'));
+      return next(new HttpException(400, 'Ingen fil lastet opp'));
     }
     const fileNode: TreeNode = MediaUtils.parseFile(req.file, req.query.path as string);
     res.status(200).send(fileNode);
@@ -128,7 +112,7 @@ class MediaController implements ControllerInterface {
   private delete = async (req: Request, res: Response, next: NextFunction) => {
     const files: MediaTypeInterface[] = req.body.files;
     if (!files) {
-      return next(new HttpException(400, 'No Files to delete'));
+      return next(new HttpException(400, 'Ingen filer å slette'));
     }
 
     _.forEach(files, (file) => {
@@ -137,14 +121,15 @@ class MediaController implements ControllerInterface {
       } else {
         fs.unlink(this.DIRECTORY + file.path, (err) => {
           if (err) {
-            return next(new HttpException(400, `Could not delete file ${file.name}`));
+            return next(new HttpException(400, `Kunne ikke slette filen med navn ${file.name}`));
           }
         });
       }
     });
 
     res.status(200).send({
-      message: `Successfully deleted ${files.length} files`,
+      status: 'success',
+      message: `Slettet ${files.length} filer`,
     });
   };
 
@@ -164,11 +149,12 @@ class MediaController implements ControllerInterface {
     const folder: MediaTypeInterface = req.body;
     fs.mkdir(this.DIRECTORY + folder.path, (err) => {
       if (err) {
-        return next(new HttpException(400, 'Could not create folder'));
+        return next(new HttpException(400, 'Kunne ikke opprette ny mappe'));
       }
       fs.chmodSync(this.DIRECTORY + folder.path, 0o777);
       res.status(200).send({
-        message: `Successfully created folder`,
+        status: 'success',
+        message: `Ny mappe lagt til`,
       });
     });
   };
@@ -191,16 +177,17 @@ class MediaController implements ControllerInterface {
     newPaths.pop();
     newPaths.push(folder.name);
     if (!folder.isDir) {
-      return next(new HttpException(400, 'No Folder to update'));
+      return next(new HttpException(400, 'Ingen mappe valgt'));
     }
     fs.rename(this.DIRECTORY + folder.path, this.DIRECTORY + newPaths.join('/'), (err) => {
       if (err) {
         console.log(err);
 
-        return next(new HttpException(400, 'Failed to update folder'));
+        return next(new HttpException(400, 'Oppdatering av mappen feilet'));
       }
       res.status(200).send({
-        message: `Successfully updated folder`,
+        status: 'success',
+        message: `Mappen er oppdatert`,
       });
     });
   };

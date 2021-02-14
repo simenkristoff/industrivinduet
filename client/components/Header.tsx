@@ -1,7 +1,7 @@
 import React from 'react';
-import { LoginOutlined, LogoutOutlined, UserAddOutlined } from '@ant-design/icons';
-import { MemberEntity } from '@/types';
+import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 
+import { MemberEntity } from '@/types';
 import { AdminToolbar } from '@/components/AdminToolbar';
 import Nav from '@/components/Navigation';
 import Logo from '@resources/logo.png';
@@ -40,9 +40,6 @@ export const Header: React.FC<IProps> = ({
             {!isLoggedIn && [
               <Nav.Item key='signup' to='/logg_inn' icon={<LoginOutlined />}>
                 Logg inn
-              </Nav.Item>,
-              <Nav.Item key='register' to='/registrer' icon={<UserAddOutlined />}>
-                Registrer deg
               </Nav.Item>,
             ]}
             {isLoggedIn && (

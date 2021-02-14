@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   IApplicationState,
+  JobState,
+  StudyFieldState,
   JobEntity,
-  StudyFieldEntity,
   FilterTypeInterface,
   SearchFilterType,
   JobOptions,
 } from '@/types';
-
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
 import { fetchActiveJobs } from '@/state/ducks/job/actions';
 import { JobItem } from '@/components/JobItem';
@@ -19,18 +20,23 @@ import { ResultContainer } from './ResultContainer';
 
 export const JobResultContainer = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState<boolean>(false);
   const types: string[] = useSelector(
     ({ options }: IApplicationState) => (options.job as JobOptions).jobTypes,
   );
-  const studyfields: StudyFieldEntity[] = useSelector(
-    ({ studyfield }: IApplicationState) => studyfield.data,
+  const studyfieldState: StudyFieldState = useSelector(
+    ({ studyfield }: IApplicationState) => studyfield,
   );
-  const stateToProps = useSelector(({ job }: IApplicationState) => job.data);
+  const jobState: JobState = useSelector(({ job }: IApplicationState) => job);
 
   useEffect(() => {
     dispatch(fetchStudyFields());
     dispatch(fetchActiveJobs());
   }, []);
+
+  useEffect(() => {
+    setLoading(studyfieldState.loading || jobState.loading);
+  }, [studyfieldState.loading, jobState.loading]);
 
   const searchFilterTypes: SearchFilterType<JobEntity> = {
     fields: ['title', 'type', 'description', 'places'],
@@ -51,15 +57,16 @@ export const JobResultContainer = () => {
     studyfields: {
       type: 'checkbox',
       field: 'abbr',
-      dependency: studyfields,
+      dependency: studyfieldState.data,
       label: 'Studieretninger',
     },
   };
 
   const resultProps = {
     title: 'Stillingsannonser',
-    data: stateToProps,
+    data: jobState.data,
     dataItem: JobItem,
+    loading,
     filterTypes,
     searchFilterTypes,
   };

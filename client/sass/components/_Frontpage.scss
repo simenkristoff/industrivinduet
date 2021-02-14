@@ -9,10 +9,19 @@
 
   .ant-layout {
     background-color: transparent;
+    background-image: url('/resources/patterns/dots_pattern.png');
+    background-position: center;
+    background-position-y: top;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
   }
 
   section.events {
     align-items: center;
+    // background-image: url('/resources/patterns/dots_pattern.png');
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: cover;
     display: flex;
     flex: 1 1 100%;
     min-height: 100px;
@@ -29,7 +38,6 @@
   }
 
   .content-wrapper {
-    background-color: theme-color(light);
 
     @include respond-above(sm) {
       border-top-left-radius: theme-structure(border-radius);
@@ -44,6 +52,14 @@
     border: 1px solid style-color(border-light);
     border-radius: theme-structure(border-radius);
     position: relative;
+
+    .section-header {
+      background-image: url('/resources/patterns/tech_pattern.png');
+      background-position-x: right;
+      background-repeat: no-repeat;
+      background-size: contain;
+      border-bottom: 1px solid rgba(theme-color(primary), 0.75);
+    }
 
     .section-title {
       font-weight: bold;

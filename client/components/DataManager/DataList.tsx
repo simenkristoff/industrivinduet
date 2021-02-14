@@ -1,5 +1,6 @@
 import Table from 'antd/lib/table';
 import React from 'react';
+
 import { Entity, DataListInterface } from '@/types';
 
 export const DataList = <T extends Entity>({

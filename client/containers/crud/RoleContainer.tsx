@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ColumnsType } from 'antd/lib/table';
-import { IApplicationState, RoleEntity, RoleState, GroupEntity } from '@/types';
 
+import { IApplicationState, RoleEntity, RoleState, GroupEntity } from '@/types';
 import { RoleForm } from '@/components/forms';
 import {
   createRole,
@@ -21,7 +21,7 @@ export const RoleContainer: React.FC = () => {
     byId: role.byId,
     data: role.data,
     loading: role.loading,
-    errors: role.errors,
+    status: role.status,
   }));
 
   const dispatchToProps = {
@@ -42,6 +42,7 @@ export const RoleContainer: React.FC = () => {
     },
     {
       title: 'Gruppe',
+      className: 'hide-sm',
       dataIndex: 'group',
       key: 'group',
       align: 'center',

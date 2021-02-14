@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ColumnsType } from 'antd/lib/table';
-import { IApplicationState, StudyFieldEntity, StudyFieldState } from '@/types';
 
+import { IApplicationState, StudyFieldEntity, StudyFieldState } from '@/types';
 import { StudyFieldForm } from '@/components/forms';
 import {
   createStudyField,
@@ -20,7 +20,7 @@ export const StudyFieldContainer: React.FC = () => {
     byId: studyfield.byId,
     data: studyfield.data,
     loading: studyfield.loading,
-    errors: studyfield.errors,
+    status: studyfield.status,
   }));
 
   const dispatchToProps = {
@@ -34,6 +34,7 @@ export const StudyFieldContainer: React.FC = () => {
   const columns: ColumnsType<StudyFieldEntity> = [
     {
       title: 'Navn',
+      className: 'hide-sm',
       dataIndex: 'name',
       key: 'name',
       sorter: (a, b) => a.name.localeCompare(b.name, 'nb'),

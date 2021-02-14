@@ -1,7 +1,7 @@
 import { FormInstance } from 'antd/lib/form';
 import { ExpandableConfig, ColumnsType } from 'antd/lib/table/interface';
 
-import { BaseState, Entity } from '@/types';
+import { BaseState, Entity, ApiResponse } from '@/types';
 
 export interface AuthInterface {
   hasPermission: boolean;

@@ -17,8 +17,8 @@ import {
   TeamOutlined,
   ControlOutlined,
 } from '@ant-design/icons';
-import { IApplicationState, AuthState } from '@/types';
 
+import { IApplicationState, AuthState } from '@/types';
 import { checkUserIsAdmin } from '@/state/ducks/auth/helpers';
 
 const { SubMenu } = Menu;

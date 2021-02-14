@@ -82,7 +82,7 @@ class OptionController implements ControllerInterface {
     await OptionModel.findOneAndUpdate({}, req.body, { new: true }, (err, doc) => {
       console.log(doc);
       if (!doc) {
-        return next(new NotFoundException('No Option document'));
+        return next(new NotFoundException('Kunne ikke finne innstillinger'));
       }
       res.status(200).send(doc);
     });
@@ -106,7 +106,7 @@ class OptionController implements ControllerInterface {
   private delete = async (req: Request, res: Response, next: NextFunction) => {
     await OptionModel.findOne({}, {}, {}, (err, doc) => {
       if (!doc) {
-        return next(new NotFoundException('No Option document found'));
+        return next(new NotFoundException('Kunne ikke finne innstillinger'));
       }
       doc.remove({}, (err) => {
         if (err) {
@@ -118,7 +118,7 @@ class OptionController implements ControllerInterface {
             return next(new HttpException(500, err.message));
           }
 
-          res.status(200).send(doc);
+          res.status(200).send({ status: 'success', message: 'Innstillinger er tilbakestilt!' });
         });
       });
     });

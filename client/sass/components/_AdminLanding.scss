@@ -15,15 +15,7 @@
     }
 
     .section-header {
-      background-image: url('/resources/gears_card.jpg');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
       margin-bottom: -0.5rem;
-
-      .section-title {
-        color: theme-color(light);
-      }
     }
 
     .section-title {
@@ -33,5 +25,12 @@
     .section-content:not(.no-pad) {
       padding: 1rem 0.5rem;
     }
+  }
+
+  .section-img {
+    background-image: url('/resources/patterns/tech_pattern.png');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
   }
 }

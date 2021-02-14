@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input } from 'antd';
+import { Form, Input, Switch } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 
 import { OptionFormInterface } from '@/types';
@@ -56,6 +56,15 @@ const GeneralOptionsForm: React.FC<OptionFormInterface> = ({ form, data }: Optio
         rules={[{ required: true, message: OptionMessage.GENERAL.ADDRESS.REQUIRED }]}
       >
         <Input />
+      </Form.Item>
+
+      <Form.Item
+        name={['general', 'showMaps']}
+        label={OptionMessage.GENERAL.MAPS.LABEL}
+        tooltip={{ title: OptionMessage.GENERAL.MAPS.INFO, icon: <InfoCircleOutlined /> }}
+        valuePropName='checked'
+      >
+        <Switch />
       </Form.Item>
 
       <Form.Item

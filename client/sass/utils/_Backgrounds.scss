@@ -10,4 +10,9 @@
   }
 }
 
+.bg-gradient-blue {
+  background: rgb(0, 93, 163);
+  background: radial-gradient(circle, rgba(0, 93, 163, 1) 0%, rgba(0, 3, 6, 1) 100%);
+}
+
 @include background-color-utils;

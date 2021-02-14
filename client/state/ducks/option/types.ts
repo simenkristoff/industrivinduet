@@ -22,6 +22,7 @@ export interface GeneralOptions {
   sitename: string;
   email: string;
   address: string;
+  showMaps: boolean;
   phone?: string;
   organization: string;
   about: string;

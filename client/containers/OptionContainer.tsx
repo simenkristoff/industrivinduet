@@ -1,26 +1,23 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form, PageHeader } from 'antd';
-import { IApplicationState, OptionEntity, OptionState } from '@/types';
 
-import { fetchOptions, resetOptions, updateOptions } from '@/state/ducks/option/actions';
+import { IApplicationState, OptionEntity, OptionState } from '@/types';
+import { fetchOptions, resetOptions, updateOptions, clear } from '@/state/ducks/option/actions';
 import { OptionForm } from '@/components/forms';
 
 export const OptionContainer = () => {
   const dispatch = useDispatch();
   const [form] = Form.useForm<OptionEntity>();
-  const stateToProps: OptionState = useSelector(({ options }: IApplicationState) => ({
-    general: options.general,
-    event: options.event,
-    job: options.job,
-    socials: options.socials,
-    loading: options.loading,
-    errors: options.errors,
-  }));
+  const options: OptionState = useSelector(({ options }: IApplicationState) => options);
+
+  useEffect(() => {
+    dispatch(fetchOptions());
+  }, []);
 
   const optionProps = {
-    ...stateToProps,
     form,
+    options,
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -34,14 +31,6 @@ export const OptionContainer = () => {
   useEffect(() => {
     form.resetFields();
   }, [handleSubmit, handleReset]);
-
-  const dispatchToProps = {
-    fetchOptions: useCallback(() => dispatch(fetchOptions()), [dispatch]),
-    updateOptions: useCallback((option: OptionEntity) => dispatch(updateOptions(option)), [
-      dispatch,
-    ]),
-    resetOptions: useCallback(() => dispatch(resetOptions()), [dispatch]),
-  };
 
   return (
     <>
@@ -57,7 +46,7 @@ export const OptionContainer = () => {
           </Button>,
         ]}
       />
-      <OptionForm {...optionProps} {...dispatchToProps} />
+      <OptionForm {...optionProps} />
     </>
   );
 };

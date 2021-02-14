@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { FormInstance } from 'antd/lib/form';
-import { Entity, ResultItemInterface, FilterTypeInterface, SearchFilterType } from '@/types';
 
+import { Entity, ResultItemInterface, FilterTypeInterface, SearchFilterType } from '@/types';
 import { ResultManager } from '@/components/ResultManager';
 import { initializeFilters, filterArray } from '@/utils';
 
@@ -9,12 +9,13 @@ interface IProps<T extends Entity> {
   title: string;
   data: T[];
   dataItem: React.FC<ResultItemInterface<T>>;
+  loading: boolean;
   filterTypes: FilterTypeInterface<T>;
   searchFilterTypes?: SearchFilterType<T>;
 }
 
 export const ResultContainer = <T extends Entity>(props: IProps<T>): JSX.Element => {
-  const { title, data, dataItem, filterTypes, searchFilterTypes } = props;
+  const { title, data, dataItem, loading, filterTypes, searchFilterTypes } = props;
   const { initialFilterState, filterState, setFilterState, filterFunctions } = initializeFilters<T>(
     filterTypes,
     searchFilterTypes,
@@ -43,6 +44,7 @@ export const ResultContainer = <T extends Entity>(props: IProps<T>): JSX.Element
     originalSize: data.length,
     data: filterArray(data, filterFunctions, filterState),
     dataItem,
+    loading,
     filterTypes,
   };
 

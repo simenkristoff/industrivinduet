@@ -1,8 +1,16 @@
-import React, { useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
+import partners from 'server/seeds/4-partners/partners.seed';
 
-import { IApplicationState, MemberEntity, PartnerEntity } from '@/types';
+import {
+  IApplicationState,
+  ContentState,
+  MemberState,
+  PartnerState,
+  MemberEntity,
+  PartnerEntity,
+} from '@/types';
 import { roleValuesEnum } from '@/constants';
 import { AboutUs } from '@/components/AboutUs';
 import { fetchContents } from '@/state/ducks/content/actions';
@@ -15,15 +23,25 @@ type groupType = {
 
 export const AboutUsContainer = () => {
   const dispatch = useDispatch();
-  const membersData: MemberEntity[] = useSelector(({ member }: IApplicationState) => member.data);
-  const partnersData: PartnerEntity[] = useSelector(
-    ({ partner }: IApplicationState) => partner.data,
-  );
+  const [loading, setLoading] = useState<boolean>(false);
+  const contents: ContentState = useSelector(({ content }: IApplicationState) => content);
+  const members: MemberState = useSelector(({ member }: IApplicationState) => member);
+  const partners: PartnerState = useSelector(({ partner }: IApplicationState) => partner);
+
+  useEffect(() => {
+    dispatch(fetchContents());
+    dispatch(fetchMembers());
+    dispatch(fetchPartners());
+  }, []);
+
+  useEffect(() => {
+    setLoading(contents.loading || members.loading || partners.loading);
+  }, [contents.loading, members.loading, partners.loading]);
 
   function sortMembers(): MemberEntity[] {
     const groups: groupType = {};
     const uniqueGroups = _.uniq(
-      membersData
+      members.data
         .flatMap((o) => o.role)
         .flatMap((p) => p?.group)
         .flatMap((q) => (q?.name ? q.name : 'Leader')),
@@ -32,7 +50,7 @@ export const AboutUsContainer = () => {
       groups[group] = [];
     });
     _.orderBy(
-      membersData,
+      members.data,
       (member) => {
         const val = member.role?.roleType ? roleValuesEnum[member.role?.roleType] : 0;
 
@@ -51,17 +69,16 @@ export const AboutUsContainer = () => {
     return sortedMembers;
   }
 
-  const stateToProps = useSelector(({ content }: IApplicationState) => ({
-    data: content.data,
+  const stateToProps = {
+    data: contents.data,
     members: sortMembers(),
-    partners: partnersData,
-  }));
-
-  const dispatchToProps = {
-    fetchContents: useCallback(() => dispatch(fetchContents()), [dispatch]),
-    fetchMembers: useCallback(() => dispatch(fetchMembers()), [dispatch]),
-    fetchPartners: useCallback(() => dispatch(fetchPartners()), [dispatch]),
+    partners: partners.data,
+    loading,
   };
 
-  return <AboutUs {...stateToProps} {...dispatchToProps} />;
+  return (
+    <div className='about-us-wrapper'>
+      <AboutUs {...stateToProps} />
+    </div>
+  );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { IApplicationState, OptionState } from '@/types';
 
+import { IApplicationState, OptionState } from '@/types';
 import { Contact } from '@/components/Contact';
 
 export const ContactContainer = () => {

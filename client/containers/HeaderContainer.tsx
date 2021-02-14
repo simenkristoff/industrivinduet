@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState, MemberEntity } from '@/types';
 
+import { IApplicationState, MemberEntity } from '@/types';
 import { logout } from '@/state/ducks/auth/actions';
 import { Header } from '@/components/Header';
 

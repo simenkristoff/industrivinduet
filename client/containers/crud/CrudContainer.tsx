@@ -3,6 +3,7 @@ import { ColumnsType } from 'antd/lib/table';
 import { Button, Form, Space } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
+
 import {
   Entity,
   IApplicationState,
@@ -10,8 +11,9 @@ import {
   DataListInterface,
   UserPermissions,
 } from '@/types';
-
 import { DataHeader, DataList, DataModal } from '@/components/DataManager';
+import { Spinner } from '@/components/Spinner';
+import { ErrorResponse } from '@/components/ErrorResponse';
 
 export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element => {
   const permission: UserPermissions | null = useSelector(
@@ -142,11 +144,23 @@ export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.El
     close: useCallback(() => handleClose(), []),
   };
 
+  const render = () => {
+    if (state.loading && !state.status) {
+      return <Spinner loading={state.loading} centered />;
+    } else if (state.status) {
+      return <ErrorResponse response={state.status} jumbotron />;
+    }
+
+    return [
+      <DataList {...listProps} {...listCallbacks} key='data-list' />,
+      <DataModal {...modalProps} {...modalCallbacks} key='data-modal' />,
+    ];
+  };
+
   return (
     <div className='content-manager'>
       <DataHeader {...headerProps} {...headerCallbacks} />
-      <DataList {...listProps} {...listCallbacks} />
-      <DataModal {...modalProps} {...modalCallbacks} />
+      {render()}
     </div>
   );
 };

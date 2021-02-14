@@ -6,16 +6,29 @@ import { CalendarOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import { ColProps } from 'antd/lib/col';
 
 import { ResultItemInterface, EventEntity } from '@/types';
-import cover from '@resources/gears_card.jpg';
+import ntnu_cover from '@resources/covers/ntnu_cover.jpg';
+import gears_cover from '@resources/covers/gears_cover.jpg';
 
 interface IProps extends ResultItemInterface<EventEntity> {
   column?: ColProps;
   scaleOnHover?: boolean;
+  cover?: 'ntnu' | 'gears';
 }
+
+const covers = {
+  ntnu: ntnu_cover,
+  gears: gears_cover,
+};
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
-export const EventCard: React.FC<IProps> = ({ data, column, scaleOnHover, className }: IProps) => {
+export const EventCard: React.FC<IProps> = ({
+  data,
+  column,
+  scaleOnHover,
+  cover,
+  className,
+}: IProps) => {
   const { _id, title, type, date, starttime, endtime, place, image } = data;
   const classes: string[] = ['event-card', 'shadow-box'];
   if (scaleOnHover) classes.push('scale');
@@ -29,7 +42,7 @@ export const EventCard: React.FC<IProps> = ({ data, column, scaleOnHover, classN
     <Col {...column}>
       <Link className={classes.join(' ')} to={`/arrangementer/${_id}`}>
         <div className='card-header'>
-          <img className='cover' src={cover} />
+          <img className='cover' src={covers[cover!]} />
           <img className='logo' src={`${BACKEND_URL}/media/${image}`} alt={title} />
         </div>
         <div className='card-body'>
@@ -56,5 +69,6 @@ EventCard.defaultProps = {
     sm: 12,
     xs: 24,
   },
+  cover: 'gears',
   scaleOnHover: false,
 };

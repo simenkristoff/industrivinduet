@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Tabs } from 'antd';
 import { FormInstance } from 'antd/lib/form';
 
-import { OptionEntity, OptionPropsAll } from '@/types';
+import { OptionEntity, OptionState } from '@/types';
+import { Spinner } from '@/components/Spinner';
+import { ErrorResponse } from '@/components/ErrorResponse';
 
 import GeneralOptionsForm from './GeneralOptionsForm';
 import EventOptionsForm from './EventOptionsForm';
@@ -11,28 +13,20 @@ import SocialOptionsForm from './SocialOptionsForm';
 
 const { TabPane } = Tabs;
 
-interface IProps extends OptionPropsAll {
+interface IProps {
   form: FormInstance<OptionEntity>;
+  options: OptionState;
 }
 
-const OptionForm: React.FC<IProps> = ({
-  general,
-  event,
-  job,
-  socials,
-  form,
-  fetchOptions,
-  loading,
-  errors,
-}: IProps) => {
-  useEffect(() => {
-    fetchOptions();
-  }, []);
+const OptionForm: React.FC<IProps> = ({ form, options }: IProps) => {
+  const render = () => {
+    if (options.loading) {
+      return <Spinner loading centered />;
+    } else if (status) {
+      return <ErrorResponse response={options.status} jumbotron />;
+    }
 
-  const options = { general, event, job, socials };
-
-  return (
-    <div className='options-manager'>
+    return (
       <Tabs defaultActiveKey='general' tabPosition='top'>
         <TabPane tab='Generelt' key='general'>
           <GeneralOptionsForm form={form} data={options} />
@@ -47,8 +41,10 @@ const OptionForm: React.FC<IProps> = ({
           <SocialOptionsForm form={form} data={options} />
         </TabPane>
       </Tabs>
-    </div>
-  );
+    );
+  };
+
+  return <div className='options-manager'>{render()}</div>;
 };
 
 export default OptionForm;

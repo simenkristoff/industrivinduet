@@ -20,6 +20,10 @@ const OptionMessages = {
       INFO: 'Adresse/postboks',
       REQUIRED: 'Fyll inn en adresse',
     },
+    MAPS: {
+      LABEL: 'Vis Google Maps',
+      INFO: 'Vis Google Maps på forside og kontaktside',
+    },
     ORGANIZATION: {
       LABEL: 'Org.nr.',
       INFO: 'Organisasjonsnummer',

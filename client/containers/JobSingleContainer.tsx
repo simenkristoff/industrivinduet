@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { IApplicationState, JobEntity } from '@/types';
+import { IApplicationState, JobState } from '@/types';
 import { JobSingle } from '@/components/JobSingle';
 import { fetchJob, setJob } from '@/state/ducks/job/actions';
 
@@ -12,7 +12,7 @@ type ParamTypes = {
 
 export const JobSingleContainer = () => {
   const dispatch = useDispatch();
-  const job: JobEntity = useSelector(({ job }: IApplicationState) => job.byId as JobEntity);
+  const job: JobState = useSelector(({ job }: IApplicationState) => job);
   const { jobID } = useParams<ParamTypes>();
 
   useEffect(() => {
@@ -23,5 +23,5 @@ export const JobSingleContainer = () => {
     };
   }, []);
 
-  return <JobSingle data={job} />;
+  return <JobSingle data={job.byId} loading={job.loading} />;
 };

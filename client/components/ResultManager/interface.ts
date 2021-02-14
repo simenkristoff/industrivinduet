@@ -15,6 +15,7 @@ export interface ResultHeaderInterface {
 export interface ResultContentInterface<T extends Entity> {
   data: T[];
   dataItem: React.FC<ResultItemInterface<T>>;
+  loading: boolean;
 }
 
 export interface ResultFilterInterface<T extends Entity> {
@@ -31,6 +32,7 @@ export interface ResultManagerInterface<T extends Entity> {
   dataItem: React.FC<ResultItemInterface<T>>;
   originalSize: number;
   filterTypes: FilterTypeInterface<T>;
+  loading: boolean;
   onSearchFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFilterChange: (changedFields: Array<any>, allFields: Array<any>) => void;
   onFilterReset: (form: FormInstance<T>) => void;

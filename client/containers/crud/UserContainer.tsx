@@ -21,7 +21,7 @@ export const UserContainer: React.FC = () => {
     byId: user.byId,
     data: user.data,
     loading: user.loading,
-    errors: user.errors,
+    status: user.status,
   }));
 
   const dispatchToProps = {
@@ -42,12 +42,14 @@ export const UserContainer: React.FC = () => {
     },
     {
       title: 'Tillatelser',
+      className: 'hide-sm',
       dataIndex: 'permissions',
       key: 'permissions',
       sorter: (a, b) => a.permissions.localeCompare(b.permissions, 'nb'),
     },
     {
       title: 'Registrert',
+      className: 'hide-sm',
       dataIndex: 'isRegistered',
       key: 'isRegistered',
       sorter: (a, b) => (a.isRegistered === b.isRegistered ? 0 : a.isRegistered ? -1 : 1),

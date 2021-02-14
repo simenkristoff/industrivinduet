@@ -1,8 +1,8 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IApplicationState, MediaState, MediaType, MediaFolderType, MediaImageType } from '@/types';
-import { Input, Modal, Spin } from 'antd';
+import { Input, Modal } from 'antd';
 
+import { IApplicationState, MediaState, MediaType, MediaFolderType, MediaImageType } from '@/types';
 import {
   fetchFiles,
   uploadFile,
@@ -10,6 +10,8 @@ import {
   createFolder,
   updateFolder,
 } from '@/state/ducks/media/actions';
+import { Spinner } from '@/components/Spinner';
+import { ErrorResponse } from '@/components/ErrorResponse';
 import { MediaLibrary } from '@/components/MediaLibrary';
 
 interface MediaContainerInterface {
@@ -31,7 +33,7 @@ export const MediaContainer: React.FC<MediaContainerInterface> = ({
     selectedFile: media.selectedFile,
     nodes: media.nodes,
     loading: media.loading,
-    errors: media.errors,
+    status: media.status,
   }));
 
   useEffect(() => {
@@ -125,11 +127,13 @@ export const MediaContainer: React.FC<MediaContainerInterface> = ({
   };
 
   const render = () => {
-    if (!fileData.loading) {
-      return renderContent();
+    if (fileData.loading) {
+      return <Spinner loading={fileData.loading} centered />;
+    } else if (fileData.status) {
+      return <ErrorResponse response={fileData.status} jumbotron />;
     }
 
-    return <Spin />;
+    return renderContent();
   };
 
   return render();

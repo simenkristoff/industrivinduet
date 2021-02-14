@@ -22,7 +22,7 @@ export const PartnerContainer: React.FC = () => {
     byId: partner.byId,
     data: partner.data,
     loading: partner.loading,
-    errors: partner.errors,
+    status: partner.status,
   }));
 
   const dispatchToProps = {
@@ -36,6 +36,7 @@ export const PartnerContainer: React.FC = () => {
   const columns: ColumnsType<PartnerEntity> = [
     {
       title: 'Bedrift',
+      className: 'hide-sm',
       dataIndex: 'image',
       key: 'image',
       sorter: (a, b) => a.name.localeCompare(b.name, 'nb'),

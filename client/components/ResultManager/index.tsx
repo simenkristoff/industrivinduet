@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
+
 import { Entity, ResultManagerInterface } from '@/types';
 
 import { ResultContent } from './ResultContent';
@@ -13,6 +14,7 @@ export const ResultManager = <T extends Entity>(props: ResultManagerInterface<T>
     data,
     dataItem,
     filterTypes,
+    loading,
     onSearchFilterChange,
     onFilterChange,
     onFilterReset,
@@ -34,6 +36,7 @@ export const ResultManager = <T extends Entity>(props: ResultManagerInterface<T>
   const contentProps = {
     data,
     dataItem,
+    loading,
   };
 
   return (
