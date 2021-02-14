@@ -14,6 +14,7 @@ import {
 import { DataHeader, DataList, DataModal } from '@/components/DataManager';
 import { Spinner } from '@/components/Spinner';
 import { ErrorResponse } from '@/components/ErrorResponse';
+import { fireActionVerify } from '@/utils';
 
 export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element => {
   const permission: UserPermissions | null = useSelector(
@@ -29,6 +30,7 @@ export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.El
     name,
     columns,
     expandable,
+    collection,
     dataForm,
     modal,
     fetch,
@@ -82,7 +84,7 @@ export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.El
             shape='circle'
             icon={<DeleteOutlined />}
             disabled={!hasPermission}
-            onClick={() => remove(record)}
+            onClick={() => handleRemove(record)}
           />
         </Space>
       ),
@@ -104,6 +106,14 @@ export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.El
       set(record);
     }
     setVisible(true);
+  };
+
+  const handleRemove = (record: T) => {
+    fireActionVerify(collection).then((result) => {
+      if (result.isConfirmed) {
+        remove(record);
+      }
+    });
   };
 
   const handleClose = () => {

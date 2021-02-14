@@ -11,4 +11,8 @@
   }
 }
 
+.hide {
+  display: none;
+}
+
 @include display-utils();

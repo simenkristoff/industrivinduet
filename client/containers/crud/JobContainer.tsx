@@ -4,7 +4,7 @@ import { Image } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import moment from 'moment';
 
-import { IApplicationState, JobEntity, JobState } from '@/types';
+import { IApplicationState, JobEntity, JobState, CollectionKeys } from '@/types';
 import { JobForm } from '@/components/forms';
 import { createJob, deleteJob, fetchJobs, setJob, updateJob } from '@/state/ducks/job/actions';
 import { fetchStudyFields } from '@/state/ducks/studyfield/actions';
@@ -76,6 +76,8 @@ export const JobContainer: React.FC = () => {
     },
   ];
 
+  const collection: CollectionKeys = 'JOB';
+
   const stateToProps = {
     requireAdmin: false,
     state: jobState,
@@ -87,6 +89,7 @@ export const JobContainer: React.FC = () => {
       singular: 'Stillingsannonse',
       plural: 'Stillingsannonser',
     },
+    collection,
     dataForm: JobForm,
   };
 

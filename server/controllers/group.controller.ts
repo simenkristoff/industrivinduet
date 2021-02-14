@@ -161,6 +161,7 @@ class GroupController implements ControllerInterface {
       if (!doc) {
         return next(new NotFoundException(`Kunne ikke finne objekt med id ${req.params.id}`));
       }
+
       doc.remove({}, (err) => {
         if (err) {
           return next(new HttpException(500, err.message));

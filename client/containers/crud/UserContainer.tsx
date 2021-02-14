@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ColumnsType } from 'antd/lib/table';
 
-import { IApplicationState, UserEntity, UserState } from '@/types';
+import { IApplicationState, UserEntity, UserState, CollectionKeys } from '@/types';
 import { UserForm } from '@/components/forms';
 import {
   createUser,
@@ -57,6 +57,8 @@ export const UserContainer: React.FC = () => {
     },
   ];
 
+  const collection: CollectionKeys = 'USER';
+
   const stateToProps = {
     state: userState,
     columns,
@@ -64,6 +66,7 @@ export const UserContainer: React.FC = () => {
       singular: 'Bruker',
       plural: 'Brukere',
     },
+    collection,
     dataForm: UserForm,
   };
 

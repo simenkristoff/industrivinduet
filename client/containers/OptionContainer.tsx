@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form, PageHeader } from 'antd';
 
 import { IApplicationState, OptionEntity, OptionState } from '@/types';
-import { fetchOptions, resetOptions, updateOptions, clear } from '@/state/ducks/option/actions';
+import { fetchOptions, resetOptions, updateOptions } from '@/state/ducks/option/actions';
+import { fireActionVerify } from '@/utils';
 import { OptionForm } from '@/components/forms';
 
 export const OptionContainer = () => {
@@ -21,11 +22,17 @@ export const OptionContainer = () => {
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    form.validateFields().then((values) => dispatch(updateOptions(values)));
+    form.validateFields().then((values) => {
+      dispatch(updateOptions(values));
+    });
   };
 
   const handleReset = () => {
-    dispatch(resetOptions());
+    fireActionVerify('OPTION').then((result) => {
+      if (result.isConfirmed) {
+        dispatch(resetOptions());
+      }
+    });
   };
 
   useEffect(() => {

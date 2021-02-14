@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Image } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 
-import { IApplicationState } from '@/types';
+import { IApplicationState, CollectionKeys } from '@/types';
 import { PartnerForm } from '@/components/forms';
 import { PartnerEntity, PartnerState } from '@/state/ducks/partner/types';
 import {
@@ -51,6 +51,8 @@ export const PartnerContainer: React.FC = () => {
     },
   ];
 
+  const collection: CollectionKeys = 'PARTNER';
+
   const stateToProps = {
     state: partnerState,
     columns,
@@ -58,6 +60,7 @@ export const PartnerContainer: React.FC = () => {
       singular: 'Samarbeidspartner',
       plural: 'Samarbeidspartnere',
     },
+    collection,
     dataForm: PartnerForm,
   };
 

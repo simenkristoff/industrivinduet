@@ -9,12 +9,19 @@ import { ResultItemInterface } from '@/components/ResultManager/interface';
 
 interface IProps extends ResultItemInterface<JobEntity> {
   margin?: boolean;
+  displayPlaces?: boolean;
   displayContent?: boolean;
 }
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
-export const JobItem: React.FC<IProps> = ({ data, margin, className, displayContent }: IProps) => {
+export const JobItem: React.FC<IProps> = ({
+  data,
+  margin,
+  className,
+  displayPlaces,
+  displayContent,
+}: IProps) => {
   const { _id, title, company, type, startdate, deadline, places, image } = data;
 
   return (
@@ -39,7 +46,11 @@ export const JobItem: React.FC<IProps> = ({ data, margin, className, displayCont
               <Descriptions.Item label='Søknadsfrist' key='deadline'>
                 {moment(deadline).format('ll')}
               </Descriptions.Item>,
-              <Descriptions.Item label={<EnvironmentOutlined />} key='location'>
+              <Descriptions.Item
+                className={displayPlaces ? '' : 'hide'}
+                label={<EnvironmentOutlined />}
+                key='location'
+              >
                 {places.map((place) => place + ' ')}
               </Descriptions.Item>,
             ]}
@@ -52,6 +63,7 @@ export const JobItem: React.FC<IProps> = ({ data, margin, className, displayCont
 
 JobItem.defaultProps = {
   margin: true,
+  displayPlaces: true,
   displayContent: true,
   className: 'shadow-box-light',
 };

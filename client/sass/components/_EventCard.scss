@@ -78,8 +78,10 @@
 
     .title {
       color: theme-color(primary-dark);
-      font-weight: 300;
+      font-size: 1rem;
+      font-weight: 500;
       margin: 0;
+      text-transform: uppercase;
     }
   }
 }

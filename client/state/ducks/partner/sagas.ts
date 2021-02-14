@@ -1,5 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 
+import { fireActionSuccess, fireActionError } from '@/utils';
 import {
   IMetaAction,
   IPayloadAction,
@@ -34,6 +35,7 @@ function* handleFetch(params: IMetaAction): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -45,6 +47,7 @@ function* handleCreate(params: IPayloadMetaAction<PartnerEntity>): Generator {
   try {
     const data = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({ type: PartnerActionTypes.CREATE.SUCCESS, payload: data });
+    yield fireActionSuccess('PARTNER', 'CREATE');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -58,6 +61,7 @@ function* handleCreate(params: IPayloadMetaAction<PartnerEntity>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -69,6 +73,7 @@ function* handleUpdate(params: IPayloadMetaAction<PartnerEntity>): Generator {
   try {
     const data = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({ type: PartnerActionTypes.UPDATE.SUCCESS, payload: data });
+    yield fireActionSuccess('PARTNER', 'UPDATE');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -82,6 +87,7 @@ function* handleUpdate(params: IPayloadMetaAction<PartnerEntity>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -93,6 +99,7 @@ function* handleDelete(params: IPayloadMetaAction<PartnerEntity>): Generator {
   try {
     const data = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({ type: PartnerActionTypes.DELETE.SUCCESS, payload: params.payload });
+    yield fireActionSuccess('PARTNER', 'DELETE');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -106,6 +113,7 @@ function* handleDelete(params: IPayloadMetaAction<PartnerEntity>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -129,6 +137,7 @@ function* handleSet(params: IPayloadAction<PartnerEntity>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 

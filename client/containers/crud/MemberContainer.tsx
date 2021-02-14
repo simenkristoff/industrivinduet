@@ -2,7 +2,14 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ColumnsType } from 'antd/lib/table';
 
-import { IApplicationState, MemberEntity, MemberState, GroupEntity, RoleEntity } from '@/types';
+import {
+  IApplicationState,
+  MemberEntity,
+  MemberState,
+  GroupEntity,
+  RoleEntity,
+  CollectionKeys,
+} from '@/types';
 import { MemberForm } from '@/components/forms';
 import {
   createMember,
@@ -71,6 +78,8 @@ export const MemberContainer: React.FC = () => {
     },
   ];
 
+  const collection: CollectionKeys = 'MEMBER';
+
   const stateToProps = {
     state: memberState,
     columns,
@@ -78,6 +87,7 @@ export const MemberContainer: React.FC = () => {
       singular: 'Medlem',
       plural: 'Medlemmer',
     },
+    collection,
     dataForm: MemberForm,
   };
 
