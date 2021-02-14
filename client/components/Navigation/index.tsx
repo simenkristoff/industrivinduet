@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { MenuOutlined } from '@ant-design/icons';
 import { CSSTransition } from 'react-transition-group';
+import { Link } from 'react-router-dom';
 
 import NavList from './NavList';
 import NavItem from './NavItem';
@@ -37,9 +38,9 @@ const Nav: INav<IProps> = (props) => {
   return (
     <nav className={classes.join(' ')} id={id}>
       {logo && (
-        <a className='nav-brand'>
+        <Link to='/' className='nav-brand'>
           <img src={logo} />
-        </a>
+        </Link>
       )}
       <button className='navigation-toggler' type='button' onClick={handleToggle}>
         {toggler}

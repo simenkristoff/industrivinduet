@@ -108,5 +108,5 @@ export const GoogleMapsContainer: React.FC<IProps> = ({ renderInDev }: IProps) =
 };
 
 GoogleMapsContainer.defaultProps = {
-  renderInDev: true,
+  renderInDev: false,
 };
