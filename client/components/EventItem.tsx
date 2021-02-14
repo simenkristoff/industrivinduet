@@ -18,9 +18,9 @@ export const EventItem: React.FC<IProps> = ({ data, className, displayContent }:
   return (
     <Link className={`event-item ${className}`} to={`/arrangementer/${_id}`}>
       <Row gutter={[0, 0]} wrap={false} align='middle'>
-        <div className='event-image'>
+        <Col className='event-image'>
           <img src={`${BACKEND_URL}/media/${image}`} alt={title} />
-        </div>
+        </Col>
 
         <Col className='description-wrapper' flex='auto'>
           <Descriptions

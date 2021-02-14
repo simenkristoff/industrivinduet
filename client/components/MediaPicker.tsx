@@ -10,6 +10,8 @@ interface MediaPickerProps {
   onChange?: (value: string) => void;
 }
 
+const BACKEND_URL = process.env.BACKEND_URL as string;
+
 export const MediaPicker: React.FC<MediaPickerProps> = ({
   value,
   id,
@@ -21,7 +23,7 @@ export const MediaPicker: React.FC<MediaPickerProps> = ({
     <div className='media-picker'>
       {value && (
         <div className='preview'>
-          <Image src={`http://localhost:8080/media/${value}`} />
+          <Image src={`${BACKEND_URL}/media/${value}`} />
         </div>
       )}
       <MediaContainer modal input={inputEl} callback={(image) => onChange!(image.path)} />

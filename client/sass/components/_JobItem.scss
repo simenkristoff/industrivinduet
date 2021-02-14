@@ -2,6 +2,8 @@
 .job-item {
   border: 1px solid style-color(border-light);
   display: flex;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
   position: relative;
   transition: 0.3s ease-in-out;
 
@@ -37,6 +39,11 @@
     .ant-descriptions-title {
       font-size: 1.1rem;
       font-weight: 500;
+      overflow-wrap: break-word;
+      white-space: normal;
+      word-break: break-all;
+      word-break: break-word;
+      word-wrap: break-word;
     }
 
     span.type {
