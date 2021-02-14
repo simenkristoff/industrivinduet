@@ -36,11 +36,9 @@ namespace Cascader {
       const updateQuery: any = isArray
         ? { $pull: { [reference]: baseID } }
         : { [reference]: undefined };
-
       try {
         await target.find(query, (err: any, docs: P[]) => {
           if (docs) {
-            console.log(typeof reference);
             docs.map(async (doc: P) => {
               if (!doc) {
                 return next(new NotFoundException(`Could not find ${target.name} while cascading`));

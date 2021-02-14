@@ -1,5 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 
+import { fireActionSuccess, fireActionError } from '@/utils';
 import { IMetaAction, IPayloadMetaAction, OptionActionTypes, OptionEntity } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
 
@@ -28,6 +29,7 @@ function* handleFetch(params: IMetaAction): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -39,6 +41,7 @@ function* handleUpdate(params: IPayloadMetaAction<OptionEntity>): Generator {
   try {
     const data = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({ type: OptionActionTypes.UPDATE.SUCCESS, payload: data });
+    yield fireActionSuccess('OPTION', 'UPDATE');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -52,6 +55,7 @@ function* handleUpdate(params: IPayloadMetaAction<OptionEntity>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -65,6 +69,7 @@ function* handleReset(params: IMetaAction): Generator {
   try {
     const data = yield call(apiCaller, params.meta.method, params.meta.route);
     yield put({ type: OptionActionTypes.RESET.SUCCESS, payload: data });
+    yield fireActionSuccess('OPTION', 'RESET');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -78,6 +83,7 @@ function* handleReset(params: IMetaAction): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 

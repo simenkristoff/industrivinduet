@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Col, Input } from 'antd';
 import { DeleteOutlined, EditOutlined, FolderFilled } from '@ant-design/icons';
-import { MediaFolderInterface, MediaFolderType } from '@/types';
+
+import { MediaFolderInterface, MediaType, MediaFolderType } from '@/types';
+import { fireFolderDeleteVerify } from '@/utils';
 
 export const MediaFolder: React.FC<MediaFolderInterface> = ({
   data,
@@ -52,6 +54,14 @@ export const MediaFolder: React.FC<MediaFolderInterface> = ({
     setFolderName(value);
   };
 
+  const handleDelete = () => {
+    fireFolderDeleteVerify().then((result) => {
+      if (result.isConfirmed) {
+        deleteFile(data);
+      }
+    });
+  };
+
   const handleDoubleClick = () => {
     setEdit(true);
   };
@@ -73,7 +83,7 @@ export const MediaFolder: React.FC<MediaFolderInterface> = ({
       <div ref={mediaEl} className='media-folder'>
         <div className='actions'>
           <EditOutlined className='action-edit' onClick={() => setEdit(true)} />
-          <DeleteOutlined className='action-delete' onClick={() => deleteFile(data)} />
+          <DeleteOutlined className='action-delete' onClick={() => handleDelete()} />
         </div>
         <FolderFilled className='folder-wrapper' onDoubleClick={() => onFolderClick(path)} />
         <Input

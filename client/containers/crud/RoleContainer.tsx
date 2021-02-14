@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ColumnsType } from 'antd/lib/table';
 
-import { IApplicationState, RoleEntity, RoleState, GroupEntity } from '@/types';
+import { IApplicationState, RoleEntity, RoleState, GroupEntity, CollectionKeys } from '@/types';
 import { RoleForm } from '@/components/forms';
 import {
   createRole,
@@ -56,6 +56,8 @@ export const RoleContainer: React.FC = () => {
     },
   ];
 
+  const collection: CollectionKeys = 'ROLE';
+
   const stateToProps = {
     state: roleState,
     columns,
@@ -63,6 +65,7 @@ export const RoleContainer: React.FC = () => {
       singular: 'Stilling',
       plural: 'Stillinger',
     },
+    collection,
     dataForm: RoleForm,
   };
 

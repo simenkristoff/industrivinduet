@@ -16,6 +16,7 @@ interface IProps {
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
 export const EventSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
+  var sortedGrades: string[] = [];
   const {
     title,
     type,
@@ -31,6 +32,12 @@ export const EventSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
     grades,
     link,
   } = data as EventEntity;
+
+  if (grades) {
+    sortedGrades = grades.sort((a, b) => {
+      return parseInt(a) - parseInt(b);
+    });
+  }
 
   const render = () => {
     if (loading || _.isEmpty(data)) {
@@ -92,7 +99,7 @@ export const EventSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
                   </ul>
                 </Descriptions.Item>
                 <Descriptions.Item label='Klassetrinn' className='grades'>
-                  {grades?.map((grade) => (
+                  {sortedGrades?.map((grade) => (
                     <span className='grade' key={grade}>
                       {grade}
                     </span>

@@ -1,9 +1,9 @@
 import { Schema, Model, model, Document } from 'mongoose';
 
-import { Event, Job } from '../types';
 import { Cascader, Filter } from '../utils';
-import { EventModel, JobModel } from '../models';
 
+import { Event, EventModel } from './event.model';
+import { Job, JobModel } from './job.model';
 /**
  * The base StudyField.
  */

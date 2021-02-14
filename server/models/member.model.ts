@@ -1,9 +1,11 @@
 import { Model, model, Schema, Document, Types } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
 
-import { Event, Role, User } from '../types';
 import { Cascader, Filter } from '../utils';
-import { EventModel, UserModel } from '../models';
+
+import { Role } from './role.model';
+import { Event, EventModel } from './event.model';
+import { User, UserModel } from './user.model';
 
 /**
  * The base Member.

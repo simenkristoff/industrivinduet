@@ -4,7 +4,7 @@ import { ColumnsType } from 'antd/lib/table';
 import moment from 'moment';
 import { ExpandableConfig } from 'antd/lib/table/interface';
 
-import { IApplicationState, EventEntity, EventState } from '@/types';
+import { IApplicationState, EventEntity, EventState, CollectionKeys } from '@/types';
 import { EventForm } from '@/components/forms';
 import { EventExpandable } from '@/components/EventExpandable';
 import {
@@ -96,6 +96,8 @@ export const EventContainer: React.FC = () => {
     rowExpandable: (record: { _id: string }) => record._id !== 'Not expandable',
   };
 
+  const collection: CollectionKeys = 'EVENT';
+
   const stateToProps = {
     requireAdmin: false,
     state: eventState,
@@ -108,6 +110,7 @@ export const EventContainer: React.FC = () => {
       singular: 'Arrangement',
       plural: 'Arrangementer',
     },
+    collection,
     dataForm: EventForm,
   };
 

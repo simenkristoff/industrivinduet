@@ -1,5 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 
+import { fireActionSuccess, fireActionError } from '@/utils';
 import {
   IMetaAction,
   IPayloadAction,
@@ -34,6 +35,7 @@ function* handleFetch(params: IMetaAction): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -58,6 +60,7 @@ function* handleFetchOne(params: IMetaAction): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -69,6 +72,7 @@ function* handleCreate(params: IPayloadMetaAction<EventEntity>): Generator {
   try {
     const data = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({ type: EventActionTypes.CREATE.SUCCESS, payload: data });
+    yield fireActionSuccess('EVENT', 'CREATE');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -82,6 +86,7 @@ function* handleCreate(params: IPayloadMetaAction<EventEntity>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -93,6 +98,7 @@ function* handleUpdate(params: IPayloadMetaAction<EventEntity>): Generator {
   try {
     const data = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({ type: EventActionTypes.UPDATE.SUCCESS, payload: data });
+    yield fireActionSuccess('EVENT', 'UPDATE');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -106,6 +112,7 @@ function* handleUpdate(params: IPayloadMetaAction<EventEntity>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -117,6 +124,7 @@ function* handleDelete(params: IPayloadMetaAction<EventEntity>): Generator {
   try {
     const data = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({ type: EventActionTypes.DELETE.SUCCESS, payload: params.payload });
+    yield fireActionSuccess('EVENT', 'DELETE');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -130,6 +138,7 @@ function* handleDelete(params: IPayloadMetaAction<EventEntity>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -153,6 +162,7 @@ function* handleSet(params: IPayloadAction<EventEntity>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 

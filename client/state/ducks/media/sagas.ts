@@ -1,5 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 
+import { fireMediaActionSuccess, fireActionError } from '@/utils';
 import {
   IMetaAction,
   IPayloadMetaAction,
@@ -29,6 +30,7 @@ function* handleFetch(params: IMetaAction): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -37,6 +39,7 @@ function* handleUpload(params: IPayloadMetaAction<FormData>): Generator {
     const file = yield call(fileApiCaller, params.meta.method, params.meta.route, params.payload);
 
     yield put({ type: MediaActionTypes.UPLOAD.SUCCESS, payload: file });
+    yield fireMediaActionSuccess('UPLOAD');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -50,6 +53,7 @@ function* handleUpload(params: IPayloadMetaAction<FormData>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -59,6 +63,7 @@ function* handleDelete(params: IPayloadMetaAction<MediaType>): Generator {
       files: params.payload,
     });
     yield put({ type: MediaActionTypes.DELETE.SUCCESS, payload: params.payload });
+    yield fireMediaActionSuccess('DELETE');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -72,6 +77,7 @@ function* handleDelete(params: IPayloadMetaAction<MediaType>): Generator {
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -79,6 +85,7 @@ function* handleCreateFolder(params: IPayloadMetaAction<MediaFolderType>): Gener
   try {
     yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({ type: MediaActionTypes.CREATE_FOLDER.SUCCESS, payload: params.payload });
+    yield fireMediaActionSuccess('CREATE');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -92,6 +99,7 @@ function* handleCreateFolder(params: IPayloadMetaAction<MediaFolderType>): Gener
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 
@@ -99,6 +107,7 @@ function* handleUpdateFolder(params: IPayloadMetaAction<MediaFolderType>): Gener
   try {
     yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({ type: MediaActionTypes.UPDATE_FOLDER.SUCCESS, payload: params.payload });
+    yield fireMediaActionSuccess('UPDATE');
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
@@ -112,6 +121,7 @@ function* handleUpdateFolder(params: IPayloadMetaAction<MediaFolderType>): Gener
         payload: 'An unknown error occured.',
       });
     }
+    yield fireActionError();
   }
 }
 

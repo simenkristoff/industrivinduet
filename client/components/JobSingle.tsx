@@ -15,6 +15,7 @@ interface IProps {
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
 export const JobSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
+  var sortedGrades: string[] = [];
   const {
     title,
     type,
@@ -29,6 +30,13 @@ export const JobSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
     link,
   } = data as JobEntity;
 
+  if (grades) {
+    sortedGrades = grades.sort((a, b) => {
+      return parseInt(a) - parseInt(b);
+    });
+  }
+
+  console.log(sortedGrades);
   const render = () => {
     if (loading || _.isEmpty(data)) {
       return <Spinner loading centered />;
@@ -88,7 +96,7 @@ export const JobSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
                   </ul>
                 </Descriptions.Item>
                 <Descriptions.Item label='Klassetrinn' className='grades'>
-                  {grades?.map((grade) => (
+                  {sortedGrades?.map((grade) => (
                     <span className='grade' key={grade}>
                       {grade}
                     </span>

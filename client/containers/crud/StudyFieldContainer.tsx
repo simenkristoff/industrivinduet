@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ColumnsType } from 'antd/lib/table';
 
-import { IApplicationState, StudyFieldEntity, StudyFieldState } from '@/types';
+import { IApplicationState, StudyFieldEntity, StudyFieldState, CollectionKeys } from '@/types';
 import { StudyFieldForm } from '@/components/forms';
 import {
   createStudyField,
@@ -47,6 +47,8 @@ export const StudyFieldContainer: React.FC = () => {
     },
   ];
 
+  const collection: CollectionKeys = 'STUDYFIELD';
+
   const stateToProps = {
     state: studyfieldState,
     columns,
@@ -54,6 +56,7 @@ export const StudyFieldContainer: React.FC = () => {
       singular: 'Studieretning',
       plural: 'Studieretninger',
     },
+    collection,
     dataForm: StudyFieldForm,
   };
 

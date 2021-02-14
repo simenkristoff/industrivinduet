@@ -1,7 +1,7 @@
 import { FormInstance } from 'antd/lib/form';
 import { ExpandableConfig, ColumnsType } from 'antd/lib/table/interface';
 
-import { BaseState, Entity, ApiResponse } from '@/types';
+import { BaseState, Entity, CollectionKeys } from '@/types';
 
 export interface AuthInterface {
   hasPermission: boolean;
@@ -18,6 +18,7 @@ export interface CrudInterface<T extends Entity> {
     singular: String;
     plural: String;
   };
+  collection: CollectionKeys;
   dataForm: React.FC<DataFormInterface<T>>;
   fetch: () => void;
   create: (arg0: T) => void;

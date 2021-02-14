@@ -1,8 +1,7 @@
 import { Schema, Model, model, Document, Types } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
 
-import { Member } from '../types';
-import { MemberModel } from '../models';
+import { Member, MemberModel } from './member.model';
 
 /**
  * User Permission types
