@@ -19,6 +19,7 @@ const options: OptionSeed = {
     sitename: 'Industrivinduet',
     email: 'post@industrivinduet.no',
     address: 'Gamle Kjemi, Gløshaugen Trondheim, Norge',
+    showMaps: true,
     phone: '',
     organization: '996056009',
     about:

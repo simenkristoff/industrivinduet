@@ -13,7 +13,7 @@ export function saveToken(token: EncodedToken) {
   return cookie.set(STORAGE_KEY, token, {
     path: '/',
     expires: expires.toDate(),
-    secure: process.env.NODE_ENV === 'production',
+    //secure: process.env.NODE_ENV === 'production',
   });
 }
 
