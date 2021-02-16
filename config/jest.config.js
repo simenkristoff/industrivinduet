@@ -1,8 +1,7 @@
 module.exports = {
-  // Setting the root to the actual root, since this file is in root/config
   preset: 'ts-jest',
   rootDir: '../',
-  roots: ['<rootDir>app/'],
+  roots: ['<rootDir>/client/'],
   modulePathIgnorePatterns: ['__mockData__'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
@@ -10,12 +9,14 @@ module.exports = {
   },
   setupFilesAfterEnv: ['@testing-library/jest-dom', 'jest-extended'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleNameMapper: {
-    // Allow `@/` to map to `src/client/` in Jest tests
-    '@/(.*)$': '<rootDir>/app/$1',
-    '@resources/(.*)$': '<rootDir>/resources/$1',
-    '\\.(css|less)$': '<rootDir>/tests/__mocks__/styleMock.ts',
+    '@/(.*)$': '<rootDir>/client/$1',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/__mocks__/fileMock.ts',
+    '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.ts',
   },
+  setupFiles: ['<rootDir>/jest.setup.ts'],
   globals: {
     'ts-jest': {
       diagnostics: false,

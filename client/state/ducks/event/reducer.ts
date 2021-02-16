@@ -64,6 +64,7 @@ export const eventReducer = (
     case EventActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

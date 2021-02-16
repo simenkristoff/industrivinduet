@@ -59,6 +59,7 @@ export const contentReducer = (
     case ContentActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

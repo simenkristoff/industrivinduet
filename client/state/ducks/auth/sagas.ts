@@ -90,19 +90,19 @@ function* handleResetPassword(params: IPayloadMetaAction<ResetPasswordCredential
   try {
     const response = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
     yield put({
-      type: AuthActionTypes.SEND_FORGOT_PASSWORD.SUCCESS,
+      type: AuthActionTypes.RESET_PASSWORD.SUCCESS,
       payload: response,
     });
   } catch (err) {
     if (err instanceof Error) {
       const { message } = err;
       yield put({
-        type: AuthActionTypes.SEND_FORGOT_PASSWORD.ERROR,
+        type: AuthActionTypes.RESET_PASSWORD.ERROR,
         payload: { status: 'error', message },
       });
     } else {
       yield put({
-        type: AuthActionTypes.SEND_FORGOT_PASSWORD.ERROR,
+        type: AuthActionTypes.RESET_PASSWORD.ERROR,
         payload: 'An unknown error occured.',
       });
     }

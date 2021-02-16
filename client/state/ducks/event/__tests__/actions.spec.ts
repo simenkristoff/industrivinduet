@@ -1,13 +1,22 @@
 import { action } from 'typesafe-actions';
+
 import { EventActionTypes, EventEntity } from '@/types';
 
-import { createEvent, deleteEvent, fetchEvents, setEvent, updateEvent } from '../actions';
+import {
+  clear,
+  createEvent,
+  deleteEvent,
+  fetchActiveEvents,
+  fetchEvent,
+  fetchEvents,
+  setEvent,
+  updateEvent,
+} from '../actions';
 
 import eventData from './__mockData__/eventData';
 
 describe('event actions', () => {
-  // FETCH: Test if the correct function is called when fetching Events.
-  it('fetch events', () => {
+  it('should call @@event.FETCH.START', () => {
     const expectedAction = action(EventActionTypes.FETCH.START, [], {
       method: 'get',
       route: 'api/events',
@@ -16,8 +25,25 @@ describe('event actions', () => {
     expect(fetchEvents()).toEqual(expectedAction);
   });
 
-  // CREATE: Test if the correct function is called when creating a Event.
-  it('create event', () => {
+  it('should call @@event.FETCH.START with query params', () => {
+    const expectedAction = action(EventActionTypes.FETCH.START, [], {
+      method: 'get',
+      route: 'api/events/active?limit=3',
+    });
+
+    expect(fetchActiveEvents(3)).toEqual(expectedAction);
+  });
+
+  it('should call @@event.FETCH_ONE.START', () => {
+    const expectedAction = action(EventActionTypes.FETCH_ONE.START, [], {
+      method: 'get',
+      route: 'api/events/123',
+    });
+
+    expect(fetchEvent('123')).toEqual(expectedAction);
+  });
+
+  it('should call @@event.CREATE.START', () => {
     const payload: EventEntity = eventData[1];
     const expectedAction = action(EventActionTypes.CREATE.START, payload, {
       method: 'post',
@@ -27,8 +53,7 @@ describe('event actions', () => {
     expect(createEvent(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Event.
-  it('update event', () => {
+  it('should call @@event.UPDATE.START', () => {
     const payload: EventEntity = eventData[1];
     const expectedAction = action(EventActionTypes.UPDATE.START, payload, {
       method: 'put',
@@ -38,8 +63,7 @@ describe('event actions', () => {
     expect(updateEvent(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Event.
-  it('delete event', () => {
+  it('should call @@event.DELETE.START', () => {
     const payload: EventEntity = eventData[1];
     const expectedAction = action(EventActionTypes.DELETE.START, payload, {
       method: 'delete',
@@ -49,11 +73,16 @@ describe('event actions', () => {
     expect(deleteEvent(payload)).toEqual(expectedAction);
   });
 
-  // SET: Test if the correct function is called when setting Event.
-  it('set event', () => {
+  it('should call @@event.SET.START', () => {
     const payload: EventEntity = eventData[1];
     const expectedAction = action(EventActionTypes.SET.START, payload);
 
     expect(setEvent(payload)).toEqual(expectedAction);
+  });
+
+  it('should call @event.CLEAR', () => {
+    const expectedAction = action(EventActionTypes.CLEAR);
+
+    expect(clear()).toEqual(expectedAction);
   });
 });

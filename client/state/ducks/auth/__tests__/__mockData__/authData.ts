@@ -7,37 +7,46 @@ import {
   RegisterCredentials,
 } from '@/types';
 
-export const authLogin: LoginCredentials = {
-  email: 'simen.kristoffersen98@gmail.com',
+import { ForgotPasswordCredentials, ResetPasswordCredentials } from '../../types';
+
+export const authToken: EncodedToken =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJbmR1c3RyaXZpbmR1ZXQiLCJzdWIiOnsiaWQiOiI2MDI3ZGFkMjYwY2EzNjVhNzAxMThiYWIiLCJlbWFpbCI6ImFkbWluQGluZHVzdHJpdmluZHVldC5ubyIsInBlcm1pc3Npb25zIjoiQURNSU4ifSwiaWF0IjoxNjEzNDc1MDQwODMzLCJleHAiOjE2MTM1NjE0NDA4MzN9.4GJduWJJqbBxRGhIRkZQLkxRRhjmLmHfAEvuxTgA0T0';
+export const registerToken = '3f62c4e1bfc00d93ef532bad256757dc538ad5cc5f6a252507114f26a81153cd';
+export const registerExpires = new Date().getTime();
+export const resetPassswordToken =
+  '3f62c4e1bfc00d93ef532bad256757dc538ad5cc5f6a252507114f26a81153cd';
+
+export const loginCredentials: LoginCredentials = {
+  email: 'admin@industrivinduet.no',
   password: '123456',
 };
 
-export const authRegister: RegisterCredentials = {
-  email: 'simen.kristoffersen98@gmail.com',
+export const registerCredentials: RegisterCredentials = {
+  email: 'admin@industrivinduet.no',
   permissions: UserPermissions.ADMIN,
   password: '123456',
+  registerToken,
+  registerExpires,
+};
+
+export const forgotPasswordCredentials: ForgotPasswordCredentials = {
+  email: 'admin@industrivinduet.no',
+};
+
+export const resetPasswordCredentials: ResetPasswordCredentials = {
+  token: resetPassswordToken,
+  password: '1234567',
+  confirmedPassword: '1234567',
 };
 
 export const authUser: UserEntity = {
-  _id: 'admin123',
+  _id: '6027dad260ca365a70118bab',
   permissions: UserPermissions.ADMIN,
-  email: 'simen.kristoffersen98@gmail.com',
-  member: {
-    _id: 'd033e22ae348aeb5660fc214',
-    name: {
-      first: 'Simen',
-      last: 'Kristoffersen',
-    },
-    email: 'simen.kristoffersen98@gmail.com',
-    phone: '90360922',
-    image:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9ydHJhaXR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-    role: null,
-  },
+  member: null,
+  isRoot: true,
+  isRegistered: true,
+  email: 'admin@industrivinduet.no',
 };
-
-export const authToken: EncodedToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJbmR1c3RyaXZpbmR1ZXQiLCJzdWIiOnsiaWQiOiI2MDA5OTYxNDk1YjU0ZTI2Zjg3NmI4MWYiLCJlbWFpbCI6InNpbWVuLmtyaXN0b2ZmZXJzZW45OEBnbWFpbC5jb20iLCJwZXJtaXNzaW9ucyI6WyJVU0VSIiwiQURNSU4iXSwibWVtYmVyIjp7Im5hbWUiOnsiZmlyc3QiOiJTaW1lbiIsImxhc3QiOiJLcmlzdG9mZmVyc2VuIn0sInJvbGUiOm51bGwsIl9pZCI6ImQwMzNlMjJhZTM0OGFlYjU2NjBmYzIxNCIsImVtYWlsIjoic2ltZW4ua3Jpc3RvZmZlcnNlbjk4QGdtYWlsLmNvbSIsInBob25lIjoiOTAzNjA5MjIiLCJpbWFnZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9wcm94eS9wakp2UThTSnBMNktvZmZYOTJaQmcwT0J0MUt1WFBjSjhSNVNzR192UjFiMXBTY091cWtGMm1ibVRkaHJFR1Z3SkJ3QjN6VExmY1pCWDUyeUtqZ3J3R2w5dGk4ZEF2UURKLWZHOGF2RzI0VXJ2dk9rWXUwU2txejdpeDJ1aThNM05TU2ZoUVNHWEEyR1JJTU5nVWR4Z2ppdk5YNVR2T05qZjFrN1BCd3RkMWFudlpTRFUxN0pOS2pQd3NGQVF3IiwiX3YiOjAsImNyZWF0ZWRBdCI6IjIwMjEtMDEtMjFUMTQ6NTQ6NTcuNzEwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMDEtMjFUMTQ6NTQ6NTcuNzEwWiJ9fSwiaWF0IjoxNjExMjYxNDQ2NjAwLCJleHAiOjE2MTEzNDc4NDY2MDB9.HMWXvSa5Y3xe6pZG1CNKd5r4-8XpWpQ4UQ_0h1lxj1U';
 
 export const signedOutState: AuthState = {
   _id: null,
@@ -46,9 +55,8 @@ export const signedOutState: AuthState = {
   member: null,
   token: null,
   isLoggedIn: false,
-  loginFailed: false,
-  loggingIn: false,
-  errors: [],
+  loading: false,
+  status: null,
 };
 
 export const signedInState: AuthState = {
@@ -58,13 +66,11 @@ export const signedInState: AuthState = {
   member: authUser['member'],
   token: authToken,
   isLoggedIn: true,
-  loginFailed: false,
-  loggingIn: false,
-  errors: [],
+  loading: false,
+  status: null,
 };
 
 export default {
-  authLogin,
   authUser,
   authToken,
   signedOutState,

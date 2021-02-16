@@ -59,6 +59,7 @@ export const partnerReducer = (
     case PartnerActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

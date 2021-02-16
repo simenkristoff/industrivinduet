@@ -1,102 +1,105 @@
-import { AuthActionTypes } from '@/types';
+import { ApiResponse, AuthActionTypes } from '@/types';
 
 import { authReducer } from '../reducer';
 
-import {
-  authLogin,
-  authUser,
-  authToken,
-  signedInState,
-  signedOutState,
-} from './__mockData__/authData';
+import { authUser, authToken, signedInState, signedOutState } from './__mockData__/authData';
 
 describe('auth reducer', () => {
-  it('reducer initial', () => {
-    expect(authReducer(signedInState, { type: 'no type', payload: [] })).toEqual(signedInState);
+  it('should equal initial state', () => {
+    expect(authReducer(signedOutState, { type: 'no type', payload: [] })).toEqual(signedOutState);
   });
-  it('reducer login start', () => {
+  it('should update loading and status on all START', () => {
     expect(
-      authReducer(signedOutState, { type: AuthActionTypes.LOGIN.START, payload: authLogin }),
-    ).toEqual({ ...signedOutState, loggingIn: true, loginFailed: false });
-  });
-  it('reducer register success', () => {
+      authReducer(signedOutState, { type: AuthActionTypes.LOGIN.START, payload: [] }),
+    ).toEqual({ ...signedOutState, loading: true, status: null });
+    expect(
+      authReducer(signedOutState, { type: AuthActionTypes.REGISTER.START, payload: [] }),
+    ).toEqual({ ...signedOutState, loading: true, status: null });
     expect(
       authReducer(signedOutState, {
-        type: AuthActionTypes.REGISTER.SUCCESS,
-        payload: { user: authUser, token: authToken },
+        type: AuthActionTypes.SEND_FORGOT_PASSWORD.START,
+        payload: [],
       }),
-    ).toEqual({
-      ...signedOutState,
-      isLoggedIn: true,
-      loggingIn: false,
-      _id: authUser._id,
-      email: authUser.email,
-      permissions: authUser.permissions,
-      member: authUser.member,
-      token: authToken,
-    });
+    ).toEqual({ ...signedOutState, loading: true, status: null });
+    expect(
+      authReducer(signedOutState, { type: AuthActionTypes.RESET_PASSWORD.START, payload: [] }),
+    ).toEqual({ ...signedOutState, loading: true, status: null });
   });
-  it('reducer login success', () => {
+  it('should update auth state on login and register SUCCESS', () => {
     expect(
       authReducer(signedOutState, {
         type: AuthActionTypes.LOGIN.SUCCESS,
         payload: { user: authUser, token: authToken },
       }),
     ).toEqual({
-      ...signedOutState,
-      isLoggedIn: true,
-      loggingIn: false,
-      _id: authUser._id,
-      email: authUser.email,
-      permissions: authUser.permissions,
-      member: authUser.member,
-      token: authToken,
+      ...signedInState,
     });
-  });
-  it('reducer logout success', () => {
-    expect(
-      authReducer(signedInState, {
-        type: AuthActionTypes.LOGOUT.SUCCESS,
-        payload: [],
-      }),
-    ).toEqual({
-      ...signedOutState,
-    });
-  });
-  it('reducer login error', () => {
-    expect(authReducer(signedOutState, { type: AuthActionTypes.LOGIN.ERROR, payload: [] })).toEqual(
-      {
-        ...signedOutState,
-        loggingIn: false,
-        loginFailed: true,
-        errors: ['Ugyldig brukernavn og/eller passord.'],
-      },
-    );
-  });
-  it('reducer register error', () => {
     expect(
       authReducer(signedOutState, {
-        type: AuthActionTypes.REGISTER.ERROR,
-        payload: 'register failed',
-      }),
-    ).toEqual({
-      ...signedOutState,
-      errors: ['register failed'],
-    });
-  });
-  it('reducer logout error', () => {
-    expect(
-      authReducer(signedInState, {
-        type: AuthActionTypes.LOGOUT.ERROR,
-        payload: 'logout failed',
+        type: AuthActionTypes.REGISTER.SUCCESS,
+        payload: { user: authUser, token: authToken },
       }),
     ).toEqual({
       ...signedInState,
-      errors: ['logout failed'],
     });
   });
-  it('reducer clear', () => {
-    const state = { ...signedOutState, errors: ['register failed', 'logout failed'] };
+  it('should set status on all ERROR', () => {
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
+    const state = { ...signedOutState, loading: true };
+    const expectedState = { ...signedOutState, loading: false, status: apiResponse };
+    expect(
+      authReducer(state, { type: AuthActionTypes.LOGIN.ERROR, payload: apiResponse }),
+    ).toEqual({ ...expectedState });
+    expect(
+      authReducer(state, { type: AuthActionTypes.REGISTER.ERROR, payload: apiResponse }),
+    ).toEqual({ ...expectedState });
+    expect(
+      authReducer(state, {
+        type: AuthActionTypes.SEND_FORGOT_PASSWORD.ERROR,
+        payload: apiResponse,
+      }),
+    ).toEqual({ ...expectedState });
+    expect(
+      authReducer(state, { type: AuthActionTypes.RESET_PASSWORD.ERROR, payload: apiResponse }),
+    ).toEqual({ ...expectedState });
+    expect(
+      authReducer(state, { type: AuthActionTypes.LOGIN.ERROR, payload: apiResponse }),
+    ).toEqual({ ...expectedState });
+  });
+  it('should update status on send forgotten/reset password success', () => {
+    const apiResponse: ApiResponse = {
+      status: 'success',
+      message: 'Success',
+    };
+    const state = { ...signedOutState, loading: true };
+    const expectedState = { ...signedOutState, loading: false, status: apiResponse };
+    expect(
+      authReducer(state, {
+        type: AuthActionTypes.SEND_FORGOT_PASSWORD.SUCCESS,
+        payload: apiResponse,
+      }),
+    ).toEqual({ ...expectedState });
+    expect(
+      authReducer(state, { type: AuthActionTypes.RESET_PASSWORD.SUCCESS, payload: apiResponse }),
+    ).toEqual({ ...expectedState });
+  });
+  it('should reset state on logout', () => {
+    expect(
+      authReducer(signedInState, {
+        type: AuthActionTypes.LOGOUT,
+        payload: [],
+      }),
+    ).toEqual({ ...signedOutState });
+  });
+  it('should clear auth state', () => {
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'Registration failed',
+    };
+    const state = { ...signedOutState, status: apiResponse };
     expect(
       authReducer(state, {
         type: AuthActionTypes.CLEAR,

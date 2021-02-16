@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore, compose, Store } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-import { Persistor, persistStore } from 'redux-persist';
+
 import { IApplicationState } from '@/types';
 
 import { rootSaga, persistentReducer } from './ducks';
@@ -10,12 +10,7 @@ import sagaMiddleware from './middlewares/sagas';
 const composeEnhancers =
   (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
-interface IStore {
-  store: Store<IApplicationState>;
-  persistor: Persistor;
-}
-
-export default function configureStore(initialState: IApplicationState): IStore {
+export default function configureStore(initialState: IApplicationState): Store<IApplicationState> {
   const middlewares = [thunk, sagaMiddleware, logger];
 
   const enhancer = composeEnhancers(applyMiddleware(...middlewares));
@@ -24,7 +19,5 @@ export default function configureStore(initialState: IApplicationState): IStore 
 
   sagaMiddleware.run(rootSaga);
 
-  const persistor = persistStore(store);
-
-  return { store, persistor };
+  return store;
 }

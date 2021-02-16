@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import partners from 'server/seeds/4-partners/partners.seed';
 
-import {
-  IApplicationState,
-  ContentState,
-  MemberState,
-  PartnerState,
-  MemberEntity,
-  PartnerEntity,
-} from '@/types';
+import { IApplicationState, ContentState, MemberState, PartnerState, MemberEntity } from '@/types';
 import { roleValuesEnum } from '@/constants';
 import { AboutUs } from '@/components/AboutUs';
 import { fetchContents } from '@/state/ducks/content/actions';

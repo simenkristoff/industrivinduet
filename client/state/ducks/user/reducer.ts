@@ -22,26 +22,36 @@ export const userReducer = (
 ): UserState => {
   switch (action.type) {
     case UserActionTypes.FETCH.START:
-    case UserActionTypes.DELETE.START:
     case UserActionTypes.CREATE.START:
+    case UserActionTypes.UPDATE.START:
     case UserActionTypes.DELETE.START: {
-      return { ...state, loading: true };
+      return { ...state, loading: true, status: null };
     }
     case UserActionTypes.FETCH.SUCCESS: {
-      return { ...initialState, data: action.payload };
+      return { ...initialState, data: action.payload, loading: false, status: null };
     }
     case UserActionTypes.CREATE.SUCCESS: {
-      return { ...state, data: [...state.data, action.payload] };
+      return { ...state, data: [...state.data, action.payload], loading: false, status: null };
     }
     case UserActionTypes.UPDATE.SUCCESS: {
-      return { ...state, data: updateObjectInArray<UserEntity>(state.data, action) };
+      return {
+        ...state,
+        data: updateObjectInArray<UserEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case UserActionTypes.DELETE.SUCCESS: {
-      return { ...state, data: deleteObjectInArray<UserEntity>(state.data, action) };
+      return {
+        ...state,
+        data: deleteObjectInArray<UserEntity>(state.data, action),
+        loading: false,
+        status: null,
+      };
     }
     case UserActionTypes.LOOKUP_REGISTER_TOKEN.SUCCESS:
     case UserActionTypes.SET.START: {
-      return { ...state, byId: action.payload };
+      return { ...state, byId: action.payload, loading: false, status: null };
     }
     case UserActionTypes.FETCH.ERROR:
     case UserActionTypes.CREATE.ERROR:
@@ -53,6 +63,13 @@ export const userReducer = (
         ...state,
         loading: false,
         status: action.payload,
+      };
+    }
+    case UserActionTypes.CLEAR: {
+      return {
+        ...state,
+        loading: false,
+        status: null,
       };
     }
     default:

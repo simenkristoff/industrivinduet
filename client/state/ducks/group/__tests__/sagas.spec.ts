@@ -1,8 +1,8 @@
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
-import { GroupActionTypes } from '@/types';
 
+import { ApiResponse, GroupActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
 
 import { createGroup, deleteGroup, fetchGroups, setGroup, updateGroup } from '../actions';
@@ -11,7 +11,7 @@ import groupSaga from '../sagas';
 import groupData from './__mockData__/groupData';
 
 describe('group saga', () => {
-  it('handle fetch success', () => {
+  it('should handle fetch success', () => {
     return expectSaga(groupSaga)
       .provide([[matchers.call.fn(apiCaller), groupData]])
       .put({ type: GroupActionTypes.FETCH.SUCCESS, payload: groupData })
@@ -19,17 +19,21 @@ describe('group saga', () => {
       .run();
   });
 
-  it('handle fetch error', () => {
-    const error = new Error('fetch error');
+  it('should handle fetch error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(groupSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: GroupActionTypes.FETCH.ERROR, payload: error.message })
+      .put({ type: GroupActionTypes.FETCH.ERROR, payload: apiResponse })
       .dispatch(fetchGroups())
       .run();
   });
 
-  it('handle create success', () => {
+  it('should handle create success', () => {
     return expectSaga(groupSaga)
       .provide([[matchers.call.fn(apiCaller), groupData[0]]])
       .put({ type: GroupActionTypes.CREATE.SUCCESS, payload: groupData[0] })
@@ -37,17 +41,21 @@ describe('group saga', () => {
       .run();
   });
 
-  it('handle create error', () => {
-    const error = new Error('create error');
+  it('should handle create error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(groupSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: GroupActionTypes.CREATE.ERROR, payload: error.message })
+      .put({ type: GroupActionTypes.CREATE.ERROR, payload: apiResponse })
       .dispatch(createGroup(groupData[0]))
       .run();
   });
 
-  it('handle update success', () => {
+  it('should handle update success', () => {
     return expectSaga(groupSaga)
       .provide([[matchers.call.fn(apiCaller), groupData[0]]])
       .put({ type: GroupActionTypes.UPDATE.SUCCESS, payload: groupData[0] })
@@ -55,17 +63,21 @@ describe('group saga', () => {
       .run();
   });
 
-  it('handle update error', () => {
-    const error = new Error('update error');
+  it('should handle update error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(groupSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: GroupActionTypes.UPDATE.ERROR, payload: error.message })
+      .put({ type: GroupActionTypes.UPDATE.ERROR, payload: apiResponse })
       .dispatch(updateGroup(groupData[0]))
       .run();
   });
 
-  it('handle delete success', () => {
+  it('should handle delete success', () => {
     return expectSaga(groupSaga)
       .provide([[matchers.call.fn(apiCaller), groupData[0]]])
       .put({ type: GroupActionTypes.DELETE.SUCCESS, payload: groupData[0] })
@@ -73,17 +85,21 @@ describe('group saga', () => {
       .run();
   });
 
-  it('handle delete error', () => {
-    const error = new Error('delete error');
+  it('should handle delete error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(groupSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: GroupActionTypes.DELETE.ERROR, payload: error.message })
+      .put({ type: GroupActionTypes.DELETE.ERROR, payload: apiResponse })
       .dispatch(deleteGroup(groupData[0]))
       .run();
   });
 
-  it('handle set success', () => {
+  it('should handle set success', () => {
     return expectSaga(groupSaga)
       .put({ type: GroupActionTypes.SET.SUCCESS, payload: groupData[0] })
       .dispatch(setGroup(groupData[0]))

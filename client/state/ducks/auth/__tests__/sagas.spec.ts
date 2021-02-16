@@ -1,55 +1,123 @@
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
+
 import { AuthActionTypes } from '@/types';
-
 import apiCaller from '@/state/utils/apiCaller';
+import { ApiResponse } from '@/state/interface';
 
-import { login, logout, register } from '../actions';
+import { forgot, login, logout, register, reset } from '../actions';
 import authSaga from '../sagas';
 
-import { authLogin, authRegister, authUser, authToken } from './__mockData__/authData';
+import {
+  loginCredentials,
+  registerCredentials,
+  forgotPasswordCredentials,
+  resetPasswordCredentials,
+  authUser,
+  authToken,
+} from './__mockData__/authData';
 
 describe('auth saga', () => {
-  it('handle login success', () => {
-    return expectSaga(authSaga)
-      .provide([[matchers.call.fn(apiCaller), { user: authUser, token: authToken }]])
-      .put({ type: AuthActionTypes.LOGIN.SUCCESS, payload: { user: authUser, token: authToken } })
-      .dispatch(login(authLogin))
-      .run();
-  });
-  it('handle login error', () => {
-    const error = new Error('login error');
-
-    return expectSaga(authSaga)
-      .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: AuthActionTypes.LOGIN.ERROR, payload: error.message })
-      .dispatch(login(authLogin))
-      .run();
-  });
-  it('handle register success', () => {
+  it('should handle register success', () => {
     return expectSaga(authSaga)
       .provide([[matchers.call.fn(apiCaller), { user: authUser, token: authToken }]])
       .put({
         type: AuthActionTypes.REGISTER.SUCCESS,
         payload: { user: authUser, token: authToken },
       })
-      .dispatch(register(authRegister))
+      .dispatch(register(registerCredentials))
       .run();
   });
-  it('handle register error', () => {
-    const error = new Error('register error');
+  it('should handle register error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(authSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: AuthActionTypes.REGISTER.ERROR, payload: error.message })
-      .dispatch(register(authRegister))
+      .put({ type: AuthActionTypes.REGISTER.ERROR, payload: apiResponse })
+      .dispatch(register(registerCredentials))
       .run();
   });
-  it('handle logout success', () => {
+  it('should handle login success', () => {
     return expectSaga(authSaga)
-      .put({ type: AuthActionTypes.LOGOUT.SUCCESS })
-      .dispatch(logout())
+      .provide([[matchers.call.fn(apiCaller), { user: authUser, token: authToken }]])
+      .put({ type: AuthActionTypes.LOGIN.SUCCESS, payload: { user: authUser, token: authToken } })
+      .dispatch(login(loginCredentials))
+      .run();
+  });
+  it('should handle login error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
+
+    return expectSaga(authSaga)
+      .provide([[matchers.call.fn(apiCaller), throwError(error)]])
+      .put({ type: AuthActionTypes.LOGIN.ERROR, payload: apiResponse })
+      .dispatch(login(loginCredentials))
+      .run();
+  });
+
+  it('should handle forgot password success', () => {
+    const apiResponse: ApiResponse = {
+      status: 'success',
+      message: 'Success',
+    };
+
+    return expectSaga(authSaga)
+      .provide([[matchers.call.fn(apiCaller), apiResponse]])
+      .put({
+        type: AuthActionTypes.SEND_FORGOT_PASSWORD.SUCCESS,
+        payload: apiResponse,
+      })
+      .dispatch(forgot(forgotPasswordCredentials))
+      .run();
+  });
+  it('should handle forgot password error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
+
+    return expectSaga(authSaga)
+      .provide([[matchers.call.fn(apiCaller), throwError(error)]])
+      .put({ type: AuthActionTypes.SEND_FORGOT_PASSWORD.ERROR, payload: apiResponse })
+      .dispatch(forgot(forgotPasswordCredentials))
+      .run();
+  });
+
+  it('should handle reset password success', () => {
+    const apiResponse: ApiResponse = {
+      status: 'success',
+      message: 'Success',
+    };
+
+    return expectSaga(authSaga)
+      .provide([[matchers.call.fn(apiCaller), apiResponse]])
+      .put({
+        type: AuthActionTypes.RESET_PASSWORD.SUCCESS,
+        payload: apiResponse,
+      })
+      .dispatch(reset(resetPasswordCredentials))
+      .run();
+  });
+  it('should handle reset password error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
+
+    return expectSaga(authSaga)
+      .provide([[matchers.call.fn(apiCaller), throwError(error)]])
+      .put({ type: AuthActionTypes.RESET_PASSWORD.ERROR, payload: apiResponse })
+      .dispatch(reset(resetPasswordCredentials))
       .run();
   });
 });

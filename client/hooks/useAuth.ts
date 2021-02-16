@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
 import { IApplicationState, AuthState } from '@/types';
 
 const useAuth = () => {

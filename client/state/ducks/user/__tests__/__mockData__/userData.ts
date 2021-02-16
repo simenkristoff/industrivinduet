@@ -1,10 +1,30 @@
-import { UserEntity, UserPermissions } from '@/types';
+import { RegisterTokenInterface, UserEntity, UserPermissions } from '@/types';
+
+export const registerToken = '3f62c4e1bfc00d93ef532bad256757dc538ad5cc5f6a252507114f26a81153cd';
+export const registerExpires = new Date().getTime();
+
+export const registerTokenData: RegisterTokenInterface = {
+  token: registerToken,
+};
+
+export const registerPayload = {
+  _id: 'user2',
+  email: 'marius.skaarnordby@industrivinduet.no',
+  permissions: UserPermissions.USER,
+  isRoot: false,
+  isRegistered: false,
+  registerToken,
+  registerExpires,
+  member: null,
+};
 
 const userData: UserEntity[] = [
   {
     _id: 'user1',
     email: 'simen.kristoffersen98@gmail.com',
     permissions: UserPermissions.ADMIN,
+    isRoot: false,
+    isRegistered: true,
     member: {
       _id: 'member1',
       name: {
@@ -22,25 +42,11 @@ const userData: UserEntity[] = [
     _id: 'user2',
     email: 'marius.skaarnordby@industrivinduet.no',
     permissions: UserPermissions.USER,
-    member: {
-      _id: 'member2',
-      name: {
-        first: 'Marius',
-        last: 'Skaar Nordby',
-      },
-      role: {
-        roleType: 'Leder',
-        group: {
-          _id: 'group2',
-          name: 'Bedrift',
-        },
-        _id: 'role3',
-        name: 'Bedriftssjef',
-      },
-      email: 'marius.skaarnordby@industrivinduet.no',
-      image:
-        'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg',
-    },
+    isRoot: false,
+    isRegistered: false,
+    registerToken,
+    registerExpires,
+    member: null,
   },
 ];
 

@@ -59,6 +59,7 @@ export const studyfieldReducer = (
     case StudyFieldActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

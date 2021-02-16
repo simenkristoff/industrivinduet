@@ -1,8 +1,8 @@
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
-import { PartnerActionTypes } from '@/types';
 
+import { ApiResponse, PartnerActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
 
 import { createPartner, deletePartner, fetchPartners, setPartner, updatePartner } from '../actions';
@@ -11,7 +11,7 @@ import partnerSaga from '../sagas';
 import partnerData from './__mockData__/partnerData';
 
 describe('partner saga', () => {
-  it('handle fetch success', () => {
+  it('should handle fetch success', () => {
     return expectSaga(partnerSaga)
       .provide([[matchers.call.fn(apiCaller), partnerData]])
       .put({ type: PartnerActionTypes.FETCH.SUCCESS, payload: partnerData })
@@ -19,17 +19,21 @@ describe('partner saga', () => {
       .run();
   });
 
-  it('handle fetch error', () => {
-    const error = new Error('fetch error');
+  it('should handle fetch error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(partnerSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: PartnerActionTypes.FETCH.ERROR, payload: error.message })
+      .put({ type: PartnerActionTypes.FETCH.ERROR, payload: apiResponse })
       .dispatch(fetchPartners())
       .run();
   });
 
-  it('handle create success', () => {
+  it('should handle create success', () => {
     return expectSaga(partnerSaga)
       .provide([[matchers.call.fn(apiCaller), partnerData[0]]])
       .put({ type: PartnerActionTypes.CREATE.SUCCESS, payload: partnerData[0] })
@@ -37,17 +41,21 @@ describe('partner saga', () => {
       .run();
   });
 
-  it('handle create error', () => {
-    const error = new Error('create error');
+  it('should handle create error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(partnerSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: PartnerActionTypes.CREATE.ERROR, payload: error.message })
+      .put({ type: PartnerActionTypes.CREATE.ERROR, payload: apiResponse })
       .dispatch(createPartner(partnerData[0]))
       .run();
   });
 
-  it('handle update success', () => {
+  it('should handle update success', () => {
     return expectSaga(partnerSaga)
       .provide([[matchers.call.fn(apiCaller), partnerData[0]]])
       .put({ type: PartnerActionTypes.UPDATE.SUCCESS, payload: partnerData[0] })
@@ -55,17 +63,21 @@ describe('partner saga', () => {
       .run();
   });
 
-  it('handle update error', () => {
-    const error = new Error('update error');
+  it('should handle update error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(partnerSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: PartnerActionTypes.UPDATE.ERROR, payload: error.message })
+      .put({ type: PartnerActionTypes.UPDATE.ERROR, payload: apiResponse })
       .dispatch(updatePartner(partnerData[0]))
       .run();
   });
 
-  it('handle delete success', () => {
+  it('should handle delete success', () => {
     return expectSaga(partnerSaga)
       .provide([[matchers.call.fn(apiCaller), partnerData[0]]])
       .put({ type: PartnerActionTypes.DELETE.SUCCESS, payload: partnerData[0] })
@@ -73,17 +85,21 @@ describe('partner saga', () => {
       .run();
   });
 
-  it('handle delete error', () => {
-    const error = new Error('delete error');
+  it('should handle delete error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(partnerSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: PartnerActionTypes.DELETE.ERROR, payload: error.message })
+      .put({ type: PartnerActionTypes.DELETE.ERROR, payload: apiResponse })
       .dispatch(deletePartner(partnerData[0]))
       .run();
   });
 
-  it('handle set success', () => {
+  it('should handle set success', () => {
     return expectSaga(partnerSaga)
       .put({ type: PartnerActionTypes.SET.SUCCESS, payload: partnerData[0] })
       .dispatch(setPartner(partnerData[0]))

@@ -1,0 +1,53 @@
+[{
+  "_id": "a3220d13095c020b1c2299f6",
+  "title": "Foredrag med DNV-GL",
+  "type": "Foredrag",
+  "date": {
+    "$date": "2021-09-04T03:35:10.692Z"
+  },
+  "starttime": {
+    "$date": "2022-09-10T20:31:26.650Z"
+  },
+  "place": "PU-lab",
+  "dining": "S3",
+  "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus, est a semper fringilla, risus mi aliquam ipsum, a aliquet risus leo et erat. Sed venenatis rutrum magna sit amet vehicula. Sed feugiat augue at magna condimentum, quis facilisis neque ullamcorper. Aliquam erat volutpat. Nam rhoncus, dui ut semper suscipit, nibh mauris aliquam dolor, in dignissim mauris nulla elementum metus. Donec eros tortor, sollicitudin a ante ac, imperdiet interdum tortor. Donec id urna justo. Morbi eu diam sed nulla sagittis sodales suscipit sed lectus. Etiam a elementum velit. Nullam auctor ante quis neque lobortis sagittis. Nullam ut massa lorem. Donec rutrum tincidunt lectus vitae vehicula.</p>",
+  "grades": [
+    "4"
+  ],
+  "image": "bedrifter/dnv-gl.png",
+  "link": "https://www.dnvgl.com/index.html",
+  "studyfields": [ 
+    "d58099906c30fa5540d2637a",
+    "09ebc1eef497ead2f18e48f8"
+  ],
+  "member": "87cbe7fa844995be77ef07de",
+  "active": true
+},{
+  "_id": "99f3f31046d1bdeba4c2db0f",
+  "title": "Bedriftspresentasjon med COWI",
+  "type": "Bedriftspresentasjon",
+  "date": {
+    "$date": "2022-05-22T14:09:23.903Z"
+  },
+  "starttime": {
+    "$date": "2021-05-20T01:16:25.682Z"
+  },
+  "endtime": {
+    "$date": "2021-10-04T12:00:39.968Z"
+  },
+  "place": "Hangaren",
+  "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus, est a semper fringilla, risus mi aliquam ipsum, a aliquet risus leo et erat. Sed venenatis rutrum magna sit amet vehicula. Sed feugiat augue at magna condimentum, quis facilisis neque ullamcorper. Aliquam erat volutpat. Nam rhoncus, dui ut semper suscipit, nibh mauris aliquam dolor, in dignissim mauris nulla elementum metus. Donec eros tortor, sollicitudin a ante ac, imperdiet interdum tortor. Donec id urna justo. Morbi eu diam sed nulla sagittis sodales suscipit sed lectus. Etiam a elementum velit. Nullam auctor ante quis neque lobortis sagittis. Nullam ut massa lorem. Donec rutrum tincidunt lectus vitae vehicula.</p>",
+  "grades": [
+    "1",
+    "5",
+    "2"
+  ],
+  "image": "bedrifter/cowi.png",
+  "link": "https://www.cowi.no/",
+  "studyfields": [
+    "09ebc1eef497ead2f18e48f8",
+    "956701923ea9da7a55c91364"
+  ],
+  "member": "3aec3ac9a837c20fd68e8e7f",
+  "active": true
+}]

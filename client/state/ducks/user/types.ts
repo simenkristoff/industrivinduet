@@ -29,7 +29,10 @@ export interface UserEntity extends Entity {
   email: string;
   permissions: UserPermissions;
   member: MemberEntity | null;
+  isRoot: boolean;
   isRegistered: boolean;
+  registerToken?: string;
+  registerExpires?: number;
 }
 
 /**

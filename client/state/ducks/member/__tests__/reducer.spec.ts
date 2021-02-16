@@ -1,64 +1,77 @@
 import { action } from 'typesafe-actions';
-import { MemberActionTypes } from '@/types';
 
-import { fetchMembers } from '../actions';
+import { ApiResponse, MemberActionTypes } from '@/types';
+
 import { memberReducer, initialState } from '../reducer';
 
 import memberData from './__mockData__/memberData';
 
 describe('member reducer', () => {
-  it('reducer initial', () => {
+  it('should equal initial state', () => {
     expect(memberReducer(initialState, { type: 'no type', payload: [] })).toEqual(initialState);
   });
-
-  it('reducer fetch start', () => {
-    expect(memberReducer(initialState, fetchMembers())).toEqual({
-      ...initialState,
-      loading: true,
-    });
+  it('should update loading and status on all START', () => {
+    expect(
+      memberReducer(initialState, { type: MemberActionTypes.FETCH.START, payload: [] }),
+    ).toEqual({ ...initialState, loading: true, status: null });
+    expect(
+      memberReducer(initialState, { type: MemberActionTypes.CREATE.START, payload: [] }),
+    ).toEqual({ ...initialState, loading: true, status: null });
+    expect(
+      memberReducer(initialState, {
+        type: MemberActionTypes.UPDATE.START,
+        payload: [],
+      }),
+    ).toEqual({ ...initialState, loading: true, status: null });
+    expect(
+      memberReducer(initialState, { type: MemberActionTypes.DELETE.START, payload: [] }),
+    ).toEqual({ ...initialState, loading: true, status: null });
   });
-
-  it('reducer fetch success', () => {
+  it('should set data on FETCH.SUCCESS', () => {
     expect(
       memberReducer(initialState, action(MemberActionTypes.FETCH.SUCCESS, memberData)),
     ).toEqual({
       ...initialState,
       data: memberData,
+      loading: false,
     });
   });
 
-  it('reducer create success', () => {
-    const currentState = { ...initialState, data: [...memberData] };
+  it('should append data on CREATE.SUCCESS', () => {
+    const currentState = { ...initialState, data: [...memberData], loading: true };
     expect(
       memberReducer(currentState, action(MemberActionTypes.CREATE.SUCCESS, memberData[0])),
     ).toEqual({
       ...currentState,
       data: [...memberData, memberData[0]],
+      loading: false,
     });
   });
 
-  it('reducer update success', () => {
-    const currentState = { ...initialState, data: [...memberData] };
+  it('should update data on UPDATE.SUCCESS', () => {
+    const currentState = { ...initialState, data: [...memberData], loading: true };
     const newMember = { ...memberData[0], name: 'Test gruppe' };
     expect(
       memberReducer(currentState, action(MemberActionTypes.UPDATE.SUCCESS, newMember)),
     ).toEqual({
       ...currentState,
       data: [newMember, ...memberData.slice(1, memberData.length)],
+      loading: false,
     });
   });
 
-  it('reducer delete success', () => {
-    const currentState = { ...initialState, data: [...memberData] };
+  it('should remove object on DELETE.SUCCESS', () => {
+    const currentState = { ...initialState, data: [...memberData], loading: true };
     expect(
       memberReducer(currentState, action(MemberActionTypes.DELETE.SUCCESS, memberData[0])),
     ).toEqual({
       ...currentState,
       data: memberData.slice(1, memberData.length),
+      loading: false,
     });
   });
 
-  it('reducer set member', () => {
+  it('should set byId on SET.START', () => {
     expect(memberReducer(initialState, action(MemberActionTypes.SET.START, memberData[0]))).toEqual(
       {
         ...initialState,
@@ -67,9 +80,47 @@ describe('member reducer', () => {
     );
   });
 
-  it('reducer set member to null', () => {
+  it('should clear byId', () => {
     const currentState = { ...initialState, byId: memberData[0] };
     expect(memberReducer(currentState, action(MemberActionTypes.SET.START, {}))).toEqual({
+      ...initialState,
+    });
+  });
+  it('should set status on all ERROR', () => {
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
+    const state = { ...initialState, loading: true };
+    const expectedState = { ...initialState, loading: false, status: apiResponse };
+    expect(
+      memberReducer(state, { type: MemberActionTypes.FETCH.ERROR, payload: apiResponse }),
+    ).toEqual({ ...expectedState });
+    expect(
+      memberReducer(state, { type: MemberActionTypes.CREATE.ERROR, payload: apiResponse }),
+    ).toEqual({ ...expectedState });
+    expect(
+      memberReducer(state, { type: MemberActionTypes.UPDATE.ERROR, payload: apiResponse }),
+    ).toEqual({ ...expectedState });
+    expect(
+      memberReducer(state, { type: MemberActionTypes.DELETE.ERROR, payload: apiResponse }),
+    ).toEqual({ ...expectedState });
+    expect(
+      memberReducer(state, { type: MemberActionTypes.SET.ERROR, payload: apiResponse }),
+    ).toEqual({ ...expectedState });
+  });
+  it('should clear member state', () => {
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured failed',
+    };
+    const state = { ...initialState, status: apiResponse };
+    expect(
+      memberReducer(state, {
+        type: MemberActionTypes.CLEAR,
+        payload: [],
+      }),
+    ).toEqual({
       ...initialState,
     });
   });

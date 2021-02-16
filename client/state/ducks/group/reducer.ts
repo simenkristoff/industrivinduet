@@ -59,6 +59,7 @@ export const groupReducer = (
     case GroupActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

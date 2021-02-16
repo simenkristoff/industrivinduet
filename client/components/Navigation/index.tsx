@@ -39,7 +39,7 @@ const Nav: INav<IProps> = (props) => {
     <nav className={classes.join(' ')} id={id}>
       {logo && (
         <Link to='/' className='nav-brand'>
-          <img src={logo} />
+          <img src={logo} alt={logo} />
         </Link>
       )}
       <button className='navigation-toggler' type='button' onClick={handleToggle}>

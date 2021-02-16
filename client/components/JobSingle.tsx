@@ -35,7 +35,6 @@ export const JobSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
     });
   }
 
-  console.log(sortedGrades);
   const render = () => {
     if (loading || _.isEmpty(data)) {
       return <Spinner loading centered />;

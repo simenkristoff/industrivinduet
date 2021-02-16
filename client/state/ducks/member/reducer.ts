@@ -59,6 +59,7 @@ export const memberReducer = (
     case MemberActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

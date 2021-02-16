@@ -64,6 +64,7 @@ export const jobReducer = (
     case JobActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

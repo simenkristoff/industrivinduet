@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Tabs, Row } from 'antd';
 
 import { ContentEntity, MemberEntity, PartnerEntity } from '@/types';

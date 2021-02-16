@@ -1,20 +1,22 @@
 import React from 'react';
 import _ from 'lodash';
 import { Layout, Form, Checkbox, Select, Space, Button } from 'antd';
-import { Entity, FilterDependency, ResultFilterInterface } from '@/types';
 import { FilterOutlined } from '@ant-design/icons';
+
+import { Entity, FilterDependency, ResultFilterInterface } from '@/types';
 
 const { Sider } = Layout;
 
 function renderSelectFilter<T extends Entity>(
-  key: string,
+  index: number,
+  name: string,
   dependency: FilterDependency,
   field?: string,
   label?: string,
   postfix?: string,
 ) {
   return (
-    <Form.Item name={key} label={label && label}>
+    <Form.Item name={name} label={label && label} key={`${name}_${index}`}>
       <Select defaultValue=''>
         <Select.Option value=''>Alle</Select.Option>
         {dependency.map((item) => {
@@ -35,14 +37,15 @@ function renderSelectFilter<T extends Entity>(
 }
 
 function renderCheckboxFilter<T extends Entity>(
-  key: string,
+  index: number,
+  name: string,
   dependency: FilterDependency,
   field?: string,
   label?: string,
   postfix?: string,
 ) {
   return (
-    <Form.Item name={key} label={label && label}>
+    <Form.Item name={name} label={label && label} key={`${name}_${index}`}>
       <Checkbox.Group>
         <Space direction='vertical'>
           {dependency?.map((item) => {
@@ -108,17 +111,17 @@ export const ResultFilter = <T extends Entity>({
             Tilbakestill
           </Button>
         </Form.Item>
-        {Object.entries(filterTypes).map(([key, value]) => {
+        {Object.entries(filterTypes).map(([key, value], index) => {
           if (!value) return;
           const { type, field, dependency, label, postfix } = value;
           if (!type || !dependency) return;
 
           switch (type) {
             case 'select':
-              return renderSelectFilter<T>(key, dependency, field, label, postfix);
+              return renderSelectFilter<T>(index, key, dependency, field, label, postfix);
             case 'checkbox':
             default:
-              return renderCheckboxFilter<T>(key, dependency, field, label, postfix);
+              return renderCheckboxFilter<T>(index, key, dependency, field, label, postfix);
           }
         })}
       </Form>
