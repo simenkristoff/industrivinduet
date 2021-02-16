@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 import React from 'react';
 import * as reactRedux from 'react-redux';
-import { Modal } from 'antd';
 
 import { GroupContainer } from '@/containers/crud/GroupContainer';
 import { CrudContainer } from '@/containers/crud/CrudContainer';
@@ -24,7 +23,6 @@ describe('container <CrudContainer />', () => {
     container = wrapper.find(CrudContainer);
     header = container.find('.ant-page-header');
     content = container.find('.ant-table-wrapper');
-    modal = wrapper.find(Modal);
   });
   afterAll(() => {
     wrapper.unmount();
@@ -34,6 +32,5 @@ describe('container <CrudContainer />', () => {
     expect(container.length).toBeTruthy();
     expect(header.length).toBeTruthy();
     expect(content.length).toBeTruthy();
-    expect(modal.length).toBeTruthy();
   });
 });
