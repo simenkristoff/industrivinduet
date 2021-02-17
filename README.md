@@ -1,4 +1,4 @@
-# industrivinduet
+# Industrivinduet, NTNU Trondheim
 Nettside for bedriftskontakten til Produktutvikling og Produksjon (siv.ing. Maskin) på NTNU.
 
 > Open source frontend for [industrivinduet.no](https://industrivinduet.no)
