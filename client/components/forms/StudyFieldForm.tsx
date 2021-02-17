@@ -7,6 +7,9 @@ import { FormMessage } from '@/constants';
 import { EditorInput } from '@/components/adapters';
 import { uniqueValue } from '@/utils';
 
+/**
+ * Dataform for entity Studyfield
+ */
 export const StudyFieldForm: React.FC<DataFormInterface<StudyFieldEntity>> = ({
   form,
   data,

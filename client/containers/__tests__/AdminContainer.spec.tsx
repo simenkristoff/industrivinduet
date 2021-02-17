@@ -5,7 +5,7 @@ import * as reactRedux from 'react-redux';
 import { checkUserIsAdmin } from '@/state/ducks/auth/helpers';
 import { AdminContainer } from '@/containers/AdminContainer';
 import { AdminLanding } from '@/components/AdminLanding';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import {
   MemberActionTypes,
   RoleActionTypes,

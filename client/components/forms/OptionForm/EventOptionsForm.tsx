@@ -5,6 +5,9 @@ import { InfoCircleOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-desi
 import { OptionFormInterface } from '@/types';
 import { OptionMessage } from '@/constants';
 
+/**
+ * Optionform for Event options
+ */
 const EventOptionsForm: React.FC<OptionFormInterface> = ({ form, data }: OptionFormInterface) => {
   return (
     <Form

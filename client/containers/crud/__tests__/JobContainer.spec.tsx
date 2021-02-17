@@ -4,7 +4,7 @@ import * as reactRedux from 'react-redux';
 
 import { JobContainer } from '@/containers/crud/JobContainer';
 import { CrudContainer } from '@/containers/crud/CrudContainer';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import { JobActionTypes, MemberActionTypes, StudyFieldActionTypes } from '@/state/interface';
 
 const initialState = (window as any).initialReduxState;

@@ -6,9 +6,11 @@ import { EventEntity } from '@/types';
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Renders expandable details in a table of Events entities.
+ */
 export const EventExpandable: React.FC<EventEntity> = ({
   image,
-  title,
   starttime,
   endtime,
   place,

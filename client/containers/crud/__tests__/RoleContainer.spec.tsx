@@ -4,7 +4,7 @@ import * as reactRedux from 'react-redux';
 
 import { RoleContainer } from '@/containers/crud/RoleContainer';
 import { CrudContainer } from '@/containers/crud/CrudContainer';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import { RoleActionTypes, GroupActionTypes } from '@/state/interface';
 
 const initialState = (window as any).initialReduxState;

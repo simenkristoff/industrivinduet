@@ -10,6 +10,9 @@ interface IProps {
   options: OptionState;
 }
 
+/**
+ * Renders the Contact us page
+ */
 export const Contact: React.FC<IProps> = ({ options }: IProps) => {
   const general = options.general as GeneralOptions;
   const socials = options.socials as SocialOptions;

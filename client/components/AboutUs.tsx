@@ -15,6 +15,9 @@ interface IProps {
   loading: boolean;
 }
 
+/**
+ * Renders the About us page
+ */
 export const AboutUs: React.FC<IProps> = ({ data, members, partners, loading }: IProps) => {
   const key = data.length > 0 ? data[0].linkText : '';
 

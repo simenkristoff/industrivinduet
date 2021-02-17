@@ -11,11 +11,11 @@ import {
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
- * @desc Business logic of the effects.
+ * Business logic of the effects.
  */
 
 /**
- * @desc Handle async GET request to API for fetching Events.
+ * Handle async GET request to API for fetching Events.
  * @param {IMetaAction} params action with meta data.
  */
 function* handleFetch(params: IMetaAction): Generator {
@@ -40,7 +40,7 @@ function* handleFetch(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Handle async GET request to API for fetching an Event by ID.
+ * Handle async GET request to API for fetching an Event by ID.
  * @param {IMetaAction} params action with meta data.
  */
 function* handleFetchOne(params: IMetaAction): Generator {
@@ -65,7 +65,7 @@ function* handleFetchOne(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Handle async POST request to API for creating a new Event.
+ * Handle async POST request to API for creating a new Event.
  * @param {IPayloadMetaAction<EventEntity>} params action with payload and meta data.
  */
 function* handleCreate(params: IPayloadMetaAction<EventEntity>): Generator {
@@ -91,7 +91,7 @@ function* handleCreate(params: IPayloadMetaAction<EventEntity>): Generator {
 }
 
 /**
- * @desc Handle async PUT request to API for updating a Event.
+ * Handle async PUT request to API for updating a Event.
  * @param {IPayloadMetaAction<EventEntity>} params action with payload and meta data.
  */
 function* handleUpdate(params: IPayloadMetaAction<EventEntity>): Generator {
@@ -117,7 +117,7 @@ function* handleUpdate(params: IPayloadMetaAction<EventEntity>): Generator {
 }
 
 /**
- * @desc Handle async DELETE request to API for deleting a Event.
+ * Handle async DELETE request to API for deleting a Event.
  * @param {IPayloadMetaAction<EventEntity>} params action with payload and meta data.
  */
 function* handleDelete(params: IPayloadMetaAction<EventEntity>): Generator {
@@ -143,7 +143,7 @@ function* handleDelete(params: IPayloadMetaAction<EventEntity>): Generator {
 }
 
 /**
- * @desc Set active Event.
+ * Set active Event.
  * @param {IPayloadMetaAction<EventEntity>} params action with payload and meta data.
  */
 function* handleSet(params: IPayloadAction<EventEntity>): Generator {
@@ -167,7 +167,7 @@ function* handleSet(params: IPayloadAction<EventEntity>): Generator {
 }
 
 /**
- * @desc Watches every specified action and runs effect method and passes action args to it.
+ * Watches every specified action and runs effect method and passes action args to it.
  */
 function* watchFetchRequest(): Generator {
   yield takeEvery(EventActionTypes.FETCH.START, handleFetch);
@@ -194,7 +194,7 @@ function* watchSetRequest(): Generator {
 }
 
 /**
- * @desc saga init, forks in effects.
+ * saga init, forks in effects.
  */
 export default function* eventSaga() {
   yield all([

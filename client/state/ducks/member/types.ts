@@ -5,12 +5,12 @@ import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../.
 import { RoleEntity } from '../role/types';
 
 /**
- * @desc Type describing the Member state.
+ * Type describing the Member state.
  */
 export type MemberState = BaseState<MemberEntity>;
 
 /**
- * @desc Interface describing a Member Entity.
+ * Interface describing a Member Entity.
  */
 export interface MemberEntity extends Entity {
   name: {
@@ -24,7 +24,7 @@ export interface MemberEntity extends Entity {
 }
 
 /**
- * @desc Object containing the action types for the Member state.
+ * Object containing the action types for the Member state.
  */
 export const MemberActionTypes = {
   FETCH: generateAsyncAction('@@member.FETCH'),
@@ -36,7 +36,7 @@ export const MemberActionTypes = {
 };
 
 /**
- * @desc Interface for all the available Member state actions.
+ * Interface for all the available Member state actions.
  */
 export interface MemberActions {
   fetchMembers: () => IMetaAction;
@@ -48,6 +48,6 @@ export interface MemberActions {
 }
 
 /**
- * @desc Interface describing all props and actions of MemberState
+ * Interface describing all props and actions of MemberState
  */
 export interface MemberPropsAll extends MemberState, MemberActions {}

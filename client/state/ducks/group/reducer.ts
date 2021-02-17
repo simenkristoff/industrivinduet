@@ -12,7 +12,7 @@ export const initialState: GroupState = {
 };
 
 /**
- * @desc Reducer actions for Groups.
+ * Reducer actions for Groups.
  * @param {GroupState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */

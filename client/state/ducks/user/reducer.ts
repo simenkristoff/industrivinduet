@@ -12,7 +12,7 @@ export const initialState: UserState = {
 };
 
 /**
- * @desc Reducer actions for Users.
+ * Reducer actions for Users.
  * @param {UserState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */

@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { UserActionTypes, UserEntity, RegisterTokenInterface } from '@/types';
 
 /**
- * @desc Fetch all Users.
+ * Fetch all Users.
  */
 export const fetchUsers = () =>
   action(UserActionTypes.FETCH.START, [], {
@@ -12,7 +12,7 @@ export const fetchUsers = () =>
   });
 
 /**
- * @desc Create a new User.
+ * Create a new User.
  * @param {UserEntity} data the User to create.
  */
 export const createUser = (data: UserEntity) =>
@@ -22,7 +22,7 @@ export const createUser = (data: UserEntity) =>
   });
 
 /**
- * @desc Update a User.
+ * Update a User.
  * @param {UserEntity} data the User instance with updated data.
  */
 export const updateUser = (data: UserEntity) =>
@@ -32,7 +32,7 @@ export const updateUser = (data: UserEntity) =>
   });
 
 /**
- * @desc Delete User.
+ * Delete User.
  * @param {UserEntity} data the User instance to delete.
  */
 export const deleteUser = (data: UserEntity) =>
@@ -55,7 +55,7 @@ export const lookupRegisterToken = (data: RegisterTokenInterface) => {
 };
 
 /**
- * @desc Set User.
+ * Set User.
  * @param {UserEntity} data the User instance to set.
  */
 export const setUser = (data: UserEntity) => action(UserActionTypes.SET.START, data);

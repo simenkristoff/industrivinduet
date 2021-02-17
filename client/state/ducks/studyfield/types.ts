@@ -4,12 +4,12 @@ import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
 
 /**
- * @desc Type describing the StudyField state.
+ * Type describing the StudyField state.
  */
 export type StudyFieldState = BaseState<StudyFieldEntity>;
 
 /**
- * @desc Interface describing a StudyField Entity.
+ * Interface describing a StudyField Entity.
  */
 export interface StudyFieldEntity extends Entity {
   name: string;
@@ -19,7 +19,7 @@ export interface StudyFieldEntity extends Entity {
 }
 
 /**
- * @desc Object containing the action types for the StudyField state.
+ * Object containing the action types for the StudyField state.
  */
 export const StudyFieldActionTypes = {
   FETCH: generateAsyncAction('@@studyfield.FETCH'),
@@ -31,7 +31,7 @@ export const StudyFieldActionTypes = {
 };
 
 /**
- * @desc Interface for all the available StudyField state actions.
+ * Interface for all the available StudyField state actions.
  */
 export interface StudyFieldActions {
   fetchStudyFields: () => IMetaAction;
@@ -43,6 +43,6 @@ export interface StudyFieldActions {
 }
 
 /**
- * @desc Interface describing all props and actions of StudyFieldState
+ * Interface describing all props and actions of StudyFieldState
  */
 export interface StudyFieldPropsAll extends StudyFieldState, StudyFieldActions {}

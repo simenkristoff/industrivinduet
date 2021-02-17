@@ -34,6 +34,9 @@ interface IProps {
   };
 }
 
+/**
+ * Renders the main landing page
+ */
 export const Frontpage: React.FC<IProps> = ({ generalOptions, events, jobs, partners }: IProps) => {
   const renderEventSection = () => {
     if (!events.display || events.data.length < 1) return null;

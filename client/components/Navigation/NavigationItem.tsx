@@ -1,15 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface IProps {
-  to?: string;
-  icon?: React.ReactNode;
-  className?: string;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
-}
+import { NavigationItemInterface } from './interface';
 
-const NavItem: React.FC<IProps> = (props) => {
-  const { to, icon, className, onClick }: IProps = props;
+/**
+ * Navigation item. This is the clickable link displayed in the menu.
+ */
+export const NavigationItem: React.FC<NavigationItemInterface> = (props) => {
+  const { to, icon, className, onClick }: NavigationItemInterface = props;
   const classes: string[] = ['nav-item'];
   if (className) {
     className.split(' ').forEach((_c) => {
@@ -27,8 +25,6 @@ const NavItem: React.FC<IProps> = (props) => {
   );
 };
 
-NavItem.defaultProps = {
+NavigationItem.defaultProps = {
   to: '',
 };
-
-export default NavItem;

@@ -7,6 +7,9 @@ import { FormMessage } from '@/constants';
 import { MediaPicker } from '@/components/MediaPicker';
 import { uniqueValue } from '@/utils';
 
+/**
+ * Dataform for entity Member
+ */
 export const MemberForm: React.FC<DataFormInterface<MemberEntity>> = ({
   form,
   data,

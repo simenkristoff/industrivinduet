@@ -1,4 +1,4 @@
-export * from '@/state/interface'
+export * from '@/state/interface';
 
 export * from '@/components/forms/OptionForm/interface';
 
@@ -8,4 +8,4 @@ export * from '@/components/ResultManager/interface';
 
 export * from '@/components/MediaLibrary/interface';
 
-export * from '@/utils/interface';;
+export * from '@/utils/interface';

@@ -13,6 +13,10 @@ interface IProps {
   logout: () => void;
 }
 
+/**
+ * Renders the Admin toolbar. This toolbar will be displayed whenever a
+ * user is logged in.
+ */
 export const AdminToolbar: React.FC<IProps> = ({
   isLoggedIn,
   isAdminNamespace,

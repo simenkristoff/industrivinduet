@@ -8,6 +8,9 @@ interface IProps {
   onChange?: (value: any) => void;
 }
 
+/**
+ * Adapter for Ant Design DatePicker
+ */
 export const DatePickerInput: React.FC<IProps> = ({ value = '', onChange }: IProps) => {
   const triggerChange = (value: string) => {
     if (onChange) {

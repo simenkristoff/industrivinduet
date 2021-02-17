@@ -7,11 +7,11 @@ import apiCaller from '@/state/utils/apiCaller';
 import { IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
 
 /**
- * @desc Business logic of the effects.
+ * Business logic of the effects.
  */
 
 /**
- * @desc Handle async GET request to API for fetching Users.
+ * Handle async GET request to API for fetching Users.
  * @param {IMetaAction} params action with meta data.
  */
 function* handleFetch(params: IMetaAction): Generator {
@@ -36,7 +36,7 @@ function* handleFetch(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Handle async POST request to API for creating a new User.
+ * Handle async POST request to API for creating a new User.
  * @param {IPayloadMetaAction<UserEntity>} params action with payload and meta data.
  */
 function* handleCreate(params: IPayloadMetaAction<UserEntity>): Generator {
@@ -62,7 +62,7 @@ function* handleCreate(params: IPayloadMetaAction<UserEntity>): Generator {
 }
 
 /**
- * @desc Handle async PUT request to API for updating a User.
+ * Handle async PUT request to API for updating a User.
  * @param {IPayloadMetaAction<UserEntity>} params action with payload and meta data.
  */
 function* handleUpdate(params: IPayloadMetaAction<UserEntity>): Generator {
@@ -88,7 +88,7 @@ function* handleUpdate(params: IPayloadMetaAction<UserEntity>): Generator {
 }
 
 /**
- * @desc Handle async DELETE request to API for deleting a User.
+ * Handle async DELETE request to API for deleting a User.
  * @param {IPayloadMetaAction<UserEntity>} params action with payload and meta data.
  */
 function* handleDelete(params: IPayloadMetaAction<UserEntity>): Generator {
@@ -142,7 +142,7 @@ function* handleLookupRegisterToken(params: IPayloadMetaAction<string>): Generat
 }
 
 /**
- * @desc Set active User.
+ * Set active User.
  * @param {IPayloadMetaAction<UserEntity>} params action with payload and meta data.
  */
 function* handleSet(params: IPayloadAction<UserEntity>): Generator {
@@ -166,7 +166,7 @@ function* handleSet(params: IPayloadAction<UserEntity>): Generator {
 }
 
 /**
- * @desc Watches every specified action and runs effect method and passes action args to it.
+ * Watches every specified action and runs effect method and passes action args to it.
  */
 function* watchFetchRequest(): Generator {
   yield takeEvery(UserActionTypes.FETCH.START, handleFetch);
@@ -193,7 +193,7 @@ function* watchSetRequest(): Generator {
 }
 
 /**
- * @desc saga init, forks in effects.
+ * saga init, forks in effects.
  */
 export default function* userSaga() {
   yield all([

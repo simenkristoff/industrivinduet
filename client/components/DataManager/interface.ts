@@ -3,10 +3,18 @@ import { ExpandableConfig, ColumnsType } from 'antd/lib/table/interface';
 
 import { BaseState, Entity, CollectionKeys } from '@/types';
 
+/**
+ * Interface for Auth permissions
+ * @interface AuthInterface
+ */
 export interface AuthInterface {
   hasPermission: boolean;
 }
 
+/**
+ * Interface describing the Crud Interface
+ * @interface CrudInterface<T extends Entity>
+ */
 export interface CrudInterface<T extends Entity> {
   state: BaseState<T>;
   columns: ColumnsType<T>;
@@ -31,7 +39,7 @@ export interface CrudInterface<T extends Entity> {
 
 /**
  * Interface for the DataForm
- * @interface
+ * @interface DataFormInterface<T extends Entity>
  */
 export interface DataFormInterface<T extends Entity> {
   form?: FormInstance<T>;
@@ -41,7 +49,7 @@ export interface DataFormInterface<T extends Entity> {
 
 /**
  * Interface for the DataModal
- * @interface
+ * @interface DataModalInterface<T extends Entity>
  */
 export interface DataModalInterface<T extends Entity> {
   name: {
@@ -60,13 +68,13 @@ export interface DataModalInterface<T extends Entity> {
 
 /**
  * Interface for the DataList
- * @interface
+ * @interface DataListInterface<T extends Entity>
  */
 export interface DataListInterface<T extends Entity> extends CrudInterface<T> {}
 
 /**
  * Interface for the DataHeader
- * @interface
+ * @interface DataHeaderInterface
  */
 export interface DataHeaderInterface extends AuthInterface {
   name: {

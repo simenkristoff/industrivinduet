@@ -9,6 +9,9 @@ export interface IProps {
   token: string;
 }
 
+/**
+ * Reset password form. Resets user password if reset token is valid
+ */
 export const ResetPasswordForm: React.FC<IProps> = ({ reset, token }: IProps) => {
   const [form] = Form.useForm();
 

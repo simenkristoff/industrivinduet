@@ -12,7 +12,7 @@ export const initialState: ContentState = {
 };
 
 /**
- * @desc Reducer actions for Contents.
+ * Reducer actions for Contents.
  * @param {ContentState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */

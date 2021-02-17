@@ -1,3 +1,6 @@
+/**
+ * Defines form messages
+ */
 const FormMessages = {
   FIRST_NAME: {
     LABEL: 'Fornavn',

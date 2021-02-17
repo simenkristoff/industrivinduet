@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux';
 import { DataFormInterface, IApplicationState, UserEntity, MemberEntity } from '@/types';
 import { FormMessage, userTypes } from '@/constants';
 
+/**
+ * Dataform for entity User
+ */
 export const UserForm: React.FC<DataFormInterface<UserEntity>> = ({
   form,
   data,

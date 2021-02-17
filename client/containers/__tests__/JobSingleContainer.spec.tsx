@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { JobSingleContainer } from '@/containers/JobSingleContainer';
 import { JobSingle } from '@/components/JobSingle';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import { JobActionTypes } from '@/state/interface';
 
 const initialState = (window as any).initialReduxState;

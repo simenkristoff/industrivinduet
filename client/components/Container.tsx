@@ -7,6 +7,11 @@ interface IProps {
   ghost?: boolean;
   children?: JSX.Element | JSX.Element[];
 }
+
+/**
+ * Wrapper component to make sure the sub-components doesn't overflow
+ * the screen size.
+ */
 export const Container: React.FC<IProps> = ({
   className,
   style,

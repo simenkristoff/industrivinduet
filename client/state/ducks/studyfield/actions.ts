@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { StudyFieldActionTypes, StudyFieldEntity } from '@/types';
 
 /**
- * @desc Fetch all StudyFields.
+ * Fetch all StudyFields.
  */
 export const fetchStudyFields = () =>
   action(StudyFieldActionTypes.FETCH.START, [], {
@@ -12,7 +12,7 @@ export const fetchStudyFields = () =>
   });
 
 /**
- * @desc Create a new StudyField.
+ * Create a new StudyField.
  * @param {StudyFieldEntity} data the StudyField to create.
  */
 export const createStudyField = (data: StudyFieldEntity) =>
@@ -22,7 +22,7 @@ export const createStudyField = (data: StudyFieldEntity) =>
   });
 
 /**
- * @desc Update a StudyField.
+ * Update a StudyField.
  * @param {StudyFieldEntity} data the StudyField instance with updated data.
  */
 export const updateStudyField = (data: StudyFieldEntity) =>
@@ -32,7 +32,7 @@ export const updateStudyField = (data: StudyFieldEntity) =>
   });
 
 /**
- * @desc Delete StudyField.
+ * Delete StudyField.
  * @param {StudyFieldEntity} data the StudyField instance to delete.
  */
 export const deleteStudyField = (data: StudyFieldEntity) =>
@@ -42,7 +42,7 @@ export const deleteStudyField = (data: StudyFieldEntity) =>
   });
 
 /**
- * @desc Set StudyField.
+ * Set StudyField.
  * @param {StudyFieldEntity} data the StudyField instance to set.
  */
 export const setStudyField = (data: StudyFieldEntity) =>

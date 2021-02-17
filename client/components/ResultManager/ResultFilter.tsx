@@ -7,6 +7,9 @@ import { Entity, FilterDependency, ResultFilterInterface } from '@/types';
 
 const { Sider } = Layout;
 
+/**
+ * Render the filters
+ */
 function renderSelectFilter<T extends Entity>(
   index: number,
   name: string,

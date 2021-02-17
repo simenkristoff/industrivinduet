@@ -10,6 +10,13 @@ import {
   SearchFilterType,
 } from '@/types';
 
+/**
+ * Initializes the filters and creates functions for filtering
+ * the specified types.
+ * @param {FilterTypeInterface<T>} filterTypes filters to apply
+ * @param {SearchFilterType<T>} searchFilterTypes search filter (optional)
+ * @returns {FilterInterface} filter state
+ */
 export function initializeFilters<T extends Entity>(
   filterTypes: FilterTypeInterface<T>,
   searchFilterTypes?: SearchFilterType<T>,
@@ -73,7 +80,19 @@ export function initializeFilters<T extends Entity>(
   return { initialFilterState, filterState, setFilterState, filterFunctions };
 }
 
-export function filterArray(array: Array<any>, filters: FilterFunctions, filterState: FilterState) {
+/**
+ * Runs through all defined filter functions and
+ * returns a filtered array
+ * @param array the data to filter
+ * @param filters the filters to apply
+ * @param filterState the values to apply on the filter
+ * @returns {Array<any>} filtered data
+ */
+export function filterArray(
+  array: Array<any>,
+  filters: FilterFunctions,
+  filterState: FilterState,
+): Array<any> {
   const filterKeys = Object.keys(filters);
 
   return array.filter((item) => {

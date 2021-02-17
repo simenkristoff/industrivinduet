@@ -45,7 +45,7 @@ export const rootReducer = combineReducers<IApplicationState>({
 export const configStorage = {
   key: 'root',
   storage,
-  //ywhitelist: ['options'],
+  whitelist: ['options'],
 };
 
 export const persistentReducer = persistReducer(configStorage, rootReducer);

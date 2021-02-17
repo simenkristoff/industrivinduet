@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { OptionActionTypes, OptionEntity } from '@/types';
 
 /**
- * @desc Fetch Options.
+ * Fetch Options.
  */
 export const fetchOptions = () =>
   action(OptionActionTypes.FETCH.START, [], {
@@ -12,7 +12,7 @@ export const fetchOptions = () =>
   });
 
 /**
- * @desc Update Options.
+ * Update Options.
  * @param {OptionEntity} data the Option instance with updated data.
  */
 export const updateOptions = (data: OptionEntity) =>
@@ -22,7 +22,7 @@ export const updateOptions = (data: OptionEntity) =>
   });
 
 /**
- * @desc Reset Options.
+ * Reset Options.
  */
 export const resetOptions = () =>
   action(OptionActionTypes.RESET.START, [], {

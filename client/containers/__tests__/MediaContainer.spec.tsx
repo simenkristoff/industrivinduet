@@ -4,7 +4,7 @@ import * as reactRedux from 'react-redux';
 import { Modal } from 'antd';
 
 import { MediaContainer } from '@/containers/MediaContainer';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import { MediaActionTypes, OptionActionTypes } from '@/state/interface';
 import { MediaLibrary } from '@/components/MediaLibrary';
 

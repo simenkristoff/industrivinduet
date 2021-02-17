@@ -14,6 +14,9 @@ interface IProps {
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Renders the site footer
+ */
 export const Footer: React.FC<IProps> = ({ options, partners, fetchPartners }: IProps) => {
   const general = options.general as GeneralOptions;
   const socials = options.socials as SocialOptions;

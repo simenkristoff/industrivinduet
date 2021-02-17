@@ -6,6 +6,9 @@ import { MediaHeaderInterface } from '@/types';
 
 import { NewFolder } from './NewFolder';
 
+/**
+ * Renders the header for the media library
+ */
 export const MediaHeader: React.FC<MediaHeaderInterface> = ({
   path,
   dirNames,

@@ -4,7 +4,7 @@ import * as reactRedux from 'react-redux';
 
 import { ForgotPasswordContainer } from '@/containers/auth/ForgotPasswordContainer';
 import { ForgotPassword } from '@/components/auth/ForgotPassword';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 
 const initialState = (window as any).initialReduxState;
 const spy = jest.spyOn(reactRedux, 'useDispatch');

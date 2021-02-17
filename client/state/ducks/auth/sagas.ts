@@ -13,9 +13,13 @@ import apiCaller from '@/state/utils/apiCaller';
 import { saveToken } from './helpers';
 
 /**
- * @desc Business logic of effect.
+ * Business logic of effect.
  */
 
+/**
+ * Handle async POST request to API for registering a new user.
+ * @param {IPayloadMetaAction<RegisterCredentials>} params action with meta data.
+ */
 function* handleRegister(params: IPayloadMetaAction<RegisterCredentials>): Generator {
   try {
     const { token, user }: any = yield call(
@@ -40,6 +44,10 @@ function* handleRegister(params: IPayloadMetaAction<RegisterCredentials>): Gener
   }
 }
 
+/**
+ * Handle async POST request to API for signing in a user
+ * @param {IPayloadMetaAction<LoginCredentials>} params action with meta data.
+ */
 function* handleLogin(params: IPayloadMetaAction<LoginCredentials>): Generator {
   try {
     const { token, user }: any = yield call(
@@ -63,6 +71,10 @@ function* handleLogin(params: IPayloadMetaAction<LoginCredentials>): Generator {
   }
 }
 
+/**
+ * Handle async POST request to API for starting forgot password process
+ * @param {IPayloadMetaAction<ForgotPasswordCredentials>} params action with meta data.
+ */
 function* handleForgotPassword(params: IPayloadMetaAction<ForgotPasswordCredentials>): Generator {
   try {
     const response = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
@@ -86,6 +98,10 @@ function* handleForgotPassword(params: IPayloadMetaAction<ForgotPasswordCredenti
   }
 }
 
+/**
+ * Handle async POST request to API for resetting password
+ * @param {IPayloadMetaAction<ResetPasswordCredentials>} params action with meta data.
+ */
 function* handleResetPassword(params: IPayloadMetaAction<ResetPasswordCredentials>): Generator {
   try {
     const response = yield call(apiCaller, params.meta.method, params.meta.route, params.payload);
@@ -110,7 +126,7 @@ function* handleResetPassword(params: IPayloadMetaAction<ResetPasswordCredential
 }
 
 /**
- * @desc Watches every specified action and runs effect method and passes action args to it
+ * Watches every specified action and runs effect method and passes action args to it
  */
 function* watchRegisterRequest(): Generator {
   yield takeEvery(AuthActionTypes.REGISTER.START, handleRegister);
@@ -129,7 +145,7 @@ function* watchResetPasswordRequest(): Generator {
 }
 
 /**
- * @desc saga init, forks in effects, other sagas
+ * saga init, forks in effects, other sagas
  */
 export default function* authSaga() {
   yield all([

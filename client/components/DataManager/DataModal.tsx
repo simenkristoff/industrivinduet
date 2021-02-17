@@ -3,6 +3,10 @@ import { Modal } from 'antd';
 
 import { Entity, DataModalInterface } from '@/types';
 
+/**
+ * Modal holds the form used to edit/create entities of
+ * @type {T extends Entity}
+ */
 export const DataModal = <T extends Entity>(props: DataModalInterface<T>): JSX.Element => {
   const { name, editMode, visible, data, width, form, dataForm, submit, close } = props;
   const DataForm = dataForm;

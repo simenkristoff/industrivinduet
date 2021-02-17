@@ -8,6 +8,9 @@ import { EditorInput } from '@/components/adapters';
 import { MediaPicker } from '@/components/MediaPicker';
 import { uniqueValue } from '@/utils';
 
+/**
+ * Dataform for entity Partner
+ */
 export const PartnerForm: React.FC<DataFormInterface<PartnerEntity>> = ({
   form,
   data,

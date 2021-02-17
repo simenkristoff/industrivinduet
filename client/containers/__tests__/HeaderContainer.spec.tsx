@@ -2,14 +2,12 @@ import { mount } from 'enzyme';
 import React from 'react';
 import * as reactRedux from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import { HeaderContainer } from '@/containers/HeaderContainer';
 import { Header } from '@/components/Header';
 import { AdminToolbar } from '@/components/AdminToolbar';
-import Nav from '@/components/Navigation';
-import configureStore from '@/state/configureStore.dev';
-import { JobActionTypes, StudyFieldActionTypes } from '@/state/interface';
+import { Nav } from '@/components/Navigation';
+import configureStore from '@/state/configureStore';
 
 const initialState = (window as any).initialReduxState;
 const spy = jest.spyOn(reactRedux, 'useDispatch');

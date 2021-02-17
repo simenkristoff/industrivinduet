@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { RegisterContainer } from '@/containers/auth/RegisterContainer';
 import { Register } from '@/components/auth/Register';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import { UserActionTypes } from '@/state/interface';
 
 const initialState = (window as any).initialReduxState;

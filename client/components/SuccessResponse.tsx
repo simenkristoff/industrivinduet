@@ -10,6 +10,9 @@ interface IProps {
   extra?: React.ReactNode;
 }
 
+/**
+ * Displays an success message if a success message is received from backend.
+ */
 export const SuccessResponse: React.FC<IProps> = ({
   response,
   align,

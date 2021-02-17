@@ -4,7 +4,7 @@ import * as reactRedux from 'react-redux';
 
 import { OptionContainer } from '@/containers/OptionContainer';
 import { OptionForm } from '@/components/forms';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import { OptionActionTypes } from '@/state/interface';
 
 const initialState = (window as any).initialReduxState;

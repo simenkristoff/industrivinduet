@@ -11,6 +11,9 @@ import { MediaPicker } from '@/components/MediaPicker';
 
 const { Panel } = Collapse;
 
+/**
+ * Dataform for entity Event
+ */
 export const EventForm: React.FC<DataFormInterface<EventEntity>> = ({
   form,
   data,

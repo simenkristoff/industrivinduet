@@ -15,6 +15,9 @@ interface IProps extends ResultItemInterface<JobEntity> {
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Renders a single Job item with shortened details.
+ */
 export const JobItem: React.FC<IProps> = ({
   data,
   margin,

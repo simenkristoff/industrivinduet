@@ -4,7 +4,7 @@ import * as reactRedux from 'react-redux';
 
 import { EventContainer } from '@/containers/crud/EventContainer';
 import { CrudContainer } from '@/containers/crud/CrudContainer';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import { EventActionTypes, MemberActionTypes, StudyFieldActionTypes } from '@/state/interface';
 
 const initialState = (window as any).initialReduxState;

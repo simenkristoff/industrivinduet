@@ -11,11 +11,11 @@ import {
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
- * @desc Business logic of the effects.
+ * Business logic of the effects.
  */
 
 /**
- * @desc Handle async GET request to API for fetching Members.
+ * Handle async GET request to API for fetching Members.
  * @param {IMetaAction} params action with meta data.
  */
 function* handleFetch(params: IMetaAction): Generator {
@@ -40,7 +40,7 @@ function* handleFetch(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Handle async POST request to API for creating a new Member.
+ * Handle async POST request to API for creating a new Member.
  * @param {IPayloadMetaAction<MemberEntity>} params action with payload and meta data.
  */
 function* handleCreate(params: IPayloadMetaAction<MemberEntity>): Generator {
@@ -66,7 +66,7 @@ function* handleCreate(params: IPayloadMetaAction<MemberEntity>): Generator {
 }
 
 /**
- * @desc Handle async PUT request to API for updating a Member.
+ * Handle async PUT request to API for updating a Member.
  * @param {IPayloadMetaAction<MemberEntity>} params action with payload and meta data.
  */
 function* handleUpdate(params: IPayloadMetaAction<MemberEntity>): Generator {
@@ -92,7 +92,7 @@ function* handleUpdate(params: IPayloadMetaAction<MemberEntity>): Generator {
 }
 
 /**
- * @desc Handle async DELETE request to API for deleting a Member.
+ * Handle async DELETE request to API for deleting a Member.
  * @param {IPayloadMetaAction<MemberEntity>} params action with payload and meta data.
  */
 function* handleDelete(params: IPayloadMetaAction<MemberEntity>): Generator {
@@ -118,7 +118,7 @@ function* handleDelete(params: IPayloadMetaAction<MemberEntity>): Generator {
 }
 
 /**
- * @desc Set active Member.
+ * Set active Member.
  * @param {IPayloadMetaAction<MemberEntity>} params action with payload and meta data.
  */
 function* handleSet(params: IPayloadAction<MemberEntity>): Generator {
@@ -142,7 +142,7 @@ function* handleSet(params: IPayloadAction<MemberEntity>): Generator {
 }
 
 /**
- * @desc Watches every specified action and runs effect method and passes action args to it.
+ * Watches every specified action and runs effect method and passes action args to it.
  */
 function* watchFetchRequest(): Generator {
   yield takeEvery(MemberActionTypes.FETCH.START, handleFetch);
@@ -165,7 +165,7 @@ function* watchSetRequest(): Generator {
 }
 
 /**
- * @desc saga init, forks in effects.
+ * saga init, forks in effects.
  */
 export default function* memberSaga() {
   yield all([

@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { EventSingleContainer } from '@/containers/EventSingleContainer';
 import { EventSingle } from '@/components/EventSingle';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import { EventActionTypes } from '@/state/interface';
 
 const initialState = (window as any).initialReduxState;

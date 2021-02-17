@@ -4,6 +4,10 @@ import { PlusOutlined } from '@ant-design/icons';
 
 import { DataHeaderInterface } from '@/types';
 
+/**
+ * Displays the Data Managers Header.
+ */
+
 export const DataHeader: React.FC<DataHeaderInterface> = ({
   hasPermission,
   name,

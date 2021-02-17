@@ -5,12 +5,12 @@ import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../.
 import { GroupEntity } from '../group/types';
 
 /**
- * @desc Type describing the Role state.
+ * Type describing the Role state.
  */
 export type RoleState = BaseState<RoleEntity>;
 
 /**
- * @desc Interface describing a Role Entity.
+ * Interface describing a Role Entity.
  */
 export interface RoleEntity extends Entity {
   name: string;
@@ -19,7 +19,7 @@ export interface RoleEntity extends Entity {
 }
 
 /**
- * @desc Object containing the action types for the Role state.
+ * Object containing the action types for the Role state.
  */
 export const RoleActionTypes = {
   FETCH: generateAsyncAction('@@role.FETCH'),
@@ -31,7 +31,7 @@ export const RoleActionTypes = {
 };
 
 /**
- * @desc Interface for all the available Role state actions.
+ * Interface for all the available Role state actions.
  */
 export interface RoleActions {
   fetchRoles: () => IMetaAction;
@@ -43,6 +43,6 @@ export interface RoleActions {
 }
 
 /**
- * @desc Interface describing all props and actions of RoleState
+ * Interface describing all props and actions of RoleState
  */
 export interface RolePropsAll extends RoleState, RoleActions {}

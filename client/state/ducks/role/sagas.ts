@@ -11,11 +11,11 @@ import {
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
- * @desc Business logic of the effects.
+ * Business logic of the effects.
  */
 
 /**
- * @desc Handle async GET request to API for fetching Roles.
+ * Handle async GET request to API for fetching Roles.
  * @param {IMetaAction} params action with meta data.
  */
 function* handleFetch(params: IMetaAction): Generator {
@@ -40,7 +40,7 @@ function* handleFetch(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Handle async POST request to API for creating a new Role.
+ * Handle async POST request to API for creating a new Role.
  * @param {IPayloadMetaAction<RoleEntity>} params action with payload and meta data.
  */
 function* handleCreate(params: IPayloadMetaAction<RoleEntity>): Generator {
@@ -66,7 +66,7 @@ function* handleCreate(params: IPayloadMetaAction<RoleEntity>): Generator {
 }
 
 /**
- * @desc Handle async PUT request to API for updating a Role.
+ * Handle async PUT request to API for updating a Role.
  * @param {IPayloadMetaAction<RoleEntity>} params action with payload and meta data.
  */
 function* handleUpdate(params: IPayloadMetaAction<RoleEntity>): Generator {
@@ -92,7 +92,7 @@ function* handleUpdate(params: IPayloadMetaAction<RoleEntity>): Generator {
 }
 
 /**
- * @desc Handle async DELETE request to API for deleting a Role.
+ * Handle async DELETE request to API for deleting a Role.
  * @param {IPayloadMetaAction<RoleEntity>} params action with payload and meta data.
  */
 function* handleDelete(params: IPayloadMetaAction<RoleEntity>): Generator {
@@ -118,7 +118,7 @@ function* handleDelete(params: IPayloadMetaAction<RoleEntity>): Generator {
 }
 
 /**
- * @desc Set active Role.
+ * Set active Role.
  * @param {IPayloadMetaAction<RoleEntity>} params action with payload and meta data.
  */
 function* handleSet(params: IPayloadAction<RoleEntity>): Generator {
@@ -142,7 +142,7 @@ function* handleSet(params: IPayloadAction<RoleEntity>): Generator {
 }
 
 /**
- * @desc Watches every specified action and runs effect method and passes action args to it.
+ * Watches every specified action and runs effect method and passes action args to it.
  */
 function* watchFetchRequest(): Generator {
   yield takeEvery(RoleActionTypes.FETCH.START, handleFetch);
@@ -165,7 +165,7 @@ function* watchSetRequest(): Generator {
 }
 
 /**
- * @desc saga init, forks in effects.
+ * saga init, forks in effects.
  */
 export default function* roleSaga() {
   yield all([

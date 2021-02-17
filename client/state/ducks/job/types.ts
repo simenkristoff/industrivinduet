@@ -11,12 +11,12 @@ import {
 import { StudyFieldEntity } from '../studyfield/types';
 
 /**
- * @desc Type describing the Job state.
+ * Type describing the Job state.
  */
 export type JobState = BaseState<JobEntity>;
 
 /**
- * @desc Interface describing a Job Entity.
+ * Interface describing a Job Entity.
  */
 export interface JobEntity extends Entity {
   title: string;
@@ -34,7 +34,7 @@ export interface JobEntity extends Entity {
 }
 
 /**
- * @desc Object containing the action types for the Job state.
+ * Object containing the action types for the Job state.
  */
 export const JobActionTypes = {
   FETCH: generateAsyncAction('@@job.FETCH'),
@@ -47,7 +47,7 @@ export const JobActionTypes = {
 };
 
 /**
- * @desc Interface for all the available Job state actions.
+ * Interface for all the available Job state actions.
  */
 export interface JobActions {
   fetchJobs: () => IMetaAction;
@@ -61,6 +61,6 @@ export interface JobActions {
 }
 
 /**
- * @desc Interface describing all props and actions of JobState
+ * Interface describing all props and actions of JobState
  */
 export interface JobPropsAll extends JobState, JobActions {}

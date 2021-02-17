@@ -1,10 +1,10 @@
 
 $edges: 'left', 'right', 'top', 'bottom';
 $sizes: ('light': 1px, 'medium': 2px, 'strong': 3px);
-$colors: ('default': style-color(border-light), 'primary': $color-bg-primary, 'secondary': $color-bg-secondary);
+$colors: ('default': style-color(border-light), 'primary': theme-color(primary), 'secondary': theme-color(secondary));
 
 .color-primary {
-  color: $color-bg-primary;
+  color: theme-color(primary);
 }
 
 @mixin border-edge-utils {

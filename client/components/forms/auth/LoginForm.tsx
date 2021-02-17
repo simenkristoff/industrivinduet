@@ -10,6 +10,9 @@ export interface IProps {
   login: (credentials: LoginCredentials) => void;
 }
 
+/**
+ * Login form
+ */
 export const LoginForm: React.FC<IProps> = ({ login }: IProps) => {
   const [form] = Form.useForm();
 

@@ -11,11 +11,11 @@ import {
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
- * @desc Business logic of the effects.
+ * Business logic of the effects.
  */
 
 /**
- * @desc Handle async GET request to API for fetching StudyFields.
+ * Handle async GET request to API for fetching StudyFields.
  * @param {IMetaAction} params action with meta data.
  */
 function* handleFetch(params: IMetaAction): Generator {
@@ -40,7 +40,7 @@ function* handleFetch(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Handle async POST request to API for creating a new StudyField.
+ * Handle async POST request to API for creating a new StudyField.
  * @param {IPayloadMetaAction<StudyFieldEntity>} params action with payload and meta data.
  */
 function* handleCreate(params: IPayloadMetaAction<StudyFieldEntity>): Generator {
@@ -66,7 +66,7 @@ function* handleCreate(params: IPayloadMetaAction<StudyFieldEntity>): Generator 
 }
 
 /**
- * @desc Handle async PUT request to API for updating a StudyField.
+ * Handle async PUT request to API for updating a StudyField.
  * @param {IPayloadMetaAction<StudyFieldEntity>} params action with payload and meta data.
  */
 function* handleUpdate(params: IPayloadMetaAction<StudyFieldEntity>): Generator {
@@ -92,7 +92,7 @@ function* handleUpdate(params: IPayloadMetaAction<StudyFieldEntity>): Generator 
 }
 
 /**
- * @desc Handle async DELETE request to API for deleting a StudyField.
+ * Handle async DELETE request to API for deleting a StudyField.
  * @param {IPayloadMetaAction<StudyFieldEntity>} params action with payload and meta data.
  */
 function* handleDelete(params: IPayloadMetaAction<StudyFieldEntity>): Generator {
@@ -118,7 +118,7 @@ function* handleDelete(params: IPayloadMetaAction<StudyFieldEntity>): Generator 
 }
 
 /**
- * @desc Set active StudyField.
+ * Set active StudyField.
  * @param {IPayloadMetaAction<StudyFieldEntity>} params action with payload and meta data.
  */
 function* handleSet(params: IPayloadAction<StudyFieldEntity>): Generator {
@@ -142,7 +142,7 @@ function* handleSet(params: IPayloadAction<StudyFieldEntity>): Generator {
 }
 
 /**
- * @desc Watches every specified action and runs effect method and passes action args to it.
+ * Watches every specified action and runs effect method and passes action args to it.
  */
 function* watchFetchRequest(): Generator {
   yield takeEvery(StudyFieldActionTypes.FETCH.START, handleFetch);
@@ -165,7 +165,7 @@ function* watchSetRequest(): Generator {
 }
 
 /**
- * @desc saga init, forks in effects.
+ * saga init, forks in effects.
  */
 export default function* studyfieldSaga() {
   yield all([

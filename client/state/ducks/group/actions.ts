@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { GroupActionTypes, GroupEntity } from '@/types';
 
 /**
- * @desc Fetch all Groups.
+ * Fetch all Groups.
  */
 export const fetchGroups = () =>
   action(GroupActionTypes.FETCH.START, [], {
@@ -12,7 +12,7 @@ export const fetchGroups = () =>
   });
 
 /**
- * @desc Create a new Group.
+ * Create a new Group.
  * @param {GroupEntity} data the Group to create.
  */
 export const createGroup = (data: GroupEntity) =>
@@ -22,7 +22,7 @@ export const createGroup = (data: GroupEntity) =>
   });
 
 /**
- * @desc Update a Group.
+ * Update a Group.
  * @param {GroupEntity} data the Group instance with updated data.
  */
 export const updateGroup = (data: GroupEntity) =>
@@ -32,7 +32,7 @@ export const updateGroup = (data: GroupEntity) =>
   });
 
 /**
- * @desc Delete Group.
+ * Delete Group.
  * @param {GroupEntity} data the Group instance to delete.
  */
 export const deleteGroup = (data: GroupEntity) =>
@@ -42,7 +42,7 @@ export const deleteGroup = (data: GroupEntity) =>
   });
 
 /**
- * @desc Set Group.
+ * Set Group.
  * @param {GroupEntity} data the Group instance to set.
  */
 export const setGroup = (data?: GroupEntity) => action(GroupActionTypes.SET.START, data);

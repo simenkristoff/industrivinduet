@@ -11,6 +11,9 @@ interface IProps {
   jumbotron?: boolean;
 }
 
+/**
+ * Displays an error message if an error is received from backend.
+ */
 export const ErrorResponse: React.FC<IProps> = ({
   response,
   className,

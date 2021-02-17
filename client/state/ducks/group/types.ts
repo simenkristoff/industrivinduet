@@ -4,19 +4,19 @@ import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
 
 /**
- * @desc Type describing the Group state.
+ * Type describing the Group state.
  */
 export type GroupState = BaseState<GroupEntity>;
 
 /**
- * @desc Interface describing a Group Entity.
+ * Interface describing a Group Entity.
  */
 export interface GroupEntity extends Entity {
   name: string;
 }
 
 /**
- * @desc Object containing the action types for the Group state.
+ * Object containing the action types for the Group state.
  */
 export const GroupActionTypes = {
   FETCH: generateAsyncAction('@@group.FETCH'),
@@ -28,7 +28,7 @@ export const GroupActionTypes = {
 };
 
 /**
- * @desc Interface for all the available Group state actions.
+ * Interface for all the available Group state actions.
  */
 export interface GroupActions {
   fetchGroups: () => IMetaAction;
@@ -40,6 +40,6 @@ export interface GroupActions {
 }
 
 /**
- * @desc Interface describing all props and actions of GroupState
+ * Interface describing all props and actions of GroupState
  */
 export interface GroupPropsAll extends GroupState, GroupActions {}

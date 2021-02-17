@@ -4,7 +4,7 @@ import * as reactRedux from 'react-redux';
 
 import { PartnerContainer } from '@/containers/crud/PartnerContainer';
 import { CrudContainer } from '@/containers/crud/CrudContainer';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import { PartnerActionTypes } from '@/state/interface';
 
 const initialState = (window as any).initialReduxState;

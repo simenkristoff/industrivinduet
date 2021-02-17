@@ -6,6 +6,9 @@ import { OptionFormInterface } from '@/types';
 import { OptionMessage, orgPattern, phonePattern } from '@/constants';
 import { EditorInput } from '@/components/adapters';
 
+/**
+ * Optionform for General options
+ */
 const GeneralOptionsForm: React.FC<OptionFormInterface> = ({ form, data }: OptionFormInterface) => {
   return (
     <Form

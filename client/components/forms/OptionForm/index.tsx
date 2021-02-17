@@ -18,6 +18,9 @@ interface IProps {
   options: OptionState;
 }
 
+/**
+ * Wrapper for Option forms
+ */
 const OptionForm: React.FC<IProps> = ({ form, options }: IProps) => {
   const render = () => {
     if (options.loading) {

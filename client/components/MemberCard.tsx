@@ -13,6 +13,9 @@ interface IProps {
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Renders a single Member with shortened details
+ */
 export const MemberCard: React.FC<IProps> = ({
   data,
   className,

@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { ResultContainer } from '@/containers/ResultContainer';
 import { ResultManager } from '@/components/ResultManager';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 import { EventEntity } from '@/state/interface';
 import { grades } from '@/constants';
 import { EventCard } from '@/components/EventCard';

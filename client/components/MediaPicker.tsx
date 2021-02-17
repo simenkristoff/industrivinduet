@@ -12,6 +12,9 @@ interface MediaPickerProps {
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Input component for selecting image from the media library
+ */
 export const MediaPicker: React.FC<MediaPickerProps> = ({
   value,
   id,

@@ -4,7 +4,7 @@ import { ObjectId } from '@/state/interface';
 import { EventActionTypes, EventEntity } from '@/types';
 
 /**
- * @desc Fetch all Events.
+ * Fetch all Events.
  */
 export const fetchEvents = () => {
   return action(EventActionTypes.FETCH.START, [], {
@@ -14,7 +14,7 @@ export const fetchEvents = () => {
 };
 
 /**
- * @desc Fetch all active Events.
+ * Fetch all active Events.
  * @param {number} limit how many active Events to fetch
  */
 export const fetchActiveEvents = (limit?: number) => {
@@ -30,7 +30,7 @@ export const fetchActiveEvents = (limit?: number) => {
 };
 
 /**
- * @desc Fetch single Event by ID.
+ * Fetch single Event by ID.
  * @param {ObjectId} id the ID of the Event to fetch
  */
 export const fetchEvent = (id: ObjectId) =>
@@ -40,7 +40,7 @@ export const fetchEvent = (id: ObjectId) =>
   });
 
 /**
- * @desc Create a new Event.
+ * Create a new Event.
  * @param {EventEntity} data the Event to create.
  */
 export const createEvent = (data: EventEntity) =>
@@ -50,7 +50,7 @@ export const createEvent = (data: EventEntity) =>
   });
 
 /**
- * @desc Update a Event.
+ * Update a Event.
  * @param {EventEntity} data the Event instance with updated data.
  */
 export const updateEvent = (data: EventEntity) =>
@@ -60,7 +60,7 @@ export const updateEvent = (data: EventEntity) =>
   });
 
 /**
- * @desc Delete Event.
+ * Delete Event.
  * @param {EventEntity} data the Event instance to delete.
  */
 export const deleteEvent = (data: EventEntity) =>
@@ -70,7 +70,7 @@ export const deleteEvent = (data: EventEntity) =>
   });
 
 /**
- * @desc Set Event.
+ * Set Event.
  * @param {EventEntity} data the Event instance to set.
  */
 export const setEvent = (data: EventEntity | {}) => action(EventActionTypes.SET.START, data);

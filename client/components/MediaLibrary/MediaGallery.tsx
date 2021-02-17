@@ -1,10 +1,14 @@
 import _ from 'lodash';
 import React from 'react';
 import { Row } from 'antd';
+
 import { MediaGalleryInterface } from '@/types';
 
 import { MediaFolder, MediaImage } from './';
 
+/**
+ * Renders a representation of the directory at current path
+ */
 export const MediaGallery: React.FC<MediaGalleryInterface> = ({
   data,
   dirNames,

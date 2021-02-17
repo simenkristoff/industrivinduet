@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { MediaFolderType, MediaActionTypes, MediaType } from '@/types';
 
 /**
- * @desc Fetch all Files.
+ * Fetch all Files.
  */
 export const fetchFiles = () =>
   action(MediaActionTypes.FETCH.START, [], {
@@ -12,7 +12,7 @@ export const fetchFiles = () =>
   });
 
 /**
- * @desc Upload a new File
+ * Upload a new File
  * @param file the file to upload
  * @param path the files folder path
  */
@@ -28,7 +28,7 @@ export const uploadFile = (file: File, path: string) => {
 };
 
 /**
- * @desc Delete File.
+ * Delete File.
  */
 export const deleteFile = (file: MediaType) =>
   action(MediaActionTypes.DELETE.START, [file], {
@@ -37,7 +37,7 @@ export const deleteFile = (file: MediaType) =>
   });
 
 /**
- * @desc Create a new Folder
+ * Create a new Folder
  * @param folder the folder to create
  */
 export const createFolder = (folder: MediaFolderType) =>
@@ -47,7 +47,7 @@ export const createFolder = (folder: MediaFolderType) =>
   });
 
 /**
- * @desc Update a Folder
+ * Update a Folder
  * @param folder the folder to update
  */
 export const updateFolder = (folder: MediaFolderType) =>

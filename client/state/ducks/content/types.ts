@@ -4,12 +4,12 @@ import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
 
 /**
- * @desc Type describing the Content state.
+ * Type describing the Content state.
  */
 export type ContentState = BaseState<ContentEntity>;
 
 /**
- * @desc Interface describing a Content Entity.
+ * Interface describing a Content Entity.
  */
 export interface ContentEntity extends Entity {
   title: string;
@@ -20,7 +20,7 @@ export interface ContentEntity extends Entity {
 }
 
 /**
- * @desc Object containing the action types for the Content state.
+ * Object containing the action types for the Content state.
  */
 export const ContentActionTypes = {
   FETCH: generateAsyncAction('@@content.FETCH'),
@@ -32,7 +32,7 @@ export const ContentActionTypes = {
 };
 
 /**
- * @desc Interface for all the available Content state actions.
+ * Interface for all the available Content state actions.
  */
 export interface ContentActions {
   fetchContents: () => IMetaAction;
@@ -44,6 +44,6 @@ export interface ContentActions {
 }
 
 /**
- * @desc Interface describing all props and actions of ContentState
+ * Interface describing all props and actions of ContentState
  */
 export interface ContentPropsAll extends ContentState, ContentActions {}

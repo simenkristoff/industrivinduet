@@ -12,7 +12,7 @@ export const initialState: RoleState = {
 };
 
 /**
- * @desc Reducer actions for Roles.
+ * Reducer actions for Roles.
  * @param {RoleState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */

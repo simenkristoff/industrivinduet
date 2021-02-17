@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { MemberActionTypes, MemberEntity } from '@/types';
 
 /**
- * @desc Fetch all Members.
+ * Fetch all Members.
  */
 export const fetchMembers = () =>
   action(MemberActionTypes.FETCH.START, [], {
@@ -12,7 +12,7 @@ export const fetchMembers = () =>
   });
 
 /**
- * @desc Create a new Member.
+ * Create a new Member.
  * @param {MemberEntity} data the Member to create.
  */
 export const createMember = (data: MemberEntity) =>
@@ -22,7 +22,7 @@ export const createMember = (data: MemberEntity) =>
   });
 
 /**
- * @desc Update a Member.
+ * Update a Member.
  * @param {MemberEntity} data the Member instance with updated data.
  */
 export const updateMember = (data: MemberEntity) =>
@@ -32,7 +32,7 @@ export const updateMember = (data: MemberEntity) =>
   });
 
 /**
- * @desc Delete Member.
+ * Delete Member.
  * @param {MemberEntity} data the Member instance to delete.
  */
 export const deleteMember = (data: MemberEntity) =>
@@ -42,7 +42,7 @@ export const deleteMember = (data: MemberEntity) =>
   });
 
 /**
- * @desc Set Member.
+ * Set Member.
  * @param {MemberEntity} data the Member instance to set.
  */
 export const setMember = (data: MemberEntity) => action(MemberActionTypes.SET.START, data);

@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { ResetPasswordContainer } from '@/containers/auth/ResetPasswordContainer';
 import { ResetPassword } from '@/components/auth/ResetPassword';
-import configureStore from '@/state/configureStore.dev';
+import configureStore from '@/state/configureStore';
 
 const initialState = (window as any).initialReduxState;
 const spy = jest.spyOn(reactRedux, 'useDispatch');

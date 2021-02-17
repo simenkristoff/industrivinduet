@@ -23,6 +23,9 @@ import { checkUserIsAdmin } from '@/state/ducks/auth/helpers';
 
 const { SubMenu } = Menu;
 
+/**
+ * Reners the Admin sidebar
+ */
 export const AdminSidebar: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const currentUser: AuthState = useSelector(({ auth }: IApplicationState) => auth);
