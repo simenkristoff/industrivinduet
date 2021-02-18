@@ -13,6 +13,10 @@ type groupType = {
   [key: string]: MemberEntity[];
 };
 
+/**
+ * Container for AboutUs component. Fetches contents, members and partners
+ * on mount. Will sort members by group and role.
+ */
 export const AboutUsContainer = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);

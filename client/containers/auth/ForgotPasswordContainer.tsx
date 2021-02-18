@@ -6,6 +6,11 @@ import { IApplicationState, ForgotPasswordCredentials } from '@/types';
 import { clear, forgot } from '@/state/ducks/auth/actions';
 import { ForgotPassword } from '@/components/auth';
 
+/**
+ * Container for ForgotPassword component. Dispatches a
+ * forgot password request to the api.
+ * Will not render if the user is already logged in.
+ */
 export const ForgotPasswordContainer = () => {
   const history = useHistory();
   const dispatch = useDispatch();

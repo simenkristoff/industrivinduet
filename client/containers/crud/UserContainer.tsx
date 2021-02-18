@@ -15,6 +15,9 @@ import { fetchMembers } from '@/state/ducks/member/actions';
 
 import { CrudContainer } from './CrudContainer';
 
+/**
+ * Setup Crud-management for User Entities
+ */
 export const UserContainer: React.FC = () => {
   const dispatch = useDispatch();
   const userState: UserState = useSelector(({ user }: IApplicationState) => ({

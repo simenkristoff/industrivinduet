@@ -14,6 +14,9 @@ interface IProps<T extends Entity> {
   searchFilterTypes?: SearchFilterType<T>;
 }
 
+/**
+ * Container for ResultManager component. Handles filtering of results.
+ */
 export const ResultContainer = <T extends Entity>(props: IProps<T>): JSX.Element => {
   const { title, data, dataItem, loading, filterTypes, searchFilterTypes } = props;
   const { initialFilterState, filterState, setFilterState, filterFunctions } = initializeFilters<T>(

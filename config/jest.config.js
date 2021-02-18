@@ -1,7 +1,7 @@
 module.exports = {
   preset: 'ts-jest',
   rootDir: '../',
-  roots: ['<rootDir>/client/'],
+  roots: ['<rootDir>/client/', '<rootDir>/server/'],
   modulePathIgnorePatterns: ['__mockData__'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',

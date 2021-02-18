@@ -17,6 +17,11 @@ import { fetchPartners } from '@/state/ducks/partner/actions';
 import { Frontpage } from '@/components/Frontpage';
 import { fetchOptions } from '@/state/ducks/option/actions';
 
+/**
+ * Container for Frontpage component. Will fetch options and partners on mount.
+ * Will also fetch events/jobs if displayEvents-/displayJobs-setting
+ * is set to true.
+ */
 export const FrontpageContainer = () => {
   const dispatch = useDispatch();
   const [displayEvents, setDisplayEvents] = useState<boolean>(false);

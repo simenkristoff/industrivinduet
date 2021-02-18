@@ -16,6 +16,9 @@ import {
 
 import { CrudContainer } from './CrudContainer';
 
+/**
+ * Setup Crud-management for Partner Entities
+ */
 export const PartnerContainer: React.FC = () => {
   const dispatch = useDispatch();
   const partnerState: PartnerState = useSelector(({ partner }: IApplicationState) => ({

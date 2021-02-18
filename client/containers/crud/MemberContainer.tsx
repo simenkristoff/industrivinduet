@@ -22,6 +22,9 @@ import { fetchRoles } from '@/state/ducks/role/actions';
 
 import { CrudContainer } from './CrudContainer';
 
+/**
+ * Setup Crud-management for Job Entities
+ */
 export const MemberContainer: React.FC = () => {
   const dispatch = useDispatch();
   const memberState: MemberState = useSelector(({ member }: IApplicationState) => ({

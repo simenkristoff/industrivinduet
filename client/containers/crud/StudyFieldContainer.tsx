@@ -14,6 +14,9 @@ import {
 
 import { CrudContainer } from './CrudContainer';
 
+/**
+ * Setup Crud-management for StudyField Entities
+ */
 export const StudyFieldContainer: React.FC = () => {
   const dispatch = useDispatch();
   const studyfieldState: StudyFieldState = useSelector(({ studyfield }: IApplicationState) => ({

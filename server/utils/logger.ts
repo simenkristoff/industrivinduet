@@ -4,7 +4,9 @@ import path from 'path';
 import { parseInt } from 'lodash';
 import winston from 'winston';
 
-const logDirectory = path.join(process.env.LOG_DIR_NAME as string);
+const DIR_PATH = process.env.LOG_DIR_NAME ? (process.env.LOG_DIR_NAME as string) : './server/logs';
+
+const logDirectory = path.join(DIR_PATH);
 if (!fs.existsSync(logDirectory)) {
   fs.mkdirSync(logDirectory);
 }

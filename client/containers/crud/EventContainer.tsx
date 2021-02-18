@@ -19,6 +19,9 @@ import { fetchMembers } from '@/state/ducks/member/actions';
 
 import { CrudContainer } from './CrudContainer';
 
+/**
+ * Setup Crud-management for Event Entities
+ */
 export const EventContainer: React.FC = () => {
   const dispatch = useDispatch();
   const eventState: EventState = useSelector(({ event }: IApplicationState) => ({

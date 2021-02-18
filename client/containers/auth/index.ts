@@ -1,3 +1,6 @@
+/**
+ * Exports Auth containers
+ */
 export { RegisterContainer } from './RegisterContainer';
 export { LoginContainer } from './LoginContainer';
 export { ForgotPasswordContainer } from './ForgotPasswordContainer';

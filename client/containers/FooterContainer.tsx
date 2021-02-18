@@ -5,6 +5,10 @@ import { IApplicationState, OptionState, PartnerEntity } from '@/types';
 import { fetchPartners } from '@/state/ducks/partner/actions';
 import { Footer } from '@/components/Footer';
 
+/**
+ * Container for Footer component. Will stretch the main content height
+ * on mount in order to push the footer to the very bottom of the page.
+ */
 export const FooterContainer = () => {
   const dispatch = useDispatch();
   const options: OptionState = useSelector(({ options }: IApplicationState) => options);

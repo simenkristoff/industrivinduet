@@ -56,7 +56,7 @@ export const MemberSchema: Schema<Member, Model<Member>> = new Schema(
     role: {
       type: Schema.Types.ObjectId,
       ref: 'Role',
-      required: true,
+      required: false,
       unique: true,
       default: null,
       autopopulate: true,

@@ -14,6 +14,9 @@ import {
 
 import { CrudContainer } from './CrudContainer';
 
+/**
+ * Setup Crud-management for Content Entities
+ */
 export const ContentContainer: React.FC = () => {
   const dispatch = useDispatch();
   const contentState: ContentState = useSelector(({ content }: IApplicationState) => ({

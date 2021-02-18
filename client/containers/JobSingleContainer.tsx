@@ -10,6 +10,10 @@ type ParamTypes = {
   jobID: string;
 };
 
+/**
+ * Container for JobSingle component. Fetches job by the id
+ * set in the location path.
+ */
 export const JobSingleContainer = () => {
   const dispatch = useDispatch();
   const job: JobState = useSelector(({ job }: IApplicationState) => job);

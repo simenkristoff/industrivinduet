@@ -21,6 +21,10 @@ import { fetchActiveJobs } from '@/state/ducks/job/actions';
 import { fetchUsers } from '@/state/ducks/user/actions';
 import { checkUserIsAdmin } from '@/state/ducks/auth/helpers';
 
+/**
+ * Container for AdminLanding component. Displays
+ * system data.
+ */
 export const AdminContainer = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();

@@ -6,6 +6,11 @@ import { IApplicationState, LoginCredentials } from '@/types';
 import { clear, login } from '@/state/ducks/auth/actions';
 import { Login } from '@/components/auth';
 
+/**
+ * Container for Login component. Dispatches a
+ * login request to the api.
+ * Will not render if the user is already logged in.
+ */
 export const LoginContainer = () => {
   const history = useHistory();
   const dispatch = useDispatch();

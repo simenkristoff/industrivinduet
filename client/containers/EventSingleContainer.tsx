@@ -10,6 +10,10 @@ type ParamTypes = {
   eventID: string;
 };
 
+/**
+ * Container for EventSingle component. Fetches event by the id
+ * set in the location path.
+ */
 export const EventSingleContainer = () => {
   const dispatch = useDispatch();
   const event: EventState = useSelector(({ event }: IApplicationState) => event);
