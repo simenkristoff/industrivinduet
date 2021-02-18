@@ -1,6 +1,7 @@
 import { mount } from 'enzyme';
 import React from 'react';
 import * as reactRedux from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 
 import { LoginContainer } from '@/containers/auth/LoginContainer';
 import { Login } from '@/components/auth/Login';
@@ -16,9 +17,11 @@ describe('container <LoginContainer />', () => {
     store = configureStore(initialState);
     store.dispatch = jest.fn();
     wrapper = mount(
-      <Provider store={store}>
-        <LoginContainer />
-      </Provider>,
+      <MemoryRouter initialEntries={['/login']}>
+        <Provider store={store}>
+          <LoginContainer />
+        </Provider>
+      </MemoryRouter>,
     );
     container = wrapper.find(LoginContainer);
     component = container.find(Login);

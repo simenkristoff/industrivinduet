@@ -16,7 +16,7 @@
     "build:analyze": "cross-env ADDONS=bundleanalyzer npm run build",
     "prod": "node -r ts-node/register/transpile-only server/server.ts",
     "start": "npm run client",
-    "test": "jest --config config/jest.config.js",
+    "test": "dotenv -e ./config/.env.test -- cross-var jest --config config/jest.config.js --detectOpenHandles",
     "format": "prettier --write \"./*.{js,jsx,ts,tsx,css,scss,md}\"",
     "eslint": "eslint ./**",
     "stylelint": "stylelint 'client/sass/**/*.scss'",

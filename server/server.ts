@@ -16,6 +16,7 @@ import {
 import App from './app';
 import { Logger, validateEnv } from './utils';
 import { scheduler } from './agendas/scheduler';
+import { seedDatabase } from './seeds';
 
 // Validate Environment-variables
 validateEnv();

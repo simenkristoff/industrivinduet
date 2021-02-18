@@ -73,7 +73,6 @@ export const EventSchema: Schema<Event, Model<Event>> = new Schema(
 EventSchema.plugin(autopopulate);
 
 EventSchema.pre<Event>('save', function (next) {
-  this.title = Filter.capitalize(this.title);
   this.type = Filter.capitalize(this.type);
   this.place = Filter.capitalize(this.place);
   this.dining = this.dining !== undefined ? Filter.capitalize(this.dining) : undefined;

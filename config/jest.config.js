@@ -16,7 +16,9 @@ module.exports = {
       '<rootDir>/__mocks__/fileMock.ts',
     '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.ts',
   },
-  setupFiles: ['<rootDir>/jest.setup.ts'],
+  setupFiles: ['<rootDir>/client/jest.setup.ts'],
+  collectCoverage: true,
+  coverageReporters: ['json', 'lcov', 'text', 'clover'],
   globals: {
     'ts-jest': {
       diagnostics: false,

@@ -1,4 +1,5 @@
 import path from 'path';
+import { Server } from 'http';
 
 import dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
@@ -22,6 +23,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
  */
 class App {
   public app: express.Application;
+  private instance: Server | null = null;
   private isProduction = process.env.NODE_ENV === 'production';
 
   /**
@@ -44,8 +46,8 @@ class App {
    * Listen to the server instance.
    * @public
    */
-  public listen(): void {
-    this.app.listen(process.env.SERVER_PORT, () => {
+  public listen(): Server {
+    return this.app.listen(process.env.SERVER_PORT, () => {
       Logger.debug(`Server running on port ${process.env.SERVER_PORT}`);
     });
   }
@@ -173,7 +175,7 @@ class App {
         useCreateIndex: true,
         dbName: DB_NAME,
       });
-      Logger.debug('Connected to MongoDB');
+      Logger.debug(`Connected to MongoDB at DB ${DB_NAME}`);
     } catch (error) {
       Logger.error('Could not connect to MongoDB', error);
     }

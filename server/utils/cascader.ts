@@ -36,6 +36,7 @@ namespace Cascader {
       const updateQuery: any = isArray
         ? { $pull: { [reference]: baseID } }
         : { [reference]: undefined };
+      if (!target) return;
       try {
         await target.find(query, (err: any, docs: P[]) => {
           if (docs) {
@@ -77,6 +78,7 @@ namespace Cascader {
     schema.pre<T>('remove', async function (next) {
       const baseID = this.id;
       const query: any = { [reference]: { $in: [baseID] } };
+      if (!target) return;
       try {
         await target.find(query, (err: any, docs: P[]) => {
           if (docs) {

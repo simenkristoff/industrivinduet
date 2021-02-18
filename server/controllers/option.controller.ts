@@ -80,7 +80,6 @@ class OptionController implements ControllerInterface {
    */
   private update = async (req: Request, res: Response, next: NextFunction) => {
     await OptionModel.findOneAndUpdate({}, req.body, { new: true }, (err, doc) => {
-      console.log(doc);
       if (!doc) {
         return next(new NotFoundException('Kunne ikke finne innstillinger'));
       }
