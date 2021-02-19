@@ -2,7 +2,7 @@ import { IMetaAction, IPayloadMetaAction, Entity, ApiResponse } from '@/types';
 import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 
 /**
- * @desc Type describing the Option state.
+ * Type describing the Option state.
  * @type
  */
 export type OptionState = {

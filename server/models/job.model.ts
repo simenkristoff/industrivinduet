@@ -62,7 +62,6 @@ export const JobSchema: Schema<Job, Model<Job>> = new Schema(
 JobSchema.plugin(autopopulate);
 
 JobSchema.pre<Job>('save', function (next) {
-  this.title = Filter.capitalize(this.title);
   this.type = Filter.capitalize(this.type);
   this.places.forEach((place, index) => {
     this.places[index] = Filter.capitalize(place);

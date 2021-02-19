@@ -7,6 +7,10 @@ import { fetchOptions, resetOptions, updateOptions } from '@/state/ducks/option/
 import { fireActionVerify } from '@/utils';
 import { OptionForm } from '@/components/forms';
 
+/**
+ * Container for OptionForm component. Fetches options on mount and handles
+ * option CRUD function on form submit.
+ */
 export const OptionContainer = () => {
   const dispatch = useDispatch();
   const [form] = Form.useForm<OptionEntity>();

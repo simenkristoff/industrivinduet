@@ -11,11 +11,11 @@ import {
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
- * @desc Business logic of the effects.
+ * Business logic of the effects.
  */
 
 /**
- * @desc Handle async GET request to API for fetching Jobs.
+ * Handle async GET request to API for fetching Jobs.
  * @param {IMetaAction} params action with meta data.
  */
 function* handleFetch(params: IMetaAction): Generator {
@@ -40,7 +40,7 @@ function* handleFetch(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Handle async GET request to API for fetching an Job by ID.
+ * Handle async GET request to API for fetching an Job by ID.
  * @param {IMetaAction} params action with meta data.
  */
 function* handleFetchOne(params: IMetaAction): Generator {
@@ -65,7 +65,7 @@ function* handleFetchOne(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Handle async POST request to API for creating a new Job.
+ * Handle async POST request to API for creating a new Job.
  * @param {IPayloadMetaAction<JobEntity>} params action with payload and meta data.
  */
 function* handleCreate(params: IPayloadMetaAction<JobEntity>): Generator {
@@ -91,7 +91,7 @@ function* handleCreate(params: IPayloadMetaAction<JobEntity>): Generator {
 }
 
 /**
- * @desc Handle async PUT request to API for updating a Job.
+ * Handle async PUT request to API for updating a Job.
  * @param {IPayloadMetaAction<JobEntity>} params action with payload and meta data.
  */
 function* handleUpdate(params: IPayloadMetaAction<JobEntity>): Generator {
@@ -117,7 +117,7 @@ function* handleUpdate(params: IPayloadMetaAction<JobEntity>): Generator {
 }
 
 /**
- * @desc Handle async DELETE request to API for deleting a Job.
+ * Handle async DELETE request to API for deleting a Job.
  * @param {IPayloadMetaAction<JobEntity>} params action with payload and meta data.
  */
 function* handleDelete(params: IPayloadMetaAction<JobEntity>): Generator {
@@ -143,7 +143,7 @@ function* handleDelete(params: IPayloadMetaAction<JobEntity>): Generator {
 }
 
 /**
- * @desc Set active Job.
+ * Set active Job.
  * @param {IPayloadMetaAction<JobEntity>} params action with payload and meta data.
  */
 function* handleSet(params: IPayloadAction<JobEntity>): Generator {
@@ -167,7 +167,7 @@ function* handleSet(params: IPayloadAction<JobEntity>): Generator {
 }
 
 /**
- * @desc Watches every specified action and runs effect method and passes action args to it.
+ * Watches every specified action and runs effect method and passes action args to it.
  */
 function* watchFetchRequest(): Generator {
   yield takeEvery(JobActionTypes.FETCH.START, handleFetch);
@@ -194,7 +194,7 @@ function* watchSetRequest(): Generator {
 }
 
 /**
- * @desc saga init, forks in effects.
+ * saga init, forks in effects.
  */
 export default function* jobSaga() {
   yield all([

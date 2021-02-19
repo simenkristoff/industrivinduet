@@ -7,6 +7,9 @@ interface IProps {
   className?: string;
 }
 
+/**
+ * Renders a spinner
+ */
 export const Spinner: React.FC<IProps> = ({ loading, centered, className }: IProps) => {
   if (!loading) return null;
   const classes: string[] = ['spinner'];

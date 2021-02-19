@@ -12,6 +12,9 @@ interface IProps extends ResultItemInterface<EventEntity> {
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Renders a single Event item with shortened details.
+ */
 export const EventItem: React.FC<IProps> = ({ data, className, displayContent }: IProps) => {
   const { _id, title, type, date, starttime, endtime, place, image } = data;
 

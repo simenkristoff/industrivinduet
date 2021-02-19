@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { CheckOutlined, FolderAddOutlined } from '@ant-design/icons';
-import { MediaFolderType, NewFolderInterface } from '@/types';
 
+import { MediaFolderType, NewFolderInterface } from '@/types';
 import { uniqueName } from '@/utils';
 
+/**
+ * New folder button. Handles creation of new folders.
+ */
 export const NewFolder: React.FC<NewFolderInterface> = ({
   dirNames,
   path,

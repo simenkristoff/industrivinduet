@@ -6,6 +6,9 @@ let editorConfig: EditorFieldProps = {
   outputFormat: 'html',
 };
 
+/**
+ * Adapter for TinyMCE Editor
+ */
 interface IProps {
   value?: string;
   onChange?: (value: string) => void;

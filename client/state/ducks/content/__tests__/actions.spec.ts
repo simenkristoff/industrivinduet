@@ -1,13 +1,19 @@
 import { action } from 'typesafe-actions';
+
 import { ContentActionTypes, ContentEntity } from '@/types';
+import contentData from '@/__mocks__/contentData';
 
-import { createContent, deleteContent, fetchContents, setContent, updateContent } from '../actions';
-
-import contentData from './__mockData__/contentData';
+import {
+  clear,
+  createContent,
+  deleteContent,
+  fetchContents,
+  setContent,
+  updateContent,
+} from '../actions';
 
 describe('content actions', () => {
-  // FETCH: Test if the correct function is called when fetching Contents.
-  it('fetch contents', () => {
+  it('should call @@content.FETCH.START', () => {
     const expectedAction = action(ContentActionTypes.FETCH.START, [], {
       method: 'get',
       route: 'api/contents',
@@ -16,8 +22,7 @@ describe('content actions', () => {
     expect(fetchContents()).toEqual(expectedAction);
   });
 
-  // CREATE: Test if the correct function is called when creating a Content.
-  it('create content', () => {
+  it('should call @@content.CREATE.START', () => {
     const payload: ContentEntity = contentData[1];
     const expectedAction = action(ContentActionTypes.CREATE.START, payload, {
       method: 'post',
@@ -27,8 +32,7 @@ describe('content actions', () => {
     expect(createContent(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Content.
-  it('update content', () => {
+  it('should call @@content.UPDATE.START', () => {
     const payload: ContentEntity = contentData[1];
     const expectedAction = action(ContentActionTypes.UPDATE.START, payload, {
       method: 'put',
@@ -38,8 +42,7 @@ describe('content actions', () => {
     expect(updateContent(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Content.
-  it('delete content', () => {
+  it('should call @@content.DELETE.START', () => {
     const payload: ContentEntity = contentData[1];
     const expectedAction = action(ContentActionTypes.DELETE.START, payload, {
       method: 'delete',
@@ -49,11 +52,16 @@ describe('content actions', () => {
     expect(deleteContent(payload)).toEqual(expectedAction);
   });
 
-  // SET: Test if the correct function is called when setting Content.
-  it('set content', () => {
+  it('should call @@content.SET.START', () => {
     const payload: ContentEntity = contentData[1];
     const expectedAction = action(ContentActionTypes.SET.START, payload);
 
     expect(setContent(payload)).toEqual(expectedAction);
+  });
+
+  it('should call @content.CLEAR', () => {
+    const expectedAction = action(ContentActionTypes.CLEAR);
+
+    expect(clear()).toEqual(expectedAction);
   });
 });

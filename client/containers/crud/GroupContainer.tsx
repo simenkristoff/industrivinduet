@@ -14,6 +14,9 @@ import {
 
 import { CrudContainer } from './CrudContainer';
 
+/**
+ * Setup Crud-management for Group Entities
+ */
 export const GroupContainer: React.FC = () => {
   const dispatch = useDispatch();
   const groupState: GroupState = useSelector(({ group }: IApplicationState) => ({

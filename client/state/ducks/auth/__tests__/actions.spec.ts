@@ -1,41 +1,65 @@
 import { action } from 'typesafe-actions';
+
 import { AuthActionTypes } from '@/types';
+import {
+  registerCredentials,
+  loginCredentials,
+  forgotPasswordCredentials,
+  resetPasswordCredentials,
+} from '@/__mocks__/authData';
 
-import { register, login, logout } from '../actions';
-
-import { authLogin, authRegister, authUser } from './__mockData__/authData';
+import { register, login, logout, forgot, reset, clear } from '../actions';
 
 describe('auth actions', () => {
-  /**
-   * REGISTER: Test if the correct function is called when registering User
-   */
-  it('register user', () => {
-    const expectedAction = action(AuthActionTypes.REGISTER.START, authUser, {
+  it('should call @@auth.REGISTER.START', () => {
+    const expectedAction = action(AuthActionTypes.REGISTER.START, registerCredentials, {
       method: 'post',
-      route: 'auth/register',
+      route: 'api/register',
     });
 
-    expect(register(authRegister)).toEqual(expectedAction);
+    expect(register(registerCredentials)).toEqual(expectedAction);
   });
 
-  /**
-   * LOGIN: Test if the correct function is called when logging in User
-   */
-  it('login user', () => {
-    const expectedAction = action(AuthActionTypes.LOGIN.START, authLogin, {
+  it('should call @@auth.LOGIN.START', () => {
+    const expectedAction = action(AuthActionTypes.LOGIN.START, loginCredentials, {
       method: 'post',
-      route: `auth/login`,
+      route: `api/login`,
     });
 
-    expect(login(authLogin)).toEqual(expectedAction);
+    expect(login(loginCredentials)).toEqual(expectedAction);
   });
 
-  /**
-   * LOGOUT: Test if the correct function is called when loggin out User
-   */
-  it('logout user', () => {
-    const expectedAction = action(AuthActionTypes.LOGOUT.START);
+  it('should call @@auth.SEND_FORGOT_PASSWORD.START', () => {
+    const expectedAction = action(
+      AuthActionTypes.SEND_FORGOT_PASSWORD.START,
+      forgotPasswordCredentials,
+      {
+        method: 'post',
+        route: `api/forgot`,
+      },
+    );
+
+    expect(forgot(forgotPasswordCredentials)).toEqual(expectedAction);
+  });
+
+  it('should call @@auth.RESET_PASSWORD.START', () => {
+    const expectedAction = action(AuthActionTypes.RESET_PASSWORD.START, resetPasswordCredentials, {
+      method: 'post',
+      route: `api/reset`,
+    });
+
+    expect(reset(resetPasswordCredentials)).toEqual(expectedAction);
+  });
+
+  it('should call @@auth.LOGOUT', () => {
+    const expectedAction = action(AuthActionTypes.LOGOUT);
 
     expect(logout()).toEqual(expectedAction);
+  });
+
+  it('should call @auth.CLEAR', () => {
+    const expectedAction = action(AuthActionTypes.CLEAR);
+
+    expect(clear()).toEqual(expectedAction);
   });
 });

@@ -6,6 +6,9 @@ import { Spinner } from '@/components/Spinner';
 
 const { Content } = Layout;
 
+/**
+ * Renders the results
+ */
 function renderResults<T extends Entity>(data: T[], dataItem: React.FC<ResultItemInterface<T>>) {
   if (data.length > 0) {
     const DataItem = dataItem;

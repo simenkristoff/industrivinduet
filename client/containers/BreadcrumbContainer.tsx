@@ -8,6 +8,11 @@ interface IProps {
   displayAtRoot?: boolean;
 }
 
+/**
+ * Container for handling breadcrumbs. Will render breadcrumbs
+ * based on current location. Breadcrumbs will not render
+ * when path is part of roots, i.e '/' and '/admin'.
+ */
 export const BreadcrumbContainer: React.FC<IProps> = ({ isDashboard, displayAtRoot }: IProps) => {
   const location = useLocation();
   const [paths, setPaths] = useState<Array<string>>([]);

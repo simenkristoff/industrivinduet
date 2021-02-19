@@ -18,6 +18,10 @@ import { fetchActiveEvents } from '@/state/ducks/event/actions';
 
 import { ResultContainer } from './ResultContainer';
 
+/**
+ * Container for Event results. Setup filters and dependencies
+ * and passes props to ResultContainer for rendering.
+ */
 export const EventResultContainer = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);

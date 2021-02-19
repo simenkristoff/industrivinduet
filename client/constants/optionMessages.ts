@@ -1,3 +1,6 @@
+/**
+ * Defines option form messages
+ */
 const OptionMessages = {
   GENERAL: {
     SITENAME: {

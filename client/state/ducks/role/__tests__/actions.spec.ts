@@ -1,13 +1,12 @@
 import { action } from 'typesafe-actions';
+
 import { RoleActionTypes, RoleEntity } from '@/types';
+import roleData from '@/__mocks__/roleData';
 
-import { createRole, deleteRole, fetchRoles, setRole, updateRole } from '../actions';
-
-import roleData from './__mockData__/roleData';
+import { clear, createRole, deleteRole, fetchRoles, setRole, updateRole } from '../actions';
 
 describe('role actions', () => {
-  // FETCH: Test if the correct function is called when fetching Roles.
-  it('fetch roles', () => {
+  it('should call @@role.FETCH.START', () => {
     const expectedAction = action(RoleActionTypes.FETCH.START, [], {
       method: 'get',
       route: 'api/roles',
@@ -16,8 +15,7 @@ describe('role actions', () => {
     expect(fetchRoles()).toEqual(expectedAction);
   });
 
-  // CREATE: Test if the correct function is called when creating a Role.
-  it('create role', () => {
+  it('should call @@role.CREATE.START', () => {
     const payload: RoleEntity = roleData[1];
     const expectedAction = action(RoleActionTypes.CREATE.START, payload, {
       method: 'post',
@@ -27,8 +25,7 @@ describe('role actions', () => {
     expect(createRole(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Role.
-  it('update role', () => {
+  it('should call @@role.UPDATE.START', () => {
     const payload: RoleEntity = roleData[1];
     const expectedAction = action(RoleActionTypes.UPDATE.START, payload, {
       method: 'put',
@@ -38,8 +35,7 @@ describe('role actions', () => {
     expect(updateRole(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Role.
-  it('delete role', () => {
+  it('should call @@role.DELETE.START', () => {
     const payload: RoleEntity = roleData[1];
     const expectedAction = action(RoleActionTypes.DELETE.START, payload, {
       method: 'delete',
@@ -49,11 +45,16 @@ describe('role actions', () => {
     expect(deleteRole(payload)).toEqual(expectedAction);
   });
 
-  // SET: Test if the correct function is called when setting Role.
-  it('set role', () => {
+  it('should call @@role.SET.START', () => {
     const payload: RoleEntity = roleData[1];
     const expectedAction = action(RoleActionTypes.SET.START, payload);
 
     expect(setRole(payload)).toEqual(expectedAction);
+  });
+
+  it('should call @role.CLEAR', () => {
+    const expectedAction = action(RoleActionTypes.CLEAR);
+
+    expect(clear()).toEqual(expectedAction);
   });
 });

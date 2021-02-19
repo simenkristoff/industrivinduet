@@ -9,6 +9,9 @@ export interface IProps {
   forgot: (credentials: ForgotPasswordCredentials) => void;
 }
 
+/**
+ * Forgot password form. Dispatches a forgot password request
+ */
 export const ForgotPasswordForm: React.FC<IProps> = ({ forgot }: IProps) => {
   const [form] = Form.useForm();
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -15,36 +15,71 @@ import { fetchActiveEvents } from '@/state/ducks/event/actions';
 import { fetchActiveJobs } from '@/state/ducks/job/actions';
 import { fetchPartners } from '@/state/ducks/partner/actions';
 import { Frontpage } from '@/components/Frontpage';
+import { fetchOptions } from '@/state/ducks/option/actions';
 
+/**
+ * Container for Frontpage component. Will fetch options and partners on mount.
+ * Will also fetch events/jobs if displayEvents-/displayJobs-setting
+ * is set to true.
+ */
 export const FrontpageContainer = () => {
   const dispatch = useDispatch();
+  const [displayEvents, setDisplayEvents] = useState<boolean>(false);
+  const [numEvents, setNumEvents] = useState<number>(0);
+  const [displayJobs, setDisplayJobs] = useState<boolean>(false);
+  const [numJobs, setNumJobs] = useState<number>(0);
   const options: OptionState = useSelector(({ options }: IApplicationState) => options);
   const eventState: EventState = useSelector(({ event }: IApplicationState) => event);
   const jobState: JobState = useSelector(({ job }: IApplicationState) => job);
   const partnerState: PartnerState = useSelector(({ partner }: IApplicationState) => partner);
 
   useEffect(() => {
-    if (!options.loading && !_.isEmpty(options)) {
-      if ((options.event as EventOptions).homepage.displayEvents) {
-        dispatch(fetchActiveEvents((options.event as EventOptions).homepage.numberOfEvents));
-      }
-      if ((options.job as JobOptions).homepage.displayJobs) {
-        dispatch(fetchActiveJobs((options.job as JobOptions).homepage.numberOfJobs));
-      }
-      dispatch(fetchPartners());
-    }
+    dispatch(fetchOptions());
+    handleFetchEvents();
+    handleFetchJobs();
+    dispatch(fetchPartners());
   }, []);
+
+  useEffect(() => {
+    handleFetchEvents();
+    handleFetchJobs();
+  }, [displayEvents, numEvents, displayJobs, numJobs]);
+
+  useEffect(() => {
+    if (!_.isEmpty(options.event)) {
+      var eventOptions = (options.event as EventOptions).homepage;
+      setDisplayEvents(eventOptions.displayEvents);
+      setNumEvents(eventOptions.numberOfEvents);
+    }
+    if (!_.isEmpty(options.job)) {
+      var jobOptions = (options.job as JobOptions).homepage;
+      setDisplayJobs(jobOptions.displayJobs);
+      setNumJobs(jobOptions.numberOfJobs);
+    }
+  }, [options]);
+
+  const handleFetchEvents = () => {
+    if (displayEvents && numEvents > 0) {
+      dispatch(fetchActiveEvents(numEvents));
+    }
+  };
+
+  const handleFetchJobs = () => {
+    if (displayJobs && numJobs > 0) {
+      dispatch(fetchActiveJobs(numJobs));
+    }
+  };
 
   const eventProps = {
     data: eventState.data,
-    display: (options.event as EventOptions).homepage.displayEvents,
+    display: displayEvents,
     loading: eventState.loading,
-    colSize: Math.floor(24 / (options.event as EventOptions).homepage.numberOfEvents),
+    colSize: Math.floor(24 / numEvents),
   };
 
   const jobProps = {
     data: jobState.data,
-    display: (options.job as JobOptions).homepage.displayJobs,
+    display: displayJobs,
     loading: jobState.loading,
   };
 

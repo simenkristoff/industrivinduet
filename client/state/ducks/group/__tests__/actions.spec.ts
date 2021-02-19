@@ -1,13 +1,12 @@
 import { action } from 'typesafe-actions';
+
 import { GroupActionTypes, GroupEntity } from '@/types';
+import groupData from '@/__mocks__/groupData';
 
-import { createGroup, deleteGroup, fetchGroups, setGroup, updateGroup } from '../actions';
-
-import groupData from './__mockData__/groupData';
+import { clear, createGroup, deleteGroup, fetchGroups, setGroup, updateGroup } from '../actions';
 
 describe('group actions', () => {
-  // FETCH: Test if the correct function is called when fetching Groups.
-  it('fetch groups', () => {
+  it('should call @@group.FETCH.START', () => {
     const expectedAction = action(GroupActionTypes.FETCH.START, [], {
       method: 'get',
       route: 'api/groups',
@@ -16,8 +15,7 @@ describe('group actions', () => {
     expect(fetchGroups()).toEqual(expectedAction);
   });
 
-  // CREATE: Test if the correct function is called when creating a Group.
-  it('create group', () => {
+  it('should call @@group.CREATE.START', () => {
     const payload: GroupEntity = groupData[1];
     const expectedAction = action(GroupActionTypes.CREATE.START, payload, {
       method: 'post',
@@ -27,8 +25,7 @@ describe('group actions', () => {
     expect(createGroup(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Group.
-  it('update group', () => {
+  it('should call @@group.UPDATE.START', () => {
     const payload: GroupEntity = groupData[1];
     const expectedAction = action(GroupActionTypes.UPDATE.START, payload, {
       method: 'put',
@@ -38,8 +35,7 @@ describe('group actions', () => {
     expect(updateGroup(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Group.
-  it('delete group', () => {
+  it('should call @@group.DELETE.START', () => {
     const payload: GroupEntity = groupData[1];
     const expectedAction = action(GroupActionTypes.DELETE.START, payload, {
       method: 'delete',
@@ -49,11 +45,16 @@ describe('group actions', () => {
     expect(deleteGroup(payload)).toEqual(expectedAction);
   });
 
-  // SET: Test if the correct function is called when setting Group.
-  it('set group', () => {
+  it('should call @@group.SET.START', () => {
     const payload: GroupEntity = groupData[1];
     const expectedAction = action(GroupActionTypes.SET.START, payload);
 
     expect(setGroup(payload)).toEqual(expectedAction);
+  });
+
+  it('should call @group.CLEAR', () => {
+    const expectedAction = action(GroupActionTypes.CLEAR);
+
+    expect(clear()).toEqual(expectedAction);
   });
 });

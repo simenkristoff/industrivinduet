@@ -16,6 +16,10 @@ export interface IProps {
   response: ApiResponse | null;
 }
 
+/**
+ * Register component. Receives props from RegisterContainer
+ * and displays the RegisterForm
+ */
 export const Register: React.FC<IProps> = ({ user, register, loading, response }: IProps) => {
   return (
     <Row justify='center' align='middle' className='pt-2 pb-2'>

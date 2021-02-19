@@ -1,11 +1,11 @@
 import crypto from 'crypto';
 
 import { Request, Response, NextFunction, Router } from 'express';
-import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
 import Mail from 'nodemailer/lib/mailer';
 
+import { genToken } from '../utils/genToken';
 import { ControllerInterface, InfoMessage, User } from '../types';
 import { Logger, transporter } from '../utils';
 import { asyncHandler } from '../middlewares';
@@ -31,29 +31,6 @@ class AuthController implements ControllerInterface {
   }
 
   /**
-   * Generate token for a given user.
-   * @private
-   * @param {User} user the token holder
-   * @returns {string} generated token
-   */
-  private genToken = (user: User): string => {
-    return jwt.sign(
-      {
-        iss: 'Industrivinduet',
-        sub: {
-          id: user._id,
-          email: user.email,
-          permissions: user.permissions,
-          member: user.member,
-        },
-        iat: new Date().getTime(),
-        exp: new Date().setDate(new Date().getDate() + 1),
-      },
-      process.env.JWT_SECRET_KEY as string,
-    );
-  };
-
-  /**
    * Initializes API routes
    * @private
    */
@@ -77,7 +54,6 @@ class AuthController implements ControllerInterface {
    * @param {NextFunction} next the next function
    */
   private register = async (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.body);
     await passport.authenticate('register', (err: any, user: User, info: InfoMessage) => {
       if (err) {
         Logger.log('Error', err);
@@ -102,7 +78,7 @@ class AuthController implements ControllerInterface {
             { returnOriginal: false, useFindAndModify: false },
           ).then((modifiedUser: User) => {
             Logger.debug('User created in database.');
-            const token = this.genToken(modifiedUser);
+            const token = genToken(modifiedUser);
             res.status(200).send({
               user: modifiedUser,
               token: token,
@@ -139,7 +115,7 @@ class AuthController implements ControllerInterface {
       } else {
         req.logIn(user, (err) => {
           UserModel.findOne({ email: user.email }).then((user: User) => {
-            const token = this.genToken(user);
+            const token = genToken(user);
             res.status(200).send({
               user: user,
               token: token,

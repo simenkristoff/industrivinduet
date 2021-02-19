@@ -60,6 +60,10 @@ const mapOptions: google.maps.MapOptions = {
   ],
 };
 
+/**
+ * Container for GoogleMaps component. Renders Google Maps if correct
+ * API key is set.
+ */
 export const GoogleMapsContainer: React.FC<IProps> = ({ renderInDev }: IProps) => {
   if (!renderInDev && isDev) return null;
   const googleMapRef = useRef<HTMLDivElement>(null);

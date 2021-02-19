@@ -12,7 +12,7 @@ export const initialState: JobState = {
 };
 
 /**
- * @desc Reducer actions for Jobs.
+ * Reducer actions for Jobs.
  * @param {JobState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */
@@ -64,6 +64,7 @@ export const jobReducer = (
     case JobActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

@@ -11,11 +11,11 @@ import {
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
- * @desc Business logic of the effects.
+ * Business logic of the effects.
  */
 
 /**
- * @desc Handle async GET request to API for fetching Partners.
+ * Handle async GET request to API for fetching Partners.
  * @param {IMetaAction} params action with meta data.
  */
 function* handleFetch(params: IMetaAction): Generator {
@@ -40,7 +40,7 @@ function* handleFetch(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Handle async POST request to API for creating a new Partner.
+ * Handle async POST request to API for creating a new Partner.
  * @param {IPayloadMetaAction<PartnerEntity>} params action with payload and meta data.
  */
 function* handleCreate(params: IPayloadMetaAction<PartnerEntity>): Generator {
@@ -66,7 +66,7 @@ function* handleCreate(params: IPayloadMetaAction<PartnerEntity>): Generator {
 }
 
 /**
- * @desc Handle async PUT request to API for updating a Partner.
+ * Handle async PUT request to API for updating a Partner.
  * @param {IPayloadMetaAction<PartnerEntity>} params action with payload and meta data.
  */
 function* handleUpdate(params: IPayloadMetaAction<PartnerEntity>): Generator {
@@ -92,7 +92,7 @@ function* handleUpdate(params: IPayloadMetaAction<PartnerEntity>): Generator {
 }
 
 /**
- * @desc Handle async DELETE request to API for deleting a Partner.
+ * Handle async DELETE request to API for deleting a Partner.
  * @param {IPayloadMetaAction<PartnerEntity>} params action with payload and meta data.
  */
 function* handleDelete(params: IPayloadMetaAction<PartnerEntity>): Generator {
@@ -118,7 +118,7 @@ function* handleDelete(params: IPayloadMetaAction<PartnerEntity>): Generator {
 }
 
 /**
- * @desc Set active Partner.
+ * Set active Partner.
  * @param {IPayloadMetaAction<PartnerEntity>} params action with payload and meta data.
  */
 function* handleSet(params: IPayloadAction<PartnerEntity>): Generator {
@@ -142,7 +142,7 @@ function* handleSet(params: IPayloadAction<PartnerEntity>): Generator {
 }
 
 /**
- * @desc Watches every specified action and runs effect method and passes action args to it.
+ * Watches every specified action and runs effect method and passes action args to it.
  */
 function* watchFetchRequest(): Generator {
   yield takeEvery(PartnerActionTypes.FETCH.START, handleFetch);
@@ -165,7 +165,7 @@ function* watchSetRequest(): Generator {
 }
 
 /**
- * @desc saga init, forks in effects.
+ * saga init, forks in effects.
  */
 export default function* partnerSaga() {
   yield all([

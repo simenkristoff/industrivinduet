@@ -11,6 +11,10 @@ interface HeaderProps {
   member: MemberEntity | null;
 }
 
+/**
+ * Container for Header component. Selects the auth state and passes
+ * it as props to the Header component.
+ */
 export const HeaderContainer = () => {
   const dispatch = useDispatch();
   const [isAdminNamespace, setIsAdminNamespace] = useState(false);

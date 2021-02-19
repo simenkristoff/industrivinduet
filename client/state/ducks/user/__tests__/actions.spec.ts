@@ -1,13 +1,20 @@
 import { action } from 'typesafe-actions';
+
 import { UserActionTypes, UserEntity } from '@/types';
+import userData, { registerTokenData } from '@/__mocks__/userData';
 
-import { createUser, deleteUser, fetchUsers, setUser, updateUser } from '../actions';
-
-import userData from './__mockData__/userData';
+import {
+  clear,
+  createUser,
+  deleteUser,
+  fetchUsers,
+  lookupRegisterToken,
+  setUser,
+  updateUser,
+} from '../actions';
 
 describe('user actions', () => {
-  // FETCH: Test if the correct function is called when fetching Users.
-  it('fetch users', () => {
+  it('should call @@user.FETCH.START', () => {
     const expectedAction = action(UserActionTypes.FETCH.START, [], {
       method: 'get',
       route: 'api/users',
@@ -16,8 +23,7 @@ describe('user actions', () => {
     expect(fetchUsers()).toEqual(expectedAction);
   });
 
-  // CREATE: Test if the correct function is called when creating a User.
-  it('create user', () => {
+  it('should call @@user.CREATE.START', () => {
     const payload: UserEntity = userData[1];
     const expectedAction = action(UserActionTypes.CREATE.START, payload, {
       method: 'post',
@@ -27,8 +33,7 @@ describe('user actions', () => {
     expect(createUser(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating User.
-  it('update user', () => {
+  it('should call @@user.UPDATE.START', () => {
     const payload: UserEntity = userData[1];
     const expectedAction = action(UserActionTypes.UPDATE.START, payload, {
       method: 'put',
@@ -38,8 +43,7 @@ describe('user actions', () => {
     expect(updateUser(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating User.
-  it('delete user', () => {
+  it('should call @@user.DELETE.START', () => {
     const payload: UserEntity = userData[1];
     const expectedAction = action(UserActionTypes.DELETE.START, payload, {
       method: 'delete',
@@ -49,11 +53,25 @@ describe('user actions', () => {
     expect(deleteUser(payload)).toEqual(expectedAction);
   });
 
-  // SET: Test if the correct function is called when setting User.
-  it('set user', () => {
+  it('should call @@user.LOOKUP_REGISTER_TOKEN.START', () => {
+    const expectedAction = action(UserActionTypes.LOOKUP_REGISTER_TOKEN.START, registerTokenData, {
+      method: 'post',
+      route: `api/users/lookup`,
+    });
+
+    expect(lookupRegisterToken(registerTokenData)).toEqual(expectedAction);
+  });
+
+  it('should call @@user.SET.START', () => {
     const payload: UserEntity = userData[1];
     const expectedAction = action(UserActionTypes.SET.START, payload);
 
     expect(setUser(payload)).toEqual(expectedAction);
+  });
+
+  it('should call @user.CLEAR', () => {
+    const expectedAction = action(UserActionTypes.CLEAR);
+
+    expect(clear()).toEqual(expectedAction);
   });
 });

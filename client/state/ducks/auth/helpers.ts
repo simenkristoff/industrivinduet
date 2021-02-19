@@ -6,6 +6,10 @@ import { AuthState, DecodedToken, EncodedToken, Token, UserPermissions } from '@
 
 const STORAGE_KEY = process.env.STORAGE_KEY as string;
 
+/**
+ * Stores a JWT Auth Token in the web storage
+ * @param {string} token the token to be stored
+ */
 export function saveToken(token: EncodedToken) {
   const decoded: DecodedToken = jwtDecode(token);
   const expires = moment.unix(decoded.exp);
@@ -17,10 +21,16 @@ export function saveToken(token: EncodedToken) {
   });
 }
 
+/**
+ * Removes JWT Auth token from the web storage
+ */
 export function removeToken() {
   return cookie.remove(STORAGE_KEY, { path: '/' });
 }
 
+/**
+ * Retrieves JWT Auth Token from the web storage
+ */
 export function getToken(): Token | undefined {
   const encodedToken = cookie.get(STORAGE_KEY);
   if (!encodedToken) return;

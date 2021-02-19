@@ -11,6 +11,9 @@ import { MediaPicker } from '@/components/MediaPicker';
 
 const { Panel } = Collapse;
 
+/**
+ * Dataform for entity Job
+ */
 export const JobForm: React.FC<DataFormInterface<JobEntity>> = ({
   form,
   data,

@@ -2,9 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Col, Input } from 'antd';
 import { DeleteOutlined, EditOutlined, FolderFilled } from '@ant-design/icons';
 
-import { MediaFolderInterface, MediaType, MediaFolderType } from '@/types';
+import { MediaFolderInterface, MediaFolderType } from '@/types';
 import { fireFolderDeleteVerify } from '@/utils';
 
+/**
+ * Renders a folder in the media library.
+ */
 export const MediaFolder: React.FC<MediaFolderInterface> = ({
   data,
   dirNames,

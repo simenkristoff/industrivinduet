@@ -1,17 +1,16 @@
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
-import { MemberActionTypes } from '@/types';
 
+import { ApiResponse, MemberActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import memberData from '@/__mocks__/memberData';
 
 import { createMember, deleteMember, fetchMembers, setMember, updateMember } from '../actions';
 import memberSaga from '../sagas';
 
-import memberData from './__mockData__/memberData';
-
 describe('member saga', () => {
-  it('handle fetch success', () => {
+  it('should handle fetch success', () => {
     return expectSaga(memberSaga)
       .provide([[matchers.call.fn(apiCaller), memberData]])
       .put({ type: MemberActionTypes.FETCH.SUCCESS, payload: memberData })
@@ -19,17 +18,21 @@ describe('member saga', () => {
       .run();
   });
 
-  it('handle fetch error', () => {
-    const error = new Error('fetch error');
+  it('should handle fetch error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(memberSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: MemberActionTypes.FETCH.ERROR, payload: error.message })
+      .put({ type: MemberActionTypes.FETCH.ERROR, payload: apiResponse })
       .dispatch(fetchMembers())
       .run();
   });
 
-  it('handle create success', () => {
+  it('should handle create success', () => {
     return expectSaga(memberSaga)
       .provide([[matchers.call.fn(apiCaller), memberData[0]]])
       .put({ type: MemberActionTypes.CREATE.SUCCESS, payload: memberData[0] })
@@ -37,17 +40,21 @@ describe('member saga', () => {
       .run();
   });
 
-  it('handle create error', () => {
-    const error = new Error('create error');
+  it('should handle create error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(memberSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: MemberActionTypes.CREATE.ERROR, payload: error.message })
+      .put({ type: MemberActionTypes.CREATE.ERROR, payload: apiResponse })
       .dispatch(createMember(memberData[0]))
       .run();
   });
 
-  it('handle update success', () => {
+  it('should handle update success', () => {
     return expectSaga(memberSaga)
       .provide([[matchers.call.fn(apiCaller), memberData[0]]])
       .put({ type: MemberActionTypes.UPDATE.SUCCESS, payload: memberData[0] })
@@ -55,17 +62,21 @@ describe('member saga', () => {
       .run();
   });
 
-  it('handle update error', () => {
-    const error = new Error('update error');
+  it('should handle update error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(memberSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: MemberActionTypes.UPDATE.ERROR, payload: error.message })
+      .put({ type: MemberActionTypes.UPDATE.ERROR, payload: apiResponse })
       .dispatch(updateMember(memberData[0]))
       .run();
   });
 
-  it('handle delete success', () => {
+  it('should handle delete success', () => {
     return expectSaga(memberSaga)
       .provide([[matchers.call.fn(apiCaller), memberData[0]]])
       .put({ type: MemberActionTypes.DELETE.SUCCESS, payload: memberData[0] })
@@ -73,17 +84,21 @@ describe('member saga', () => {
       .run();
   });
 
-  it('handle delete error', () => {
-    const error = new Error('delete error');
+  it('should handle delete error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(memberSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: MemberActionTypes.DELETE.ERROR, payload: error.message })
+      .put({ type: MemberActionTypes.DELETE.ERROR, payload: apiResponse })
       .dispatch(deleteMember(memberData[0]))
       .run();
   });
 
-  it('handle set success', () => {
+  it('should handle set success', () => {
     return expectSaga(memberSaga)
       .put({ type: MemberActionTypes.SET.SUCCESS, payload: memberData[0] })
       .dispatch(setMember(memberData[0]))

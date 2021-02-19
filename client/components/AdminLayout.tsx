@@ -7,6 +7,9 @@ import { HeaderContainer } from '@/containers/HeaderContainer';
 import { BreadcrumbContainer } from '@/containers/BreadcrumbContainer';
 import { AdminSidebar } from '@/components/AdminSidebar';
 
+/**
+ * Wrapper component for all pages in the Admin namespace
+ */
 export const AdminLayout: React.FC = (props) => {
   return (
     <WithAuth>

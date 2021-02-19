@@ -20,6 +20,12 @@ interface MediaContainerInterface {
   callback?: (image: MediaImageType) => void;
 }
 
+/**
+ * Container for MediaLibrary component. Fetches files from api on mount.
+ * This container has two render functions if prop modal is true,
+ * the MediaLibrary will be rendered inside a modal - usually
+ * used by the MediaPicker component to select images inside forms.
+ */
 export const MediaContainer: React.FC<MediaContainerInterface> = ({
   modal,
   input,

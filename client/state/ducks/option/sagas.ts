@@ -5,11 +5,11 @@ import { IMetaAction, IPayloadMetaAction, OptionActionTypes, OptionEntity } from
 import apiCaller from '@/state/utils/apiCaller';
 
 /**
- * @desc Business logic of the effects.
+ * Business logic of the effects.
  */
 
 /**
- * @desc Handle async GET request to API for fetching Options.
+ * Handle async GET request to API for fetching Options.
  * @param {IMetaAction} params action with meta data.
  */
 function* handleFetch(params: IMetaAction): Generator {
@@ -34,7 +34,7 @@ function* handleFetch(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Handle async PUT request to API for updating a Option.
+ * Handle async PUT request to API for updating a Option.
  * @param {IPayloadMetaAction<OptionEntity>} params action with payload and meta data.
  */
 function* handleUpdate(params: IPayloadMetaAction<OptionEntity>): Generator {
@@ -60,7 +60,7 @@ function* handleUpdate(params: IPayloadMetaAction<OptionEntity>): Generator {
 }
 
 /**
- * @desc Handle async DELETE request to API for resetting the Options.
+ * Handle async DELETE request to API for resetting the Options.
  * @fires [fetchOptions]{@link fetchOptions}
  *
  * @param {IMetaAction} params action with payload and meta data.
@@ -88,7 +88,7 @@ function* handleReset(params: IMetaAction): Generator {
 }
 
 /**
- * @desc Watches every specified action and runs effect method and passes action args to it.
+ * Watches every specified action and runs effect method and passes action args to it.
  */
 function* watchFetchRequest(): Generator {
   yield takeEvery(OptionActionTypes.FETCH.START, handleFetch);
@@ -103,7 +103,7 @@ function* watchResetRequest(): Generator {
 }
 
 /**
- * @desc saga init, forks in effects.
+ * saga init, forks in effects.
  */
 export default function* optionSaga() {
   yield all([fork(watchFetchRequest), fork(watchUpdateRequest), fork(watchResetRequest)]);

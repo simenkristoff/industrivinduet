@@ -9,6 +9,9 @@ export interface IProps {
   register: (credentials: RegisterCredentials) => void;
 }
 
+/**
+ * Register form. Registers a new user if register token is valid
+ */
 export const RegisterForm: React.FC<IProps> = ({ register, user }: IProps) => {
   const [form] = Form.useForm();
 

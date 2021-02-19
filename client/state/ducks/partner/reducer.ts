@@ -12,7 +12,7 @@ export const initialState: PartnerState = {
 };
 
 /**
- * @desc Reducer actions for Partners.
+ * Reducer actions for Partners.
  * @param {PartnerState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */
@@ -59,6 +59,7 @@ export const partnerReducer = (
     case PartnerActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

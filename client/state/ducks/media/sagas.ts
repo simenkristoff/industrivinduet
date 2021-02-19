@@ -11,7 +11,7 @@ import {
 import apiCaller, { fileApiCaller } from '@/state/utils/apiCaller';
 
 /**
- * @desc Business logic of effect.
+ * Business logic of effect.
  */
 function* handleFetch(params: IMetaAction): Generator {
   try {
@@ -126,7 +126,7 @@ function* handleUpdateFolder(params: IPayloadMetaAction<MediaFolderType>): Gener
 }
 
 /**
- * @desc Watches every specified action and runs effect method and passes action args to it
+ * Watches every specified action and runs effect method and passes action args to it
  */
 function* watchFetchRequest(): Generator {
   yield takeEvery(MediaActionTypes.FETCH.START, handleFetch);
@@ -149,7 +149,7 @@ function* watchUpdateFolderRequest(): Generator {
 }
 
 /**
- * @desc saga init, forks in effects, other sagas
+ * saga init, forks in effects, other sagas
  */
 export default function* mediaSaga() {
   yield all([

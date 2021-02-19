@@ -12,7 +12,7 @@ export const initialState: EventState = {
 };
 
 /**
- * @desc Reducer actions for Events.
+ * Reducer actions for Events.
  * @param {EventState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */
@@ -64,6 +64,7 @@ export const eventReducer = (
     case EventActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

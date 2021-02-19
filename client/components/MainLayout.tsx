@@ -6,6 +6,9 @@ import { BreadcrumbContainer } from '@/containers/BreadcrumbContainer';
 import { FooterContainer } from '@/containers/FooterContainer';
 import { Container } from '@/components/Container';
 
+/**
+ * Wrapper component for pages
+ */
 export const MainLayout: React.FC = (props: any) => {
   return (
     <>

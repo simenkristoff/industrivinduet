@@ -1,13 +1,21 @@
 import { action } from 'typesafe-actions';
+
 import { JobActionTypes, JobEntity } from '@/types';
+import jobData from '@/__mocks__/jobData';
 
-import { createJob, deleteJob, fetchJobs, setJob, updateJob } from '../actions';
-
-import jobData from './__mockData__/jobData';
+import {
+  clear,
+  createJob,
+  deleteJob,
+  fetchActiveJobs,
+  fetchJob,
+  fetchJobs,
+  setJob,
+  updateJob,
+} from '../actions';
 
 describe('job actions', () => {
-  // FETCH: Test if the correct function is called when fetching Jobs.
-  it('fetch jobs', () => {
+  it('should call @@job.FETCH.START', () => {
     const expectedAction = action(JobActionTypes.FETCH.START, [], {
       method: 'get',
       route: 'api/jobs',
@@ -16,8 +24,25 @@ describe('job actions', () => {
     expect(fetchJobs()).toEqual(expectedAction);
   });
 
-  // CREATE: Test if the correct function is called when creating a Job.
-  it('create job', () => {
+  it('should call @@job.FETCH.START with query params', () => {
+    const expectedAction = action(JobActionTypes.FETCH.START, [], {
+      method: 'get',
+      route: 'api/jobs/active?limit=3',
+    });
+
+    expect(fetchActiveJobs(3)).toEqual(expectedAction);
+  });
+
+  it('should call @@job.FETCH_ONE.START', () => {
+    const expectedAction = action(JobActionTypes.FETCH_ONE.START, [], {
+      method: 'get',
+      route: 'api/jobs/123',
+    });
+
+    expect(fetchJob('123')).toEqual(expectedAction);
+  });
+
+  it('should call @@job.CREATE.START', () => {
     const payload: JobEntity = jobData[1];
     const expectedAction = action(JobActionTypes.CREATE.START, payload, {
       method: 'post',
@@ -27,8 +52,7 @@ describe('job actions', () => {
     expect(createJob(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Job.
-  it('update job', () => {
+  it('should call @@job.UPDATE.START', () => {
     const payload: JobEntity = jobData[1];
     const expectedAction = action(JobActionTypes.UPDATE.START, payload, {
       method: 'put',
@@ -38,8 +62,7 @@ describe('job actions', () => {
     expect(updateJob(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Job.
-  it('delete job', () => {
+  it('should call @@job.DELETE.START', () => {
     const payload: JobEntity = jobData[1];
     const expectedAction = action(JobActionTypes.DELETE.START, payload, {
       method: 'delete',
@@ -49,11 +72,16 @@ describe('job actions', () => {
     expect(deleteJob(payload)).toEqual(expectedAction);
   });
 
-  // SET: Test if the correct function is called when setting Job.
-  it('set job', () => {
+  it('should call @@job.SET.START', () => {
     const payload: JobEntity = jobData[1];
     const expectedAction = action(JobActionTypes.SET.START, payload);
 
     expect(setJob(payload)).toEqual(expectedAction);
+  });
+
+  it('should call @job.CLEAR', () => {
+    const expectedAction = action(JobActionTypes.CLEAR);
+
+    expect(clear()).toEqual(expectedAction);
   });
 });

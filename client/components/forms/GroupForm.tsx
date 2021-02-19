@@ -6,6 +6,9 @@ import { DataFormInterface, IApplicationState, GroupEntity } from '@/types';
 import { FormMessage } from '@/constants';
 import { uniqueValue } from '@/utils';
 
+/**
+ * Dataform for entity Group
+ */
 export const GroupForm: React.FC<DataFormInterface<GroupEntity>> = ({
   form,
   data,

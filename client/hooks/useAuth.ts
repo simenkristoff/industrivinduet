@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
 import { IApplicationState, AuthState } from '@/types';
 
+/**
+ * Verify that user is authorized
+ */
 const useAuth = () => {
   const history = useHistory();
   const { ...currentUser }: AuthState = useSelector(({ auth }: IApplicationState) => auth);

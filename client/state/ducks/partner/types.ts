@@ -4,12 +4,12 @@ import { generateAsyncAction } from '@/state/utils/generateAsyncAction';
 import { BaseState, IMetaAction, IPayloadAction, IPayloadMetaAction } from '../../interface';
 
 /**
- * @desc Type describing the Partner state.
+ * Type describing the Partner state.
  */
 export type PartnerState = BaseState<PartnerEntity>;
 
 /**
- * @desc Interface describing a Partner Entity.
+ * Interface describing a Partner Entity.
  */
 export interface PartnerEntity extends Entity {
   name: string;
@@ -19,7 +19,7 @@ export interface PartnerEntity extends Entity {
 }
 
 /**
- * @desc Object containing the action types for the Partner state.
+ * Object containing the action types for the Partner state.
  */
 export const PartnerActionTypes = {
   FETCH: generateAsyncAction('@@partner.FETCH'),
@@ -31,7 +31,7 @@ export const PartnerActionTypes = {
 };
 
 /**
- * @desc Interface for all the available Partner state actions.
+ * Interface for all the available Partner state actions.
  */
 export interface PartnerActions {
   fetchPartners: () => IMetaAction;
@@ -43,6 +43,6 @@ export interface PartnerActions {
 }
 
 /**
- * @desc Interface describing all props and actions of PartnerState
+ * Interface describing all props and actions of PartnerState
  */
 export interface PartnerPropsAll extends PartnerState, PartnerActions {}

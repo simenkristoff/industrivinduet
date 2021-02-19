@@ -24,6 +24,9 @@ interface IProps {
   loading: boolean;
 }
 
+/**
+ * Renders the Admin landing page
+ */
 export const AdminLanding: React.FC<IProps> = ({
   isAdmin,
   memberCount,

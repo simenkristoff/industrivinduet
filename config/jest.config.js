@@ -1,21 +1,25 @@
 module.exports = {
-  // Setting the root to the actual root, since this file is in root/config
   preset: 'ts-jest',
   rootDir: '../',
-  roots: ['<rootDir>app/'],
+  roots: ['<rootDir>/client/', '<rootDir>/server/'],
   modulePathIgnorePatterns: ['__mockData__'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
     '\\.(html|xml|txt|md)$': 'jest-raw-loader',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/__mocks__/fileTransformer.js',
   },
   setupFilesAfterEnv: ['@testing-library/jest-dom', 'jest-extended'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleNameMapper: {
-    // Allow `@/` to map to `src/client/` in Jest tests
-    '@/(.*)$': '<rootDir>/app/$1',
+    '^.*\\.scss$': '<rootDir>/__mocks__/styleMock.js',
+    '@/(.*)$': '<rootDir>/client/$1',
     '@resources/(.*)$': '<rootDir>/resources/$1',
-    '\\.(css|less)$': '<rootDir>/tests/__mocks__/styleMock.ts',
   },
+  setupFiles: ['<rootDir>/client/jest.setup.ts'],
+  collectCoverage: true,
+  coverageReporters: ['json', 'lcov', 'text', 'clover'],
   globals: {
     'ts-jest': {
       diagnostics: false,

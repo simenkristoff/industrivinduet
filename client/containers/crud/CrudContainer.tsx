@@ -16,6 +16,11 @@ import { Spinner } from '@/components/Spinner';
 import { ErrorResponse } from '@/components/ErrorResponse';
 import { fireActionVerify } from '@/utils';
 
+/**
+ * Container for DataManagement. This container handles all CRUD actions for
+ * generic Entities stored in the database. Will fetch dependencies on mount
+ * and sets up data table for displaying all entries.
+ */
 export const CrudContainer = <T extends Entity>(props: CrudInterface<T>): JSX.Element => {
   const permission: UserPermissions | null = useSelector(
     ({ auth }: IApplicationState) => auth.permissions,

@@ -1,3 +1,7 @@
+/**
+ * Exports all Form components
+ */
+
 export * from './auth';
 export { default as OptionForm } from './OptionForm';
 export { ContentForm as ContentForm } from './ContentForm';

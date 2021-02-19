@@ -8,6 +8,9 @@ interface IProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+/**
+ * Search input component
+ */
 export const SearchInput: React.FC<IProps> = ({ name, placeholder, onChange }: IProps) => {
   return (
     <Input

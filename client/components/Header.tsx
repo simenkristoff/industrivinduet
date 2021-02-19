@@ -3,7 +3,7 @@ import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 
 import { MemberEntity } from '@/types';
 import { AdminToolbar } from '@/components/AdminToolbar';
-import Nav from '@/components/Navigation';
+import { Nav } from '@/components/Navigation';
 import Logo from '@resources/logo.png';
 
 interface IProps {
@@ -13,6 +13,9 @@ interface IProps {
   logout: () => void;
 }
 
+/**
+ * Renders the site's main header
+ */
 export const Header: React.FC<IProps> = ({
   isAdminNamespace,
   isLoggedIn,

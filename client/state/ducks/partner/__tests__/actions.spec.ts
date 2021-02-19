@@ -1,13 +1,19 @@
 import { action } from 'typesafe-actions';
+
 import { PartnerActionTypes, PartnerEntity } from '@/types';
+import partnerData from '@/__mocks__/partnerData';
 
-import { createPartner, deletePartner, fetchPartners, setPartner, updatePartner } from '../actions';
-
-import partnerData from './__mockData__/partnerData';
+import {
+  clear,
+  createPartner,
+  deletePartner,
+  fetchPartners,
+  setPartner,
+  updatePartner,
+} from '../actions';
 
 describe('partner actions', () => {
-  // FETCH: Test if the correct function is called when fetching Partners.
-  it('fetch partners', () => {
+  it('should call @@partner.FETCH.START', () => {
     const expectedAction = action(PartnerActionTypes.FETCH.START, [], {
       method: 'get',
       route: 'api/partners',
@@ -16,8 +22,7 @@ describe('partner actions', () => {
     expect(fetchPartners()).toEqual(expectedAction);
   });
 
-  // CREATE: Test if the correct function is called when creating a Partner.
-  it('create partner', () => {
+  it('should call @@partner.CREATE.START', () => {
     const payload: PartnerEntity = partnerData[1];
     const expectedAction = action(PartnerActionTypes.CREATE.START, payload, {
       method: 'post',
@@ -27,8 +32,7 @@ describe('partner actions', () => {
     expect(createPartner(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Partner.
-  it('update partner', () => {
+  it('should call @@partner.UPDATE.START', () => {
     const payload: PartnerEntity = partnerData[1];
     const expectedAction = action(PartnerActionTypes.UPDATE.START, payload, {
       method: 'put',
@@ -38,8 +42,7 @@ describe('partner actions', () => {
     expect(updatePartner(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Partner.
-  it('delete partner', () => {
+  it('should call @@partner.DELETE.START', () => {
     const payload: PartnerEntity = partnerData[1];
     const expectedAction = action(PartnerActionTypes.DELETE.START, payload, {
       method: 'delete',
@@ -49,11 +52,16 @@ describe('partner actions', () => {
     expect(deletePartner(payload)).toEqual(expectedAction);
   });
 
-  // SET: Test if the correct function is called when setting Partner.
-  it('set partner', () => {
+  it('should call @@partner.SET.START', () => {
     const payload: PartnerEntity = partnerData[1];
     const expectedAction = action(PartnerActionTypes.SET.START, payload);
 
     expect(setPartner(payload)).toEqual(expectedAction);
+  });
+
+  it('should call @partner.CLEAR', () => {
+    const expectedAction = action(PartnerActionTypes.CLEAR);
+
+    expect(clear()).toEqual(expectedAction);
   });
 });

@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { PartnerActionTypes, PartnerEntity } from '@/types';
 
 /**
- * @desc Fetch all Partners.
+ * Fetch all Partners.
  */
 export const fetchPartners = () =>
   action(PartnerActionTypes.FETCH.START, [], {
@@ -12,7 +12,7 @@ export const fetchPartners = () =>
   });
 
 /**
- * @desc Create a new Partner.
+ * Create a new Partner.
  * @param {PartnerEntity} data the Partner to create.
  */
 export const createPartner = (data: PartnerEntity) =>
@@ -22,7 +22,7 @@ export const createPartner = (data: PartnerEntity) =>
   });
 
 /**
- * @desc Update a Partner.
+ * Update a Partner.
  * @param {PartnerEntity} data the Partner instance with updated data.
  */
 export const updatePartner = (data: PartnerEntity) =>
@@ -32,7 +32,7 @@ export const updatePartner = (data: PartnerEntity) =>
   });
 
 /**
- * @desc Delete Partner.
+ * Delete Partner.
  * @param {PartnerEntity} data the Partner instance to delete.
  */
 export const deletePartner = (data: PartnerEntity) =>
@@ -42,7 +42,7 @@ export const deletePartner = (data: PartnerEntity) =>
   });
 
 /**
- * @desc Set Partner.
+ * Set Partner.
  * @param {PartnerEntity} data the Partner instance to set.
  */
 export const setPartner = (data?: PartnerEntity) => action(PartnerActionTypes.SET.START, data);

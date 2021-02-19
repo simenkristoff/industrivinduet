@@ -1,8 +1,11 @@
 import React from 'react';
-import { ResultHeaderInterface } from '@/types';
 
+import { ResultHeaderInterface } from '@/types';
 import { SearchInput } from '@/components/SearchInput';
 
+/**
+ * Render the result header
+ */
 export const ResultHeader: React.FC<ResultHeaderInterface> = ({
   title,
   onSearchFilterChange,

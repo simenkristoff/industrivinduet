@@ -10,6 +10,11 @@ type ParamTypes = {
   token: string;
 };
 
+/**
+ * Container for ResetPassword component. Dispatches a
+ * reset password request to the api.
+ * Will not render if the user is already logged in.
+ */
 export const ResetPasswordContainer = () => {
   const history = useHistory();
   const dispatch = useDispatch();

@@ -12,6 +12,10 @@ export interface IProps {
   response: ApiResponse | null;
 }
 
+/**
+ * Login component. Receives props from LoginContainer
+ * and displays the LoginForm
+ */
 export const Login: React.FC<IProps> = ({ login, loading, response }: IProps) => {
   return (
     <Row justify='center' align='middle' className='pt-2 pb-2'>

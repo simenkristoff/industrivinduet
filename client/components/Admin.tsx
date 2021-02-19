@@ -16,6 +16,9 @@ import {
   JobContainer,
 } from '@/containers/crud';
 
+/**
+ * Routing wrapper for the Admin panel.
+ */
 export const Admin: React.FC = () => {
   return (
     <Switch>

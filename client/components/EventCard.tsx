@@ -22,6 +22,9 @@ const covers = {
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Renders a single Event with shortened details
+ */
 export const EventCard: React.FC<IProps> = ({
   data,
   column,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FacebookFilled, InstagramFilled, LinkedinFilled } from '@ant-design/icons';
+
 import { SocialOptions } from '@/types';
 
 enum IconSize {
@@ -15,6 +16,9 @@ interface IProps {
   size?: 'small' | 'default' | 'large';
 }
 
+/**
+ * Renders social icons
+ */
 export const Socials: React.FC<IProps> = ({ socials, theme, className, size }: IProps) => {
   if (Object.keys(socials).length < 1) return null;
 

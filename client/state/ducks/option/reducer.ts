@@ -12,7 +12,7 @@ export const initialState: OptionState = {
 };
 
 /**
- * @desc Reducer actions for Options.
+ * Reducer actions for Options.
  * @param {OptionState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */

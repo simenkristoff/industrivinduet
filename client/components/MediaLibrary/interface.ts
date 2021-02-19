@@ -1,10 +1,18 @@
 import { MediaState, MediaType, MediaFolderType, MediaImageType } from '@/types';
 
+/**
+ * Interface for items to display in current directory
+ * @interface MediaLibraryItems
+ */
 export interface MediaLibraryItems {
   directories: MediaFolderType[];
   images: MediaImageType[];
 }
 
+/**
+ * Interface for MediaHeader component props
+ * @interface MediaHeaderInterface
+ */
 export interface MediaHeaderInterface {
   path: string;
   dirNames: string[];
@@ -13,6 +21,10 @@ export interface MediaHeaderInterface {
   onBack: () => void;
 }
 
+/**
+ * Interface for MediaGallery component props
+ * @interface MediaGalleryInterface
+ */
 export interface MediaGalleryInterface {
   data: MediaLibraryItems;
   dirNames: string[];
@@ -24,6 +36,10 @@ export interface MediaGalleryInterface {
   handleImageSelect: (image: MediaImageType) => MediaImageType;
 }
 
+/**
+ * Interface for MediaLibrary component props
+ * @interface MediaLibraryInterface
+ */
 export interface MediaLibraryInterface {
   fileData: MediaState;
   path: string;
@@ -38,6 +54,10 @@ export interface MediaLibraryInterface {
   handleImageSelect: (image: MediaImageType) => MediaImageType;
 }
 
+/**
+ * Interface for MediaFolder component props
+ * @interface MediaFolderInterface
+ */
 export interface MediaFolderInterface {
   data: MediaFolderType;
   dirNames: string[];
@@ -47,12 +67,20 @@ export interface MediaFolderInterface {
   onFolderClick: (path: string) => void;
 }
 
+/**
+ * Interface for NewFolder component props
+ * @interface NewFolderInterface
+ */
 export interface NewFolderInterface {
   dirNames: string[];
   path: string;
   createFolder: (folder: MediaFolderType) => void;
 }
 
+/**
+ * Interface for MediaImage component props
+ * @interface MediaImageInterface
+ */
 export interface MediaImageInterface {
   data: MediaImageType;
   inModal: boolean;

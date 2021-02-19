@@ -6,9 +6,11 @@ import { EventEntity } from '@/types';
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Renders expandable details in a table of Events entities.
+ */
 export const EventExpandable: React.FC<EventEntity> = ({
   image,
-  title,
   starttime,
   endtime,
   place,
@@ -20,19 +22,26 @@ export const EventExpandable: React.FC<EventEntity> = ({
 
       <dl>
         <dt>Starter: </dt>
-        <dd>{moment(starttime).format('HH:mm')}</dd>
+        <dd className='starttime'>{moment(starttime).format('HH:mm')}</dd>
 
         {endtime && [
           <dt key='label_endtime'>Slutter: </dt>,
-          <dd key='value_endtime'>{moment(endtime).format('HH:mm')}</dd>,
+          <dd className='endtime' key='value_endtime'>
+            {moment(endtime).format('HH:mm')}
+          </dd>,
         ]}
       </dl>
 
       <dl>
         <dt>Sted: </dt>
-        <dd>{place}</dd>
+        <dd className='place'>{place}</dd>
 
-        {dining && [<dt key='label_dining'>Bespisning: </dt>, <dd key='value_dining'>{dining}</dd>]}
+        {dining && [
+          <dt key='label_dining'>Bespisning: </dt>,
+          <dd className='dining' key='value_dining'>
+            {dining}
+          </dd>,
+        ]}
       </dl>
     </div>
   );

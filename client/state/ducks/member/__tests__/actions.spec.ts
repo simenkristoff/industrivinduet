@@ -1,13 +1,19 @@
 import { action } from 'typesafe-actions';
+
 import { MemberActionTypes, MemberEntity } from '@/types';
+import memberData from '@/__mocks__/memberData';
 
-import { createMember, deleteMember, fetchMembers, setMember, updateMember } from '../actions';
-
-import memberData from './__mockData__/memberData';
+import {
+  clear,
+  createMember,
+  deleteMember,
+  fetchMembers,
+  setMember,
+  updateMember,
+} from '../actions';
 
 describe('member actions', () => {
-  // FETCH: Test if the correct function is called when fetching Members.
-  it('fetch members', () => {
+  it('should call @@member.FETCH.START', () => {
     const expectedAction = action(MemberActionTypes.FETCH.START, [], {
       method: 'get',
       route: 'api/members',
@@ -16,8 +22,7 @@ describe('member actions', () => {
     expect(fetchMembers()).toEqual(expectedAction);
   });
 
-  // CREATE: Test if the correct function is called when creating a Member.
-  it('create member', () => {
+  it('should call @@member.CREATE.START', () => {
     const payload: MemberEntity = memberData[1];
     const expectedAction = action(MemberActionTypes.CREATE.START, payload, {
       method: 'post',
@@ -27,8 +32,7 @@ describe('member actions', () => {
     expect(createMember(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Member.
-  it('update member', () => {
+  it('should call @@member.UPDATE.START', () => {
     const payload: MemberEntity = memberData[1];
     const expectedAction = action(MemberActionTypes.UPDATE.START, payload, {
       method: 'put',
@@ -38,8 +42,7 @@ describe('member actions', () => {
     expect(updateMember(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating Member.
-  it('delete member', () => {
+  it('should call @@member.DELETE.START', () => {
     const payload: MemberEntity = memberData[1];
     const expectedAction = action(MemberActionTypes.DELETE.START, payload, {
       method: 'delete',
@@ -49,11 +52,16 @@ describe('member actions', () => {
     expect(deleteMember(payload)).toEqual(expectedAction);
   });
 
-  // SET: Test if the correct function is called when setting Member.
-  it('set member', () => {
+  it('should call @@member.SET.START', () => {
     const payload: MemberEntity = memberData[1];
     const expectedAction = action(MemberActionTypes.SET.START, payload);
 
     expect(setMember(payload)).toEqual(expectedAction);
+  });
+
+  it('should call @member.CLEAR', () => {
+    const expectedAction = action(MemberActionTypes.CLEAR);
+
+    expect(clear()).toEqual(expectedAction);
   });
 });

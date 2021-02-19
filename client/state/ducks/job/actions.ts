@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { ObjectId, JobActionTypes, JobEntity } from '@/types';
 
 /**
- * @desc Fetch all Jobs.
+ * Fetch all Jobs.
  */
 export const fetchJobs = () => {
   return action(JobActionTypes.FETCH.START, [], {
@@ -13,7 +13,7 @@ export const fetchJobs = () => {
 };
 
 /**
- * @desc Fetch all active Jobs.
+ * Fetch all active Jobs.
  * @param {number} limit how many active Jobs to fetch
  */
 export const fetchActiveJobs = (limit?: number) => {
@@ -29,7 +29,7 @@ export const fetchActiveJobs = (limit?: number) => {
 };
 
 /**
- * @desc Fetch single Job by ID.
+ * Fetch single Job by ID.
  * @param {ObjectId} id the ID of the Job to fetch
  */
 export const fetchJob = (id: ObjectId) =>
@@ -39,7 +39,7 @@ export const fetchJob = (id: ObjectId) =>
   });
 
 /**
- * @desc Create a new Job.
+ * Create a new Job.
  * @param {JobEntity} data the Job to create.
  */
 export const createJob = (data: JobEntity) =>
@@ -49,7 +49,7 @@ export const createJob = (data: JobEntity) =>
   });
 
 /**
- * @desc Update a Job.
+ * Update a Job.
  * @param {JobEntity} data the Job instance with updated data.
  */
 export const updateJob = (data: JobEntity) =>
@@ -59,7 +59,7 @@ export const updateJob = (data: JobEntity) =>
   });
 
 /**
- * @desc Delete Job.
+ * Delete Job.
  * @param {JobEntity} data the Job instance to delete.
  */
 export const deleteJob = (data: JobEntity) =>
@@ -69,7 +69,7 @@ export const deleteJob = (data: JobEntity) =>
   });
 
 /**
- * @desc Set Job.
+ * Set Job.
  * @param {JobEntity} data the Job instance to set.
  */
 export const setJob = (data: JobEntity | {}) => action(JobActionTypes.SET.START, data);

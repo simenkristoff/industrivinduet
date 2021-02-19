@@ -5,6 +5,9 @@ import { MediaLibraryInterface, MediaLibraryItems } from '@/types';
 
 import { MediaHeader, MediaGallery, MediaHelpers } from './';
 
+/**
+ * Wrapper component for the media library
+ */
 export const MediaLibrary: React.FC<MediaLibraryInterface> = ({
   fileData,
   path,

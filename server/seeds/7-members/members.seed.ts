@@ -50,7 +50,15 @@ function generateMembers(): MemberSeed[] {
   members.push(user);
 
   roles.forEach((role, index) => {
-    const { name, email } = Generator.randomName();
+    var name: any, email: string;
+    while (true) {
+      const genName = Generator.randomName();
+      if (!members.some((member) => member.email === genName.email)) {
+        name = genName.name;
+        email = genName.email;
+        break;
+      }
+    }
     const phone = Generator.randomBoolean() ? Generator.randomPhone() : undefined;
     const image = Generator.randomBoolean() ? Generator.randomPortrait() : undefined;
     const member: MemberSeed = {

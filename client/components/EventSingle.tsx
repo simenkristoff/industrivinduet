@@ -14,6 +14,9 @@ interface IProps {
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Page for displaying details of a single Event
+ */
 export const EventSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
   var sortedGrades: string[] = [];
   const {

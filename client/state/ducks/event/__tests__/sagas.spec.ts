@@ -1,17 +1,23 @@
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
-import { EventActionTypes } from '@/types';
 
+import { ApiResponse, EventActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import eventData from '@/__mocks__/eventData';
 
-import { createEvent, deleteEvent, fetchEvents, setEvent, updateEvent } from '../actions';
+import {
+  createEvent,
+  deleteEvent,
+  fetchEvent,
+  fetchEvents,
+  setEvent,
+  updateEvent,
+} from '../actions';
 import eventSaga from '../sagas';
 
-import eventData from './__mockData__/eventData';
-
 describe('event saga', () => {
-  it('handle fetch success', () => {
+  it('should handle fetch success', () => {
     return expectSaga(eventSaga)
       .provide([[matchers.call.fn(apiCaller), eventData]])
       .put({ type: EventActionTypes.FETCH.SUCCESS, payload: eventData })
@@ -19,17 +25,43 @@ describe('event saga', () => {
       .run();
   });
 
-  it('handle fetch error', () => {
-    const error = new Error('fetch error');
+  it('should handle fetch error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(eventSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: EventActionTypes.FETCH.ERROR, payload: error.message })
+      .put({ type: EventActionTypes.FETCH.ERROR, payload: apiResponse })
       .dispatch(fetchEvents())
       .run();
   });
 
-  it('handle create success', () => {
+  it('should handle fetch one success', () => {
+    return expectSaga(eventSaga)
+      .provide([[matchers.call.fn(apiCaller), eventData[0]]])
+      .put({ type: EventActionTypes.FETCH_ONE.SUCCESS, payload: eventData[0] })
+      .dispatch(fetchEvent('event1'))
+      .run();
+  });
+
+  it('should handle fetch one error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
+
+    return expectSaga(eventSaga)
+      .provide([[matchers.call.fn(apiCaller), throwError(error)]])
+      .put({ type: EventActionTypes.FETCH_ONE.ERROR, payload: apiResponse })
+      .dispatch(fetchEvent('event1'))
+      .run();
+  });
+
+  it('should handle create success', () => {
     return expectSaga(eventSaga)
       .provide([[matchers.call.fn(apiCaller), eventData[0]]])
       .put({ type: EventActionTypes.CREATE.SUCCESS, payload: eventData[0] })
@@ -37,17 +69,21 @@ describe('event saga', () => {
       .run();
   });
 
-  it('handle create error', () => {
-    const error = new Error('create error');
+  it('should handle create error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(eventSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: EventActionTypes.CREATE.ERROR, payload: error.message })
+      .put({ type: EventActionTypes.CREATE.ERROR, payload: apiResponse })
       .dispatch(createEvent(eventData[0]))
       .run();
   });
 
-  it('handle update success', () => {
+  it('should handle update success', () => {
     return expectSaga(eventSaga)
       .provide([[matchers.call.fn(apiCaller), eventData[0]]])
       .put({ type: EventActionTypes.UPDATE.SUCCESS, payload: eventData[0] })
@@ -55,17 +91,21 @@ describe('event saga', () => {
       .run();
   });
 
-  it('handle update error', () => {
-    const error = new Error('update error');
+  it('should handle update error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(eventSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: EventActionTypes.UPDATE.ERROR, payload: error.message })
+      .put({ type: EventActionTypes.UPDATE.ERROR, payload: apiResponse })
       .dispatch(updateEvent(eventData[0]))
       .run();
   });
 
-  it('handle delete success', () => {
+  it('should handle delete success', () => {
     return expectSaga(eventSaga)
       .provide([[matchers.call.fn(apiCaller), eventData[0]]])
       .put({ type: EventActionTypes.DELETE.SUCCESS, payload: eventData[0] })
@@ -73,17 +113,21 @@ describe('event saga', () => {
       .run();
   });
 
-  it('handle delete error', () => {
-    const error = new Error('delete error');
+  it('should handle delete error', () => {
+    const error = new Error('An error occured');
+    const apiResponse: ApiResponse = {
+      status: 'error',
+      message: 'An error occured',
+    };
 
     return expectSaga(eventSaga)
       .provide([[matchers.call.fn(apiCaller), throwError(error)]])
-      .put({ type: EventActionTypes.DELETE.ERROR, payload: error.message })
+      .put({ type: EventActionTypes.DELETE.ERROR, payload: apiResponse })
       .dispatch(deleteEvent(eventData[0]))
       .run();
   });
 
-  it('handle set success', () => {
+  it('should handle set success', () => {
     return expectSaga(eventSaga)
       .put({ type: EventActionTypes.SET.SUCCESS, payload: eventData[0] })
       .dispatch(setEvent(eventData[0]))

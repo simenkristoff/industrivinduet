@@ -13,6 +13,10 @@ export interface IProps {
   response: ApiResponse | null;
 }
 
+/**
+ * Forgot Password component. Receives props from ForgotPasswordContainer
+ * and displays the ForgotPasswordForm
+ */
 export const ForgotPassword: React.FC<IProps> = ({ forgot, loading, response }: IProps) => {
   return (
     <Row justify='center' align='middle' className='pt-2 pb-2'>

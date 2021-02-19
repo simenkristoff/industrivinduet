@@ -1,7 +1,10 @@
 import { action } from 'typesafe-actions';
+
 import { StudyFieldActionTypes, StudyFieldEntity } from '@/types';
+import studyfieldData from '@/__mocks__/studyfieldData';
 
 import {
+  clear,
   createStudyField,
   deleteStudyField,
   fetchStudyFields,
@@ -9,11 +12,8 @@ import {
   updateStudyField,
 } from '../actions';
 
-import studyfieldData from './__mockData__/studyfieldData';
-
 describe('studyfield actions', () => {
-  // FETCH: Test if the correct function is called when fetching StudyFields.
-  it('fetch studyfields', () => {
+  it('should call @@studyfield.FETCH.START', () => {
     const expectedAction = action(StudyFieldActionTypes.FETCH.START, [], {
       method: 'get',
       route: 'api/studyfields',
@@ -22,8 +22,7 @@ describe('studyfield actions', () => {
     expect(fetchStudyFields()).toEqual(expectedAction);
   });
 
-  // CREATE: Test if the correct function is called when creating a StudyField.
-  it('create studyfield', () => {
+  it('should call @@studyfield.CREATE.START', () => {
     const payload: StudyFieldEntity = studyfieldData[1];
     const expectedAction = action(StudyFieldActionTypes.CREATE.START, payload, {
       method: 'post',
@@ -33,8 +32,7 @@ describe('studyfield actions', () => {
     expect(createStudyField(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating StudyField.
-  it('update studyfield', () => {
+  it('should call @@studyfield.UPDATE.START', () => {
     const payload: StudyFieldEntity = studyfieldData[1];
     const expectedAction = action(StudyFieldActionTypes.UPDATE.START, payload, {
       method: 'put',
@@ -44,8 +42,7 @@ describe('studyfield actions', () => {
     expect(updateStudyField(payload)).toEqual(expectedAction);
   });
 
-  // UPDATE: Test if the correct function is called when updating StudyField.
-  it('delete studyfield', () => {
+  it('should call @@studyfield.DELETE.START', () => {
     const payload: StudyFieldEntity = studyfieldData[1];
     const expectedAction = action(StudyFieldActionTypes.DELETE.START, payload, {
       method: 'delete',
@@ -55,11 +52,16 @@ describe('studyfield actions', () => {
     expect(deleteStudyField(payload)).toEqual(expectedAction);
   });
 
-  // SET: Test if the correct function is called when setting StudyField.
-  it('set studyfield', () => {
+  it('should call @@studyfield.SET.START', () => {
     const payload: StudyFieldEntity = studyfieldData[1];
     const expectedAction = action(StudyFieldActionTypes.SET.START, payload);
 
     expect(setStudyField(payload)).toEqual(expectedAction);
+  });
+
+  it('should call @studyfield.CLEAR', () => {
+    const expectedAction = action(StudyFieldActionTypes.CLEAR);
+
+    expect(clear()).toEqual(expectedAction);
   });
 });

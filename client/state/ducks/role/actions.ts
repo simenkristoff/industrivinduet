@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { RoleActionTypes, RoleEntity } from '@/types';
 
 /**
- * @desc Fetch all Roles.
+ * Fetch all Roles.
  */
 export const fetchRoles = () =>
   action(RoleActionTypes.FETCH.START, [], {
@@ -12,7 +12,7 @@ export const fetchRoles = () =>
   });
 
 /**
- * @desc Create a new Role.
+ * Create a new Role.
  * @param {RoleEntity} data the Role to create.
  */
 export const createRole = (data: RoleEntity) =>
@@ -22,7 +22,7 @@ export const createRole = (data: RoleEntity) =>
   });
 
 /**
- * @desc Update a Role.
+ * Update a Role.
  * @param {RoleEntity} data the Role instance with updated data.
  */
 export const updateRole = (data: RoleEntity) =>
@@ -32,7 +32,7 @@ export const updateRole = (data: RoleEntity) =>
   });
 
 /**
- * @desc Delete Role.
+ * Delete Role.
  * @param {RoleEntity} data the Role instance to delete.
  */
 export const deleteRole = (data: RoleEntity) =>
@@ -42,7 +42,7 @@ export const deleteRole = (data: RoleEntity) =>
   });
 
 /**
- * @desc Set Role.
+ * Set Role.
  * @param {RoleEntity} data the Role instance to set.
  */
 export const setRole = (data: RoleEntity) => action(RoleActionTypes.SET.START, data);

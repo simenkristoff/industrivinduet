@@ -12,7 +12,7 @@ export const initialState: StudyFieldState = {
 };
 
 /**
- * @desc Reducer actions for StudyFields.
+ * Reducer actions for StudyFields.
  * @param {StudyFieldState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */
@@ -59,6 +59,7 @@ export const studyfieldReducer = (
     case StudyFieldActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

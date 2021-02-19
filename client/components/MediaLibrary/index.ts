@@ -1,3 +1,7 @@
+/**
+ * Exports Media library components
+ */
+
 export { default as MediaHelpers } from './mediaHelper';
 export { MediaFolder as MediaFolder } from './MediaFolder';
 export { MediaImage as MediaImage } from './MediaImage';

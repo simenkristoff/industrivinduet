@@ -6,6 +6,9 @@ import { DataFormInterface, IApplicationState, RoleEntity } from '@/types';
 import { FormMessage, roleTypes } from '@/constants';
 import { uniqueValue } from '@/utils';
 
+/**
+ * Dataform for entity Role
+ */
 export const RoleForm: React.FC<DataFormInterface<RoleEntity>> = ({
   form,
   data,

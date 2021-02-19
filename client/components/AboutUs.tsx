@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Tabs, Row } from 'antd';
 
 import { ContentEntity, MemberEntity, PartnerEntity } from '@/types';
@@ -15,6 +15,9 @@ interface IProps {
   loading: boolean;
 }
 
+/**
+ * Renders the About us page
+ */
 export const AboutUs: React.FC<IProps> = ({ data, members, partners, loading }: IProps) => {
   const key = data.length > 0 ? data[0].linkText : '';
 

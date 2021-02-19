@@ -18,6 +18,10 @@ import { grades } from '@/constants';
 
 import { ResultContainer } from './ResultContainer';
 
+/**
+ * Container for Job results. Setup filters and dependencies
+ * and passes props to ResultContainer for rendering.
+ */
 export const JobResultContainer = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);

@@ -3,6 +3,10 @@ import React from 'react';
 
 import { Entity, DataListInterface } from '@/types';
 
+/**
+ * Displays all the entities of @type {T extends Entity} fetched
+ * from database in a table.
+ */
 export const DataList = <T extends Entity>({
   state,
   columns,

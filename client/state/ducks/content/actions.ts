@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { ContentActionTypes, ContentEntity } from '@/types';
 
 /**
- * @desc Fetch all Contents.
+ * Fetch all Contents.
  */
 export const fetchContents = () =>
   action(ContentActionTypes.FETCH.START, [], {
@@ -12,7 +12,7 @@ export const fetchContents = () =>
   });
 
 /**
- * @desc Create a new Content.
+ * Create a new Content.
  * @param {ContentEntity} data the Content to create.
  */
 export const createContent = (data: ContentEntity) =>
@@ -22,7 +22,7 @@ export const createContent = (data: ContentEntity) =>
   });
 
 /**
- * @desc Update a Content.
+ * Update a Content.
  * @param {ContentEntity} data the Content instance with updated data.
  */
 export const updateContent = (data: ContentEntity) =>
@@ -32,7 +32,7 @@ export const updateContent = (data: ContentEntity) =>
   });
 
 /**
- * @desc Delete Content.
+ * Delete Content.
  * @param {ContentEntity} data the Content instance to delete.
  */
 export const deleteContent = (data: ContentEntity) =>
@@ -42,7 +42,7 @@ export const deleteContent = (data: ContentEntity) =>
   });
 
 /**
- * @desc Set Content.
+ * Set Content.
  * @param {ContentEntity} data the Content instance to set.
  */
 export const setContent = (data: ContentEntity) => action(ContentActionTypes.SET.START, data);

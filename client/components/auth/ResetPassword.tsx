@@ -15,6 +15,10 @@ export interface IProps {
   token: string;
 }
 
+/**
+ * Reset Password component. Receives props from ResetPasswordContainer
+ * and displays the Reset PasswordForm
+ */
 export const ResetPassword: React.FC<IProps> = ({ reset, loading, response, token }: IProps) => {
   return (
     <Row justify='center' align='middle' className='pt-2 pb-2'>

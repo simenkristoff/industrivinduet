@@ -8,6 +8,9 @@ import { FormMessage } from '@/constants';
 import { EditorInput } from '@/components/adapters';
 import { uniqueValue } from '@/utils';
 
+/**
+ * Dataform for entity Content
+ */
 export const ContentForm: React.FC<DataFormInterface<ContentEntity>> = ({
   form,
   data,

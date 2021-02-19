@@ -15,6 +15,9 @@ import { fetchGroups } from '@/state/ducks/group/actions';
 
 import { CrudContainer } from './CrudContainer';
 
+/**
+ * Setup Crud-management for Role Entities
+ */
 export const RoleContainer: React.FC = () => {
   const dispatch = useDispatch();
   const roleState: RoleState = useSelector(({ role }: IApplicationState) => ({

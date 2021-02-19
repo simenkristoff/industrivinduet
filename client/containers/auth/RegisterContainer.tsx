@@ -11,6 +11,12 @@ type ParamTypes = {
   token: string;
 };
 
+/**
+ * Container for Register component. Verifies the register token
+ * on mount. If the token is verified, a register request will be sent
+ * to the api on submit.
+ * Will not render if the user is already logged in.
+ */
 export const RegisterContainer = () => {
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const history = useHistory();

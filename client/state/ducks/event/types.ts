@@ -12,12 +12,12 @@ import { StudyFieldEntity } from '../studyfield/types';
 import { MemberEntity } from '../member/types';
 
 /**
- * @desc Type describing the Event state.
+ * Type describing the Event state.
  */
 export type EventState = BaseState<EventEntity>;
 
 /**
- * @desc Interface describing a Event Entity.
+ * Interface describing a Event Entity.
  */
 export interface EventEntity extends Entity {
   title: string;
@@ -37,7 +37,7 @@ export interface EventEntity extends Entity {
 }
 
 /**
- * @desc Object containing the action types for the Event state.
+ * Object containing the action types for the Event state.
  */
 export const EventActionTypes = {
   FETCH: generateAsyncAction('@@event.FETCH'),
@@ -50,7 +50,7 @@ export const EventActionTypes = {
 };
 
 /**
- * @desc Interface for all the available Event state actions.
+ * Interface for all the available Event state actions.
  */
 export interface EventActions {
   fetchEvents: () => IMetaAction;
@@ -64,6 +64,6 @@ export interface EventActions {
 }
 
 /**
- * @desc Interface describing all props and actions of EventState
+ * Interface describing all props and actions of EventState
  */
 export interface EventPropsAll extends EventState, EventActions {}

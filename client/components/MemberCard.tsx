@@ -13,6 +13,9 @@ interface IProps {
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Renders a single Member with shortened details
+ */
 export const MemberCard: React.FC<IProps> = ({
   data,
   className,
@@ -44,9 +47,7 @@ export const MemberCard: React.FC<IProps> = ({
           )}
         </div>
         <div className='card-body'>
-          <h5 className='member-name'>
-            {name.first}&nbsp;{name.last}
-          </h5>
+          <h5 className='member-name'>{`${name.first} ${name.last}`}</h5>
           <ul className='member-details'>
             <li>{role?.name}</li>
             <li>

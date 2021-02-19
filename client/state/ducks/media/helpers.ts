@@ -1,6 +1,6 @@
-import { MediaFolderType } from '@/components/MediaLibrary/interface';
 import _ from 'lodash';
-import { MediaType } from '@/types';
+
+import { MediaType, MediaFolderType } from '@/types';
 
 function setupPathStack(file: MediaType, isDir: boolean = false): string[] {
   const paths = file.path.split('/');
@@ -80,7 +80,7 @@ function findFolder(root: MediaType, folder: MediaType): MediaFolderType | undef
     if (currentDir && path) {
       const index = _.findIndex(currentDir.children, (childNode) => childNode.name === path);
       const child = currentDir.children[index];
-
+      console.log(child);
       if (child.isDir && paths.length > 0) {
         stack.push(child);
       } else {

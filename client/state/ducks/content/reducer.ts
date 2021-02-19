@@ -12,7 +12,7 @@ export const initialState: ContentState = {
 };
 
 /**
- * @desc Reducer actions for Contents.
+ * Reducer actions for Contents.
  * @param {ContentState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */
@@ -59,6 +59,7 @@ export const contentReducer = (
     case ContentActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

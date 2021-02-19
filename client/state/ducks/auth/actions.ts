@@ -54,7 +54,7 @@ export const reset = (data: ResetPasswordCredentials) => {
 };
 
 /**
- * @desc Logout User.
+ * Logout User.
  */
 export const logout = () => {
   removeToken();

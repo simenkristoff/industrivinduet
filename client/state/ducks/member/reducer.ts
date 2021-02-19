@@ -12,7 +12,7 @@ export const initialState: MemberState = {
 };
 
 /**
- * @desc Reducer actions for Members.
+ * Reducer actions for Members.
  * @param {MemberState} state the initial state.
  * @param {Action<TypeConstant> & PayloadAction<TypeConstant, any>} action the action and state params to set.
  */
@@ -59,6 +59,7 @@ export const memberReducer = (
     case MemberActionTypes.SET.ERROR: {
       return {
         ...state,
+        loading: false,
         status: action.payload,
       };
     }

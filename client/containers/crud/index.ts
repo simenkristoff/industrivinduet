@@ -1,3 +1,6 @@
+/**
+ * Exports CrudContainers for Database Entities
+ */
 export { ContentContainer as ContentContainer } from './ContentContainer';
 export { StudyFieldContainer as StudyFieldContainer } from './StudyFieldContainer';
 export { PartnerContainer as PartnerContainer } from './PartnerContainer';

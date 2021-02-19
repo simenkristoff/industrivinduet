@@ -5,6 +5,9 @@ import { FacebookOutlined, InstagramOutlined, LinkedinOutlined } from '@ant-desi
 import { OptionFormInterface } from '@/types';
 import { OptionMessage } from '@/constants';
 
+/**
+ * Optionform for Social options
+ */
 const SocialOptionsForm: React.FC<OptionFormInterface> = ({ form, data }: OptionFormInterface) => {
   return (
     <Form

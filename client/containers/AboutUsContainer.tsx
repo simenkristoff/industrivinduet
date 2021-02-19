@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import partners from 'server/seeds/4-partners/partners.seed';
 
-import {
-  IApplicationState,
-  ContentState,
-  MemberState,
-  PartnerState,
-  MemberEntity,
-  PartnerEntity,
-} from '@/types';
+import { IApplicationState, ContentState, MemberState, PartnerState, MemberEntity } from '@/types';
 import { roleValuesEnum } from '@/constants';
 import { AboutUs } from '@/components/AboutUs';
 import { fetchContents } from '@/state/ducks/content/actions';
@@ -21,6 +13,10 @@ type groupType = {
   [key: string]: MemberEntity[];
 };
 
+/**
+ * Container for AboutUs component. Fetches contents, members and partners
+ * on mount. Will sort members by group and role.
+ */
 export const AboutUsContainer = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);

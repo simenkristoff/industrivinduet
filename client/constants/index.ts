@@ -1,3 +1,7 @@
+/**
+ * Exports constants
+ */
+
 export { default as FormMessage } from './formMessages';
 export { default as OptionMessage } from './optionMessages';
 export { default as Bytes } from './bytes';

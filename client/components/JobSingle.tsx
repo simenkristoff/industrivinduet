@@ -13,6 +13,9 @@ interface IProps {
 
 const BACKEND_URL = process.env.BACKEND_URL as string;
 
+/**
+ * Page for displaying details of a single Job
+ */
 export const JobSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
   var sortedGrades: string[] = [];
   const {
@@ -35,7 +38,6 @@ export const JobSingle: React.FC<IProps> = ({ data, loading }: IProps) => {
     });
   }
 
-  console.log(sortedGrades);
   const render = () => {
     if (loading || _.isEmpty(data)) {
       return <Spinner loading centered />;
