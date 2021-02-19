@@ -4,11 +4,10 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, RoleActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import roleData from '@/__mocks__/roleData';
 
 import { createRole, deleteRole, fetchRoles, setRole, updateRole } from '../actions';
 import roleSaga from '../sagas';
-
-import roleData from './__mockData__/roleData';
 
 describe('role saga', () => {
   it('should handle fetch success', () => {

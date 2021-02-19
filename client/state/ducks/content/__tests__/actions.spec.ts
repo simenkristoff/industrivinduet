@@ -1,6 +1,7 @@
 import { action } from 'typesafe-actions';
 
 import { ContentActionTypes, ContentEntity } from '@/types';
+import contentData from '@/__mocks__/contentData';
 
 import {
   clear,
@@ -10,8 +11,6 @@ import {
   setContent,
   updateContent,
 } from '../actions';
-
-import contentData from './__mockData__/contentData';
 
 describe('content actions', () => {
   it('should call @@content.FETCH.START', () => {

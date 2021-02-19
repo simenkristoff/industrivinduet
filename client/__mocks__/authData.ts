@@ -6,8 +6,7 @@ import {
   LoginCredentials,
   RegisterCredentials,
 } from '@/types';
-
-import { ForgotPasswordCredentials, ResetPasswordCredentials } from '../../types';
+import { ForgotPasswordCredentials, ResetPasswordCredentials } from '@/state/ducks/auth/types';
 
 export const authToken: EncodedToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJbmR1c3RyaXZpbmR1ZXQiLCJzdWIiOnsiaWQiOiI2MDI3ZGFkMjYwY2EzNjVhNzAxMThiYWIiLCJlbWFpbCI6ImFkbWluQGluZHVzdHJpdmluZHVldC5ubyIsInBlcm1pc3Npb25zIjoiQURNSU4ifSwiaWF0IjoxNjEzNDc1MDQwODMzLCJleHAiOjE2MTM1NjE0NDA4MzN9.4GJduWJJqbBxRGhIRkZQLkxRRhjmLmHfAEvuxTgA0T0';

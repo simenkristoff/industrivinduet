@@ -1,6 +1,7 @@
 import { action } from 'typesafe-actions';
 
 import { JobActionTypes, JobEntity } from '@/types';
+import jobData from '@/__mocks__/jobData';
 
 import {
   clear,
@@ -12,8 +13,6 @@ import {
   setJob,
   updateJob,
 } from '../actions';
-
-import jobData from './__mockData__/jobData';
 
 describe('job actions', () => {
   it('should call @@job.FETCH.START', () => {

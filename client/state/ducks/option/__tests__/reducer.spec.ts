@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { ApiResponse, OptionActionTypes } from '@/types';
+import optionData from '@/__mocks__/optionData';
 
 import { optionReducer, initialState } from '../reducer';
-
-import optionData from './__mockData__/optionData';
 
 describe('option reducer', () => {
   it('should equal initial state', () => {

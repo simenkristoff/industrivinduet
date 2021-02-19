@@ -4,12 +4,11 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, MediaActionTypes } from '@/types';
 import apiCaller, { fileApiCaller } from '@/state/utils/apiCaller';
+import { mediaDirectoryMock, mediaFolderMock, mediaImageMock } from '@/__mocks__/mediaData';
 
 import { clear, fetchFiles, uploadFile, deleteFile, createFolder, updateFolder } from '../actions';
 import { MediaFolderType } from '../types';
 import mediaSaga from '../sagas';
-
-import { mediaDirectoryMock, mediaFolderMock, mediaImageMock } from './__mockData__/mediaData';
 
 describe('media saga', () => {
   it('should handle fetch success', () => {

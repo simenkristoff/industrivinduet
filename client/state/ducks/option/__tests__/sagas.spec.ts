@@ -4,11 +4,10 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, OptionActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import optionData from '@/__mocks__/optionData';
 
 import { fetchOptions, updateOptions, resetOptions } from '../actions';
 import optionSaga from '../sagas';
-
-import optionData from './__mockData__/optionData';
 
 describe('option saga', () => {
   it('should handle fetch success', () => {

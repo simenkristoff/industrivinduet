@@ -4,6 +4,7 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, EventActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import eventData from '@/__mocks__/eventData';
 
 import {
   createEvent,
@@ -14,8 +15,6 @@ import {
   updateEvent,
 } from '../actions';
 import eventSaga from '../sagas';
-
-import eventData from './__mockData__/eventData';
 
 describe('event saga', () => {
   it('should handle fetch success', () => {

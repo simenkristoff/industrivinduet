@@ -1,6 +1,7 @@
 import { action } from 'typesafe-actions';
 
 import { MemberActionTypes, MemberEntity } from '@/types';
+import memberData from '@/__mocks__/memberData';
 
 import {
   clear,
@@ -10,8 +11,6 @@ import {
   setMember,
   updateMember,
 } from '../actions';
-
-import memberData from './__mockData__/memberData';
 
 describe('member actions', () => {
   it('should call @@member.FETCH.START', () => {

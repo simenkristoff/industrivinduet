@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { ApiResponse, JobActionTypes } from '@/types';
+import jobData from '@/__mocks__/jobData';
 
 import { jobReducer, initialState } from '../reducer';
-
-import jobData from './__mockData__/jobData';
 
 describe('job reducer', () => {
   it('should equal initial state', () => {

@@ -19,9 +19,6 @@ describe('Test Event Controller', () => {
     app = new App([new EventController()]);
     server = app.getServer();
     instance = app.listen();
-    await genTestToken().then((value) => {
-      auth = value;
-    });
     await seedDatabase(true, ['Event']).then((res) => {
       if (res) done();
     });
@@ -70,6 +67,9 @@ describe('Test Event Controller', () => {
     eventMock.title = 'Test event';
     const result = await supertest(server).post(`/api/events`).send(eventMock);
     expect(result.status).toBe(401);
+    await genTestToken().then((value) => {
+      auth = value;
+    });
     done();
   });
 

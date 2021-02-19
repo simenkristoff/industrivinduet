@@ -1,15 +1,14 @@
 import { action } from 'typesafe-actions';
 
 import { AuthActionTypes } from '@/types';
-
-import { register, login, logout, forgot, reset, clear } from '../actions';
-
 import {
   registerCredentials,
   loginCredentials,
   forgotPasswordCredentials,
   resetPasswordCredentials,
-} from './__mockData__/authData';
+} from '@/__mocks__/authData';
+
+import { register, login, logout, forgot, reset, clear } from '../actions';
 
 describe('auth actions', () => {
   it('should call @@auth.REGISTER.START', () => {

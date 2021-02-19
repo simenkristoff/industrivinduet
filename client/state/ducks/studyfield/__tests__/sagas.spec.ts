@@ -4,6 +4,7 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, StudyFieldActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import studyfieldData from '@/__mocks__/studyfieldData';
 
 import {
   createStudyField,
@@ -13,8 +14,6 @@ import {
   updateStudyField,
 } from '../actions';
 import studyfieldSaga from '../sagas';
-
-import studyfieldData from './__mockData__/studyfieldData';
 
 describe('studyfield saga', () => {
   it('should handle fetch success', () => {

@@ -16,24 +16,27 @@ export const FooterContainer = () => {
 
   useEffect(() => {
     var observer: MutationObserver | null = null;
-    const height = document.getElementsByClassName('site-footer')[0].clientHeight;
-    const divElement = (document.getElementsByClassName(
-      'main-container',
-    ) as HTMLCollectionOf<HTMLElement>)[0];
-    if (divElement && height) {
-      justifyContentWrapper(divElement, height);
-    } else {
-      observer = new MutationObserver(() => {
-        const height = document.getElementsByClassName('site-footer')[0].clientHeight;
-        const divElement = (document.getElementsByClassName(
-          'main-container',
-        ) as HTMLCollectionOf<HTMLElement>)[0];
-        if (divElement && height) {
-          (observer as MutationObserver).disconnect();
-          justifyContentWrapper(divElement, height);
-        }
-      });
-      observer.observe(document, { subtree: true, childList: true });
+    var self = document.getElementsByClassName('site-footer');
+    if (self.length > 0) {
+      const height = self[0].clientHeight;
+      const divElement = (document.getElementsByClassName(
+        'main-container',
+      ) as HTMLCollectionOf<HTMLElement>)[0];
+      if (divElement && height) {
+        justifyContentWrapper(divElement, height);
+      } else {
+        observer = new MutationObserver(() => {
+          const height = document.getElementsByClassName('site-footer')[0].clientHeight;
+          const divElement = (document.getElementsByClassName(
+            'main-container',
+          ) as HTMLCollectionOf<HTMLElement>)[0];
+          if (divElement && height) {
+            (observer as MutationObserver).disconnect();
+            justifyContentWrapper(divElement, height);
+          }
+        });
+        observer.observe(document, { subtree: true, childList: true });
+      }
     }
 
     return () => {

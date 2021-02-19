@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { OptionActionTypes, OptionEntity } from '@/types';
+import optionData from '@/__mocks__/optionData';
 
 import { clear, fetchOptions, updateOptions, resetOptions } from '../actions';
-
-import optionData from './__mockData__/optionData';
 
 describe('option actions', () => {
   it('should call @@option.FETCH.START', () => {

@@ -1,6 +1,7 @@
 import { action } from 'typesafe-actions';
 
 import { UserActionTypes, UserEntity } from '@/types';
+import userData, { registerTokenData } from '@/__mocks__/userData';
 
 import {
   clear,
@@ -11,8 +12,6 @@ import {
   setUser,
   updateUser,
 } from '../actions';
-
-import userData, { registerTokenData } from './__mockData__/userData';
 
 describe('user actions', () => {
   it('should call @@user.FETCH.START', () => {

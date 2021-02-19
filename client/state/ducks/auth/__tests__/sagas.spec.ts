@@ -5,10 +5,6 @@ import { throwError } from 'redux-saga-test-plan/providers';
 import { AuthActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
 import { ApiResponse } from '@/state/interface';
-
-import { forgot, login, logout, register, reset } from '../actions';
-import authSaga from '../sagas';
-
 import {
   loginCredentials,
   registerCredentials,
@@ -16,7 +12,10 @@ import {
   resetPasswordCredentials,
   authUser,
   authToken,
-} from './__mockData__/authData';
+} from '@/__mocks__/authData';
+
+import { forgot, login, logout, register, reset } from '../actions';
+import authSaga from '../sagas';
 
 describe('auth saga', () => {
   it('should handle register success', () => {

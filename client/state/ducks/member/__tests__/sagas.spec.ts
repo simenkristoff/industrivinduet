@@ -4,11 +4,10 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, MemberActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import memberData from '@/__mocks__/memberData';
 
 import { createMember, deleteMember, fetchMembers, setMember, updateMember } from '../actions';
 import memberSaga from '../sagas';
-
-import memberData from './__mockData__/memberData';
 
 describe('member saga', () => {
   it('should handle fetch success', () => {

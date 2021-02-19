@@ -4,11 +4,10 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, PartnerActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import partnerData from '@/__mocks__/partnerData';
 
 import { createPartner, deletePartner, fetchPartners, setPartner, updatePartner } from '../actions';
 import partnerSaga from '../sagas';
-
-import partnerData from './__mockData__/partnerData';
 
 describe('partner saga', () => {
   it('should handle fetch success', () => {

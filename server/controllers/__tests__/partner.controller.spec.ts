@@ -19,9 +19,6 @@ describe('Test Partner Controller', () => {
     app = new App([new PartnerController()]);
     server = app.getServer();
     instance = app.listen();
-    await genTestToken().then((value) => {
-      auth = value;
-    });
     await seedDatabase(true, ['Partner']).then((res) => {
       if (res) done();
     });
@@ -61,6 +58,9 @@ describe('Test Partner Controller', () => {
     partnerMock.name = 'Test partner';
     const result = await supertest(server).post(`/api/partners`).send(partnerMock);
     expect(result.status).toBe(401);
+    await genTestToken().then((value) => {
+      auth = value;
+    });
     done();
   });
 

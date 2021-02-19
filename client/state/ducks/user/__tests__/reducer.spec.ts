@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { ApiResponse, UserActionTypes } from '@/types';
+import userData from '@/__mocks__/userData';
 
 import { userReducer, initialState } from '../reducer';
-
-import userData from './__mockData__/userData';
 
 describe('user reducer', () => {
   it('should equal initial state', () => {

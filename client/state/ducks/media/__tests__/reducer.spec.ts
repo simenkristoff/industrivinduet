@@ -1,15 +1,14 @@
 import { action } from 'typesafe-actions';
 
 import { ApiResponse, MediaActionTypes } from '@/types';
-
-import { mediaReducer, initialState } from '../reducer';
-
 import {
   mediaDirectoryMock,
   mediaDirectoryMockUpdated,
   mediaFolderMock,
   mediaImageMock,
-} from './__mockData__/mediaData';
+} from '@/__mocks__/mediaData';
+
+import { mediaReducer, initialState } from '../reducer';
 
 describe('media reducer', () => {
   it('should equal initial state', () => {

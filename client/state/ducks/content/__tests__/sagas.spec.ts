@@ -4,11 +4,10 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, ContentActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import contentData from '@/__mocks__/contentData';
 
 import { createContent, deleteContent, fetchContents, setContent, updateContent } from '../actions';
 import contentSaga from '../sagas';
-
-import contentData from './__mockData__/contentData';
 
 describe('content saga', () => {
   it('should handle fetch success', () => {

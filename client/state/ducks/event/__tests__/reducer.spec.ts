@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { ApiResponse, EventActionTypes } from '@/types';
+import eventData from '@/__mocks__/eventData';
 
 import { eventReducer, initialState } from '../reducer';
-
-import eventData from './__mockData__/eventData';
 
 describe('event reducer', () => {
   it('should equal initial state', () => {

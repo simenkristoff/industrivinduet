@@ -1,6 +1,7 @@
 import { action } from 'typesafe-actions';
 
 import { StudyFieldActionTypes, StudyFieldEntity } from '@/types';
+import studyfieldData from '@/__mocks__/studyfieldData';
 
 import {
   clear,
@@ -10,8 +11,6 @@ import {
   setStudyField,
   updateStudyField,
 } from '../actions';
-
-import studyfieldData from './__mockData__/studyfieldData';
 
 describe('studyfield actions', () => {
   it('should call @@studyfield.FETCH.START', () => {

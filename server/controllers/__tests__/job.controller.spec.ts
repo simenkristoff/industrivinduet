@@ -19,9 +19,6 @@ describe('Test Job Controller', () => {
     app = new App([new JobController()]);
     server = app.getServer();
     instance = app.listen();
-    await genTestToken().then((value) => {
-      auth = value;
-    });
     await seedDatabase(true, ['Job']).then((res) => {
       if (res) done();
     });
@@ -70,6 +67,9 @@ describe('Test Job Controller', () => {
     jobMock.title = 'Test job';
     const result = await supertest(server).post(`/api/jobs`).send(jobMock);
     expect(result.status).toBe(401);
+    await genTestToken().then((value) => {
+      auth = value;
+    });
     done();
   });
 

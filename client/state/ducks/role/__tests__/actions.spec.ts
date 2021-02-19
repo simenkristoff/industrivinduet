@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { RoleActionTypes, RoleEntity } from '@/types';
+import roleData from '@/__mocks__/roleData';
 
 import { clear, createRole, deleteRole, fetchRoles, setRole, updateRole } from '../actions';
-
-import roleData from './__mockData__/roleData';
 
 describe('role actions', () => {
   it('should call @@role.FETCH.START', () => {

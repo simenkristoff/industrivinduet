@@ -4,11 +4,10 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, JobActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import jobData from '@/__mocks__/jobData';
 
 import { createJob, deleteJob, fetchJob, fetchJobs, setJob, updateJob } from '../actions';
 import jobSaga from '../sagas';
-
-import jobData from './__mockData__/jobData';
 
 describe('job saga', () => {
   it('should handle fetch success', () => {

@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { GroupActionTypes, GroupEntity } from '@/types';
+import groupData from '@/__mocks__/groupData';
 
 import { clear, createGroup, deleteGroup, fetchGroups, setGroup, updateGroup } from '../actions';
-
-import groupData from './__mockData__/groupData';
 
 describe('group actions', () => {
   it('should call @@group.FETCH.START', () => {

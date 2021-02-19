@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { ApiResponse, ContentActionTypes } from '@/types';
+import contentData from '@/__mocks__/contentData';
 
 import { contentReducer, initialState } from '../reducer';
-
-import contentData from './__mockData__/contentData';
 
 describe('content reducer', () => {
   it('should equal initial state', () => {

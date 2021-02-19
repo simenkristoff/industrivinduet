@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { ApiResponse, PartnerActionTypes } from '@/types';
+import partnerData from '@/__mocks__/partnerData';
 
 import { partnerReducer, initialState } from '../reducer';
-
-import partnerData from './__mockData__/partnerData';
 
 describe('partner reducer', () => {
   it('should equal initial state', () => {

@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { ApiResponse, GroupActionTypes } from '@/types';
+import groupData from '@/__mocks__/groupData';
 
 import { groupReducer, initialState } from '../reducer';
-
-import groupData from './__mockData__/groupData';
 
 describe('group reducer', () => {
   it('should equal initial state', () => {

@@ -19,9 +19,6 @@ describe('Test StudyField Controller', () => {
     app = new App([new StudyFieldController()]);
     server = app.getServer();
     instance = app.listen();
-    await genTestToken().then((value) => {
-      auth = value;
-    });
     await seedDatabase(true, ['Studyfield']).then((res) => {
       if (res) done();
     });
@@ -62,6 +59,9 @@ describe('Test StudyField Controller', () => {
     studyfieldMock.abbr = 'teststd';
     const result = await supertest(server).post(`/api/studyfields`).send(studyfieldMock);
     expect(result.status).toBe(401);
+    await genTestToken().then((value) => {
+      auth = value;
+    });
     done();
   });
 

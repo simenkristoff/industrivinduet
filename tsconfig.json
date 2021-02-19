@@ -21,6 +21,6 @@
         "@resources/*": ["./resources/*"]
       }
     },
-    "include": ["client", "server"],
+    "include": ["client", "server", "__mocks__/data/memberData.ts"],
     "exclude": ["./dist", "node_modules", "./config"]
   }

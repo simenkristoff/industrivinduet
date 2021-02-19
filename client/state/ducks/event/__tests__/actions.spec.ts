@@ -1,6 +1,7 @@
 import { action } from 'typesafe-actions';
 
 import { EventActionTypes, EventEntity } from '@/types';
+import eventData from '@/__mocks__/eventData';
 
 import {
   clear,
@@ -12,8 +13,6 @@ import {
   setEvent,
   updateEvent,
 } from '../actions';
-
-import eventData from './__mockData__/eventData';
 
 describe('event actions', () => {
   it('should call @@event.FETCH.START', () => {

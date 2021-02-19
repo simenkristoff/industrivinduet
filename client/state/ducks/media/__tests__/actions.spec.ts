@@ -1,11 +1,10 @@
 import { action } from 'typesafe-actions';
 
 import { MediaActionTypes, MediaType } from '@/types';
+import { mediaDirectoryMock, mediaFolderMock, mediaImageMock } from '@/__mocks__/mediaData';
 
 import { clear, fetchFiles, uploadFile, deleteFile, createFolder, updateFolder } from '../actions';
 import { MediaFolderType } from '../types';
-
-import { mediaDirectoryMock, mediaFolderMock, mediaImageMock } from './__mockData__/mediaData';
 
 describe('media actions', () => {
   it('should call @@media.FETCH.START', () => {

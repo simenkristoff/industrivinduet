@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
+import memberData from '@/__mocks__/memberData';
 import { ApiResponse, MemberActionTypes } from '@/types';
 
 import { memberReducer, initialState } from '../reducer';
-
-import memberData from './__mockData__/memberData';
 
 describe('member reducer', () => {
   it('should equal initial state', () => {

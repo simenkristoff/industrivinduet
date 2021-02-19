@@ -1,8 +1,7 @@
 import { ApiResponse, AuthActionTypes } from '@/types';
+import { authUser, authToken, signedInState, signedOutState } from '@/__mocks__/authData';
 
 import { authReducer } from '../reducer';
-
-import { authUser, authToken, signedInState, signedOutState } from './__mockData__/authData';
 
 describe('auth reducer', () => {
   it('should equal initial state', () => {

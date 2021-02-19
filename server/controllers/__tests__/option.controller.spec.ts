@@ -19,9 +19,6 @@ describe('Test Option Controller', () => {
     app = new App([new OptionController()]);
     server = app.getServer();
     instance = app.listen();
-    await genTestToken().then((value) => {
-      auth = value;
-    });
     await seedDatabase(true, ['Option']).then((res) => {
       if (res) done();
     });
@@ -35,7 +32,6 @@ describe('Test Option Controller', () => {
    */
   it('Request GET /api/options', async (done) => {
     const result = await supertest(server).get('/api/options').send();
-
     expect(result.status).toBe(200);
     expect(Object.keys(result.body).length).toBeGreaterThan(1);
     optionMock = result.body;
@@ -49,6 +45,9 @@ describe('Test Option Controller', () => {
     optionMock.general.sitename = 'testname';
     const result = await supertest(server).put(`/api/options`).send(optionMock);
     expect(result.status).toBe(401);
+    await genTestToken().then((value) => {
+      auth = value;
+    });
     done();
   });
 

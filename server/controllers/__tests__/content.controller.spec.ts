@@ -19,9 +19,6 @@ describe('Test Content Controller', () => {
     app = new App([new ContentController()]);
     server = app.getServer();
     instance = app.listen();
-    await genTestToken().then((value) => {
-      auth = value;
-    });
     await seedDatabase(true, ['Content']).then((res) => {
       if (res) done();
     });
@@ -63,6 +60,9 @@ describe('Test Content Controller', () => {
     contentMock.priority = 10;
     const result = await supertest(server).post(`/api/contents`).send(contentMock);
     expect(result.status).toBe(401);
+    await genTestToken().then((value) => {
+      auth = value;
+    });
     done();
   });
 

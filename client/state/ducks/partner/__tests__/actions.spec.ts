@@ -1,6 +1,7 @@
 import { action } from 'typesafe-actions';
 
 import { PartnerActionTypes, PartnerEntity } from '@/types';
+import partnerData from '@/__mocks__/partnerData';
 
 import {
   clear,
@@ -10,8 +11,6 @@ import {
   setPartner,
   updatePartner,
 } from '../actions';
-
-import partnerData from './__mockData__/partnerData';
 
 describe('partner actions', () => {
   it('should call @@partner.FETCH.START', () => {

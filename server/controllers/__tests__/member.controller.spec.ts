@@ -19,9 +19,6 @@ describe('Test Member Controller', () => {
     app = new App([new MemberController()]);
     server = app.getServer();
     instance = app.listen();
-    await genTestToken().then((value) => {
-      auth = value;
-    });
     await seedDatabase(true, ['Member']).then((res) => {
       if (res) done();
     });
@@ -62,6 +59,9 @@ describe('Test Member Controller', () => {
     memberMock.email = 'test.member@test.no'; // unique email
     const result = await supertest(server).post(`/api/members`).send(memberMock);
     expect(result.status).toBe(401);
+    await genTestToken().then((value) => {
+      auth = value;
+    });
     done();
   });
 

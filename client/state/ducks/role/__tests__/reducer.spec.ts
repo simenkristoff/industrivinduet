@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { ApiResponse, RoleActionTypes } from '@/types';
+import roleData from '@/__mocks__/roleData';
 
 import { roleReducer, initialState } from '../reducer';
-
-import roleData from './__mockData__/roleData';
 
 describe('role reducer', () => {
   it('should equal initial state', () => {

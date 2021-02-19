@@ -3,9 +3,7 @@ import React from 'react';
 import * as reactRedux from 'react-redux';
 import { Tabs } from 'antd';
 
-import { ForgotPasswordContainer } from '@/containers/auth/ForgotPasswordContainer';
 import { AboutUs } from '@/components/AboutUs';
-import configureStore from '@/state/configureStore';
 import { ContentEntity, PartnerEntity } from '@/types';
 import { MemberEntity } from '@/state/interface';
 

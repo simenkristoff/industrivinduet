@@ -1,10 +1,9 @@
 import { action } from 'typesafe-actions';
 
 import { ApiResponse, StudyFieldActionTypes } from '@/types';
+import studyfieldData from '@/__mocks__/studyfieldData';
 
 import { studyfieldReducer, initialState } from '../reducer';
-
-import studyfieldData from './__mockData__/studyfieldData';
 
 describe('studyfield reducer', () => {
   it('should equal initial state', () => {

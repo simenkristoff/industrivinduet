@@ -4,6 +4,7 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, UserActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import userData, { registerTokenData } from '@/__mocks__/userData';
 
 import {
   createUser,
@@ -14,8 +15,6 @@ import {
   updateUser,
 } from '../actions';
 import userSaga from '../sagas';
-
-import userData, { registerTokenData } from './__mockData__/userData';
 
 describe('user saga', () => {
   it('should handle fetch success', () => {

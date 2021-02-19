@@ -4,11 +4,10 @@ import { throwError } from 'redux-saga-test-plan/providers';
 
 import { ApiResponse, GroupActionTypes } from '@/types';
 import apiCaller from '@/state/utils/apiCaller';
+import groupData from '@/__mocks__/groupData';
 
 import { createGroup, deleteGroup, fetchGroups, setGroup, updateGroup } from '../actions';
 import groupSaga from '../sagas';
-
-import groupData from './__mockData__/groupData';
 
 describe('group saga', () => {
   it('should handle fetch success', () => {
