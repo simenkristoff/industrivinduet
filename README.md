@@ -3,6 +3,8 @@
 
 Nettside for bedriftskontakten til Produktutvikling og Produksjon (siv.ing. Maskin) på NTNU.
 
+![Industrivinduet mockup](https://github.com/simenkristoff/industrivinduet/blob/main/mockup.jpg)
+
 ## Kommandoer
 ### Utvikling
 Start server og klient i utviklingsmiljø
