@@ -38,6 +38,11 @@ Start serveren i produksjonsmiljø
 $ npm run prod
 ```
 
+Kjører applikasjonen som en bakgrunnsprosess på NGINX-serveren ved hjelp av PM2
+```node
+$ pm2 start npm --name "industrivinduet" -- run prod
+```
+
 ### Testing
 Kjører tester med jest
 ```node
