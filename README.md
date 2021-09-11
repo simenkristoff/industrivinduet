@@ -1,5 +1,9 @@
 # Industrivinduet, NTNU Trondheim
-> Open source frontend for [industrivinduet.no](https://industrivinduet.no)
+> Open source frontend for **industrivinduet.no**
+>
+> Nettsiden er ikke deployert per dags dato, men en demo er tilgjengelig på denne [adressen](http://13.49.115.193/)
+> 
+> Ta kontakt på [mail](mailto:simekri@stud.ntnu.no?Subject=Tilgang%20til%20industrivinduet-admin) dersom du ønsker tilgang til admin-panelet og CMS
 
 Nettside for bedriftskontakten til Produktutvikling og Produksjon (siv.ing. Maskin) på NTNU.
 
