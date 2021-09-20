@@ -3,7 +3,9 @@
 >
 > Nettsiden er ikke deployert per dags dato, men en demo er tilgjengelig på denne [adressen](http://13.49.115.193/)
 > 
-> Ta kontakt på [mail](mailto:simekri@stud.ntnu.no?Subject=Tilgang%20til%20industrivinduet-admin) dersom du ønsker tilgang til admin-panelet og CMS
+> Admin-innlogging:
+>   - Brukernavn/mail: admin@industrivinduet.no
+>   - Passord: iv_admin
 
 Nettside for bedriftskontakten til Produktutvikling og Produksjon (siv.ing. Maskin) på NTNU.
 
